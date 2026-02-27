@@ -1,0 +1,44 @@
+{
+  "version": "2.0",
+  "phase": "Phase 2 - 内容深度扩展",
+  "createdDate": "2026-02-23",
+  "description": "Phase 2项目元数据",
+  "status": "generated",
+  "files": {
+    "nodes": "nodes-extended-phase2.json",
+    "edges": "edges-extended-phase2.json",
+    "applications": "applications-extended-phase2.json",
+    "skillsContent": "skills-content-phase2.json"
+  },
+  "statistics": {
+    "totalNodes": 8,
+    "targetNodes": 75,
+    "nodesByDomain": {
+      "domain-1": {
+        "current": 5,
+        "target": 20
+      },
+      "domain-2": {
+        "current": 3,
+        "target": 24
+      },
+      "domain-3": {
+        "current": 0,
+        "target": 18
+      },
+      "domain-4": {
+        "current": 0,
+        "target": 10
+      },
+      "domain-5": {
+        "current": 0,
+        "target": 3
+      }
+    },
+    "totalEdges": 11,
+    "totalApplications": 10,
+    "targetApplications": 100,
+    "skillsContentItems": 1
+  },
+  "lastUpdated": "2026-02-23"
+}

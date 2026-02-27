@@ -1,0 +1,292 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - Part 3",
+    "totalNewNodes": 30,
+    "createdDate": "2026-02-22",
+    "description": "Phase 1积分理论、多元微积分、微分方程节点"
+  },
+  "newNodes": [
+    {
+      "id": "node-indefinite-integral-properties",
+      "name": "不定积分的性质",
+      "nameEn": "Properties of Indefinite Integral",
+      "description": "不定积分的线性性质、基本积分表",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 2,
+      "prerequisites": ["node-indefinite-integral"],
+      "relatedSkills": ["积分概念Skill", "积分技巧Skill"],
+      "formula": "\\int [af(x) + bg(x)]dx = a\\int f(x)dx + b\\int g(x)dx",
+      "keywords": ["不定积分", "线性性质", "基本积分表"],
+      "importance": 4,
+      "estimatedStudyTime": 40
+    },
+    {
+      "id": "node-substitution-method-1",
+      "name": "第一类换元法",
+      "nameEn": "First Substitution Method",
+      "description": "凑微分法，将复杂积分化为基本积分",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": ["node-integration-methods"],
+      "relatedSkills": ["积分技巧Skill"],
+      "formula": "\\int f(\\phi(x))\\phi'(x)dx = \\int f(u)du, \\quad u = \\phi(x)",
+      "keywords": ["换元法", "凑微分", "第一换元"],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "物理中的功",
+          "description": "计算变力做功",
+          "industry": "物理"
+        }
+      ]
+    },
+    {
+      "id": "node-substitution-method-2",
+      "name": "第二类换元法",
+      "nameEn": "Second Substitution Method",
+      "description": "变量替换法，通过变量代换简化积分",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": ["node-integration-methods"],
+      "relatedSkills": ["积分技巧Skill"],
+      "formula": "x = \\phi(t), dx = \\phi'(t)dt \\Rightarrow \\int f(x)dx = \\int f(\\phi(t))\\phi'(t)dt",
+      "keywords": ["换元法", "变量替换", "第二换元"],
+      "importance": 4,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "三角代换",
+          "description": "处理根式积分",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-integration-by-parts-detail",
+      "name": "分部积分法详解",
+      "nameEn": "Integration by Parts - Detailed",
+      "description": "分部积分的技巧和常见类型",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": ["node-integration-methods"],
+      "relatedSkills": ["积分技巧Skill"],
+      "formula": "\\int udv = uv - \\int vdu",
+      "keywords": ["分部积分", "积分技巧", "LIATE法则"],
+      "importance": 5,
+      "estimatedStudyTime": 70,
+      "realWorldApplications": [
+        {
+          "title": "工程计算",
+          "description": "处理乘积型积分",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-rational-function-integration",
+      "name": "有理函数积分",
+      "nameEn": "Rational Function Integration",
+      "description": "部分分式分解法求有理函数积分",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 4,
+      "prerequisites": ["node-integration-methods"],
+      "relatedSkills": ["积分技巧Skill"],
+      "formula": "\\frac{P(x)}{Q(x)} = A_1\\frac{1}{x-a_1} + A_2\\frac{1}{x-a_2} + \\cdots",
+      "keywords": ["有理函数", "部分分式", "分解"],
+      "importance": 4,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-trigonometric-integration",
+      "name": "三角函数积分",
+      "nameEn": "Trigonometric Integration",
+      "description": "三角函数的积分技巧和公式",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": ["node-integration-methods"],
+      "relatedSkills": ["积分技巧Skill"],
+      "formula": "\\int \\sin^m x \\cos^n x dx",
+      "keywords": ["三角函数", "积分技巧", "万能公式"],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-definite-integral-properties",
+      "name": "定积分的性质",
+      "nameEn": "Properties of Definite Integral",
+      "description": "定积分的线性性质、区间可加性、比较性质",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 2,
+      "prerequisites": ["node-definite-integral"],
+      "relatedSkills": ["积分概念Skill", "定积分应用Skill"],
+      "formula": "\\int_a^b f(x)dx = \\int_a^c f(x)dx + \\int_c^b f(x)dx",
+      "keywords": ["定积分", "性质", "区间可加性"],
+      "importance": 4,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-improper-integral",
+      "name": "反常积分",
+      "nameEn": "Improper Integral",
+      "description": "无穷区间和无界函数的积分",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 4,
+      "prerequisites": ["node-definite-integral"],
+      "relatedSkills": ["积分概念Skill"],
+      "formula": "\\int_a^{+\\infty} f(x)dx = \\lim_{b \\to +\\infty} \\int_a^b f(x)dx",
+      "keywords": ["反常积分", "无穷积分", "瑕积分"],
+      "importance": 4,
+      "estimatedStudyTime": 70,
+      "realWorldApplications": [
+        {
+          "title": "概率分布",
+          "description": "概率密度函数的积分",
+          "industry": "统计"
+        }
+      ]
+    },
+    {
+      "id": "node-area-calculation",
+      "name": "平面图形面积",
+      "nameEn": "Area Calculation",
+      "description": "使用定积分计算平面图形面积",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 2,
+      "prerequisites": ["node-integral-applications"],
+      "relatedSkills": ["定积分应用Skill"],
+      "formula": "A = \\int_a^b |f(x) - g(x)|dx",
+      "keywords": ["面积", "定积分应用", "曲边梯形"],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "土地测量",
+          "description": "不规则地块面积计算",
+          "industry": "测绘"
+        }
+      ]
+    },
+    {
+      "id": "node-volume-calculation",
+      "name": "旋转体体积",
+      "nameEn": "Volume of Revolution",
+      "description": "使用定积分计算旋转体体积",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 3,
+      "prerequisites": ["node-integral-applications"],
+      "relatedSkills": ["定积分应用Skill"],
+      "formula": "V = \\pi \\int_a^b [f(x)]^2 dx",
+      "keywords": ["体积", "旋转体", "定积分应用"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "容器设计",
+          "description": "计算容器容积",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-arc-length",
+      "name": "弧长计算",
+      "nameEn": "Arc Length",
+      "description": "使用定积分计算曲线弧长",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 3,
+      "prerequisites": ["node-integral-applications"],
+      "relatedSkills": ["定积分应用Skill"],
+      "formula": "s = \\int_a^b \\sqrt{1 + [f'(x)]^2} dx",
+      "keywords": ["弧长", "曲线长度", "定积分应用"],
+      "importance": 3,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "道路长度",
+          "description": "计算弯曲道路的实际长度",
+          "industry": "交通"
+        }
+      ]
+    },
+    {
+      "id": "node-multivariable-limit",
+      "name": "多元函数的极限",
+      "nameEn": "Limit of Multivariable Functions",
+      "description": "二元及多元函数的极限定义和计算",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "\\lim_{(x,y) \\to (x_0,y_0)} f(x,y) = A",
+      "keywords": ["多元函数", "二重极限", "累次极限"],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-multivariable-continuity",
+      "name": "多元函数的连续性",
+      "nameEn": "Continuity of Multivariable Functions",
+      "description": "多元函数连续性的定义和性质",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": ["node-multivariable-limit"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "\\lim_{(x,y) \\to (x_0,y_0)} f(x,y) = f(x_0,y_0)",
+      "keywords": ["多元连续", "连续性", "有界闭区域"],
+      "importance": 3,
+      "estimatedStudyTime": 50
+    },
+    {
+      "id": "node-total-differential",
+      "name": "全微分",
+      "nameEn": "Total Differential",
+      "description": "多元函数的全微分及其应用",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": ["node-partial-derivative"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "dz = \\frac{\\partial z}{\\partial x}dx + \\frac{\\partial z}{\\partial y}dy",
+      "keywords": ["全微分", "可微", "线性近似"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "误差传播",
+          "description": "计算测量误差的传播",
+          "industry": "测量"
+        }
+      ]
+    },
+    {
+      "id": "node-composite-function-derivative",
+      "name": "多元复合函数求导",
+      "nameEn": "Chain Rule for Multivariable Functions",
+      "description": "多元复合函数的链式法则",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": ["node-partial-derivative"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "\\frac{\\partial z}{\\partial t} = \\frac{\\partial z}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial z}{\\partial y}\\frac{dy}{dt}",
+      "keywords": ["复合函数", "链式法则", "全导数"],
+      "importance": 4,
+      "estimatedStudyTime": 65
+    }
+  ]
+}

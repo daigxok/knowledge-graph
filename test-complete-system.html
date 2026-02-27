@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Graph System - Complete Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #4facfe;
+            margin-top: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .info {
+            color: #17a2b8;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #4facfe 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #4facfe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        pre {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Knowledge Graph System - Complete Test Suite</h1>
+        <p class="info">This page tests all components of the knowledge graph system</p>
+
+        <div class="test-section">
+            <h2>📊 System Statistics</h2>
+            <div class="stats" id="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="domainCount">-</div>
+                    <div class="stat-label">Domains</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="nodeCount">-</div>
+                    <div class="stat-label">Nodes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="edgeCount">-</div>
+                    <div class="stat-label">Edges</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="skillCount">-</div>
+                    <div class="stat-label">Skills</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Test Controls</h2>
+            <button onclick="runAllTests()">Run All Tests</button>
+            <button onclick="testDataLoading()">Test Data Loading</button>
+            <button onclick="testModules()">Test Modules</button>
+            <button onclick="testFilters()">Test Filters</button>
+            <button onclick="testLearningPath()">Test Learning Path</button>
+            <button onclick="testSkillIntegration()">Test Skill Integration</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Test Results</h2>
+            <div id="testResults"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 System Status</h2>
+            <div id="systemStatus"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { DomainDataManager } from './js/modules/DomainDataManager.js';
+        import { KnowledgeGraphEngine } from './js/modules/KnowledgeGraphEngine.js';
+        import { FilterEngine } from './js/modules/FilterEngine.js';
+        import { LearningPathFinder } from './js/modules/LearningPathFinder.js';
+        import { SkillIntegrationManager } from './js/modules/SkillIntegrationManager.js';
+        import { StateManager } from './js/modules/StateManager.js';
+        import { validateGraphData } from './js/modules/DataValidator.js';
+
+        let testData = {
+            domains: null,
+            nodes: null,
+            edges: null
+        };
+
+        let components = {
+            domainManager: null,
+            graphEngine: null,
+            filterEngine: null,
+            learningPathFinder: null,
+            skillManager: null,
+            stateManager: null
+        };
+
+        // Make functions globally available
+        window.runAllTests = runAllTests;
+        window.testDataLoading = testDataLoading;
+        window.testModules = testModules;
+        window.testFilters = testFilters;
+        window.testLearningPath = testLearningPath;
+        window.testSkillIntegration = testSkillIntegration;
+
+        function log(message, type = 'info') {
+            const resultsDiv = document.getElementById('testResults');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            resultDiv.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            resultsDiv.appendChild(resultDiv);
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        function updateStats() {
+            if (testData.domains) {
+                document.getElementById('domainCount').textContent = testData.domains.length;
+            }
+            if (testData.nodes) {
+                document.getElementById('nodeCount').textContent = testData.nodes.length;
+            }
+            if (testData.edges) {
+                document.getElementById('edgeCount').textContent = testData.edges.length;
+            }
+            if (components.skillManager) {
+                document.getElementById('skillCount').textContent = components.skillManager.getAllSkills().length;
+            }
+        }
+
+        async function loadData() {
+            try {
+                log('Loading data files...', 'info');
+                
+                const [domainsData, nodesData, edgesData] = await Promise.all([
+                    fetch('./data/domains.json').then(r => r.json()),
+                    fetch('./data/nodes.json').then(r => r.json()),
+                    fetch('./data/edges.json').then(r => r.json())
+                ]);
+
+                testData.domains = domainsData.domains;
+                testData.nodes = nodesData.nodes;
+                testData.edges = edgesData.edges;
+
+                log(`✅ Data loaded: ${testData.domains.length} domains, ${testData.nodes.length} nodes, ${testData.edges.length} edges`, 'success');
+                updateStats();
+                return true;
+            } catch (error) {
+                log(`❌ Failed to load data: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function testDataLoading() {
+            log('=== Testing Data Loading ===', 'info');
+            
+            const loaded = await loadData();
+            if (!loaded) return false;
+
+            // Validate data
+            log('Validating data structure...', 'info');
+            const validation = validateGraphData({
+                domains: testData.domains,
+                nodes: testData.nodes,
+                edges: testData.edges
+            });
+
+            if (validation.success) {
+                log('✅ Data validation passed', 'success');
+                log(`Stats: ${validation.stats.domains} domains, ${validation.stats.nodes} nodes, ${validation.stats.edges} edges`, 'info');
+            } else {
+                log('❌ Data validation failed:', 'error');
+                validation.errors.forEach(err => log(`  - ${err}`, 'error'));
+                return false;
+            }
+
+            return true;
+        }
+
+        async function testModules() {
+            log('=== Testing Core Modules ===', 'info');
+
+            if (!testData.domains || !testData.nodes || !testData.edges) {
+                await loadData();
+            }
+
+            try {
+                // Test DomainDataManager
+                log('Testing DomainDataManager...', 'info');
+                components.domainManager = new DomainDataManager({ 
+                    domains: testData.domains,
+                    traditionalChapters: []
+                });
+                const allDomains = components.domainManager.getAllDomains();
+                log(`✅ DomainDataManager: ${allDomains.length} domains loaded`, 'success');
+
+                // Test KnowledgeGraphEngine
+                log('Testing KnowledgeGraphEngine...', 'info');
+                components.graphEngine = new KnowledgeGraphEngine(testData.nodes, testData.edges);
+                const allNodes = components.graphEngine.getAllNodes();
+                const allEdges = components.graphEngine.getAllEdges();
+                log(`✅ KnowledgeGraphEngine: ${allNodes.length} nodes, ${allEdges.length} edges`, 'success');
+
+                // Test FilterEngine
+                log('Testing FilterEngine...', 'info');
+                components.filterEngine = new FilterEngine(components.graphEngine);
+                log('✅ FilterEngine initialized', 'success');
+
+                // Test LearningPathFinder
+                log('Testing LearningPathFinder...', 'info');
+                components.learningPathFinder = new LearningPathFinder(components.graphEngine);
+                log('✅ LearningPathFinder initialized', 'success');
+
+                // Test StateManager
+                log('Testing StateManager...', 'info');
+                components.stateManager = new StateManager();
+                log('✅ StateManager initialized', 'success');
+
+                // Test SkillIntegrationManager
+                log('Testing SkillIntegrationManager...', 'info');
+                components.skillManager = new SkillIntegrationManager();
+                await components.skillManager.loadSkillRegistry();
+                const skills = components.skillManager.getAllSkills();
+                log(`✅ SkillIntegrationManager: ${skills.length} skills available`, 'success');
+                updateStats();
+
+                return true;
+            } catch (error) {
+                log(`❌ Module test failed: ${error.message}`, 'error');
+                console.error(error);
+                return false;
+            }
+        }
+
+        async function testFilters() {
+            log('=== Testing Filter Engine ===', 'info');
+
+            if (!components.filterEngine) {
+                await testModules();
+            }
+
+            try {
+                // Test domain filter
+                log('Testing domain filter...', 'info');
+                const domain1Nodes = components.filterEngine.filterByDomain(['domain-1']);
+                log(`✅ Domain filter: Found ${domain1Nodes.length} nodes in domain-1`, 'success');
+
+                // Test difficulty filter
+                log('Testing difficulty filter...', 'info');
+                const easyNodes = components.filterEngine.filterByDifficulty(1, 2);
+                log(`✅ Difficulty filter: Found ${easyNodes.length} easy nodes (1-2)`, 'success');
+
+                // Test keyword search
+                log('Testing keyword search...', 'info');
+                const searchResults = components.filterEngine.filterByKeyword('极限');
+                log(`✅ Keyword search: Found ${searchResults.length} nodes matching "极限"`, 'success');
+
+                // Test combined filters
+                log('Testing combined filters...', 'info');
+                const filtered = components.filterEngine.applyFilters({
+                    domains: ['domain-1'],
+                    difficultyRange: [1, 3],
+                    searchKeyword: ''
+                });
+                log(`✅ Combined filters: ${filtered.length} nodes match criteria`, 'success');
+
+                return true;
+            } catch (error) {
+                log(`❌ Filter test failed: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function testLearningPath() {
+            log('=== Testing Learning Path Finder ===', 'info');
+
+            if (!components.learningPathFinder) {
+                await testModules();
+            }
+
+            try {
+                // Find a target node
+                const allNodes = components.graphEngine.getAllNodes();
+                const targetNode = allNodes.find(n => n.prerequisites && n.prerequisites.length > 0);
+                
+                if (!targetNode) {
+                    log('⚠️ No suitable target node found for path testing', 'info');
+                    return true;
+                }
+
+                log(`Testing path generation to: ${targetNode.name}`, 'info');
+                const path = components.learningPathFinder.generatePath(targetNode.id, []);
+                
+                log(`✅ Learning path generated:`, 'success');
+                log(`  - Steps: ${path.steps.length}`, 'info');
+                log(`  - Total time: ${path.totalTime} minutes`, 'info');
+                log(`  - Difficulty: ${path.difficulty}/5`, 'info');
+                log(`  - Domains: ${path.domains.join(', ')}`, 'info');
+
+                // Display path steps
+                path.steps.forEach((step, index) => {
+                    log(`  ${index + 1}. ${step.node.name} - ${step.reason}`, 'info');
+                });
+
+                return true;
+            } catch (error) {
+                log(`❌ Learning path test failed: ${error.message}`, 'error');
+                console.error(error);
+                return false;
+            }
+        }
+
+        async function testSkillIntegration() {
+            log('=== Testing Skill Integration ===', 'info');
+
+            if (!components.skillManager) {
+                await testModules();
+            }
+
+            try {
+                const allSkills = components.skillManager.getAllSkills();
+                log(`Total skills available: ${allSkills.length}`, 'info');
+
+                // Test skill types
+                const visualizationSkills = components.skillManager.getSkillsByType('visualization');
+                log(`✅ Visualization skills: ${visualizationSkills.length}`, 'success');
+
+                const animationSkills = components.skillManager.getSkillsByType('animation');
+                log(`✅ Animation skills: ${animationSkills.length}`, 'success');
+
+                // Test skills by domain
+                const domain1Skills = components.skillManager.getSkillsByDomain('domain-1');
+                log(`✅ Domain-1 skills: ${domain1Skills.length}`, 'success');
+
+                // Test skills by node
+                const allNodes = components.graphEngine.getAllNodes();
+                const nodeWithSkills = allNodes.find(n => n.relatedSkills && n.relatedSkills.length > 0);
+                if (nodeWithSkills) {
+                    const nodeSkills = components.skillManager.getSkillsByNode(nodeWithSkills.id);
+                    log(`✅ Skills for "${nodeWithSkills.name}": ${nodeSkills.length}`, 'success');
+                }
+
+                return true;
+            } catch (error) {
+                log(`❌ Skill integration test failed: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function runAllTests() {
+            log('🚀 Starting complete test suite...', 'info');
+            document.getElementById('testResults').innerHTML = '';
+
+            const tests = [
+                { name: 'Data Loading', fn: testDataLoading },
+                { name: 'Core Modules', fn: testModules },
+                { name: 'Filter Engine', fn: testFilters },
+                { name: 'Learning Path', fn: testLearningPath },
+                { name: 'Skill Integration', fn: testSkillIntegration }
+            ];
+
+            let passed = 0;
+            let failed = 0;
+
+            for (const test of tests) {
+                log(`\n--- Running: ${test.name} ---`, 'info');
+                try {
+                    const result = await test.fn();
+                    if (result) {
+                        passed++;
+                        log(`✅ ${test.name} PASSED`, 'success');
+                    } else {
+                        failed++;
+                        log(`❌ ${test.name} FAILED`, 'error');
+                    }
+                } catch (error) {
+                    failed++;
+                    log(`❌ ${test.name} FAILED: ${error.message}`, 'error');
+                    console.error(error);
+                }
+            }
+
+            log(`\n=== Test Suite Complete ===`, 'info');
+            log(`✅ Passed: ${passed}`, 'success');
+            if (failed > 0) {
+                log(`❌ Failed: ${failed}`, 'error');
+            }
+            log(`Total: ${passed + failed} tests`, 'info');
+
+            updateSystemStatus();
+        }
+
+        function updateSystemStatus() {
+            const statusDiv = document.getElementById('systemStatus');
+            const status = {
+                'Data Loaded': testData.domains && testData.nodes && testData.edges,
+                'Domain Manager': !!components.domainManager,
+                'Graph Engine': !!components.graphEngine,
+                'Filter Engine': !!components.filterEngine,
+                'Learning Path Finder': !!components.learningPathFinder,
+                'Skill Manager': !!components.skillManager,
+                'State Manager': !!components.stateManager
+            };
+
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">';
+            for (const [key, value] of Object.entries(status)) {
+                const icon = value ? '✅' : '❌';
+                const color = value ? '#28a745' : '#dc3545';
+                html += `<div style="padding: 10px; background: white; border-radius: 4px; border-left: 4px solid ${color};">
+                    ${icon} ${key}
+                </div>`;
+            }
+            html += '</div>';
+            statusDiv.innerHTML = html;
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            log('System initialized. Click "Run All Tests" to begin.', 'info');
+            updateSystemStatus();
+        });
+    </script>
+</body>
+</html>

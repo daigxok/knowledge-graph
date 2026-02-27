@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Highlighting and Fading Effects - Knowledge Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .test-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        
+        .test-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .controls h2 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #2d3436;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-btn:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .test-btn:active {
+            transform: translateY(0);
+        }
+        
+        .test-btn.secondary {
+            background-color: #6c757d;
+        }
+        
+        .test-btn.secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .graph-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #graph-canvas {
+            width: 100%;
+            height: 600px;
+        }
+        
+        .status {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .status h3 {
+            margin: 0 0 10px 0;
+            color: #2e7d32;
+            font-size: 16px;
+        }
+        
+        .status ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .status li {
+            margin: 5px 0;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🎨 Highlighting and Fading Effects Test</h1>
+            <p>Task 6.2: Testing highlightNodes(), fadeNonRelated(), and clearHighlights() methods with CSS transitions</p>
+        </div>
+        
+        <div class="controls">
+            <h2>Test Controls</h2>
+            <div class="button-group">
+                <button class="test-btn" onclick="testHighlightNodes()">
+                    ✨ Highlight Nodes (1, 2, 3)
+                </button>
+                <button class="test-btn" onclick="testFadeNonRelated()">
+                    👻 Fade Non-Related (Node 1)
+                </button>
+                <button class="test-btn" onclick="testHighlightPath()">
+                    🛤️ Highlight Path (1→2→3)
+                </button>
+                <button class="test-btn" onclick="testCrossDomainHighlight()">
+                    🔗 Highlight Cross-Domain
+                </button>
+                <button class="test-btn secondary" onclick="testClearHighlights()">
+                    🧹 Clear All Highlights
+                </button>
+            </div>
+        </div>
+        
+        <div class="graph-container">
+            <div id="graph-canvas"></div>
+        </div>
+        
+        <div class="status">
+            <h3>✅ Test Status</h3>
+            <ul>
+                <li><strong>highlightNodes(nodeIds)</strong>: Adds 'highlighted' class with golden border</li>
+                <li><strong>fadeNonRelated(nodeId)</strong>: Adds 'faded' class with 0.3 opacity</li>
+                <li><strong>clearHighlights()</strong>: Removes all highlight/fade classes</li>
+                <li><strong>CSS Transitions</strong>: Smooth 0.3s ease transitions on opacity and stroke</li>
+                <li><strong>Requirements</strong>: 4.2 (hover), 4.6 (filter highlighting), 7.3 (cross-domain)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        import { D3VisualizationEngine } from './js/modules/D3VisualizationEngine.js';
+        
+        // Sample test data
+        const testNodes = [
+            { id: "node-1", name: "极限", domains: ["domain-1"], importance: 5, x: 200, y: 200 },
+            { id: "node-2", name: "导数", domains: ["domain-1"], importance: 5, x: 400, y: 200 },
+            { id: "node-3", name: "积分", domains: ["domain-2"], importance: 4, x: 600, y: 200 },
+            { id: "node-4", name: "微分方程", domains: ["domain-2"], importance: 4, x: 300, y: 350 },
+            { id: "node-5", name: "梯度", domains: ["domain-3"], importance: 5, x: 500, y: 350 },
+            { id: "node-6", name: "泰勒级数", domains: ["domain-4"], importance: 4, x: 400, y: 500 }
+        ];
+        
+        const testEdges = [
+            { id: "edge-1", source: "node-1", target: "node-2", type: "prerequisite", strength: 1.0 },
+            { id: "edge-2", source: "node-2", target: "node-3", type: "prerequisite", strength: 0.8 },
+            { id: "edge-3", source: "node-3", target: "node-4", type: "prerequisite", strength: 0.7 },
+            { id: "edge-4", source: "node-2", target: "node-5", type: "cross-domain", strength: 0.6 },
+            { id: "edge-5", source: "node-4", target: "node-6", type: "prerequisite", strength: 0.5 },
+            { id: "edge-6", source: "node-5", target: "node-6", type: "cross-domain", strength: 0.4 }
+        ];
+        
+        // Initialize visualization
+        const vizEngine = new D3VisualizationEngine('#graph-canvas', 1200, 600);
+        vizEngine.render(testNodes, testEdges);
+        
+        // Make vizEngine available globally for test functions
+        window.vizEngine = vizEngine;
+        
+        // Test functions
+        window.testHighlightNodes = function() {
+            console.log('Testing highlightNodes()...');
+            vizEngine.clearHighlights();
+            setTimeout(() => {
+                vizEngine.highlightNodes(['node-1', 'node-2', 'node-3']);
+                console.log('✅ Highlighted nodes 1, 2, 3');
+            }, 100);
+        };
+        
+        window.testFadeNonRelated = function() {
+            console.log('Testing fadeNonRelated()...');
+            vizEngine.clearHighlights();
+            setTimeout(() => {
+                vizEngine.fadeNonRelated('node-1');
+                console.log('✅ Faded all nodes except node-1 and its connections');
+            }, 100);
+        };
+        
+        window.testHighlightPath = function() {
+            console.log('Testing path highlighting...');
+            vizEngine.clearHighlights();
+            setTimeout(() => {
+                // Highlight a learning path
+                vizEngine.highlightNodes(['node-1', 'node-2', 'node-3']);
+                
+                // Also highlight the edges in the path
+                vizEngine.linkElements.classed('highlighted', d => 
+                    (d.source.id === 'node-1' && d.target.id === 'node-2') ||
+                    (d.source.id === 'node-2' && d.target.id === 'node-3')
+                );
+                
+                console.log('✅ Highlighted learning path: node-1 → node-2 → node-3');
+            }, 100);
+        };
+        
+        window.testCrossDomainHighlight = function() {
+            console.log('Testing cross-domain link highlighting...');
+            vizEngine.clearHighlights();
+            setTimeout(() => {
+                // Highlight cross-domain edges
+                vizEngine.linkElements.classed('highlighted', d => d.type === 'cross-domain');
+                
+                // Highlight nodes connected by cross-domain links
+                const crossDomainNodeIds = new Set();
+                testEdges.forEach(edge => {
+                    if (edge.type === 'cross-domain') {
+                        crossDomainNodeIds.add(edge.source);
+                        crossDomainNodeIds.add(edge.target);
+                    }
+                });
+                
+                vizEngine.highlightNodes(Array.from(crossDomainNodeIds));
+                console.log('✅ Highlighted cross-domain connections');
+            }, 100);
+        };
+        
+        window.testClearHighlights = function() {
+            console.log('Testing clearHighlights()...');
+            vizEngine.clearHighlights();
+            console.log('✅ Cleared all highlights and fades');
+        };
+        
+        // Add hover interaction to demonstrate requirement 4.2
+        vizEngine.onNodeHover((node, event) => {
+            if (node) {
+                console.log(`Hovering over: ${node.name}`);
+                // Temporarily highlight the hovered node
+                vizEngine.nodeElements.classed('hover-highlight', d => d.id === node.id);
+            } else {
+                vizEngine.nodeElements.classed('hover-highlight', false);
+            }
+        });
+        
+        console.log('✅ D3VisualizationEngine initialized with highlighting and fading effects');
+        console.log('📝 Test the buttons above to verify smooth CSS transitions');
+    </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DomainDataManager Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .test-pass {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        .test-fail {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+        .test-info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            color: #0c5460;
+        }
+        .summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .summary.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .summary.failure {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .domain-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        .domain-card h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .scenario-card {
+            border-left: 3px solid #4facfe;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 DomainDataManager Test Suite</h1>
+    <div id="test-output"></div>
+
+    <script type="module">
+        import { DomainDataManager } from './js/modules/DomainDataManager.js';
+
+        const output = document.getElementById('test-output');
+        let passCount = 0;
+        let failCount = 0;
+
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result test-${type}`;
+            div.textContent = message;
+            output.appendChild(div);
+        }
+
+        function assert(condition, testName) {
+            if (condition) {
+                log(`✓ PASS: ${testName}`, 'pass');
+                passCount++;
+            } else {
+                log(`✗ FAIL: ${testName}`, 'fail');
+                failCount++;
+            }
+        }
+
+        function section(title) {
+            const div = document.createElement('div');
+            div.className = 'test-section';
+            div.innerHTML = `<h2>${title}</h2>`;
+            output.appendChild(div);
+            return div;
+        }
+
+        async function runTests() {
+            try {
+                // Load domain data
+                log('Loading domain data from domains.json...', 'info');
+                const response = await fetch('./data/domains.json');
+                const domainData = await response.json();
+                log(`✓ Domain data loaded successfully (${domainData.domains.length} domains)`, 'pass');
+
+                // Create DomainDataManager instance
+                const manager = new DomainDataManager(domainData);
+                log('✓ DomainDataManager instance created', 'pass');
+
+                // Test Section 1: Constructor
+                section('Test 1: Constructor and Initialization');
+                assert(manager !== null, 'Manager instance should be created');
+                assert(manager.domains.length === 5, 'Should load 5 domains');
+                assert(manager.traditionalChapters.length === 12, 'Should load 12 traditional chapters');
+                assert(manager.domainMap.size === 5, 'Domain map should contain 5 entries');
+                assert(manager.chapterMap.size === 12, 'Chapter map should contain 12 entries');
+
+                // Test Section 2: getAllDomains()
+                section('Test 2: getAllDomains() Method');
+                const allDomains = manager.getAllDomains();
+                assert(Array.isArray(allDomains), 'getAllDomains should return an array');
+                assert(allDomains.length === 5, 'getAllDomains should return 5 domains');
+                assert(allDomains[0].id === 'domain-1', 'First domain should be domain-1');
+                assert(allDomains[4].id === 'domain-5', 'Last domain should be domain-5');
+
+                // Display all domains
+                const domainSection = section('Domain Data Overview');
+                allDomains.forEach(domain => {
+                    const card = document.createElement('div');
+                    card.className = 'domain-card';
+                    card.innerHTML = `
+                        <h3>${domain.icon} ${domain.name} (${domain.nameEn})</h3>
+                        <p><strong>核心思想:</strong> ${domain.coreIdea}</p>
+                        <p><strong>整合内容:</strong> ${domain.integratedContent.join(', ')}</p>
+                        <p><strong>颜色:</strong> <span style="background-color: ${domain.color}; padding: 2px 10px; color: white; border-radius: 3px;">${domain.color}</span></p>
+                        <p><strong>关键技能:</strong> ${domain.keySkills.join(', ')}</p>
+                    `;
+                    domainSection.appendChild(card);
+                });
+
+                // Test Section 3: getDomainById()
+                section('Test 3: getDomainById() Method');
+                const domain1 = manager.getDomainById('domain-1');
+                assert(domain1 !== null, 'getDomainById should return domain-1');
+                assert(domain1.name === '变化与逼近', 'Domain-1 name should be "变化与逼近"');
+                assert(domain1.nameEn === 'Change and Approximation', 'Domain-1 English name should match');
+                assert(domain1.color === '#667eea', 'Domain-1 color should be #667eea');
+                assert(domain1.icon === '📈', 'Domain-1 icon should be 📈');
+
+                // Test all required fields
+                const requiredFields = ['id', 'name', 'nameEn', 'coreIdea', 'description', 
+                                       'integratedContent', 'traditionalChapters', 'typicalProblems', 
+                                       'realWorldScenarios', 'color', 'icon', 'keySkills'];
+                requiredFields.forEach(field => {
+                    assert(field in domain1, `Domain should have field: ${field}`);
+                });
+
+                // Test invalid domain ID
+                const invalidDomain = manager.getDomainById('invalid-domain');
+                assert(invalidDomain === null, 'getDomainById should return null for invalid ID');
+
+                // Test Section 4: getScenariosByDomain()
+                section('Test 4: getScenariosByDomain() Method');
+                const scenarios1 = manager.getScenariosByDomain('domain-1');
+                assert(Array.isArray(scenarios1), 'getScenariosByDomain should return an array');
+                assert(scenarios1.length === 3, 'Domain-1 should have 3 scenarios');
+                assert(scenarios1[0].title === '自动驾驶轨迹规划', 'First scenario title should match');
+                assert('description' in scenarios1[0], 'Scenario should have description');
+                assert('concepts' in scenarios1[0], 'Scenario should have concepts');
+                assert('industry' in scenarios1[0], 'Scenario should have industry');
+
+                // Display scenarios for domain-1
+                const scenarioSection = section('Real-World Scenarios for Domain-1');
+                scenarios1.forEach(scenario => {
+                    const card = document.createElement('div');
+                    card.className = 'scenario-card';
+                    card.innerHTML = `
+                        <h4>${scenario.title}</h4>
+                        <p>${scenario.description}</p>
+                        <p><strong>涉及概念:</strong> ${scenario.concepts.join(', ')}</p>
+                        <p><strong>应用行业:</strong> ${scenario.industry}</p>
+                    `;
+                    scenarioSection.appendChild(card);
+                });
+
+                // Test invalid domain scenarios
+                const invalidScenarios = manager.getScenariosByDomain('invalid-domain');
+                assert(Array.isArray(invalidScenarios), 'getScenariosByDomain should return array for invalid domain');
+                assert(invalidScenarios.length === 0, 'Invalid domain should return empty array');
+
+                // Test Section 5: Additional Helper Methods
+                section('Test 5: Additional Helper Methods');
+                
+                // Test getAllChapters
+                const allChapters = manager.getAllChapters();
+                assert(allChapters.length === 12, 'getAllChapters should return 12 chapters');
+                
+                // Test getChapterById
+                const chapter1 = manager.getChapterById('chapter-1');
+                assert(chapter1 !== null, 'getChapterById should return chapter-1');
+                assert(chapter1.name === '函数与极限', 'Chapter-1 name should match');
+                
+                // Test getDomainsByChapter
+                const domainsForChapter1 = manager.getDomainsByChapter('chapter-1');
+                assert(Array.isArray(domainsForChapter1), 'getDomainsByChapter should return array');
+                assert(domainsForChapter1.includes('domain-1'), 'Chapter-1 should belong to domain-1');
+                
+                // Test getDomainColor
+                const color1 = manager.getDomainColor('domain-1');
+                assert(color1 === '#667eea', 'getDomainColor should return correct color');
+                const defaultColor = manager.getDomainColor('invalid');
+                assert(defaultColor === '#999999', 'getDomainColor should return default color for invalid domain');
+                
+                // Test getDomainIcon
+                const icon1 = manager.getDomainIcon('domain-1');
+                assert(icon1 === '📈', 'getDomainIcon should return correct icon');
+                const defaultIcon = manager.getDomainIcon('invalid');
+                assert(defaultIcon === '📊', 'getDomainIcon should return default icon for invalid domain');
+
+                // Test Section 6: Requirements Validation
+                section('Test 6: Requirements Validation');
+                
+                // Requirement 1.6: Domain metadata completeness
+                allDomains.forEach((domain, index) => {
+                    assert(domain.name && domain.description && domain.color && domain.icon,
+                           `Requirement 1.6: Domain-${index + 1} metadata should be complete`);
+                });
+                
+                // Requirement 5.1: Real-world scenarios storage
+                allDomains.forEach((domain, index) => {
+                    const scenarios = manager.getScenariosByDomain(domain.id);
+                    assert(scenarios.length > 0, 
+                           `Requirement 5.1: Domain-${index + 1} should have real-world scenarios`);
+                });
+
+                // Test Section 7: Data Integrity
+                section('Test 7: Data Integrity Checks');
+                
+                // Check domain color uniqueness
+                const colors = allDomains.map(d => d.color);
+                const uniqueColors = new Set(colors);
+                assert(colors.length === uniqueColors.size, 'All domain colors should be unique');
+                
+                // Check all domains have scenarios
+                allDomains.forEach(domain => {
+                    const scenarios = manager.getScenariosByDomain(domain.id);
+                    assert(scenarios.length >= 3, `${domain.name} should have at least 3 scenarios`);
+                });
+                
+                // Check chapter-domain bidirectional mapping
+                allChapters.forEach(chapter => {
+                    const domainIds = manager.getDomainsByChapter(chapter.id);
+                    domainIds.forEach(domainId => {
+                        const domain = manager.getDomainById(domainId);
+                        assert(domain.traditionalChapters.includes(chapter.id),
+                               `Bidirectional mapping: ${chapter.name} ↔ ${domain.name}`);
+                    });
+                });
+
+                // Summary
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = `summary ${failCount === 0 ? 'success' : 'failure'}`;
+                summaryDiv.innerHTML = `
+                    <h2>Test Summary</h2>
+                    <p>Total Tests: ${passCount + failCount}</p>
+                    <p>Passed: ${passCount} ✓</p>
+                    <p>Failed: ${failCount} ✗</p>
+                    <p>Success Rate: ${((passCount / (passCount + failCount)) * 100).toFixed(1)}%</p>
+                `;
+                output.appendChild(summaryDiv);
+
+                if (failCount === 0) {
+                    log('🎉 All tests passed! DomainDataManager is working correctly.', 'pass');
+                } else {
+                    log(`⚠️ ${failCount} test(s) failed. Please review the failures above.`, 'fail');
+                }
+
+            } catch (error) {
+                log(`❌ Error during testing: ${error.message}`, 'fail');
+                console.error(error);
+            }
+        }
+
+        // Run tests when page loads
+        runTests();
+    </script>
+</body>
+</html>

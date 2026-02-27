@@ -1,0 +1,2926 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "phase": "Phase 2 - 内容深度扩展",
+    "totalItems": 75,
+    "createdDate": "2026-02-25",
+    "description": "Phase 2新增的75个高级节点",
+    "author": "Content_Generator",
+    "dependencies": [
+      "nodes-extended-phase1.json"
+    ]
+  },
+  "data": [
+    {
+      "id": "node-domain-1-curvature-1772027700608-0",
+      "name": "曲率",
+      "nameEn": "Curvature",
+      "description": "曲率描述曲线在某点的弯曲程度，是微分几何的基本概念。平面曲线的曲率定义为切线转角对弧长的导数。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "\\kappa = \\frac{|y''|}{(1 + y'^2)^{3/2}}",
+      "keywords": [
+        "曲率",
+        "曲率半径",
+        "曲率中心",
+        "密切圆"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "土木工程中的曲率应用",
+          "description": "在土木工程领域，曲率被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "土木工程"
+        }
+      ],
+      "advancedTopics": [
+        "曲率张量",
+        "高斯曲率",
+        "平均曲率",
+        "测地曲率"
+      ],
+      "visualizationConfig": {
+        "type": "interactive-curve",
+        "showCurvatureCircle": true,
+        "showTangent": true,
+        "showNormal": true
+      }
+    },
+    {
+      "id": "node-domain-1-function-plotting-1772027700609-1",
+      "name": "函数作图",
+      "nameEn": "Function Plotting",
+      "description": "函数作图是通过分析函数的性质（单调性、凹凸性、极值等）来绘制函数图像的系统方法。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f''(x) > 0 \\Rightarrow \\text{凹函数}",
+      "keywords": [
+        "渐近线",
+        "凹凸性",
+        "拐点",
+        "函数图像"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "数据科学中的函数可视化",
+          "description": "在数据科学领域，函数作图被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "数据科学"
+        }
+      ],
+      "advancedTopics": [
+        "参数曲线",
+        "极坐标图",
+        "隐函数图像",
+        "三维曲面"
+      ],
+      "visualizationConfig": {
+        "type": "function-plot",
+        "showDerivative": true,
+        "showInflectionPoints": true,
+        "showAsymptotes": true
+      }
+    },
+    {
+      "id": "node-domain-1-inequality-proof-1772027700609-2",
+      "name": "不等式证明",
+      "nameEn": "Inequality Proof",
+      "description": "利用微分学方法证明不等式，包括拉格朗日不等式、柯西不等式等重要不等式。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "|f(b) - f(a)| \\leq M|b - a|",
+      "keywords": [
+        "拉格朗日不等式",
+        "柯西不等式",
+        "均值不等式",
+        "微分证明"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "数学研究中的不等式优化",
+          "description": "在数学研究领域，不等式证明被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "数学研究"
+        }
+      ],
+      "advancedTopics": [
+        "变分不等式",
+        "积分不等式",
+        "泛函不等式"
+      ],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-taylor-expansion-1772027700609-3",
+      "name": "泰勒展开应用",
+      "nameEn": "Taylor Expansion Applications",
+      "description": "泰勒展开在函数近似、误差估计和数值计算中的广泛应用。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-function-plotting-1772027700609-1",
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n",
+      "keywords": [
+        "泰勒级数",
+        "函数近似",
+        "误差估计",
+        "数值计算"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "数值计算中的函数近似",
+          "description": "在数值计算领域，泰勒展开应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "数值计算"
+        },
+        {
+          "title": "物理学中的函数近似",
+          "description": "在物理学领域，泰勒展开应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        }
+      ],
+      "advancedTopics": [
+        "多元泰勒展开",
+        "渐近展开",
+        "帕德近似"
+      ],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-渐近线分析-1772027700609-4",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-function-plotting-1772027700609-1",
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "渐近线分析在科学研究中的应用",
+          "description": "在科学研究领域，渐近线分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "渐近线分析在工程中的应用",
+          "description": "在工程领域，渐近线分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-凹凸性判断-1772027700610-5",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-function-plotting-1772027700609-1",
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "凹凸性判断在科学研究中的应用",
+          "description": "在科学研究领域，凹凸性判断被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "凹凸性判断在工程中的应用",
+          "description": "在工程领域，凹凸性判断被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-拐点分析-1772027700610-6",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-function-plotting-1772027700609-1",
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "拐点分析在科学研究中的应用",
+          "description": "在科学研究领域，拐点分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "拐点分析在工程中的应用",
+          "description": "在工程领域，拐点分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-极值问题-1772027700610-7",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-function-plotting-1772027700609-1",
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "极值问题在科学研究中的应用",
+          "description": "在科学研究领域，极值问题被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "极值问题在工程中的应用",
+          "description": "在工程领域，极值问题被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-最值定理-1772027700610-8",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "最值定理在科学研究中的应用",
+          "description": "在科学研究领域，最值定理被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-中值定理应用-1772027700610-9",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "中值定理应用在科学研究中的应用",
+          "description": "在科学研究领域，中值定理应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-高阶导数-1772027700610-10",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "高阶导数在科学研究中的应用",
+          "description": "在科学研究领域，高阶导数被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-隐函数求导-1772027700610-11",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "隐函数求导在科学研究中的应用",
+          "description": "在科学研究领域，隐函数求导被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-参数方程求导-1772027700610-12",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "参数方程求导在科学研究中的应用",
+          "description": "在科学研究领域，参数方程求导被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-极坐标求导-1772027700610-13",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-隐函数求导-1772027700610-11",
+        "node-domain-1-参数方程求导-1772027700610-12"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "极坐标求导在科学研究中的应用",
+          "description": "在科学研究领域，极坐标求导被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "极坐标求导在工程中的应用",
+          "description": "在工程领域，极坐标求导被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-微分中值定理-1772027700610-14",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-隐函数求导-1772027700610-11",
+        "node-domain-1-参数方程求导-1772027700610-12"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "微分中值定理在科学研究中的应用",
+          "description": "在科学研究领域，微分中值定理被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "微分中值定理在工程中的应用",
+          "description": "在工程领域，微分中值定理被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-洛必达法则-1772027700610-15",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "洛必达法则在科学研究中的应用",
+          "description": "在科学研究领域，洛必达法则被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-导数应用-1772027700610-16",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-参数方程求导-1772027700610-12",
+        "node-domain-1-洛必达法则-1772027700610-15"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "导数应用在科学研究中的应用",
+          "description": "在科学研究领域，导数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "导数应用在工程中的应用",
+          "description": "在工程领域，导数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-函数单调性-1772027700611-17",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "导数与微分Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "函数单调性在科学研究中的应用",
+          "description": "在科学研究领域，函数单调性被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-函数极值-1772027700611-18",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-1-洛必达法则-1772027700610-15",
+        "node-domain-1-函数单调性-1772027700611-17"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "函数极值在科学研究中的应用",
+          "description": "在科学研究领域，函数极值被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "函数极值在工程中的应用",
+          "description": "在工程领域，函数极值被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-1-曲线的性质-1772027700611-19",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "曲线的性质在科学研究中的应用",
+          "description": "在科学研究领域，曲线的性质被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-line-integral-1772027700623-20",
+      "name": "曲线积分",
+      "nameEn": "Line Integral",
+      "description": "曲线积分是在曲线上对函数进行积分，包括第一类和第二类曲线积分，广泛应用于物理和工程。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "\\int_C f(x,y) ds = \\int_a^b f(x(t), y(t)) \\sqrt{x'^2 + y'^2} dt",
+      "keywords": [
+        "曲线积分",
+        "路径积分",
+        "格林公式",
+        "保守场"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "物理学中的路径积分",
+          "description": "在物理学领域，曲线积分被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        },
+        {
+          "title": "工程中的路径积分",
+          "description": "在工程领域，曲线积分被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [
+        "格林公式",
+        "斯托克斯定理",
+        "复变函数积分"
+      ],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-surface-integral-1772027700623-21",
+      "name": "曲面积分",
+      "nameEn": "Surface Integral",
+      "description": "曲面积分是在曲面上对函数进行积分，包括第一类和第二类曲面积分，用于计算通量和质量。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\iint_S f(x,y,z) dS",
+      "keywords": [
+        "曲面积分",
+        "通量",
+        "高斯定理",
+        "散度定理"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "流体力学中的通量计算",
+          "description": "在流体力学领域，曲面积分被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "流体力学"
+        }
+      ],
+      "advancedTopics": [
+        "高斯定理",
+        "散度定理",
+        "流形上的积分"
+      ],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-field-theory-1772027700623-22",
+      "name": "场论",
+      "nameEn": "Field Theory",
+      "description": "场论研究向量场和标量场的性质，包括梯度、散度、旋度等基本概念及其应用。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\nabla \\cdot \\mathbf{F} = \\frac{\\partial F_x}{\\partial x} + \\frac{\\partial F_y}{\\partial y} + \\frac{\\partial F_z}{\\partial z}",
+      "keywords": [
+        "梯度",
+        "散度",
+        "旋度",
+        "向量场",
+        "格林公式"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "物理学中的场分析",
+          "description": "在物理学领域，场论被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        }
+      ],
+      "advancedTopics": [
+        "微分形式",
+        "外微分",
+        "霍奇理论"
+      ],
+      "visualizationConfig": {
+        "type": "vector-field",
+        "show3D": true,
+        "showStreamlines": true
+      }
+    },
+    {
+      "id": "node-domain-2-格林公式-1772027700623-23",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "格林公式在科学研究中的应用",
+          "description": "在科学研究领域，格林公式被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-高斯公式-1772027700623-24",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-field-theory-1772027700623-22",
+        "node-domain-2-格林公式-1772027700623-23"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "高斯公式在科学研究中的应用",
+          "description": "在科学研究领域，高斯公式被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "高斯公式在工程中的应用",
+          "description": "在工程领域，高斯公式被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-斯托克斯公式-1772027700623-25",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "斯托克斯公式在科学研究中的应用",
+          "description": "在科学研究领域，斯托克斯公式被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-散度定理-1772027700623-26",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "散度定理在科学研究中的应用",
+          "description": "在科学研究领域，散度定理被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-旋度-1772027700623-27",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "旋度在科学研究中的应用",
+          "description": "在科学研究领域，旋度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-梯度场-1772027700623-28",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "梯度场在科学研究中的应用",
+          "description": "在科学研究领域，梯度场被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-保守场-1772027700623-29",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-旋度-1772027700623-27",
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "保守场在科学研究中的应用",
+          "description": "在科学研究领域，保守场被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "保守场在工程中的应用",
+          "description": "在工程领域，保守场被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-一阶微分方程-1772027700623-30",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-旋度-1772027700623-27",
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "一阶微分方程在科学研究中的应用",
+          "description": "在科学研究领域，一阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "一阶微分方程在工程中的应用",
+          "description": "在工程领域，一阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-二阶微分方程-1772027700623-31",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-旋度-1772027700623-27",
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "二阶微分方程在科学研究中的应用",
+          "description": "在科学研究领域，二阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "二阶微分方程在工程中的应用",
+          "description": "在工程领域，二阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-高阶微分方程-1772027700623-32",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-旋度-1772027700623-27",
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "高阶微分方程在科学研究中的应用",
+          "description": "在科学研究领域，高阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "高阶微分方程在工程中的应用",
+          "description": "在工程领域，高阶微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-微分方程组-1772027700623-33",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-旋度-1772027700623-27",
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "微分方程组在科学研究中的应用",
+          "description": "在科学研究领域，微分方程组被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "微分方程组在工程中的应用",
+          "description": "在工程领域，微分方程组被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-边值问题-1772027700623-34",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "边值问题在科学研究中的应用",
+          "description": "在科学研究领域，边值问题被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-特征值问题-1772027700623-35",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-梯度场-1772027700623-28",
+        "node-domain-2-边值问题-1772027700623-34"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "特征值问题在科学研究中的应用",
+          "description": "在科学研究领域，特征值问题被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "特征值问题在工程中的应用",
+          "description": "在工程领域，特征值问题被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-pde-1772027700623-36",
+      "name": "偏微分方程",
+      "nameEn": "Partial Differential Equations",
+      "description": "偏微分方程描述多变量函数的变化规律，包括热传导方程、波动方程和拉普拉斯方程等经典方程。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\frac{\\partial u}{\\partial t} = \\alpha \\frac{\\partial^2 u}{\\partial x^2}",
+      "keywords": [
+        "PDE",
+        "热传导方程",
+        "波动方程",
+        "拉普拉斯方程",
+        "边值问题"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "物理学中的PDE建模",
+          "description": "在物理学领域，偏微分方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        }
+      ],
+      "advancedTopics": [
+        "特征线法",
+        "分离变量法",
+        "格林函数法"
+      ],
+      "visualizationConfig": {
+        "type": "animation",
+        "showTimeEvolution": true,
+        "showHeatmap": true
+      }
+    },
+    {
+      "id": "node-domain-2-热传导方程-1772027700623-37",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-边值问题-1772027700623-34",
+        "node-domain-2-pde-1772027700623-36"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "热传导方程在科学研究中的应用",
+          "description": "在科学研究领域，热传导方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "热传导方程在工程中的应用",
+          "description": "在工程领域，热传导方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-波动方程-1772027700623-38",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-边值问题-1772027700623-34",
+        "node-domain-2-pde-1772027700623-36"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "波动方程在科学研究中的应用",
+          "description": "在科学研究领域，波动方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "波动方程在工程中的应用",
+          "description": "在工程领域，波动方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-拉普拉斯方程-1772027700623-39",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "拉普拉斯方程在科学研究中的应用",
+          "description": "在科学研究领域，拉普拉斯方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-series-application-1772027700623-40",
+      "name": "级数应用",
+      "nameEn": "Series Applications",
+      "description": "级数在函数展开、微分方程求解和信号处理中的应用，包括傅里叶级数和幂级数。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = \\frac{a_0}{2} + \\sum_{n=1}^{\\infty} (a_n \\cos nx + b_n \\sin nx)",
+      "keywords": [
+        "傅里叶级数",
+        "幂级数",
+        "级数展开",
+        "收敛性"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "信号处理中的级数展开",
+          "description": "在信号处理领域，级数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "信号处理"
+        }
+      ],
+      "advancedTopics": [
+        "傅里叶级数",
+        "小波分析",
+        "正交级数"
+      ],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-傅里叶级数-1772027700623-41",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "傅里叶级数在科学研究中的应用",
+          "description": "在科学研究领域，傅里叶级数被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-幂级数应用-1772027700623-42",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-series-application-1772027700623-40",
+        "node-domain-2-傅里叶级数-1772027700623-41"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "幂级数应用在科学研究中的应用",
+          "description": "在科学研究领域，幂级数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "幂级数应用在工程中的应用",
+          "description": "在工程领域，幂级数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-2-泰勒级数应用-1772027700623-43",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-2-series-application-1772027700623-40",
+        "node-domain-2-傅里叶级数-1772027700623-41"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "泰勒级数应用在科学研究中的应用",
+          "description": "在科学研究领域，泰勒级数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "泰勒级数应用在工程中的应用",
+          "description": "在工程领域，泰勒级数应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-vector-analysis-1772027700628-44",
+      "name": "向量分析",
+      "nameEn": "Vector Analysis",
+      "description": "向量分析研究向量场的微分和积分性质，是场论和微分几何的基础。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "\\nabla f = \\frac{\\partial f}{\\partial x}\\mathbf{i} + \\frac{\\partial f}{\\partial y}\\mathbf{j} + \\frac{\\partial f}{\\partial z}\\mathbf{k}",
+      "keywords": [
+        "向量场",
+        "梯度",
+        "线积分",
+        "面积分",
+        "斯托克斯定理"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "物理学中的向量场",
+          "description": "在物理学领域，向量分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        },
+        {
+          "title": "工程中的向量场",
+          "description": "在工程领域，向量分析被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-向量场-1772027700628-45",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "向量场在科学研究中的应用",
+          "description": "在科学研究领域，向量场被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "向量场在工程中的应用",
+          "description": "在工程领域，向量场被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-散度-1772027700629-46",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "散度在科学研究中的应用",
+          "description": "在科学研究领域，散度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "散度在工程中的应用",
+          "description": "在工程领域，散度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-旋度-1772027700629-47",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "旋度在科学研究中的应用",
+          "description": "在科学研究领域，旋度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-梯度-1772027700633-48",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-旋度-1772027700629-47"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "梯度在科学研究中的应用",
+          "description": "在科学研究领域，梯度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "梯度在工程中的应用",
+          "description": "在工程领域，梯度被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-张量基础-1772027700633-49",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-旋度-1772027700629-47"
+      ],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "张量基础在科学研究中的应用",
+          "description": "在科学研究领域，张量基础被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "张量基础在工程中的应用",
+          "description": "在工程领域，张量基础被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-张量运算-1772027700634-50",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-旋度-1772027700629-47"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "张量运算在科学研究中的应用",
+          "description": "在科学研究领域，张量运算被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "张量运算在工程中的应用",
+          "description": "在工程领域，张量运算被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-calculus-of-variations-1772027700634-51",
+      "name": "变分法",
+      "nameEn": "Calculus of Variations",
+      "description": "变分法研究泛函的极值问题，通过欧拉-拉格朗日方程求解最优路径和最优形状。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "\\frac{d}{dx}\\frac{\\partial F}{\\partial y'} - \\frac{\\partial F}{\\partial y} = 0",
+      "keywords": [
+        "变分法",
+        "欧拉-拉格朗日方程",
+        "泛函",
+        "最速降线",
+        "变分原理"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "物理学中的变分优化",
+          "description": "在物理学领域，变分法被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "物理学"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-泛函-1772027700634-52",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "泛函在科学研究中的应用",
+          "description": "在科学研究领域，泛函被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-欧拉-拉格朗日方程-1772027700634-53",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-calculus-of-variations-1772027700634-51",
+        "node-domain-3-泛函-1772027700634-52"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "欧拉-拉格朗日方程在科学研究中的应用",
+          "description": "在科学研究领域，欧拉-拉格朗日方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "欧拉-拉格朗日方程在工程中的应用",
+          "description": "在工程领域，欧拉-拉格朗日方程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-optimal-control-1772027700634-54",
+      "name": "最优控制",
+      "nameEn": "Optimal Control",
+      "description": "最优控制理论研究如何选择控制策略使系统性能指标达到最优，包括庞特里亚金最大值原理和动态规划。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-calculus-of-variations-1772027700634-51",
+        "node-domain-3-泛函-1772027700634-52"
+      ],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "H = L(x, u, t) + \\lambda^T f(x, u, t)",
+      "keywords": [
+        "最优控制",
+        "庞特里亚金原理",
+        "动态规划",
+        "哈密顿函数",
+        "控制理论"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "航空航天中的最优控制",
+          "description": "在航空航天领域，最优控制被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "航空航天"
+        },
+        {
+          "title": "机器人中的最优控制",
+          "description": "在机器人领域，最优控制被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "机器人"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-哈密顿系统-1772027700634-55",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "哈密顿系统在科学研究中的应用",
+          "description": "在科学研究领域，哈密顿系统被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-numerical-optimization-1772027700634-56",
+      "name": "数值优化",
+      "nameEn": "Numerical Optimization",
+      "description": "数值优化方法用于求解实际优化问题，包括梯度下降、牛顿法、共轭梯度法等算法。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "x_{k+1} = x_k - \\alpha_k \\nabla f(x_k)",
+      "keywords": [
+        "梯度下降",
+        "牛顿法",
+        "共轭梯度",
+        "拟牛顿法",
+        "优化算法"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "机器学习中的优化算法",
+          "description": "在机器学习领域，数值优化被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "机器学习"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-梯度下降-1772027700634-57",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-哈密顿系统-1772027700634-55",
+        "node-domain-3-numerical-optimization-1772027700634-56"
+      ],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "梯度下降在科学研究中的应用",
+          "description": "在科学研究领域，梯度下降被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "梯度下降在工程中的应用",
+          "description": "在工程领域，梯度下降被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-牛顿法优化-1772027700634-58",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "牛顿法优化在科学研究中的应用",
+          "description": "在科学研究领域，牛顿法优化被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-拟牛顿法-1772027700634-59",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-3-numerical-optimization-1772027700634-56",
+        "node-domain-3-牛顿法优化-1772027700634-58"
+      ],
+      "relatedSkills": [
+        "多元函数Skill",
+        "优化方法Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "拟牛顿法在科学研究中的应用",
+          "description": "在科学研究领域，拟牛顿法被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "拟牛顿法在工程中的应用",
+          "description": "在工程领域，拟牛顿法被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-共轭梯度法-1772027700634-60",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "共轭梯度法在科学研究中的应用",
+          "description": "在科学研究领域，共轭梯度法被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-3-约束优化-1772027700634-61",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "约束优化在科学研究中的应用",
+          "description": "在科学研究领域，约束优化被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-probability-basics-1772027700639-62",
+      "name": "概率论基础",
+      "nameEn": "Probability Basics",
+      "description": "概率论研究随机现象的数学规律，包括概率空间、条件概率和贝叶斯定理等基本概念。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "概率统计Skill"
+      ],
+      "formula": "P(A|B) = \\frac{P(A \\cap B)}{P(B)}",
+      "keywords": [
+        "概率空间",
+        "条件概率",
+        "贝叶斯定理",
+        "独立性",
+        "全概率公式"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "统计学中的概率模型",
+          "description": "在统计学领域，概率论基础被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "统计学"
+        },
+        {
+          "title": "数据科学中的概率模型",
+          "description": "在数据科学领域，概率论基础被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "数据科学"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-random-variable-1772027700639-63",
+      "name": "随机变量",
+      "nameEn": "Random Variable",
+      "description": "随机变量是随机试验结果的数值表示，包括离散和连续随机变量及其分布。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "概率统计Skill"
+      ],
+      "formula": "E[X] = \\int_{-\\infty}^{\\infty} x f(x) dx",
+      "keywords": [
+        "随机变量",
+        "概率分布",
+        "期望",
+        "方差",
+        "分布函数"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "统计学中的随机建模",
+          "description": "在统计学领域，随机变量被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "统计学"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-概率分布-1772027700640-64",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "概率统计Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "概率分布在科学研究中的应用",
+          "description": "在科学研究领域，概率分布被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-正态分布-1772027700640-65",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-random-variable-1772027700639-63",
+        "node-domain-4-概率分布-1772027700640-64"
+      ],
+      "relatedSkills": [
+        "概率统计Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "正态分布在科学研究中的应用",
+          "description": "在科学研究领域，正态分布被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "正态分布在工程中的应用",
+          "description": "在工程领域，正态分布被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-泊松分布-1772027700640-66",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-random-variable-1772027700639-63",
+        "node-domain-4-概率分布-1772027700640-64"
+      ],
+      "relatedSkills": [
+        "概率统计Skill",
+        "数据分析Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "泊松分布在科学研究中的应用",
+          "description": "在科学研究领域，泊松分布被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "泊松分布在工程中的应用",
+          "description": "在工程领域，泊松分布被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-mathematical-statistics-1772027700641-67",
+      "name": "数理统计",
+      "nameEn": "Mathematical Statistics",
+      "description": "数理统计研究如何从数据中推断总体性质，包括参数估计、假设检验和置信区间。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-random-variable-1772027700639-63",
+        "node-domain-4-概率分布-1772027700640-64"
+      ],
+      "relatedSkills": [
+        "概率统计Skill",
+        "数据分析Skill"
+      ],
+      "formula": "\\bar{X} = \\frac{1}{n}\\sum_{i=1}^n X_i",
+      "keywords": [
+        "参数估计",
+        "假设检验",
+        "置信区间",
+        "最大似然估计",
+        "统计推断"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "数据科学中的统计推断",
+          "description": "在数据科学领域，数理统计被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "数据科学"
+        },
+        {
+          "title": "医学研究中的统计推断",
+          "description": "在医学研究领域，数理统计被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "医学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-参数估计-1772027700641-68",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-random-variable-1772027700639-63",
+        "node-domain-4-概率分布-1772027700640-64"
+      ],
+      "relatedSkills": [
+        "概率统计Skill",
+        "数据分析Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120,
+      "realWorldApplications": [
+        {
+          "title": "参数估计在科学研究中的应用",
+          "description": "在科学研究领域，参数估计被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "参数估计在工程中的应用",
+          "description": "在工程领域，参数估计被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-假设检验-1772027700641-69",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 3,
+      "prerequisites": [],
+      "relatedSkills": [
+        "概率统计Skill",
+        "数据分析Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "假设检验在科学研究中的应用",
+          "description": "在科学研究领域，假设检验被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-stochastic-process-1772027700641-70",
+      "name": "随机过程",
+      "nameEn": "Stochastic Process",
+      "description": "随机过程研究随时间演化的随机现象，包括马尔可夫链、泊松过程和布朗运动。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-概率分布-1772027700640-64",
+        "node-domain-4-假设检验-1772027700641-69"
+      ],
+      "relatedSkills": [
+        "概率统计Skill",
+        "数据分析Skill"
+      ],
+      "formula": "P(X_{n+1}=j|X_n=i) = p_{ij}",
+      "keywords": [
+        "马尔可夫链",
+        "泊松过程",
+        "布朗运动",
+        "平稳过程",
+        "随机微分方程"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "金融中的随机过程",
+          "description": "在金融领域，随机过程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "金融"
+        },
+        {
+          "title": "通信中的随机过程",
+          "description": "在通信领域，随机过程被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "通信"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-4-马尔可夫链-1772027700641-71",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-domain-4-概率分布-1772027700640-64",
+        "node-domain-4-假设检验-1772027700641-69"
+      ],
+      "relatedSkills": [
+        "概率统计Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "马尔可夫链在科学研究中的应用",
+          "description": "在科学研究领域，马尔可夫链被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "马尔可夫链在工程中的应用",
+          "description": "在工程领域，马尔可夫链被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-5-ai-application-1772027700644-72",
+      "name": "人工智能应用",
+      "nameEn": "AI Applications",
+      "description": "微积分在人工智能中的应用，包括神经网络训练、梯度下降和反向传播算法。",
+      "domains": [
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "应用建模Skill",
+        "编程实现Skill"
+      ],
+      "formula": "\\frac{\\partial L}{\\partial w} = \\frac{\\partial L}{\\partial y} \\frac{\\partial y}{\\partial w}",
+      "keywords": [
+        "神经网络",
+        "梯度下降",
+        "反向传播",
+        "深度学习",
+        "优化算法"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 150,
+      "realWorldApplications": [
+        {
+          "title": "机器学习中的AI应用",
+          "description": "在机器学习领域，人工智能应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "机器学习"
+        },
+        {
+          "title": "深度学习中的AI应用",
+          "description": "在深度学习领域，人工智能应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "深度学习"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-5-financial-engineering-1772027700644-73",
+      "name": "金融工程应用",
+      "nameEn": "Financial Engineering",
+      "description": "微积分在金融工程中的应用，包括期权定价、风险管理和投资组合优化。",
+      "domains": [
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 5,
+      "prerequisites": [],
+      "relatedSkills": [
+        "应用建模Skill"
+      ],
+      "formula": "\\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + rS\\frac{\\partial V}{\\partial S} - rV = 0",
+      "keywords": [
+        "期权定价",
+        "Black-Scholes方程",
+        "风险管理",
+        "投资组合",
+        "随机微积分"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 150,
+      "realWorldApplications": [
+        {
+          "title": "金融中的金融建模",
+          "description": "在金融领域，金融工程应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "金融"
+        },
+        {
+          "title": "风险管理中的金融建模",
+          "description": "在风险管理领域，金融工程应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "风险管理"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    },
+    {
+      "id": "node-domain-5-物理建模应用-1772027700644-74",
+      "name": "数学概念",
+      "nameEn": "Mathematical Concept",
+      "description": "这是一个数学概念的描述。",
+      "domains": [
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 4,
+      "prerequisites": [],
+      "relatedSkills": [
+        "应用建模Skill",
+        "编程实现Skill"
+      ],
+      "formula": "f(x) = x",
+      "keywords": [
+        "数学",
+        "概念"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "物理建模应用在科学研究中的应用",
+          "description": "在科学研究领域，物理建模应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "科学研究"
+        },
+        {
+          "title": "物理建模应用在工程中的应用",
+          "description": "在工程领域，物理建模应用被广泛应用于解决实际问题，通过数学建模和计算方法提供有效的解决方案。",
+          "industry": "工程"
+        }
+      ],
+      "advancedTopics": [],
+      "visualizationConfig": {
+        "type": "static-plot"
+      }
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - Part 4 (Final)",
+    "totalNewNodes": 15,
+    "createdDate": "2026-02-22",
+    "description": "Phase 1最后15个节点：微分方程、级数、建模"
+  },
+  "newNodes": [
+    {
+      "id": "node-homogeneous-equation",
+      "name": "齐次方程",
+      "nameEn": "Homogeneous Equation",
+      "description": "形如dy/dx = f(y/x)的一阶微分方程",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 3,
+      "prerequisites": ["node-ode-first-order"],
+      "relatedSkills": ["常微分方程求解Skill"],
+      "formula": "\\frac{dy}{dx} = f(\\frac{y}{x}), \\quad u = \\frac{y}{x}",
+      "keywords": ["齐次方程", "变量替换", "微分方程"],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "人口模型",
+          "description": "人口增长的齐次模型",
+          "industry": "生态学"
+        }
+      ]
+    },
+    {
+      "id": "node-bernoulli-equation",
+      "name": "伯努利方程",
+      "nameEn": "Bernoulli Equation",
+      "description": "形如dy/dx + P(x)y = Q(x)y^n的方程",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": ["node-ode-first-order"],
+      "relatedSkills": ["常微分方程求解Skill"],
+      "formula": "\\frac{dy}{dx} + P(x)y = Q(x)y^n, \\quad z = y^{1-n}",
+      "keywords": ["伯努利方程", "非线性", "变量替换"],
+      "importance": 3,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "流体力学",
+          "description": "伯努利方程描述流体能量守恒",
+          "industry": "流体力学"
+        }
+      ]
+    },
+    {
+      "id": "node-higher-order-linear-equation",
+      "name": "高阶线性方程",
+      "nameEn": "Higher Order Linear Equation",
+      "description": "n阶常系数线性微分方程的求解",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": ["node-ode-second-order"],
+      "relatedSkills": ["常微分方程求解Skill"],
+      "formula": "y^{(n)} + a_1 y^{(n-1)} + \\cdots + a_n y = f(x)",
+      "keywords": ["高阶方程", "特征方程", "线性方程"],
+      "importance": 4,
+      "estimatedStudyTime": 80,
+      "realWorldApplications": [
+        {
+          "title": "振动系统",
+          "description": "多自由度振动系统分析",
+          "industry": "力学"
+        }
+      ]
+    },
+    {
+      "id": "node-euler-equation",
+      "name": "欧拉方程",
+      "nameEn": "Euler Equation",
+      "description": "变系数线性方程的特殊形式",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": ["node-ode-second-order"],
+      "relatedSkills": ["常微分方程求解Skill"],
+      "formula": "x^2y'' + axy' + by = 0, \\quad x = e^t",
+      "keywords": ["欧拉方程", "变系数", "变量替换"],
+      "importance": 3,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-implicit-function-theorem",
+      "name": "隐函数求导定理",
+      "nameEn": "Implicit Function Theorem",
+      "description": "隐函数存在性和可微性定理",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": ["node-partial-derivative"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "F(x,y,z) = 0 \\Rightarrow \\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}",
+      "keywords": ["隐函数", "隐函数定理", "偏导数"],
+      "importance": 4,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-conditional-extrema",
+      "name": "条件极值",
+      "nameEn": "Conditional Extrema",
+      "description": "带约束条件的多元函数极值问题",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": ["node-extrema-multivariable"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "\\text{求} f(x,y) \\text{在} g(x,y) = 0 \\text{下的极值}",
+      "keywords": ["条件极值", "约束优化", "拉格朗日"],
+      "importance": 5,
+      "estimatedStudyTime": 75,
+      "realWorldApplications": [
+        {
+          "title": "资源优化",
+          "description": "在预算约束下的资源分配",
+          "industry": "运筹学"
+        },
+        {
+          "title": "工程设计",
+          "description": "满足约束条件的最优设计",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-lagrange-multiplier-detail",
+      "name": "拉格朗日乘数法详解",
+      "nameEn": "Lagrange Multiplier Method - Detailed",
+      "description": "拉格朗日乘数法的原理和应用",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": ["node-conditional-extrema"],
+      "relatedSkills": ["多元函数Skill"],
+      "formula": "L(x,y,\\lambda) = f(x,y) + \\lambda g(x,y)",
+      "keywords": ["拉格朗日乘数", "约束优化", "KKT条件"],
+      "importance": 5,
+      "estimatedStudyTime": 80,
+      "realWorldApplications": [
+        {
+          "title": "机器学习",
+          "description": "SVM中的对偶问题",
+          "industry": "人工智能"
+        },
+        {
+          "title": "经济学",
+          "description": "效用最大化问题",
+          "industry": "经济学"
+        }
+      ]
+    },
+    {
+      "id": "node-triple-integral",
+      "name": "三重积分",
+      "nameEn": "Triple Integral",
+      "description": "三重积分的定义、计算和应用",
+      "domains": ["domain-3"],
+      "traditionalChapter": "chapter-8",
+      "difficulty": 4,
+      "prerequisites": ["node-double-integral"],
+      "relatedSkills": ["积分概念Skill"],
+      "formula": "\\iiint_\\Omega f(x,y,z) dxdydz",
+      "keywords": ["三重积分", "体积分", "柱坐标", "球坐标"],
+      "importance": 4,
+      "estimatedStudyTime": 85,
+      "realWorldApplications": [
+        {
+          "title": "质量计算",
+          "description": "计算不均匀物体的质量",
+          "industry": "物理"
+        },
+        {
+          "title": "引力场",
+          "description": "计算引力场强度",
+          "industry": "天文"
+        }
+      ]
+    },
+    {
+      "id": "node-positive-series-test",
+      "name": "正项级数判别法",
+      "nameEn": "Convergence Tests for Positive Series",
+      "description": "比值判别法、根值判别法、积分判别法等",
+      "domains": ["domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": ["node-series-convergence"],
+      "relatedSkills": ["级数分析Skill"],
+      "formula": "\\lim_{n \\to \\infty} \\frac{a_{n+1}}{a_n} = \\rho",
+      "keywords": ["正项级数", "比值判别法", "根值判别法"],
+      "importance": 5,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-alternating-series",
+      "name": "交错级数",
+      "nameEn": "Alternating Series",
+      "description": "交错级数的莱布尼茨判别法",
+      "domains": ["domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 3,
+      "prerequisites": ["node-series-convergence"],
+      "relatedSkills": ["级数分析Skill"],
+      "formula": "\\sum_{n=1}^\\infty (-1)^{n-1} a_n, \\quad a_n \\downarrow 0",
+      "keywords": ["交错级数", "莱布尼茨", "条件收敛"],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-absolute-convergence",
+      "name": "绝对收敛与条件收敛",
+      "nameEn": "Absolute and Conditional Convergence",
+      "description": "级数收敛性的分类和性质",
+      "domains": ["domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": ["node-series-convergence"],
+      "relatedSkills": ["级数分析Skill"],
+      "formula": "\\sum |a_n| \\text{收敛} \\Rightarrow \\sum a_n \\text{收敛}",
+      "keywords": ["绝对收敛", "条件收敛", "级数性质"],
+      "importance": 4,
+      "estimatedStudyTime": 65
+    },
+    {
+      "id": "node-function-series",
+      "name": "函数项级数",
+      "nameEn": "Series of Functions",
+      "description": "函数项级数的收敛性和性质",
+      "domains": ["domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": ["node-series-convergence"],
+      "relatedSkills": ["级数分析Skill"],
+      "formula": "\\sum_{n=1}^\\infty u_n(x)",
+      "keywords": ["函数项级数", "逐点收敛", "一致收敛"],
+      "importance": 4,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-uniform-convergence",
+      "name": "一致收敛性",
+      "nameEn": "Uniform Convergence",
+      "description": "函数项级数的一致收敛及其性质",
+      "domains": ["domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 5,
+      "prerequisites": ["node-function-series"],
+      "relatedSkills": ["级数分析Skill"],
+      "formula": "\\sup_{x \\in D} |S(x) - S_n(x)| \\to 0",
+      "keywords": ["一致收敛", "魏尔斯特拉斯", "M判别法"],
+      "importance": 4,
+      "estimatedStudyTime": 80
+    },
+    {
+      "id": "node-mathematical-modeling",
+      "name": "数学建模方法论",
+      "nameEn": "Mathematical Modeling Methodology",
+      "description": "从实际问题到数学模型的建立过程",
+      "domains": ["domain-5"],
+      "traditionalChapter": "chapter-12",
+      "difficulty": 4,
+      "prerequisites": ["node-optimization-algorithms"],
+      "relatedSkills": ["H5P交互Skill", "概念可视化Skill"],
+      "keywords": ["数学建模", "问题分析", "模型建立", "模型求解"],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "疫情预测",
+          "description": "建立SIR模型预测疫情发展",
+          "industry": "公共卫生"
+        },
+        {
+          "title": "交通优化",
+          "description": "城市交通流量优化模型",
+          "industry": "交通"
+        },
+        {
+          "title": "资源调度",
+          "description": "物流配送路径优化",
+          "industry": "物流"
+        }
+      ]
+    },
+    {
+      "id": "node-computational-implementation",
+      "name": "计算实现与验证",
+      "nameEn": "Computational Implementation and Validation",
+      "description": "数学模型的计算实现和结果验证",
+      "domains": ["domain-5"],
+      "traditionalChapter": "chapter-12",
+      "difficulty": 4,
+      "prerequisites": ["node-mathematical-modeling", "node-numerical-methods"],
+      "relatedSkills": ["数值分析Skill", "H5P交互Skill"],
+      "keywords": ["计算实现", "算法设计", "结果验证", "误差分析"],
+      "importance": 5,
+      "estimatedStudyTime": 95,
+      "realWorldApplications": [
+        {
+          "title": "科学计算",
+          "description": "使用Python/MATLAB实现数值算法",
+          "industry": "科研"
+        },
+        {
+          "title": "工程仿真",
+          "description": "有限元分析的计算实现",
+          "industry": "工程"
+        },
+        {
+          "title": "数据分析",
+          "description": "统计模型的计算验证",
+          "industry": "数据科学"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2 集成测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover { background: #5568d3; }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Phase 2 系统集成测试</h1>
+    
+    <div class="test-section">
+        <h2>1. 数据加载测试</h2>
+        <button onclick="testDataLoading()">运行测试</button>
+        <div id="dataLoadingResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 节点管理测试</h2>
+        <button onclick="testNodeManager()">运行测试</button>
+        <div id="nodeManagerResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 学习路径测试</h2>
+        <button onclick="testLearningPath()">运行测试</button>
+        <div id="learningPathResult"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 搜索过滤测试</h2>
+        <button onclick="testSearchFilter()">运行测试</button>
+        <div id="searchFilterResult"></div>
+    </div>
+
+    <script type="module">
+        import { OptimizedDataLoader } from './js/modules/OptimizedDataLoader.js';
+        
+        window.dataLoader = new OptimizedDataLoader();
+        window.testData = null;
+        
+        window.testDataLoading = async function() {
+            const resultDiv = document.getElementById('dataLoadingResult');
+            resultDiv.innerHTML = '<div class="info">测试中...</div>';
+            
+            try {
+                const startTime = performance.now();
+                const data = await window.dataLoader.loadAllData();
+                const loadTime = performance.now() - startTime;
+                
+                window.testData = data;
+                
+                resultDiv.innerHTML = `
+                    <div class="success">
+                        ✅ 数据加载成功！<br>
+                        加载时间: ${loadTime.toFixed(2)}ms<br>
+                        节点数: ${data.nodes.length}<br>
+                        边数: ${data.edges.length}<br>
+                        应用案例: ${data.applications.length}<br>
+                        Skills: ${data.skills.length}
+                    </div>
+                    <pre>${JSON.stringify(data.metadata, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">❌ 测试失败: ${error.message}</div>
+                `;
+            }
+        };
+        
+        window.testNodeManager = function() {
+            const resultDiv = document.getElementById('nodeManagerResult');
+            
+            if (!window.testData) {
+                resultDiv.innerHTML = '<div class="error">请先运行数据加载测试</div>';
+                return;
+            }
+            
+            const phase2Nodes = window.testData.nodes.filter(n => n.phase === 'phase2');
+            const phase1Nodes = window.testData.nodes.filter(n => n.phase === 'phase1');
+            
+            resultDiv.innerHTML = `
+                <div class="success">
+                    ✅ 节点统计<br>
+                    Phase 1节点: ${phase1Nodes.length}<br>
+                    Phase 2节点: ${phase2Nodes.length}<br>
+                    总计: ${window.testData.nodes.length}
+                </div>
+            `;
+        };
+        
+        window.testLearningPath = function() {
+            const resultDiv = document.getElementById('learningPathResult');
+            resultDiv.innerHTML = '<div class="info">学习路径功能需要后端支持</div>';
+        };
+        
+        window.testSearchFilter = function() {
+            const resultDiv = document.getElementById('searchFilterResult');
+            resultDiv.innerHTML = '<div class="info">搜索过滤功能需要后端支持</div>';
+        };
+    </script>
+</body>
+</html>

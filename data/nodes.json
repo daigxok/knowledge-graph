@@ -1,0 +1,2294 @@
+{
+  "nodes": [
+    {
+      "id": "node-function-basic",
+      "name": "函数的基本概念",
+      "nameEn": "Basic Concepts of Functions",
+      "description": "函数的定义、定义域、值域、单调性、奇偶性等基本性质",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 1,
+      "prerequisites": [],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "y = f(x)",
+      "keywords": [
+        "函数",
+        "定义域",
+        "值域",
+        "映射"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-limit-def",
+      "name": "极限的定义",
+      "nameEn": "Definition of Limit",
+      "description": "函数极限的ε-δ定义，是微积分的基础概念",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-function-basic"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "概念可视化Skill"
+      ],
+      "formula": "\\lim_{x \\to a} f(x) = L \\Leftrightarrow \\forall \\varepsilon > 0, \\exists \\delta > 0, 0 < |x-a| < \\delta \\Rightarrow |f(x)-L| < \\varepsilon",
+      "keywords": [
+        "极限",
+        "ε-δ",
+        "逼近",
+        "连续性"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-continuity",
+      "name": "函数的连续性",
+      "nameEn": "Continuity of Functions",
+      "description": "连续函数的定义、性质和间断点分类",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "\\lim_{x \\to x_0} f(x) = f(x_0)",
+      "keywords": [
+        "连续",
+        "间断点",
+        "连续性定理"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 50
+    },
+    {
+      "id": "node-derivative-def",
+      "name": "导数的定义",
+      "nameEn": "Definition of Derivative",
+      "description": "导数描述函数的瞬时变化率，是微分学的核心概念",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill",
+        "推导动画Skill"
+      ],
+      "formula": "f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x) - f(x)}{\\Delta x}",
+      "keywords": [
+        "导数",
+        "变化率",
+        "切线",
+        "微分"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "node-derivative-rules",
+      "name": "求导法则",
+      "nameEn": "Differentiation Rules",
+      "description": "四则运算、复合函数、隐函数、参数方程的求导法则",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "(uv)' = u'v + uv', \\quad (f(g(x)))' = f'(g(x))g'(x)",
+      "keywords": [
+        "链式法则",
+        "乘积法则",
+        "商法则"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-differential",
+      "name": "微分",
+      "nameEn": "Differential",
+      "description": "微分的定义及其几何意义，用于近似计算",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "dy = f'(x)dx",
+      "keywords": [
+        "微分",
+        "线性近似",
+        "切线逼近"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-mean-value-theorem",
+      "name": "微分中值定理",
+      "nameEn": "Mean Value Theorem",
+      "description": "罗尔定理、拉格朗日中值定理、柯西中值定理",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-derivative-def",
+        "node-continuity"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "f'(\\xi) = \\frac{f(b) - f(a)}{b - a}, \\quad \\xi \\in (a, b)",
+      "keywords": [
+        "中值定理",
+        "罗尔定理",
+        "拉格朗日"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 80
+    },
+    {
+      "id": "node-monotonicity",
+      "name": "函数的单调性",
+      "nameEn": "Monotonicity of Functions",
+      "description": "利用导数判断函数的单调性和极值",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "f'(x) > 0 \\Rightarrow f(x) \\text{ 单调递增}",
+      "keywords": [
+        "单调性",
+        "极值",
+        "最值"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-indefinite-integral",
+      "name": "不定积分",
+      "nameEn": "Indefinite Integral",
+      "description": "原函数与不定积分的概念，基本积分公式",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\int f(x)dx = F(x) + C, \\quad F'(x) = f(x)",
+      "keywords": [
+        "原函数",
+        "不定积分",
+        "积分常数"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-integral-def",
+      "name": "积分的概念与定义",
+      "nameEn": "Concept and Definition of Integral",
+      "description": "积分（不定积分与定积分）的统一概念与黎曼和背景",
+      "domains": ["domain-2"],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 2,
+      "prerequisites": ["node-derivative-def"],
+      "relatedSkills": ["积分概念Skill"],
+      "formula": "\\int f(x)\\,dx = F(x)+C,\\quad F'(x)=f(x)",
+      "keywords": ["积分", "原函数", "黎曼和"],
+      "importance": 5,
+      "estimatedStudyTime": 50
+    },
+    {
+      "id": "node-integration-methods",
+      "name": "积分方法",
+      "nameEn": "Integration Methods",
+      "description": "换元积分法、分部积分法等基本积分技巧",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-indefinite-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\int u dv = uv - \\int v du",
+      "keywords": [
+        "换元法",
+        "分部积分",
+        "积分技巧"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "node-definite-integral",
+      "name": "定积分的定义",
+      "nameEn": "Definition of Definite Integral",
+      "description": "定积分通过黎曼和定义，表示累积量",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "定积分应用Skill"
+      ],
+      "formula": "\\int_a^b f(x)dx = \\lim_{n \\to \\infty} \\sum_{i=1}^n f(\\xi_i)\\Delta x_i",
+      "keywords": [
+        "积分",
+        "黎曼和",
+        "累积",
+        "面积"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "node-fundamental-theorem",
+      "name": "微积分基本定理",
+      "nameEn": "Fundamental Theorem of Calculus",
+      "description": "连接微分与积分的桥梁，牛顿-莱布尼茨公式",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-def",
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "定积分应用Skill"
+      ],
+      "formula": "\\int_a^b f(x)dx = F(b) - F(a), \\quad F'(x) = f(x)",
+      "keywords": [
+        "基本定理",
+        "牛顿-莱布尼茨",
+        "微积分"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-integral-applications",
+      "name": "定积分的应用",
+      "nameEn": "Applications of Definite Integral",
+      "description": "计算面积、体积、弧长、物理应用等",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "定积分应用Skill"
+      ],
+      "formula": "V = \\pi \\int_a^b [f(x)]^2 dx",
+      "keywords": [
+        "面积",
+        "体积",
+        "旋转体",
+        "物理应用"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 80
+    },
+    {
+      "id": "node-partial-derivative",
+      "name": "偏导数",
+      "nameEn": "Partial Derivative",
+      "description": "多元函数对各个变量的偏导数",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\frac{\\partial f}{\\partial x} = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x, y) - f(x, y)}{\\Delta x}",
+      "keywords": [
+        "偏导数",
+        "多元函数",
+        "偏微分"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-gradient",
+      "name": "梯度",
+      "nameEn": "Gradient",
+      "description": "梯度是多元函数变化最快的方向，用于优化算法",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-partial-derivative"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\nabla f = \\left(\\frac{\\partial f}{\\partial x}, \\frac{\\partial f}{\\partial y}, \\frac{\\partial f}{\\partial z}\\right)",
+      "keywords": [
+        "梯度",
+        "方向导数",
+        "最速下降",
+        "优化"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-extrema-multivariable",
+      "name": "多元函数极值",
+      "nameEn": "Extrema of Multivariable Functions",
+      "description": "无约束和约束条件下的多元函数极值问题",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-partial-derivative",
+        "node-gradient"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\nabla f = 0, \\quad AC - B^2 > 0",
+      "keywords": [
+        "极值",
+        "驻点",
+        "拉格朗日乘数法"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "node-double-integral",
+      "name": "二重积分",
+      "nameEn": "Double Integral",
+      "description": "二重积分的定义、计算方法和应用",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-8",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\iint_D f(x,y) dxdy",
+      "keywords": [
+        "二重积分",
+        "累次积分",
+        "极坐标"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 85
+    },
+    {
+      "id": "node-ode-first-order",
+      "name": "一阶微分方程",
+      "nameEn": "First-Order Differential Equations",
+      "description": "可分离变量、齐次、线性微分方程的求解",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-def",
+        "node-indefinite-integral"
+      ],
+      "relatedSkills": [
+        "常微分方程Skill"
+      ],
+      "formula": "\\frac{dy}{dx} = f(x, y)",
+      "keywords": [
+        "微分方程",
+        "可分离变量",
+        "齐次方程"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 80
+    },
+    {
+      "id": "node-ode-second-order",
+      "name": "二阶微分方程",
+      "nameEn": "Second-Order Differential Equations",
+      "description": "二阶常系数线性微分方程的求解方法",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-ode-first-order"
+      ],
+      "relatedSkills": [
+        "常微分方程Skill"
+      ],
+      "formula": "y'' + py' + qy = f(x)",
+      "keywords": [
+        "二阶方程",
+        "特征方程",
+        "常数变易法"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 100
+    },
+    {
+      "id": "node-series-convergence",
+      "name": "级数收敛性",
+      "nameEn": "Series Convergence",
+      "description": "数项级数和函数项级数的收敛性判别",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "级数收敛Skill"
+      ],
+      "formula": "\\sum_{n=1}^{\\infty} a_n",
+      "keywords": [
+        "级数",
+        "收敛",
+        "发散",
+        "判别法"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "node-power-series",
+      "name": "幂级数",
+      "nameEn": "Power Series",
+      "description": "幂级数的收敛半径、收敛域和函数展开",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-series-convergence"
+      ],
+      "relatedSkills": [
+        "级数收敛Skill"
+      ],
+      "formula": "\\sum_{n=0}^{\\infty} a_n x^n",
+      "keywords": [
+        "幂级数",
+        "收敛半径",
+        "收敛域"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 85
+    },
+    {
+      "id": "node-taylor-series",
+      "name": "泰勒级数",
+      "nameEn": "Taylor Series",
+      "description": "泰勒级数用多项式逼近任意函数，是数值计算的基础",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-derivative-def",
+        "node-power-series"
+      ],
+      "relatedSkills": [
+        "级数收敛Skill",
+        "推导动画Skill"
+      ],
+      "formula": "f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n",
+      "keywords": [
+        "泰勒级数",
+        "幂级数",
+        "逼近",
+        "展开"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120
+    },
+    {
+      "id": "node-fourier-series",
+      "name": "傅里叶级数",
+      "nameEn": "Fourier Series",
+      "description": "周期函数的傅里叶级数展开，信号处理的数学基础",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-series-convergence",
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "级数收敛Skill"
+      ],
+      "formula": "f(x) = \\frac{a_0}{2} + \\sum_{n=1}^{\\infty} (a_n \\cos nx + b_n \\sin nx)",
+      "keywords": [
+        "傅里叶级数",
+        "周期函数",
+        "频域分析"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 110
+    },
+    {
+      "id": "node-numerical-methods",
+      "name": "数值计算方法",
+      "nameEn": "Numerical Methods",
+      "description": "数值积分、数值微分、方程求根等数值算法",
+      "domains": [
+        "domain-4",
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-taylor-series"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "\\int_a^b f(x)dx \\approx \\frac{b-a}{2}[f(a) + f(b)]",
+      "keywords": [
+        "数值方法",
+        "误差分析",
+        "近似计算"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 95
+    },
+    {
+      "id": "node-optimization-algorithms",
+      "name": "优化算法",
+      "nameEn": "Optimization Algorithms",
+      "description": "梯度下降、牛顿法等优化算法的数学原理",
+      "domains": [
+        "domain-3",
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-gradient",
+        "node-taylor-series"
+      ],
+      "relatedSkills": [
+        "多元函数Skill",
+        "推导动画Skill"
+      ],
+      "formula": "x_{k+1} = x_k - \\alpha \\nabla f(x_k)",
+      "keywords": [
+        "梯度下降",
+        "牛顿法",
+        "优化",
+        "机器学习"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 120
+    },
+    {
+      "id": "node-sequence-limit",
+      "name": "数列极限",
+      "nameEn": "Sequence Limit",
+      "description": "数列极限的ε-N定义、性质和计算方法，是理解函数极限的基础",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill",
+        "概念可视化Skill"
+      ],
+      "formula": "\\lim_{n \\to \\infty} a_n = A \\Leftrightarrow \\forall \\varepsilon > 0, \\exists N, n > N \\Rightarrow |a_n - A| < \\varepsilon",
+      "keywords": [
+        "数列",
+        "极限",
+        "收敛",
+        "发散"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "算法复杂度分析",
+          "description": "分析递归算法的时间复杂度，判断算法收敛性",
+          "industry": "计算机科学"
+        },
+        {
+          "title": "金融复利计算",
+          "description": "计算连续复利的极限值，理解e的金融意义",
+          "industry": "金融"
+        }
+      ]
+    },
+    {
+      "id": "node-limit-properties",
+      "name": "极限的运算法则",
+      "nameEn": "Limit Properties",
+      "description": "极限的四则运算、复合运算、夹逼准则等基本性质",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "函数极限与连续Skill"
+      ],
+      "formula": "\\lim(f \\pm g) = \\lim f \\pm \\lim g, \\quad \\lim(fg) = \\lim f \\cdot \\lim g",
+      "keywords": [
+        "极限运算",
+        "四则运算",
+        "复合函数"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-infinitesimal",
+      "name": "无穷小与无穷大",
+      "nameEn": "Infinitesimal and Infinity",
+      "description": "无穷小量的定义、比较、等价无穷小替换",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "\\alpha \\sim \\beta \\Leftrightarrow \\lim \\frac{\\alpha}{\\beta} = 1",
+      "keywords": [
+        "无穷小",
+        "等价无穷小",
+        "阶的比较"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "算法渐近分析",
+          "description": "使用大O记号分析算法复杂度",
+          "industry": "计算机科学"
+        }
+      ]
+    },
+    {
+      "id": "node-limit-existence",
+      "name": "极限存在准则",
+      "nameEn": "Limit Existence Criteria",
+      "description": "夹逼准则、单调有界准则、柯西收敛准则",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "f(x) \\leq g(x) \\leq h(x), \\lim f = \\lim h = A \\Rightarrow \\lim g = A",
+      "keywords": [
+        "夹逼准则",
+        "单调有界",
+        "收敛准则"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-continuity-properties",
+      "name": "连续函数的性质",
+      "nameEn": "Properties of Continuous Functions",
+      "description": "最值定理、介值定理、零点定理及其应用",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-continuity"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "f \\in C[a,b] \\Rightarrow \\exists \\xi \\in [a,b], f(\\xi) = \\max f(x)",
+      "keywords": [
+        "最值定理",
+        "介值定理",
+        "零点定理"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "方程求根算法",
+          "description": "二分法求解非线性方程的理论基础",
+          "industry": "数值计算"
+        }
+      ]
+    },
+    {
+      "id": "node-discontinuity-types",
+      "name": "间断点的分类",
+      "nameEn": "Types of Discontinuity",
+      "description": "第一类间断点(跳跃、可去)、第二类间断点(无穷、振荡)",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-continuity"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "keywords": [
+        "间断点",
+        "跳跃间断",
+        "可去间断",
+        "无穷间断"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "信号处理",
+          "description": "分析信号的突变点和不连续性",
+          "industry": "通信工程"
+        }
+      ]
+    },
+    {
+      "id": "node-uniform-continuity",
+      "name": "一致连续性",
+      "nameEn": "Uniform Continuity",
+      "description": "一致连续的定义、判定定理和性质",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-continuity"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "\\forall \\varepsilon > 0, \\exists \\delta > 0, |x_1-x_2| < \\delta \\Rightarrow |f(x_1)-f(x_2)| < \\varepsilon",
+      "keywords": [
+        "一致连续",
+        "康托定理",
+        "李普希茨条件"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 65
+    },
+    {
+      "id": "node-limit-special",
+      "name": "两个重要极限",
+      "nameEn": "Two Important Limits",
+      "description": "e的定义极限和sinx/x极限及其应用",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill",
+        "推导动画Skill"
+      ],
+      "formula": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1, \\quad \\lim_{x \\to \\infty} (1+\\frac{1}{x})^x = e",
+      "keywords": [
+        "重要极限",
+        "自然对数",
+        "三角极限"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "复利计算",
+          "description": "连续复利公式的推导和应用",
+          "industry": "金融"
+        },
+        {
+          "title": "小角度近似",
+          "description": "工程中的三角函数近似计算",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-derivative-geometric",
+      "name": "导数的几何意义",
+      "nameEn": "Geometric Meaning of Derivative",
+      "description": "导数表示曲线的切线斜率，是函数图像局部线性近似的基础",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill",
+        "概念可视化Skill"
+      ],
+      "formula": "f'(x_0) = \\tan\\alpha = k_{切线}",
+      "keywords": [
+        "切线",
+        "法线",
+        "切线方程",
+        "几何意义"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "曲线拟合",
+          "description": "使用切线近似复杂曲线",
+          "industry": "数据分析"
+        },
+        {
+          "title": "轨迹规划",
+          "description": "机器人运动轨迹的切线方向控制",
+          "industry": "机器人"
+        }
+      ]
+    },
+    {
+      "id": "node-derivative-physical",
+      "name": "导数的物理意义",
+      "nameEn": "Physical Meaning of Derivative",
+      "description": "导数表示瞬时变化率，在物理中对应速度、加速度等概念",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "v(t) = s'(t), \\quad a(t) = v'(t) = s''(t)",
+      "keywords": [
+        "速度",
+        "加速度",
+        "变化率",
+        "物理意义"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "运动分析",
+          "description": "分析物体的速度和加速度",
+          "industry": "物理"
+        },
+        {
+          "title": "自动驾驶",
+          "description": "车辆速度和加速度控制",
+          "industry": "自动驾驶"
+        }
+      ]
+    },
+    {
+      "id": "node-higher-derivatives",
+      "name": "高阶导数",
+      "nameEn": "Higher Order Derivatives",
+      "description": "二阶、三阶及n阶导数的定义、计算和应用",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-def"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "f''(x) = (f'(x))', \\quad f^{(n)}(x) = (f^{(n-1)}(x))'",
+      "keywords": [
+        "二阶导数",
+        "高阶导数",
+        "加速度",
+        "曲率"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "加速度分析",
+          "description": "二阶导数表示加速度",
+          "industry": "力学"
+        },
+        {
+          "title": "曲率计算",
+          "description": "曲线的弯曲程度",
+          "industry": "几何"
+        }
+      ]
+    },
+    {
+      "id": "node-implicit-derivative",
+      "name": "隐函数求导",
+      "nameEn": "Implicit Differentiation",
+      "description": "对隐函数方程两边同时求导，求出dy/dx",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-rules"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "F(x,y) = 0 \\Rightarrow \\frac{dy}{dx} = -\\frac{F_x}{F_y}",
+      "keywords": [
+        "隐函数",
+        "隐函数求导",
+        "偏导数"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "隐式曲线分析",
+          "description": "分析圆、椭圆等隐式曲线",
+          "industry": "几何"
+        },
+        {
+          "title": "约束优化",
+          "description": "带约束条件的优化问题",
+          "industry": "优化"
+        }
+      ]
+    },
+    {
+      "id": "node-parametric-derivative",
+      "name": "参数方程求导",
+      "nameEn": "Parametric Differentiation",
+      "description": "参数方程表示的曲线的导数计算",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-rules"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt} = \\frac{y'(t)}{x'(t)}",
+      "keywords": [
+        "参数方程",
+        "参数求导",
+        "曲线"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "参数曲线",
+          "description": "摆线、螺旋线等参数曲线分析",
+          "industry": "几何"
+        },
+        {
+          "title": "轨迹分析",
+          "description": "物体运动轨迹的参数表示",
+          "industry": "物理"
+        }
+      ]
+    },
+    {
+      "id": "node-logarithmic-derivative",
+      "name": "对数求导法",
+      "nameEn": "Logarithmic Differentiation",
+      "description": "对复杂函数取对数后求导，简化计算",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-derivative-rules"
+      ],
+      "relatedSkills": [
+        "导数与微分Skill"
+      ],
+      "formula": "y = f(x) \\Rightarrow \\ln y = \\ln f(x) \\Rightarrow \\frac{y'}{y} = (\\ln f(x))'",
+      "keywords": [
+        "对数求导",
+        "幂指函数",
+        "复杂函数"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "幂指函数求导",
+          "description": "x^x类型函数的求导",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-rolle-theorem",
+      "name": "罗尔定理",
+      "nameEn": "Rolle's Theorem",
+      "description": "如果函数在闭区间连续，开区间可导，且端点函数值相等，则存在一点导数为零",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-mean-value-theorem"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "f(a) = f(b), f \\in C[a,b], f'(x) \\text{ 存在} \\Rightarrow \\exists \\xi \\in (a,b), f'(\\xi) = 0",
+      "keywords": [
+        "罗尔定理",
+        "中值定理",
+        "导数为零"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "方程根的存在性",
+          "description": "证明方程至少有一个根",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-lagrange-theorem",
+      "name": "拉格朗日中值定理",
+      "nameEn": "Lagrange's Mean Value Theorem",
+      "description": "函数在某点的导数等于函数在区间端点的平均变化率",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-mean-value-theorem"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "f'(\\xi) = \\frac{f(b) - f(a)}{b - a}, \\quad \\xi \\in (a,b)",
+      "keywords": [
+        "拉格朗日",
+        "中值定理",
+        "平均变化率"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "不等式证明",
+          "description": "利用中值定理证明不等式",
+          "industry": "数学"
+        },
+        {
+          "title": "误差估计",
+          "description": "估计函数值的误差范围",
+          "industry": "数值计算"
+        }
+      ]
+    },
+    {
+      "id": "node-cauchy-theorem",
+      "name": "柯西中值定理",
+      "nameEn": "Cauchy's Mean Value Theorem",
+      "description": "两个函数的导数比等于函数值的比",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-mean-value-theorem"
+      ],
+      "relatedSkills": [
+        "推导动画Skill"
+      ],
+      "formula": "\\frac{f'(\\xi)}{g'(\\xi)} = \\frac{f(b) - f(a)}{g(b) - g(a)}, \\quad \\xi \\in (a,b)",
+      "keywords": [
+        "柯西",
+        "中值定理",
+        "洛必达"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "洛必达法则基础",
+          "description": "柯西中值定理是洛必达法则的理论基础",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-lhopital-rule",
+      "name": "洛必达法则",
+      "nameEn": "L'Hôpital's Rule",
+      "description": "计算0/0和∞/∞型未定式极限的方法",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-cauchy-theorem"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "\\lim\\frac{f(x)}{g(x)} = \\lim\\frac{f'(x)}{g'(x)} \\quad (\\frac{0}{0} \\text{ 或 } \\frac{\\infty}{\\infty})",
+      "keywords": [
+        "洛必达",
+        "未定式",
+        "极限计算"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "极限计算",
+          "description": "快速计算复杂极限",
+          "industry": "数学"
+        },
+        {
+          "title": "渐近分析",
+          "description": "分析函数的渐近行为",
+          "industry": "算法分析"
+        }
+      ]
+    },
+    {
+      "id": "node-taylor-theorem",
+      "name": "泰勒定理",
+      "nameEn": "Taylor's Theorem",
+      "description": "用多项式逼近函数，包含余项估计",
+      "domains": [
+        "domain-1",
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-mean-value-theorem",
+        "node-higher-derivatives"
+      ],
+      "relatedSkills": [
+        "推导动画Skill",
+        "级数收敛Skill"
+      ],
+      "formula": "f(x) = \\sum_{k=0}^n \\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + R_n(x)",
+      "keywords": [
+        "泰勒公式",
+        "多项式逼近",
+        "余项"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 75,
+      "realWorldApplications": [
+        {
+          "title": "函数近似",
+          "description": "用多项式近似复杂函数",
+          "industry": "数值计算"
+        },
+        {
+          "title": "误差分析",
+          "description": "估计近似误差",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-curvature",
+      "name": "曲率",
+      "nameEn": "Curvature",
+      "description": "曲线弯曲程度的度量，与二阶导数相关",
+      "domains": [
+        "domain-1"
+      ],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-higher-derivatives"
+      ],
+      "relatedSkills": [
+        "概念可视化Skill"
+      ],
+      "formula": "\\kappa = \\frac{|y''|}{(1+y'^2)^{3/2}}",
+      "keywords": [
+        "曲率",
+        "曲率半径",
+        "曲线性质"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "道路设计",
+          "description": "公路弯道的曲率设计",
+          "industry": "土木工程"
+        },
+        {
+          "title": "轨迹规划",
+          "description": "机器人运动轨迹的曲率约束",
+          "industry": "机器人"
+        }
+      ]
+    },
+    {
+      "id": "node-indefinite-integral-properties",
+      "name": "不定积分的性质",
+      "nameEn": "Properties of Indefinite Integral",
+      "description": "不定积分的线性性质、基本积分表",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-indefinite-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "积分技巧Skill"
+      ],
+      "formula": "\\int [af(x) + bg(x)]dx = a\\int f(x)dx + b\\int g(x)dx",
+      "keywords": [
+        "不定积分",
+        "线性性质",
+        "基本积分表"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 40
+    },
+    {
+      "id": "node-substitution-method-1",
+      "name": "第一类换元法",
+      "nameEn": "First Substitution Method",
+      "description": "凑微分法，将复杂积分化为基本积分",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integration-methods"
+      ],
+      "relatedSkills": [
+        "积分技巧Skill"
+      ],
+      "formula": "\\int f(\\phi(x))\\phi'(x)dx = \\int f(u)du, \\quad u = \\phi(x)",
+      "keywords": [
+        "换元法",
+        "凑微分",
+        "第一换元"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "物理中的功",
+          "description": "计算变力做功",
+          "industry": "物理"
+        }
+      ]
+    },
+    {
+      "id": "node-substitution-method-2",
+      "name": "第二类换元法",
+      "nameEn": "Second Substitution Method",
+      "description": "变量替换法，通过变量代换简化积分",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integration-methods"
+      ],
+      "relatedSkills": [
+        "积分技巧Skill"
+      ],
+      "formula": "x = \\phi(t), dx = \\phi'(t)dt \\Rightarrow \\int f(x)dx = \\int f(\\phi(t))\\phi'(t)dt",
+      "keywords": [
+        "换元法",
+        "变量替换",
+        "第二换元"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "三角代换",
+          "description": "处理根式积分",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-integration-by-parts-detail",
+      "name": "分部积分法详解",
+      "nameEn": "Integration by Parts - Detailed",
+      "description": "分部积分的技巧和常见类型",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integration-methods"
+      ],
+      "relatedSkills": [
+        "积分技巧Skill"
+      ],
+      "formula": "\\int udv = uv - \\int vdu",
+      "keywords": [
+        "分部积分",
+        "积分技巧",
+        "LIATE法则"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 70,
+      "realWorldApplications": [
+        {
+          "title": "工程计算",
+          "description": "处理乘积型积分",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-rational-function-integration",
+      "name": "有理函数积分",
+      "nameEn": "Rational Function Integration",
+      "description": "部分分式分解法求有理函数积分",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-integration-methods"
+      ],
+      "relatedSkills": [
+        "积分技巧Skill"
+      ],
+      "formula": "\\frac{P(x)}{Q(x)} = A_1\\frac{1}{x-a_1} + A_2\\frac{1}{x-a_2} + \\cdots",
+      "keywords": [
+        "有理函数",
+        "部分分式",
+        "分解"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-trigonometric-integration",
+      "name": "三角函数积分",
+      "nameEn": "Trigonometric Integration",
+      "description": "三角函数的积分技巧和公式",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-4",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integration-methods"
+      ],
+      "relatedSkills": [
+        "积分技巧Skill"
+      ],
+      "formula": "\\int \\sin^m x \\cos^n x dx",
+      "keywords": [
+        "三角函数",
+        "积分技巧",
+        "万能公式"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-definite-integral-properties",
+      "name": "定积分的性质",
+      "nameEn": "Properties of Definite Integral",
+      "description": "定积分的线性性质、区间可加性、比较性质",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill",
+        "定积分应用Skill"
+      ],
+      "formula": "\\int_a^b f(x)dx = \\int_a^c f(x)dx + \\int_c^b f(x)dx",
+      "keywords": [
+        "定积分",
+        "性质",
+        "区间可加性"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-improper-integral",
+      "name": "反常积分",
+      "nameEn": "Improper Integral",
+      "description": "无穷区间和无界函数的积分",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-5",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-definite-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\int_a^{+\\infty} f(x)dx = \\lim_{b \\to +\\infty} \\int_a^b f(x)dx",
+      "keywords": [
+        "反常积分",
+        "无穷积分",
+        "瑕积分"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 70,
+      "realWorldApplications": [
+        {
+          "title": "概率分布",
+          "description": "概率密度函数的积分",
+          "industry": "统计"
+        }
+      ]
+    },
+    {
+      "id": "node-area-calculation",
+      "name": "平面图形面积",
+      "nameEn": "Area Calculation",
+      "description": "使用定积分计算平面图形面积",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 2,
+      "prerequisites": [
+        "node-integral-applications"
+      ],
+      "relatedSkills": [
+        "定积分应用Skill"
+      ],
+      "formula": "A = \\int_a^b |f(x) - g(x)|dx",
+      "keywords": [
+        "面积",
+        "定积分应用",
+        "曲边梯形"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "土地测量",
+          "description": "不规则地块面积计算",
+          "industry": "测绘"
+        }
+      ]
+    },
+    {
+      "id": "node-volume-calculation",
+      "name": "旋转体体积",
+      "nameEn": "Volume of Revolution",
+      "description": "使用定积分计算旋转体体积",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integral-applications"
+      ],
+      "relatedSkills": [
+        "定积分应用Skill"
+      ],
+      "formula": "V = \\pi \\int_a^b [f(x)]^2 dx",
+      "keywords": [
+        "体积",
+        "旋转体",
+        "定积分应用"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "容器设计",
+          "description": "计算容器容积",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-arc-length",
+      "name": "弧长计算",
+      "nameEn": "Arc Length",
+      "description": "使用定积分计算曲线弧长",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-6",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-integral-applications"
+      ],
+      "relatedSkills": [
+        "定积分应用Skill"
+      ],
+      "formula": "s = \\int_a^b \\sqrt{1 + [f'(x)]^2} dx",
+      "keywords": [
+        "弧长",
+        "曲线长度",
+        "定积分应用"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "道路长度",
+          "description": "计算弯曲道路的实际长度",
+          "industry": "交通"
+        }
+      ]
+    },
+    {
+      "id": "node-multivariable-limit",
+      "name": "多元函数的极限",
+      "nameEn": "Limit of Multivariable Functions",
+      "description": "二元及多元函数的极限定义和计算",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-limit-def"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\lim_{(x,y) \\to (x_0,y_0)} f(x,y) = A",
+      "keywords": [
+        "多元函数",
+        "二重极限",
+        "累次极限"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-multivariable-continuity",
+      "name": "多元函数的连续性",
+      "nameEn": "Continuity of Multivariable Functions",
+      "description": "多元函数连续性的定义和性质",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-multivariable-limit"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\lim_{(x,y) \\to (x_0,y_0)} f(x,y) = f(x_0,y_0)",
+      "keywords": [
+        "多元连续",
+        "连续性",
+        "有界闭区域"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 50
+    },
+    {
+      "id": "node-total-differential",
+      "name": "全微分",
+      "nameEn": "Total Differential",
+      "description": "多元函数的全微分及其应用",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-partial-derivative"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "dz = \\frac{\\partial z}{\\partial x}dx + \\frac{\\partial z}{\\partial y}dy",
+      "keywords": [
+        "全微分",
+        "可微",
+        "线性近似"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "误差传播",
+          "description": "计算测量误差的传播",
+          "industry": "测量"
+        }
+      ]
+    },
+    {
+      "id": "node-composite-function-derivative",
+      "name": "多元复合函数求导",
+      "nameEn": "Chain Rule for Multivariable Functions",
+      "description": "多元复合函数的链式法则",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-partial-derivative"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\frac{\\partial z}{\\partial t} = \\frac{\\partial z}{\\partial x}\\frac{dx}{dt} + \\frac{\\partial z}{\\partial y}\\frac{dy}{dt}",
+      "keywords": [
+        "复合函数",
+        "链式法则",
+        "全导数"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 65
+    },
+    {
+      "id": "node-homogeneous-equation",
+      "name": "齐次方程",
+      "nameEn": "Homogeneous Equation",
+      "description": "形如dy/dx = f(y/x)的一阶微分方程",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-ode-first-order"
+      ],
+      "relatedSkills": [
+        "常微分方程求解Skill"
+      ],
+      "formula": "\\frac{dy}{dx} = f(\\frac{y}{x}), \\quad u = \\frac{y}{x}",
+      "keywords": [
+        "齐次方程",
+        "变量替换",
+        "微分方程"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "人口模型",
+          "description": "人口增长的齐次模型",
+          "industry": "生态学"
+        }
+      ]
+    },
+    {
+      "id": "node-bernoulli-equation",
+      "name": "伯努利方程",
+      "nameEn": "Bernoulli Equation",
+      "description": "形如dy/dx + P(x)y = Q(x)y^n的方程",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-ode-first-order"
+      ],
+      "relatedSkills": [
+        "常微分方程求解Skill"
+      ],
+      "formula": "\\frac{dy}{dx} + P(x)y = Q(x)y^n, \\quad z = y^{1-n}",
+      "keywords": [
+        "伯努利方程",
+        "非线性",
+        "变量替换"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "流体力学",
+          "description": "伯努利方程描述流体能量守恒",
+          "industry": "流体力学"
+        }
+      ]
+    },
+    {
+      "id": "node-higher-order-linear-equation",
+      "name": "高阶线性方程",
+      "nameEn": "Higher Order Linear Equation",
+      "description": "n阶常系数线性微分方程的求解",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-ode-second-order"
+      ],
+      "relatedSkills": [
+        "常微分方程求解Skill"
+      ],
+      "formula": "y^{(n)} + a_1 y^{(n-1)} + \\cdots + a_n y = f(x)",
+      "keywords": [
+        "高阶方程",
+        "特征方程",
+        "线性方程"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 80,
+      "realWorldApplications": [
+        {
+          "title": "振动系统",
+          "description": "多自由度振动系统分析",
+          "industry": "力学"
+        }
+      ]
+    },
+    {
+      "id": "node-euler-equation",
+      "name": "欧拉方程",
+      "nameEn": "Euler Equation",
+      "description": "变系数线性方程的特殊形式",
+      "domains": [
+        "domain-2"
+      ],
+      "traditionalChapter": "chapter-10",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-ode-second-order"
+      ],
+      "relatedSkills": [
+        "常微分方程求解Skill"
+      ],
+      "formula": "x^2y'' + axy' + by = 0, \\quad x = e^t",
+      "keywords": [
+        "欧拉方程",
+        "变系数",
+        "变量替换"
+      ],
+      "importance": 3,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-implicit-function-theorem",
+      "name": "隐函数求导定理",
+      "nameEn": "Implicit Function Theorem",
+      "description": "隐函数存在性和可微性定理",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-partial-derivative"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "F(x,y,z) = 0 \\Rightarrow \\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}",
+      "keywords": [
+        "隐函数",
+        "隐函数定理",
+        "偏导数"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-conditional-extrema",
+      "name": "条件极值",
+      "nameEn": "Conditional Extrema",
+      "description": "带约束条件的多元函数极值问题",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-extrema-multivariable"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "\\text{求} f(x,y) \\text{在} g(x,y) = 0 \\text{下的极值}",
+      "keywords": [
+        "条件极值",
+        "约束优化",
+        "拉格朗日"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 75,
+      "realWorldApplications": [
+        {
+          "title": "资源优化",
+          "description": "在预算约束下的资源分配",
+          "industry": "运筹学"
+        },
+        {
+          "title": "工程设计",
+          "description": "满足约束条件的最优设计",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-lagrange-multiplier-detail",
+      "name": "拉格朗日乘数法详解",
+      "nameEn": "Lagrange Multiplier Method - Detailed",
+      "description": "拉格朗日乘数法的原理和应用",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-7",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-conditional-extrema"
+      ],
+      "relatedSkills": [
+        "多元函数Skill"
+      ],
+      "formula": "L(x,y,\\lambda) = f(x,y) + \\lambda g(x,y)",
+      "keywords": [
+        "拉格朗日乘数",
+        "约束优化",
+        "KKT条件"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 80,
+      "realWorldApplications": [
+        {
+          "title": "机器学习",
+          "description": "SVM中的对偶问题",
+          "industry": "人工智能"
+        },
+        {
+          "title": "经济学",
+          "description": "效用最大化问题",
+          "industry": "经济学"
+        }
+      ]
+    },
+    {
+      "id": "node-triple-integral",
+      "name": "三重积分",
+      "nameEn": "Triple Integral",
+      "description": "三重积分的定义、计算和应用",
+      "domains": [
+        "domain-3"
+      ],
+      "traditionalChapter": "chapter-8",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-double-integral"
+      ],
+      "relatedSkills": [
+        "积分概念Skill"
+      ],
+      "formula": "\\iiint_\\Omega f(x,y,z) dxdydz",
+      "keywords": [
+        "三重积分",
+        "体积分",
+        "柱坐标",
+        "球坐标"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 85,
+      "realWorldApplications": [
+        {
+          "title": "质量计算",
+          "description": "计算不均匀物体的质量",
+          "industry": "物理"
+        },
+        {
+          "title": "引力场",
+          "description": "计算引力场强度",
+          "industry": "天文"
+        }
+      ]
+    },
+    {
+      "id": "node-positive-series-test",
+      "name": "正项级数判别法",
+      "nameEn": "Convergence Tests for Positive Series",
+      "description": "比值判别法、根值判别法、积分判别法等",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-series-convergence"
+      ],
+      "relatedSkills": [
+        "级数分析Skill"
+      ],
+      "formula": "\\lim_{n \\to \\infty} \\frac{a_{n+1}}{a_n} = \\rho",
+      "keywords": [
+        "正项级数",
+        "比值判别法",
+        "根值判别法"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 70
+    },
+    {
+      "id": "node-alternating-series",
+      "name": "交错级数",
+      "nameEn": "Alternating Series",
+      "description": "交错级数的莱布尼茨判别法",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 3,
+      "prerequisites": [
+        "node-series-convergence"
+      ],
+      "relatedSkills": [
+        "级数分析Skill"
+      ],
+      "formula": "\\sum_{n=1}^\\infty (-1)^{n-1} a_n, \\quad a_n \\downarrow 0",
+      "keywords": [
+        "交错级数",
+        "莱布尼茨",
+        "条件收敛"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-absolute-convergence",
+      "name": "绝对收敛与条件收敛",
+      "nameEn": "Absolute and Conditional Convergence",
+      "description": "级数收敛性的分类和性质",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-series-convergence"
+      ],
+      "relatedSkills": [
+        "级数分析Skill"
+      ],
+      "formula": "\\sum |a_n| \\text{收敛} \\Rightarrow \\sum a_n \\text{收敛}",
+      "keywords": [
+        "绝对收敛",
+        "条件收敛",
+        "级数性质"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 65
+    },
+    {
+      "id": "node-function-series",
+      "name": "函数项级数",
+      "nameEn": "Series of Functions",
+      "description": "函数项级数的收敛性和性质",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-series-convergence"
+      ],
+      "relatedSkills": [
+        "级数分析Skill"
+      ],
+      "formula": "\\sum_{n=1}^\\infty u_n(x)",
+      "keywords": [
+        "函数项级数",
+        "逐点收敛",
+        "一致收敛"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "node-uniform-convergence",
+      "name": "一致收敛性",
+      "nameEn": "Uniform Convergence",
+      "description": "函数项级数的一致收敛及其性质",
+      "domains": [
+        "domain-4"
+      ],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 5,
+      "prerequisites": [
+        "node-function-series"
+      ],
+      "relatedSkills": [
+        "级数分析Skill"
+      ],
+      "formula": "\\sup_{x \\in D} |S(x) - S_n(x)| \\to 0",
+      "keywords": [
+        "一致收敛",
+        "魏尔斯特拉斯",
+        "M判别法"
+      ],
+      "importance": 4,
+      "estimatedStudyTime": 80
+    },
+    {
+      "id": "node-mathematical-modeling",
+      "name": "数学建模方法论",
+      "nameEn": "Mathematical Modeling Methodology",
+      "description": "从实际问题到数学模型的建立过程",
+      "domains": [
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-12",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-optimization-algorithms"
+      ],
+      "relatedSkills": [
+        "H5P交互Skill",
+        "概念可视化Skill"
+      ],
+      "keywords": [
+        "数学建模",
+        "问题分析",
+        "模型建立",
+        "模型求解"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 90,
+      "realWorldApplications": [
+        {
+          "title": "疫情预测",
+          "description": "建立SIR模型预测疫情发展",
+          "industry": "公共卫生"
+        },
+        {
+          "title": "交通优化",
+          "description": "城市交通流量优化模型",
+          "industry": "交通"
+        },
+        {
+          "title": "资源调度",
+          "description": "物流配送路径优化",
+          "industry": "物流"
+        }
+      ]
+    },
+    {
+      "id": "node-computational-implementation",
+      "name": "计算实现与验证",
+      "nameEn": "Computational Implementation and Validation",
+      "description": "数学模型的计算实现和结果验证",
+      "domains": [
+        "domain-5"
+      ],
+      "traditionalChapter": "chapter-12",
+      "difficulty": 4,
+      "prerequisites": [
+        "node-mathematical-modeling",
+        "node-numerical-methods"
+      ],
+      "relatedSkills": [
+        "数值分析Skill",
+        "H5P交互Skill"
+      ],
+      "keywords": [
+        "计算实现",
+        "算法设计",
+        "结果验证",
+        "误差分析"
+      ],
+      "importance": 5,
+      "estimatedStudyTime": 95,
+      "realWorldApplications": [
+        {
+          "title": "科学计算",
+          "description": "使用Python/MATLAB实现数值算法",
+          "industry": "科研"
+        },
+        {
+          "title": "工程仿真",
+          "description": "有限元分析的计算实现",
+          "industry": "工程"
+        },
+        {
+          "title": "数据分析",
+          "description": "统计模型的计算验证",
+          "industry": "数据科学"
+        }
+      ]
+    },
+    {
+      "id": "node-engineering-application",
+      "name": "工程应用案例",
+      "nameEn": "Engineering Application Cases",
+      "description": "高等数学在机械、电气、土木等工程中的典型应用与建模",
+      "domains": ["domain-5"],
+      "traditionalChapter": "chapter-12",
+      "difficulty": 3,
+      "prerequisites": ["node-mathematical-modeling"],
+      "relatedSkills": ["H5P交互Skill", "定积分应用Skill"],
+      "keywords": ["工程应用", "建模", "案例"],
+      "importance": 4,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        { "title": "结构优化", "description": "拉格朗日乘数法在机械设计中的应用", "industry": "机械工程" },
+        { "title": "电路分析", "description": "微分方程与线性代数在电路中的应用", "industry": "电子工程" }
+      ]
+    },
+    {
+      "id": "node-series-application",
+      "name": "级数应用",
+      "nameEn": "Series Applications",
+      "description": "级数在近似计算、信号分析与数值方法中的应用",
+      "domains": ["domain-2", "domain-4"],
+      "traditionalChapter": "chapter-11",
+      "difficulty": 3,
+      "prerequisites": ["node-power-series", "node-fourier-series"],
+      "relatedSkills": ["级数收敛Skill", "推导动画Skill"],
+      "keywords": ["级数应用", "近似计算", "傅里叶"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        { "title": "信号分析", "description": "傅里叶级数在信号处理中的应用", "industry": "通信" },
+        { "title": "近似计算", "description": "泰勒级数在数值计算中的应用", "industry": "科学计算" }
+      ]
+    }
+  ],
+  "metadata": {
+    "totalNodes": 78,
+    "lastUpdated": "2026-02-22T06:45:45.293Z",
+    "phase1NodesAdded": 0,
+    "phase1CompletionDate": "2026-02-22"
+  }
+}

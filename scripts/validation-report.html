@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 2 数据验证报告</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 { 
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .timestamp {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .summary { 
+      background: #f8f9fa;
+      padding: 25px 30px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .summary h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .stat-item {
+      background: white;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #667eea;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
+    .status {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .status.success { 
+      background: #d4edda;
+      color: #155724;
+    }
+    .status.failure { 
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .content {
+      padding: 30px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .issue {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-left: 4px solid #d32f2f;
+    }
+    .issue.warning {
+      border-left-color: #f57c00;
+    }
+    .issue-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .issue-type {
+      font-weight: 600;
+      font-size: 14px;
+      color: #d32f2f;
+    }
+    .issue.warning .issue-type {
+      color: #f57c00;
+    }
+    .issue-file {
+      font-size: 12px;
+      color: #666;
+      background: #f5f5f5;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .issue-message {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+    .issue-details {
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      overflow-x: auto;
+    }
+    .no-issues {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+      font-size: 16px;
+    }
+    .no-issues .icon {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Phase 2 数据验证报告</h1>
+      <div class="timestamp">生成时间: 2026/2/23 21:04:45</div>
+    </div>
+    
+    <div class="summary">
+      <h2>验证摘要</h2>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-label">总错误数</div>
+          <div class="stat-value" style="color: #d32f2f;">4</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">总警告数</div>
+          <div class="stat-value" style="color: #f57c00;">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">验证文件数</div>
+          <div class="stat-value">3</div>
+        </div>
+        
+        
+        <div class="stat-item">
+          <div class="stat-label">验证边数</div>
+          <div class="stat-value">4</div>
+        </div>
+        
+        
+      </div>
+      <div class="status failure">
+        ✗ 验证失败
+      </div>
+    </div>
+    
+    <div class="content">
+      
+      <div class="section">
+        <h2>错误详情 (4)</h2>
+        
+          <div class="issue">
+            <div class="issue-header">
+              <span class="issue-type">[错误 1] MISSING_NODE</span>
+              <span class="issue-file">edges-extended-phase2.json</span>
+            </div>
+            <div class="issue-message">❌ 边 #7 (edge-app-phase2-0007) 引用了不存在的节点 app--
+   建议: 请确保节点 app-- 存在于节点数据中，或修改引用</div>
+            
+            <details>
+              <summary style="cursor: pointer; color: #666; font-size: 12px;">查看详细信息</summary>
+              <div class="issue-details">{
+  "edgeIndex": 7,
+  "edgeId": "edge-app-phase2-0007",
+  "field": "target",
+  "missingId": "app--"
+}</div>
+            </details>
+            
+          </div>
+        
+          <div class="issue">
+            <div class="issue-header">
+              <span class="issue-type">[错误 2] MISSING_NODE</span>
+              <span class="issue-file">edges-extended-phase2.json</span>
+            </div>
+            <div class="issue-message">❌ 边 #8 (edge-app-phase2-0008) 引用了不存在的节点 app--
+   建议: 请确保节点 app-- 存在于节点数据中，或修改引用</div>
+            
+            <details>
+              <summary style="cursor: pointer; color: #666; font-size: 12px;">查看详细信息</summary>
+              <div class="issue-details">{
+  "edgeIndex": 8,
+  "edgeId": "edge-app-phase2-0008",
+  "field": "target",
+  "missingId": "app--"
+}</div>
+            </details>
+            
+          </div>
+        
+          <div class="issue">
+            <div class="issue-header">
+              <span class="issue-type">[错误 3] MISSING_NODE</span>
+              <span class="issue-file">edges-extended-phase2.json</span>
+            </div>
+            <div class="issue-message">❌ 边 #9 (edge-app-phase2-0009) 引用了不存在的节点 app--
+   建议: 请确保节点 app-- 存在于节点数据中，或修改引用</div>
+            
+            <details>
+              <summary style="cursor: pointer; color: #666; font-size: 12px;">查看详细信息</summary>
+              <div class="issue-details">{
+  "edgeIndex": 9,
+  "edgeId": "edge-app-phase2-0009",
+  "field": "target",
+  "missingId": "app--"
+}</div>
+            </details>
+            
+          </div>
+        
+          <div class="issue">
+            <div class="issue-header">
+              <span class="issue-type">[错误 4] MISSING_NODE</span>
+              <span class="issue-file">edges-extended-phase2.json</span>
+            </div>
+            <div class="issue-message">❌ 边 #10 (edge-app-phase2-0010) 引用了不存在的节点 app--
+   建议: 请确保节点 app-- 存在于节点数据中，或修改引用</div>
+            
+            <details>
+              <summary style="cursor: pointer; color: #666; font-size: 12px;">查看详细信息</summary>
+              <div class="issue-details">{
+  "edgeIndex": 10,
+  "edgeId": "edge-app-phase2-0010",
+  "field": "target",
+  "missingId": "app--"
+}</div>
+            </details>
+            
+          </div>
+        
+      </div>
+      
+      
+      
+    </div>
+  </div>
+</body>
+</html>

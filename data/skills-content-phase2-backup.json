@@ -1,0 +1,424 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "phase": "Phase 2 - 内容深度扩展",
+    "totalItems": 1,
+    "createdDate": "2026-02-23",
+    "description": "Phase 2 Skills深度内容",
+    "author": "Content_Generator",
+    "dependencies": []
+  },
+  "data": [
+    {
+      "skillId": "函数极限与连续Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-uniform-continuity",
+          "title": "一致连续性",
+          "description": "一致连续性是比连续性更强的性质，要求δ的选择不依赖于具体的点x",
+          "formula": "\\forall \\varepsilon > 0, \\exists \\delta > 0, \\forall x_1, x_2 \\in D: |x_1 - x_2| < \\delta \\Rightarrow |f(x_1) - f(x_2)| < \\varepsilon",
+          "examples": [
+            "f(x) = x^2 在有界区间上一致连续",
+            "f(x) = 1/x 在(0,1)上不一致连续"
+          ],
+          "applications": [
+            "数值分析",
+            "函数逼近理论"
+          ]
+        },
+        {
+          "id": "topic-lipschitz-condition",
+          "title": "利普希茨条件",
+          "description": "利普希茨条件是一致连续性的充分条件，要求函数的变化率有界",
+          "formula": "|f(x_1) - f(x_2)| \\leq L|x_1 - x_2|, \\quad \\forall x_1, x_2 \\in D",
+          "examples": [
+            "f(x) = sin(x) 满足利普希茨条件，L=1",
+            "f(x) = √x 在[0,1]上不满足利普希茨条件"
+          ],
+          "applications": [
+            "微分方程解的存在唯一性",
+            "优化算法收敛性分析"
+          ]
+        },
+        {
+          "id": "topic-contraction-mapping",
+          "title": "压缩映射",
+          "description": "压缩映射是满足利普希茨条件且L<1的映射，具有唯一不动点",
+          "formula": "\\exists 0 \\leq k < 1: d(f(x), f(y)) \\leq k \\cdot d(x, y)",
+          "examples": [
+            "f(x) = x/2 + 1 是压缩映射",
+            "压缩映射定理保证不动点的存在唯一性"
+          ],
+          "applications": [
+            "不动点迭代法",
+            "微分方程数值解"
+          ]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-adv-001",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-002",
+          "difficulty": 4,
+          "question": "证明：若f满足利普希茨条件，则f一致连续。",
+          "hints": [
+            "利用利普希茨条件的定义",
+            "直接构造δ与ε的关系"
+          ],
+          "solution": {
+            "steps": [
+              "设f满足利普希茨条件，即存在L>0使得|f(x)-f(y)|≤L|x-y|对所有x,y成立",
+              "对任意ε>0，取δ=ε/L",
+              "当|x-y|<δ时，有|f(x)-f(y)|≤L|x-y|<L·δ=L·(ε/L)=ε",
+              "因此f一致连续"
+            ],
+            "keyPoints": [
+              "利普希茨条件",
+              "一致连续性",
+              "ε-δ论证"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity"
+          ],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-adv-003",
+          "difficulty": 5,
+          "question": "证明压缩映射定理：设(X,d)是完备度量空间，f:X→X是压缩映射，则f有唯一不动点。",
+          "hints": [
+            "构造迭代序列xₙ₊₁=f(xₙ)",
+            "证明{xₙ}是柯西序列",
+            "利用完备性得到极限点"
+          ],
+          "solution": {
+            "steps": [
+              "设f是压缩映射，存在0≤k<1使得d(f(x),f(y))≤k·d(x,y)",
+              "任取x₀∈X，构造序列xₙ₊₁=f(xₙ)",
+              "对m>n，有d(xₘ,xₙ)≤d(xₘ,xₘ₋₁)+...+d(xₙ₊₁,xₙ)≤(kᵐ⁻¹+...+kⁿ)d(x₁,x₀)≤kⁿ/(1-k)·d(x₁,x₀)",
+              "因此{xₙ}是柯西序列，由完备性，xₙ→x*",
+              "由f连续，f(x*)=f(lim xₙ)=lim f(xₙ)=lim xₙ₊₁=x*",
+              "唯一性：若f(y)=y，则d(x*,y)=d(f(x*),f(y))≤k·d(x*,y)，由k<1得x*=y"
+            ],
+            "keyPoints": [
+              "压缩映射",
+              "柯西序列",
+              "完备性",
+              "不动点"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-004",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-005",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-006",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-007",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-008",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-009",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-010",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。 (变式)",
+          "hints": [
+            "使用反证法和有限覆盖定理",
+            "考虑ε-δ定义中δ的选择"
+          ],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": [
+              "有限覆盖定理",
+              "序列收敛",
+              "连续性定义"
+            ]
+          },
+          "relatedNodes": [
+            "node-continuity",
+            "node-limit-def"
+          ],
+          "estimatedTime": 30
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-001",
+          "title": "数值计算中的函数逼近",
+          "description": "实现多种函数逼近方法，比较它们的精度和效率",
+          "difficulty": 4,
+          "objectives": [
+            "理解函数逼近的数学原理",
+            "实现泰勒展开、插值和最小二乘逼近",
+            "分析不同方法的误差和适用范围"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现泰勒级数逼近",
+              "code": "def taylor_approximation(f, x0, n, x):\n    # 计算f在x0处的n阶泰勒展开在x处的值\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现拉格朗日插值",
+              "code": "def lagrange_interpolation(points, x):\n    # 给定点集，计算拉格朗日插值多项式在x处的值\n    pass"
+            },
+            {
+              "step": 3,
+              "description": "比较不同方法逼近sin(x)的效果",
+              "visualization": "绘制原函数和各种逼近函数的图像，显示误差分布"
+            }
+          ],
+          "deliverables": [
+            "完整的Python实现",
+            "误差分析报告",
+            "可视化对比图表"
+          ],
+          "estimatedTime": 180
+        },
+        {
+          "id": "project-002",
+          "title": "不动点迭代法求解方程",
+          "description": "使用压缩映射定理实现不动点迭代法，求解非线性方程",
+          "difficulty": 4,
+          "objectives": [
+            "理解不动点迭代的收敛性",
+            "实现多种迭代格式",
+            "分析收敛速度"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现基本不动点迭代",
+              "code": "def fixed_point_iteration(g, x0, tol=1e-6, max_iter=100):\n    # 迭代求解x=g(x)\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现牛顿迭代法",
+              "code": "def newton_method(f, df, x0, tol=1e-6):\n    # 牛顿法求解f(x)=0\n    pass"
+            }
+          ],
+          "deliverables": [
+            "Python实现",
+            "收敛性分析",
+            "迭代过程可视化"
+          ],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T09:42:12.201Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 10,
+        "totalProjects": 2
+      }
+    }
+  ]
+}

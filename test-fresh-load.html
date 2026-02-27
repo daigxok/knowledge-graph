@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强制刷新测试 - 知识图谱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #10b981;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .info-box h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #1e3a8a;
+            line-height: 1.6;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .details {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .details h3 {
+            color: #374151;
+            margin-bottom: 15px;
+        }
+        
+        .node-item {
+            padding: 10px;
+            background: white;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .node-id {
+            color: #667eea;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        .btn-refresh {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .btn-refresh:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 18px;
+        }
+        
+        .error {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            border-radius: 8px;
+            color: #991b1b;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            color: #065f46;
+            margin: 20px 0;
+        }
+        
+        .cache-info {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .cache-info h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+        
+        .cache-info p {
+            color: #78350f;
+            line-height: 1.6;
+        }
+        
+        .cache-info code {
+            background: #fbbf24;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 强制刷新数据测试</h1>
+        <span class="status" id="status">正在加载...</span>
+        
+        <div class="info-box">
+            <h3>📌 关于此页面</h3>
+            <p>此页面会强制从服务器重新加载数据，绕过浏览器缓存。如果你在主页面看到的节点数不正确，这个页面会显示实际的数据。</p>
+        </div>
+        
+        <div class="cache-info">
+            <h3>⚠️ 浏览器缓存问题</h3>
+            <p>如果你看到的节点数是25个而不是75个，这是因为浏览器缓存了旧的数据文件。</p>
+            <p><strong>解决方法：</strong></p>
+            <ul style="margin-top: 10px; margin-left: 20px; color: #78350f;">
+                <li>按 <code>Ctrl + F5</code> (Windows) 或 <code>Cmd + Shift + R</code> (Mac) 强制刷新</li>
+                <li>或者清除浏览器缓存后重新打开页面</li>
+                <li>或者使用此测试页面查看真实数据</li>
+            </ul>
+        </div>
+        
+        <div id="loading" class="loading">
+            正在加载数据（绕过缓存）...
+        </div>
+        
+        <div id="content" style="display: none;">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="nodeCount">0</div>
+                    <div class="stat-label">总节点数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="edgeCount">0</div>
+                    <div class="stat-label">总边关系</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="originalNodes">0</div>
+                    <div class="stat-label">原始节点</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="phase1Nodes">0</div>
+                    <div class="stat-label">Phase 1节点</div>
+                </div>
+            </div>
+            
+            <div class="details">
+                <h3>📋 最近添加的10个节点</h3>
+                <div id="recentNodes"></div>
+            </div>
+            
+            <div class="actions">
+                <a href="index.html" class="btn btn-primary">打开主系统</a>
+                <button class="btn btn-refresh" onclick="location.reload(true)">强制刷新此页</button>
+                <a href="test-integration.html" class="btn btn-secondary">查看详细报告</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function loadDataWithoutCache() {
+            try {
+                // 添加时间戳参数强制绕过缓存
+                const timestamp = new Date().getTime();
+                
+                // 加载节点数据
+                const nodesResponse = await fetch(`data/nodes.json?t=${timestamp}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                const nodesData = await nodesResponse.json();
+                
+                // 加载边数据
+                const edgesResponse = await fetch(`data/edges.json?t=${timestamp}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
+                const edgesData = await edgesResponse.json();
+                
+                displayData(nodesData, edgesData);
+                
+                document.getElementById('status').textContent = '✅ 数据加载成功（已绕过缓存）';
+                document.getElementById('status').style.background = '#10b981';
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="error">
+                        <h3>❌ 数据加载失败</h3>
+                        <p>${error.message}</p>
+                        <p style="margin-top: 10px;">请确保你在本地服务器环境下运行此页面。</p>
+                    </div>
+                `;
+                document.getElementById('status').textContent = '❌ 加载失败';
+                document.getElementById('status').style.background = '#ef4444';
+            }
+        }
+        
+        function displayData(nodesData, edgesData) {
+            const nodes = nodesData.nodes || [];
+            const edges = edgesData.edges || [];
+            
+            // Phase 1节点ID列表
+            const phase1Ids = new Set([
+                'node-sequence-limit', 'node-limit-properties', 'node-infinitesimal',
+                'node-limit-existence', 'node-continuity-properties', 'node-discontinuity-types',
+                'node-uniform-continuity', 'node-limit-special', 'node-derivative-geometric',
+                'node-derivative-physical', 'node-higher-derivatives', 'node-implicit-derivative',
+                'node-parametric-derivative', 'node-logarithmic-derivative', 'node-rolle-theorem',
+                'node-lagrange-theorem', 'node-cauchy-theorem', 'node-lhopital-rule',
+                'node-taylor-theorem', 'node-curvature', 'node-indefinite-integral-properties',
+                'node-substitution-method-1', 'node-substitution-method-2', 'node-integration-by-parts-detail',
+                'node-rational-function-integration', 'node-trigonometric-integration',
+                'node-definite-integral-properties', 'node-improper-integral', 'node-area-calculation',
+                'node-volume-calculation', 'node-arc-length', 'node-multivariable-limit',
+                'node-multivariable-continuity', 'node-total-differential', 'node-composite-function-derivative',
+                'node-homogeneous-equation', 'node-bernoulli-equation', 'node-higher-order-linear-equation',
+                'node-euler-equation', 'node-implicit-function-theorem', 'node-conditional-extrema',
+                'node-lagrange-multiplier-detail', 'node-triple-integral', 'node-positive-series-test',
+                'node-alternating-series', 'node-absolute-convergence', 'node-function-series',
+                'node-uniform-convergence', 'node-mathematical-modeling', 'node-computational-implementation'
+            ]);
+            
+            const phase1Nodes = nodes.filter(n => phase1Ids.has(n.id));
+            const originalNodes = nodes.filter(n => !phase1Ids.has(n.id));
+            
+            // 显示统计
+            document.getElementById('nodeCount').textContent = nodes.length;
+            document.getElementById('edgeCount').textContent = edges.length;
+            document.getElementById('originalNodes').textContent = originalNodes.length;
+            document.getElementById('phase1Nodes').textContent = phase1Nodes.length;
+            
+            // 显示最近添加的节点（Phase 1的最后10个）
+            const recentNodes = phase1Nodes.slice(-10);
+            const recentNodesHTML = recentNodes.map(node => `
+                <div class="node-item">
+                    <span class="node-id">${node.id}</span>
+                    <span>${node.name || node.label || '未命名'}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('recentNodes').innerHTML = recentNodesHTML;
+            
+            // 显示成功消息
+            if (nodes.length === 75) {
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success';
+                successMsg.innerHTML = `
+                    <h3>✅ 数据正确！</h3>
+                    <p>系统包含 <strong>75个节点</strong> 和 <strong>${edges.length}条边关系</strong>。</p>
+                    <p>如果主页面显示25个节点，请按 <strong>Ctrl + F5</strong> 强制刷新主页面。</p>
+                `;
+                document.getElementById('content').insertBefore(
+                    successMsg,
+                    document.getElementById('content').firstChild
+                );
+            }
+        }
+        
+        // 页面加载时执行
+        loadDataWithoutCache();
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Path Highlighting - Knowledge Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .controls button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .controls button:hover {
+            background: #5568d3;
+        }
+        #graph-container {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .info h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .info ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Path Highlighting Test</h1>
+        <p>Testing the highlightPath() method in D3VisualizationEngine</p>
+        
+        <div class="controls">
+            <button onclick="testSimplePath()">Test Simple Path (3 nodes)</button>
+            <button onclick="testLongPath()">Test Long Path (5 nodes)</button>
+            <button onclick="testAlternativePath()">Test Alternative Path</button>
+            <button onclick="clearPath()">Clear Highlights</button>
+            <button onclick="resetView()">Reset View</button>
+        </div>
+        
+        <div id="graph-container"></div>
+        
+        <div class="info">
+            <h3>✅ Expected Behavior:</h3>
+            <ul>
+                <li>Path nodes should have green stroke with glow effect</li>
+                <li>Path nodes should show numbered badges (1, 2, 3...)</li>
+                <li>Edges connecting path nodes should be highlighted in green</li>
+                <li>Non-path nodes and edges should be faded (opacity 0.3)</li>
+                <li>Path elements should have subtle pulse animation</li>
+                <li>Badges should move with nodes during drag</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        import { D3VisualizationEngine } from './js/modules/D3VisualizationEngine.js';
+        import { LearningPathFinder } from './js/modules/LearningPathFinder.js';
+        import { KnowledgeGraphEngine } from './js/modules/KnowledgeGraphEngine.js';
+
+        // Sample data
+        const nodes = [
+            { id: 'node-1', name: '函数基础', domains: ['domain-1'], importance: 3, difficulty: 1 },
+            { id: 'node-2', name: '极限定义', domains: ['domain-1'], importance: 5, difficulty: 3, prerequisites: ['node-1'] },
+            { id: 'node-3', name: '导数定义', domains: ['domain-1'], importance: 5, difficulty: 3, prerequisites: ['node-2'] },
+            { id: 'node-4', name: '微分', domains: ['domain-1'], importance: 4, difficulty: 3, prerequisites: ['node-3'] },
+            { id: 'node-5', name: '积分定义', domains: ['domain-2'], importance: 5, difficulty: 3, prerequisites: ['node-2'] },
+            { id: 'node-6', name: '定积分应用', domains: ['domain-2'], importance: 4, difficulty: 4, prerequisites: ['node-5'] },
+            { id: 'node-7', name: '偏导数', domains: ['domain-3'], importance: 4, difficulty: 4, prerequisites: ['node-3'] },
+            { id: 'node-8', name: '梯度', domains: ['domain-3'], importance: 5, difficulty: 4, prerequisites: ['node-7'] }
+        ];
+
+        const edges = [
+            { id: 'e1', source: 'node-1', target: 'node-2', type: 'prerequisite', strength: 1.0 },
+            { id: 'e2', source: 'node-2', target: 'node-3', type: 'prerequisite', strength: 1.0 },
+            { id: 'e3', source: 'node-3', target: 'node-4', type: 'prerequisite', strength: 0.9 },
+            { id: 'e4', source: 'node-2', target: 'node-5', type: 'cross-domain', strength: 0.8 },
+            { id: 'e5', source: 'node-5', target: 'node-6', type: 'prerequisite', strength: 0.9 },
+            { id: 'e6', source: 'node-3', target: 'node-7', type: 'prerequisite', strength: 0.8 },
+            { id: 'e7', source: 'node-7', target: 'node-8', type: 'prerequisite', strength: 0.9 }
+        ];
+
+        // Initialize visualization
+        const container = document.getElementById('graph-container');
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        
+        const viz = new D3VisualizationEngine('#graph-container', width, height);
+        viz.render(nodes, edges);
+
+        // Initialize graph engine and path finder
+        const graphEngine = new KnowledgeGraphEngine(nodes, edges);
+        const pathFinder = new LearningPathFinder(graphEngine);
+
+        // Test functions
+        window.testSimplePath = function() {
+            console.log('Testing simple path: node-1 → node-2 → node-3');
+            const path = [
+                { node: 'node-1', order: 1 },
+                { node: 'node-2', order: 2 },
+                { node: 'node-3', order: 3 }
+            ];
+            viz.highlightPath(path);
+        };
+
+        window.testLongPath = function() {
+            console.log('Testing long path: node-1 → node-2 → node-3 → node-4');
+            const path = pathFinder.generatePath('node-4', []);
+            console.log('Generated path:', path);
+            viz.highlightPath(path.steps);
+        };
+
+        window.testAlternativePath = function() {
+            console.log('Testing alternative path: node-1 → node-2 → node-5 → node-6');
+            const path = [
+                { node: 'node-1', order: 1 },
+                { node: 'node-2', order: 2 },
+                { node: 'node-5', order: 3 },
+                { node: 'node-6', order: 4 }
+            ];
+            viz.highlightPath(path);
+        };
+
+        window.clearPath = function() {
+            console.log('Clearing path highlights');
+            viz.clearHighlights();
+        };
+
+        window.resetView = function() {
+            console.log('Resetting view');
+            viz.resetView();
+        };
+
+        // Add node click handler for debugging
+        viz.onNodeClick((node) => {
+            console.log('Clicked node:', node);
+        });
+
+        console.log('✅ Test page loaded successfully');
+        console.log('📊 Nodes:', nodes.length);
+        console.log('🔗 Edges:', edges.length);
+        console.log('Click buttons above to test path highlighting');
+    </script>
+</body>
+</html>

@@ -1,0 +1,2442 @@
+{
+  "metadata": {
+  "version": "2.0",
+  "phase": "Phase 2 - 内容深度扩展",
+  "totalItems": 14,
+  "createdDate": "2026-02-23",
+  "description": "Phase 2 Skills深度内容 - 包含完整的进阶练习题",
+  "author": "Content_Generator",
+  "dependencies": []
+  },
+  "data": [
+    {
+      "skillId": "函数极限与连续Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-uniform-continuity",
+          "title": "一致连续性",
+          "description": "一致连续性是比连续性更强的性质，要求δ的选择不依赖于具体的点x",
+          "formula": "\\forall \\varepsilon > 0, \\exists \\delta > 0, \\forall x_1, x_2 \\in D: |x_1 - x_2| < \\delta \\Rightarrow |f(x_1) - f(x_2)| < \\varepsilon",
+          "examples": [
+            "f(x) = x^2 在有界区间上一致连续",
+            "f(x) = 1/x 在(0,1)上不一致连续"
+          ],
+          "applications": ["数值分析", "函数逼近理论"]
+        },
+        {
+          "id": "topic-lipschitz-condition",
+          "title": "利普希茨条件",
+          "description": "利普希茨条件是一致连续性的充分条件，要求函数的变化率有界",
+          "formula": "|f(x_1) - f(x_2)| \\leq L|x_1 - x_2|, \\quad \\forall x_1, x_2 \\in D",
+          "examples": [
+            "f(x) = sin(x) 满足利普希茨条件，L=1",
+            "f(x) = √x 在[0,1]上不满足利普希茨条件"
+          ],
+          "applications": ["微分方程解的存在唯一性", "优化算法收敛性分析"]
+        },
+        {
+          "id": "topic-contraction-mapping",
+          "title": "压缩映射",
+          "description": "压缩映射是满足利普希茨条件且L<1的映射，具有唯一不动点",
+          "formula": "\\exists 0 \\leq k < 1: d(f(x), f(y)) \\leq k \\cdot d(x, y)",
+          "examples": [
+            "f(x) = x/2 + 1 是压缩映射",
+            "压缩映射定理保证不动点的存在唯一性"
+          ],
+          "applications": ["不动点迭代法", "微分方程数值解"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-adv-001",
+          "difficulty": 4,
+          "question": "证明：若f在闭区间[a,b]上连续，则f在[a,b]上一致连续。",
+          "hints": ["使用反证法和有限覆盖定理", "考虑ε-δ定义中δ的选择"],
+          "solution": {
+            "steps": [
+              "假设f不一致连续，则存在ε₀>0，对任意δ>0，存在x₁,x₂使得|x₁-x₂|<δ但|f(x₁)-f(x₂)|≥ε₀",
+              "取δₙ=1/n，得到序列{xₙ},{yₙ}满足|xₙ-yₙ|<1/n但|f(xₙ)-f(yₙ)|≥ε₀",
+              "由Bolzano-Weierstrass定理，{xₙ}有收敛子列xₙₖ→x₀∈[a,b]",
+              "由|xₙₖ-yₙₖ|<1/nₖ→0，得yₙₖ→x₀",
+              "由f连续，f(xₙₖ)→f(x₀)且f(yₙₖ)→f(x₀)，故|f(xₙₖ)-f(yₙₖ)|→0",
+              "这与|f(xₙₖ)-f(yₙₖ)|≥ε₀矛盾"
+            ],
+            "keyPoints": ["有限覆盖定理", "序列收敛", "连续性定义"]
+          },
+          "relatedNodes": ["node-continuity", "node-limit-def"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-002",
+          "difficulty": 4,
+          "question": "证明：若f满足利普希茨条件，则f一致连续。",
+          "hints": ["利用利普希茨条件的定义", "直接构造δ与ε的关系"],
+          "solution": {
+            "steps": [
+              "设f满足利普希茨条件，即存在L>0使得|f(x)-f(y)|≤L|x-y|对所有x,y成立",
+              "对任意ε>0，取δ=ε/L",
+              "当|x-y|<δ时，有|f(x)-f(y)|≤L|x-y|<L·δ=L·(ε/L)=ε",
+              "因此f一致连续"
+            ],
+            "keyPoints": ["利普希茨条件", "一致连续性", "ε-δ论证"]
+          },
+          "relatedNodes": ["node-continuity"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-adv-003",
+          "difficulty": 5,
+          "question": "证明压缩映射定理：设(X,d)是完备度量空间，f:X→X是压缩映射，则f有唯一不动点。",
+          "hints": ["构造迭代序列xₙ₊₁=f(xₙ)", "证明{xₙ}是柯西序列", "利用完备性得到极限点"],
+          "solution": {
+            "steps": [
+              "设f是压缩映射，存在0≤k<1使得d(f(x),f(y))≤k·d(x,y)",
+              "任取x₀∈X，构造序列xₙ₊₁=f(xₙ)",
+              "对m>n，有d(xₘ,xₙ)≤d(xₘ,xₘ₋₁)+...+d(xₙ₊₁,xₙ)≤(kᵐ⁻¹+...+kⁿ)d(x₁,x₀)≤kⁿ/(1-k)·d(x₁,x₀)",
+              "因此{xₙ}是柯西序列，由完备性，xₙ→x*",
+              "由f连续，f(x*)=f(lim xₙ)=lim f(xₙ)=lim xₙ₊₁=x*",
+              "唯一性：若f(y)=y，则d(x*,y)=d(f(x*),f(y))≤k·d(x*,y)，由k<1得x*=y"
+            ],
+            "keyPoints": ["压缩映射", "柯西序列", "完备性", "不动点"]
+          },
+          "relatedNodes": ["node-continuity", "node-limit-def"],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-004",
+          "difficulty": 3,
+          "question": "证明：f(x)=sin(x)在R上一致连续。",
+          "hints": ["利用三角函数的和差公式", "使用均值定理"],
+          "solution": {
+            "steps": [
+              "对任意x,y∈R，有|sin(x)-sin(y)|=|2cos((x+y)/2)sin((x-y)/2)|",
+              "由|cos((x+y)/2)|≤1和|sin(t)|≤|t|，得|sin(x)-sin(y)|≤|x-y|",
+              "因此sin(x)满足利普希茨条件，L=1",
+              "由利普希茨条件可知sin(x)一致连续"
+            ],
+            "keyPoints": ["三角函数性质", "利普希茨条件", "一致连续性"]
+          },
+          "relatedNodes": ["node-continuity"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-adv-005",
+          "difficulty": 4,
+          "question": "证明：f(x)=x²在R上不一致连续。",
+          "hints": ["使用一致连续的否定", "构造反例序列"],
+          "solution": {
+            "steps": [
+              "假设f(x)=x²一致连续，则对ε=1，存在δ>0使得|x-y|<δ时|x²-y²|<1",
+              "取xₙ=n+δ/2，yₙ=n，则|xₙ-yₙ|=δ/2<δ",
+              "但|xₙ²-yₙ²|=|(n+δ/2)²-n²|=|nδ+δ²/4|≥nδ",
+              "当n足够大时，nδ>1，与|xₙ²-yₙ²|<1矛盾",
+              "因此x²在R上不一致连续"
+            ],
+            "keyPoints": ["反证法", "序列构造", "一致连续性"]
+          },
+          "relatedNodes": ["node-continuity"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-adv-006",
+          "difficulty": 5,
+          "question": "设f在[a,b]上连续，在(a,b)内可导，且lim(x→a⁺)f'(x)=A存在。证明：f'(a⁺)存在且等于A。",
+          "hints": ["使用拉格朗日中值定理", "考虑导数的定义"],
+          "solution": {
+            "steps": [
+              "对任意x∈(a,b)，由拉格朗日中值定理，存在ξₓ∈(a,x)使得[f(x)-f(a)]/(x-a)=f'(ξₓ)",
+              "当x→a⁺时，ξₓ→a⁺",
+              "由lim(x→a⁺)f'(x)=A，得lim(ξₓ→a⁺)f'(ξₓ)=A",
+              "因此lim(x→a⁺)[f(x)-f(a)]/(x-a)=A",
+              "即f'(a⁺)=A"
+            ],
+            "keyPoints": ["拉格朗日中值定理", "极限", "导数定义"]
+          },
+          "relatedNodes": ["node-derivative-def", "node-mean-value-theorem"],
+          "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-007",
+          "difficulty": 4,
+          "question": "证明：若f在[a,b]上连续，在(a,b)内可导，且f'(x)有界，则f在[a,b]上一致连续。",
+          "hints": ["利用拉格朗日中值定理", "导数有界意味着利普希茨条件"],
+          "solution": {
+            "steps": [
+              "设|f'(x)|≤M对所有x∈(a,b)成立",
+              "对任意x,y∈[a,b]，x<y，由拉格朗日中值定理，存在ξ∈(x,y)使得f(y)-f(x)=f'(ξ)(y-x)",
+              "因此|f(y)-f(x)|=|f'(ξ)||y-x|≤M|y-x|",
+              "即f满足利普希茨条件，L=M",
+              "由利普希茨条件可知f一致连续"
+            ],
+            "keyPoints": ["拉格朗日中值定理", "利普希茨条件", "一致连续性"]
+          },
+          "relatedNodes": ["node-continuity", "node-mean-value-theorem"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-adv-008",
+          "difficulty": 5,
+          "question": "证明：若f在[0,+∞)上连续，lim(x→+∞)f(x)存在且有限，则f在[0,+∞)上一致连续。",
+          "hints": ["分段考虑：有界区间和无穷远处", "利用极限的定义"],
+          "solution": {
+            "steps": [
+              "设lim(x→+∞)f(x)=L，对任意ε>0，存在M>0使得x>M时|f(x)-L|<ε/3",
+              "f在[0,M+1]上连续，故在[0,M+1]上一致连续，存在δ₁>0使得|x-y|<δ₁且x,y∈[0,M+1]时|f(x)-f(y)|<ε",
+              "取δ=min{δ₁,1}，对任意x,y满足|x-y|<δ",
+              "若x,y∈[0,M+1]，由一致连续性得|f(x)-f(y)|<ε",
+              "若x,y>M，则|f(x)-f(y)|≤|f(x)-L|+|f(y)-L|<ε/3+ε/3<ε",
+              "若x≤M+1<y，由|x-y|<1得y<M+2，则|f(x)-f(y)|≤|f(x)-L|+|f(y)-L|<ε",
+              "因此f在[0,+∞)上一致连续"
+            ],
+            "keyPoints": ["分段讨论", "极限定义", "一致连续性"]
+          },
+          "relatedNodes": ["node-continuity", "node-limit-def"],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-009",
+          "difficulty": 4,
+          "question": "设f,g在[a,b]上一致连续。证明：f+g和f·g（当f,g有界时）也一致连续。",
+          "hints": ["利用一致连续的定义", "对乘积使用不等式技巧"],
+          "solution": {
+            "steps": [
+              "对f+g：设f,g一致连续，对任意ε>0，存在δ₁,δ₂使得相应条件成立",
+              "取δ=min{δ₁,δ₂}，当|x-y|<δ时，|f(x)+g(x)-f(y)-g(y)|≤|f(x)-f(y)|+|g(x)-g(y)|<ε/2+ε/2=ε",
+              "对f·g：设|f(x)|≤M₁，|g(x)|≤M₂对所有x∈[a,b]成立",
+              "|f(x)g(x)-f(y)g(y)|=|f(x)g(x)-f(x)g(y)+f(x)g(y)-f(y)g(y)|",
+              "≤|f(x)||g(x)-g(y)|+|g(y)||f(x)-f(y)|≤M₁|g(x)-g(y)|+M₂|f(x)-f(y)|",
+              "对ε>0，取δ使得|x-y|<δ时|f(x)-f(y)|<ε/(2M₂)且|g(x)-g(y)|<ε/(2M₁)",
+              "则|f(x)g(x)-f(y)g(y)|<ε"
+            ],
+            "keyPoints": ["一致连续性", "不等式技巧", "有界性"]
+          },
+          "relatedNodes": ["node-continuity"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-010",
+          "difficulty": 5,
+          "question": "证明：若f在[a,b]上连续且单调，则f⁻¹在f([a,b])上一致连续。",
+          "hints": ["利用单调性和连续性", "考虑反函数的性质"],
+          "solution": {
+            "steps": [
+              "不失一般性，设f单调递增，则f⁻¹也单调递增",
+              "f连续且单调，故f⁻¹在[f(a),f(b)]上连续",
+              "由于[f(a),f(b)]是闭区间，f⁻¹在其上连续，故一致连续",
+              "对任意ε>0，由f在[a,b]上一致连续，存在δ>0使得|x-y|<δ时|f(x)-f(y)|<ε",
+              "对任意u,v∈[f(a),f(b)]，设u=f(x)，v=f(y)，当|u-v|<δ时",
+              "|f⁻¹(u)-f⁻¹(v)|=|x-y|<ε（由f的一致连续性）",
+              "因此f⁻¹一致连续"
+            ],
+            "keyPoints": ["单调性", "反函数", "一致连续性", "闭区间性质"]
+          },
+          "relatedNodes": ["node-continuity", "node-function-basic"],
+          "estimatedTime": 35
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-001",
+          "title": "数值计算中的函数逼近",
+          "description": "实现多种函数逼近方法，比较它们的精度和效率",
+          "difficulty": 4,
+          "objectives": [
+            "理解函数逼近的数学原理",
+            "实现泰勒展开、插值和最小二乘逼近",
+            "分析不同方法的误差和适用范围"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现泰勒级数逼近",
+              "code": "def taylor_approximation(f, x0, n, x):\n    # 计算f在x0处的n阶泰勒展开在x处的值\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现拉格朗日插值",
+              "code": "def lagrange_interpolation(points, x):\n    # 给定点集，计算拉格朗日插值多项式在x处的值\n    pass"
+            },
+            {
+              "step": 3,
+              "description": "比较不同方法逼近sin(x)的效果",
+              "visualization": "绘制原函数和各种逼近函数的图像，显示误差分布"
+            }
+          ],
+          "deliverables": ["完整的Python实现", "误差分析报告", "可视化对比图表"],
+          "estimatedTime": 180
+        },
+        {
+          "id": "project-002",
+          "title": "不动点迭代法求解方程",
+          "description": "使用压缩映射定理实现不动点迭代法，求解非线性方程",
+          "difficulty": 4,
+          "objectives": [
+            "理解不动点迭代的收敛性",
+            "实现多种迭代格式",
+            "分析收敛速度"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现基本不动点迭代",
+              "code": "def fixed_point_iteration(g, x0, tol=1e-6, max_iter=100):\n    # 迭代求解x=g(x)\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现牛顿迭代法",
+              "code": "def newton_method(f, df, x0, tol=1e-6):\n    # 牛顿法求解f(x)=0\n    pass"
+            }
+          ],
+          "deliverables": ["Python实现", "收敛性分析", "迭代过程可视化"],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 10,
+        "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "积分概念Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-riemann-integral",
+          "title": "黎曼积分理论",
+          "description": "黎曼积分通过分割、求和、取极限的方式定义积分，是积分理论的基础",
+          "formula": "\\int_a^b f(x)dx = \\lim_{\\|\\Delta\\|\\to 0} \\sum_{i=1}^n f(\\xi_i)\\Delta x_i",
+          "examples": [
+            "连续函数必黎曼可积",
+            "有界且只有有限个间断点的函数黎曼可积"
+          ],
+          "applications": ["数值积分", "面积计算", "物理应用"]
+        },
+        {
+          "id": "topic-improper-integral",
+          "title": "广义积分",
+          "description": "广义积分扩展了定积分的概念，包括无穷区间上的积分和无界函数的积分",
+          "formula": "\\int_a^{+\\infty} f(x)dx = \\lim_{b\\to+\\infty} \\int_a^b f(x)dx",
+          "examples": [
+            "∫₁^∞ 1/x² dx = 1（收敛）",
+            "∫₁^∞ 1/x dx = +∞（发散）"
+          ],
+          "applications": ["概率论", "傅里叶变换", "拉普拉斯变换"]
+        },
+        {
+          "id": "topic-integral-inequality",
+          "title": "积分不等式",
+          "description": "积分不等式是分析学中的重要工具，包括柯西-施瓦茨不等式、赫尔德不等式等",
+          "formula": "\\left(\\int_a^b f(x)g(x)dx\\right)^2 \\leq \\int_a^b f^2(x)dx \\cdot \\int_a^b g^2(x)dx",
+          "examples": [
+            "柯西-施瓦茨不等式",
+            "闵可夫斯基不等式"
+          ],
+          "applications": ["泛函分析", "优化理论", "数值分析"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-adv-011",
+          "difficulty": 4,
+          "question": "证明：若f在[a,b]上连续，则f在[a,b]上黎曼可积。",
+          "hints": ["利用连续函数的一致连续性", "构造黎曼和"],
+          "solution": {
+            "steps": [
+              "f在[a,b]上连续，故一致连续",
+              "对任意ε>0，存在δ>0使得|x-y|<δ时|f(x)-f(y)|<ε/(b-a)",
+              "取分割P使得‖P‖<δ，则在每个小区间[xᵢ₋₁,xᵢ]上，Mᵢ-mᵢ<ε/(b-a)",
+              "上和与下和之差：S(P)-s(P)=Σ(Mᵢ-mᵢ)Δxᵢ<ε/(b-a)·Σ Δxᵢ=ε",
+              "因此f黎曼可积"
+            ],
+            "keyPoints": ["一致连续性", "黎曼和", "上和下和"]
+          },
+          "relatedNodes": ["node-definite-integral", "node-continuity"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-012",
+          "difficulty": 5,
+          "question": "证明柯西-施瓦茨不等式：(∫ₐᵇ fg dx)² ≤ (∫ₐᵇ f² dx)(∫ₐᵇ g² dx)。",
+          "hints": ["考虑判别式", "构造辅助函数"],
+          "solution": {
+            "steps": [
+              "对任意实数λ，有∫ₐᵇ(f+λg)²dx≥0",
+              "展开得∫ₐᵇf²dx + 2λ∫ₐᵇfg dx + λ²∫ₐᵇg²dx≥0",
+              "设A=∫ₐᵇf²dx，B=∫ₐᵇfg dx，C=∫ₐᵇg²dx",
+              "则Aλ²+2Bλ+C≥0对所有λ成立",
+              "判别式Δ=4B²-4AC≤0",
+              "即B²≤AC，即(∫ₐᵇfg dx)²≤(∫ₐᵇf²dx)(∫ₐᵇg²dx)"
+            ],
+            "keyPoints": ["判别式", "二次函数", "积分不等式"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-013",
+          "difficulty": 4,
+          "question": "计算广义积分∫₀^∞ e⁻ˣ² dx。",
+          "hints": ["使用极坐标变换", "考虑二重积分"],
+          "solution": {
+            "steps": [
+              "设I=∫₀^∞ e⁻ˣ² dx，则I²=(∫₀^∞ e⁻ˣ² dx)(∫₀^∞ e⁻ʸ² dy)",
+              "I²=∫₀^∞∫₀^∞ e⁻⁽ˣ²⁺ʸ²⁾ dx dy",
+              "使用极坐标变换：x=r cosθ，y=r sinθ",
+              "I²=∫₀^(π/2)∫₀^∞ e⁻ʳ² r dr dθ",
+              "内层积分：∫₀^∞ e⁻ʳ² r dr = [-1/2 e⁻ʳ²]₀^∞ = 1/2",
+              "I²=(π/2)·(1/2)=π/4",
+              "因此I=√(π/4)=√π/2"
+            ],
+            "keyPoints": ["极坐标变换", "二重积分", "广义积分"]
+          },
+          "relatedNodes": ["node-definite-integral", "node-double-integral"],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-014",
+          "difficulty": 3,
+          "question": "证明：若f在[a,b]上可积且f(x)≥0，则∫ₐᵇf(x)dx≥0。",
+          "hints": ["利用黎曼和的性质", "使用积分的定义"],
+          "solution": {
+            "steps": [
+              "对任意分割P和任意选取的ξᵢ∈[xᵢ₋₁,xᵢ]",
+              "由f(x)≥0，得f(ξᵢ)≥0",
+              "黎曼和S(P,ξ)=Σf(ξᵢ)Δxᵢ≥0（因为每项都非负）",
+              "取极限得∫ₐᵇf(x)dx=lim S(P,ξ)≥0"
+            ],
+            "keyPoints": ["黎曼和", "极限保号性", "积分定义"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-adv-015",
+          "difficulty": 4,
+          "question": "证明积分第一中值定理：若f在[a,b]上连续，则存在ξ∈[a,b]使得∫ₐᵇf(x)dx=f(ξ)(b-a)。",
+          "hints": ["利用连续函数的最值定理", "使用介值定理"],
+          "solution": {
+            "steps": [
+              "f在[a,b]上连续，设m=min f(x)，M=max f(x)",
+              "则m(b-a)≤∫ₐᵇf(x)dx≤M(b-a)",
+              "即m≤(1/(b-a))∫ₐᵇf(x)dx≤M",
+              "由介值定理，存在ξ∈[a,b]使得f(ξ)=(1/(b-a))∫ₐᵇf(x)dx",
+              "即∫ₐᵇf(x)dx=f(ξ)(b-a)"
+            ],
+            "keyPoints": ["最值定理", "介值定理", "积分估计"]
+          },
+          "relatedNodes": ["node-definite-integral", "node-continuity"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-adv-016",
+          "difficulty": 5,
+          "question": "判断广义积分∫₁^∞ (sin x)/xᵖ dx的收敛性（p>0）。",
+          "hints": ["使用分部积分", "考虑不同p值的情况"],
+          "solution": {
+            "steps": [
+              "当p>1时，|sin x/xᵖ|≤1/xᵖ，而∫₁^∞ 1/xᵖ dx收敛，故原积分绝对收敛",
+              "当0<p≤1时，使用Dirichlet判别法",
+              "设F(x)=∫₁ˣ sin t dt=-cos x+cos 1，则|F(x)|≤2有界",
+              "1/xᵖ单调趋于0",
+              "由Dirichlet判别法，∫₁^∞ (sin x)/xᵖ dx收敛",
+              "但当0<p≤1时，积分不绝对收敛（条件收敛）"
+            ],
+            "keyPoints": ["Dirichlet判别法", "绝对收敛", "条件收敛"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-017",
+          "difficulty": 4,
+          "question": "证明：若f,g在[a,b]上可积，则f+g和f·g也可积。",
+          "hints": ["利用振幅的性质", "使用可积的充要条件"],
+          "solution": {
+            "steps": [
+              "对f+g：设ωf,ωg分别为f,g在小区间上的振幅",
+              "则ω(f+g)≤ωf+ωg",
+              "由f,g可积，对任意ε>0，存在分割P使得Σωf·Δx<ε/2，Σωg·Δx<ε/2",
+              "则Σω(f+g)·Δx≤Σωf·Δx+Σωg·Δx<ε",
+              "故f+g可积",
+              "对f·g：由于f,g可积，它们有界，设|f|≤M₁，|g|≤M₂",
+              "ω(fg)≤M₁ωg+M₂ωf",
+              "类似可证fg可积"
+            ],
+            "keyPoints": ["振幅", "可积性", "有界性"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-018",
+          "difficulty": 3,
+          "question": "计算∫₀^π x sin x dx。",
+          "hints": ["使用分部积分法"],
+          "solution": {
+            "steps": [
+              "设u=x，dv=sin x dx",
+              "则du=dx，v=-cos x",
+              "∫₀^π x sin x dx = [-x cos x]₀^π + ∫₀^π cos x dx",
+              "= -π cos π + 0 + [sin x]₀^π",
+              "= -π·(-1) + 0",
+              "= π"
+            ],
+            "keyPoints": ["分部积分", "三角函数积分"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-adv-019",
+          "difficulty": 5,
+          "question": "证明Wallis公式：∫₀^(π/2) sinⁿx dx = ∫₀^(π/2) cosⁿx dx = (n-1)!!/n!! · π/2（n为偶数）或(n-1)!!/n!!（n为奇数）。",
+          "hints": ["使用递推关系", "分部积分"],
+          "solution": {
+            "steps": [
+              "设Iₙ=∫₀^(π/2) sinⁿx dx",
+              "使用分部积分：Iₙ=∫₀^(π/2) sinⁿ⁻¹x·sin x dx",
+              "= [-sinⁿ⁻¹x cos x]₀^(π/2) + (n-1)∫₀^(π/2) sinⁿ⁻²x cos²x dx",
+              "= (n-1)∫₀^(π/2) sinⁿ⁻²x(1-sin²x)dx",
+              "= (n-1)Iₙ₋₂ - (n-1)Iₙ",
+              "整理得：nIₙ=(n-1)Iₙ₋₂",
+              "即Iₙ=((n-1)/n)Iₙ₋₂",
+              "递推可得结果"
+            ],
+            "keyPoints": ["递推关系", "分部积分", "Wallis公式"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 45
+        },
+        {
+          "id": "exercise-adv-020",
+          "difficulty": 4,
+          "question": "证明：若f在[a,b]上连续且∫ₐᵇf(x)g(x)dx=0对所有在[a,b]上连续的g成立，则f(x)≡0。",
+          "hints": ["取特殊的g", "使用反证法"],
+          "solution": {
+            "steps": [
+              "假设存在x₀∈[a,b]使得f(x₀)≠0",
+              "不失一般性，设f(x₀)>0",
+              "由f连续，存在δ>0使得在(x₀-δ,x₀+δ)∩[a,b]上f(x)>f(x₀)/2",
+              "取g(x)=f(x)，则∫ₐᵇf²(x)dx>0",
+              "这与∫ₐᵇf(x)g(x)dx=0矛盾",
+              "因此f(x)≡0"
+            ],
+            "keyPoints": ["反证法", "连续性", "积分性质"]
+          },
+          "relatedNodes": ["node-definite-integral", "node-continuity"],
+          "estimatedTime": 30
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-003",
+          "title": "数值积分方法实现与比较",
+          "description": "实现多种数值积分方法，分析它们的精度和效率",
+          "difficulty": 4,
+          "objectives": [
+            "理解数值积分的基本原理",
+            "实现梯形法则、辛普森法则和高斯求积",
+            "比较不同方法的误差和计算复杂度"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现梯形法则",
+              "code": "def trapezoidal_rule(f, a, b, n):\n    # n个子区间的梯形法则\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现辛普森法则",
+              "code": "def simpson_rule(f, a, b, n):\n    # n个子区间的辛普森法则\n    pass"
+            },
+            {
+              "step": 3,
+              "description": "误差分析和可视化",
+              "visualization": "绘制不同方法的误差随n变化的曲线"
+            }
+          ],
+          "deliverables": ["Python实现", "误差分析报告", "性能对比图表"],
+          "estimatedTime": 150
+        },
+        {
+          "id": "project-004",
+          "title": "广义积分收敛性判别工具",
+          "description": "开发一个工具来判断广义积分的收敛性",
+          "difficulty": 5,
+          "objectives": [
+            "实现多种收敛性判别法",
+            "处理不同类型的广义积分",
+            "提供可视化分析"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现比较判别法",
+              "code": "def comparison_test(f, g, a, b):\n    # 比较f和g的收敛性\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现Dirichlet判别法",
+              "code": "def dirichlet_test(f, g, a):\n    # 判断∫ₐ^∞ f(x)g(x)dx的收敛性\n    pass"
+            }
+          ],
+          "deliverables": ["判别工具", "测试用例", "使用文档"],
+          "estimatedTime": 180
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 10,
+        "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "多元函数Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-implicit-function",
+          "title": "隐函数定理",
+          "description": "隐函数定理给出了隐函数存在、可微的充分条件，是多元微分学的核心定理",
+          "formula": "\\frac{\\partial z}{\\partial x} = -\\frac{F_x}{F_z}, \\quad \\frac{\\partial z}{\\partial y} = -\\frac{F_y}{F_z}",
+          "examples": [
+            "方程F(x,y,z)=0确定隐函数z=f(x,y)",
+            "隐函数的偏导数计算"
+          ],
+          "applications": ["约束优化", "微分几何", "物理方程"]
+        },
+        {
+          "id": "topic-lagrange-multiplier",
+          "title": "拉格朗日乘数法",
+          "description": "拉格朗日乘数法用于求解带约束条件的极值问题",
+          "formula": "\\nabla f = \\lambda \\nabla g",
+          "examples": [
+            "求f(x,y)在约束g(x,y)=0下的极值",
+            "多约束条件的优化问题"
+          ],
+          "applications": ["优化理论", "经济学", "工程设计"]
+        },
+        {
+          "id": "topic-jacobian",
+          "title": "雅可比行列式",
+          "description": "雅可比行列式描述了多元函数变换的局部线性近似，在变量替换中起关键作用",
+          "formula": "J = \\frac{\\partial(u,v)}{\\partial(x,y)} = \\begin{vmatrix} u_x & u_y \\\\ v_x & v_y \\end{vmatrix}",
+          "examples": [
+            "极坐标变换的雅可比行列式",
+            "重积分的变量替换"
+          ],
+          "applications": ["重积分计算", "坐标变换", "微分几何"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-adv-021",
+          "difficulty": 4,
+          "question": "设F(x,y,z)=x²+y²+z²-1=0，求∂z/∂x和∂z/∂y。",
+          "hints": ["使用隐函数求导公式", "对方程两边求偏导"],
+          "solution": {
+            "steps": [
+              "方法一：对F(x,y,z)=0两边对x求偏导",
+              "2x + 2z·∂z/∂x = 0",
+              "∂z/∂x = -x/z",
+              "类似地，∂z/∂y = -y/z",
+              "方法二：使用隐函数定理公式",
+              "∂z/∂x = -Fₓ/Fz = -2x/(2z) = -x/z",
+              "∂z/∂y = -Fᵧ/Fz = -2y/(2z) = -y/z"
+            ],
+            "keyPoints": ["隐函数求导", "偏导数", "隐函数定理"]
+          },
+          "relatedNodes": ["node-partial-derivative"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-adv-022",
+          "difficulty": 5,
+          "question": "用拉格朗日乘数法求f(x,y,z)=x+2y+3z在约束x²+y²+z²=1下的最大值和最小值。",
+          "hints": ["构造拉格朗日函数", "求解方程组"],
+          "solution": {
+            "steps": [
+              "构造L(x,y,z,λ)=x+2y+3z-λ(x²+y²+z²-1)",
+              "求偏导：∂L/∂x=1-2λx=0，∂L/∂y=2-2λy=0，∂L/∂z=3-2λz=0",
+              "得x=1/(2λ)，y=1/λ，z=3/(2λ)",
+              "代入约束：1/(4λ²)+1/λ²+9/(4λ²)=1",
+              "14/(4λ²)=1，λ²=14/4，λ=±√14/2",
+              "当λ=√14/2时，(x,y,z)=(1/√14, 2/√14, 3/√14)，f=√14（最大值）",
+              "当λ=-√14/2时，(x,y,z)=(-1/√14, -2/√14, -3/√14)，f=-√14（最小值）"
+            ],
+            "keyPoints": ["拉格朗日乘数法", "约束优化", "极值"]
+          },
+          "relatedNodes": ["node-extremum"],
+          "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-023",
+          "difficulty": 4,
+          "question": "计算极坐标变换的雅可比行列式，并用它计算∫∫_D e^(-(x²+y²)) dxdy，其中D是圆盘x²+y²≤R²。",
+          "hints": ["x=r cosθ, y=r sinθ", "计算雅可比行列式"],
+          "solution": {
+            "steps": [
+              "极坐标变换：x=r cosθ，y=r sinθ",
+              "雅可比行列式：J=|∂(x,y)/∂(r,θ)|=|cosθ -r sinθ; sinθ r cosθ|",
+              "J=r cos²θ + r sin²θ = r",
+              "∫∫_D e^(-(x²+y²)) dxdy = ∫₀^(2π)∫₀^R e^(-r²)·r dr dθ",
+              "= 2π∫₀^R r e^(-r²) dr",
+              "= 2π[-1/2 e^(-r²)]₀^R",
+              "= π(1-e^(-R²))"
+            ],
+            "keyPoints": ["雅可比行列式", "极坐标变换", "重积分"]
+          },
+          "relatedNodes": ["node-double-integral"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-024",
+          "difficulty": 5,
+          "question": "证明：若f(x,y)在点(x₀,y₀)处的两个偏导数存在且连续，则f在该点可微。",
+          "hints": ["使用全微分的定义", "利用偏导数连续性"],
+          "solution": {
+            "steps": [
+              "需证明：Δf=f(x₀+Δx,y₀+Δy)-f(x₀,y₀)=fₓΔx+fᵧΔy+o(ρ)，其中ρ=√(Δx²+Δy²)",
+              "Δf=[f(x₀+Δx,y₀+Δy)-f(x₀,y₀+Δy)]+[f(x₀,y₀+Δy)-f(x₀,y₀)]",
+              "对第一项用拉格朗日中值定理：f(x₀+Δx,y₀+Δy)-f(x₀,y₀+Δy)=fₓ(x₀+θ₁Δx,y₀+Δy)Δx",
+              "对第二项：f(x₀,y₀+Δy)-f(x₀,y₀)=fᵧ(x₀,y₀+θ₂Δy)Δy",
+              "由偏导数连续：fₓ(x₀+θ₁Δx,y₀+Δy)=fₓ(x₀,y₀)+α₁，fᵧ(x₀,y₀+θ₂Δy)=fᵧ(x₀,y₀)+α₂",
+              "其中α₁,α₂→0当(Δx,Δy)→(0,0)",
+              "Δf=fₓ(x₀,y₀)Δx+fᵧ(x₀,y₀)Δy+(α₁Δx+α₂Δy)",
+              "|α₁Δx+α₂Δy|≤(|α₁|+|α₂|)ρ=o(ρ)"
+            ],
+            "keyPoints": ["可微性", "偏导数连续", "拉格朗日中值定理"]
+          },
+          "relatedNodes": ["node-partial-derivative", "node-gradient"],
+          "estimatedTime": 40
+        },
+        {
+          "id": "exercise-adv-025",
+          "difficulty": 4,
+          "question": "求函数f(x,y)=x²+y²-xy在区域D={(x,y)|x²+y²≤1}上的最大值和最小值。",
+          "hints": ["先求内部驻点", "再考虑边界上的极值"],
+          "solution": {
+            "steps": [
+              "内部驻点：fₓ=2x-y=0，fᵧ=2y-x=0",
+              "解得x=y=0，f(0,0)=0",
+              "边界：x²+y²=1，用拉格朗日乘数法或参数方程",
+              "设x=cosθ，y=sinθ",
+              "f(cosθ,sinθ)=cos²θ+sin²θ-cosθ sinθ=1-1/2 sin(2θ)",
+              "最大值：1+1/2=3/2（当sin(2θ)=-1）",
+              "最小值：1-1/2=1/2（当sin(2θ)=1）",
+              "比较：f的最大值为3/2，最小值为0"
+            ],
+            "keyPoints": ["驻点", "边界极值", "拉格朗日乘数法"]
+          },
+          "relatedNodes": ["node-extremum"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-026",
+          "difficulty": 5,
+          "question": "证明隐函数定理：设F(x,y,z)在点P₀(x₀,y₀,z₀)的某邻域内连续可微，F(P₀)=0且Fz(P₀)≠0，则方程F(x,y,z)=0在P₀附近唯一确定隐函数z=f(x,y)。",
+          "hints": ["使用反函数定理", "考虑映射的可逆性"],
+          "solution": {
+            "steps": [
+              "考虑映射Φ:(x,y,z)→(x,y,F(x,y,z))",
+              "雅可比矩阵：J=|1 0 0; 0 1 0; Fₓ Fᵧ Fz|",
+              "det(J)=Fz≠0，故Φ在P₀附近可逆",
+              "存在逆映射Ψ:(u,v,w)→(x,y,z)使得Φ∘Ψ=id",
+              "特别地，对w=0，有F(x,y,z)=0",
+              "即z=f(x,y)由Ψ的第三分量给出",
+              "由反函数定理，f连续可微"
+            ],
+            "keyPoints": ["隐函数定理", "反函数定理", "雅可比矩阵"]
+          },
+          "relatedNodes": ["node-partial-derivative"],
+          "estimatedTime": 45
+        },
+        {
+          "id": "exercise-adv-027",
+          "difficulty": 3,
+          "question": "计算∫∫_D xy dxdy，其中D由y=x，y=0，x=1围成。",
+          "hints": ["确定积分区域", "选择合适的积分次序"],
+          "solution": {
+            "steps": [
+              "区域D：0≤x≤1，0≤y≤x",
+              "∫∫_D xy dxdy = ∫₀¹∫₀ˣ xy dy dx",
+              "= ∫₀¹ x[y²/2]₀ˣ dx",
+              "= ∫₀¹ x·x²/2 dx",
+              "= 1/2∫₀¹ x³ dx",
+              "= 1/2·[x⁴/4]₀¹",
+              "= 1/8"
+            ],
+            "keyPoints": ["二重积分", "积分区域", "积分次序"]
+          },
+          "relatedNodes": ["node-double-integral"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-adv-028",
+          "difficulty": 4,
+          "question": "证明：若f(x,y)在有界闭区域D上连续，则f在D上可积。",
+          "hints": ["利用连续函数的一致连续性", "使用二重积分的定义"],
+          "solution": {
+            "steps": [
+              "f在有界闭区域D上连续，故一致连续",
+              "对任意ε>0，存在δ>0使得d(P₁,P₂)<δ时|f(P₁)-f(P₂)|<ε/|D|",
+              "取分割使得每个小矩形的直径<δ",
+              "在每个小矩形Dᵢⱼ上，Mᵢⱼ-mᵢⱼ<ε/|D|",
+              "上和与下和之差：S-s=ΣΣ(Mᵢⱼ-mᵢⱼ)ΔAᵢⱼ<(ε/|D|)·|D|=ε",
+              "因此f在D上可积"
+            ],
+            "keyPoints": ["一致连续性", "二重积分", "可积性"]
+          },
+          "relatedNodes": ["node-double-integral", "node-continuity"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-adv-029",
+          "difficulty": 5,
+          "question": "用格林公式计算∮_C (x²-y²)dx + 2xy dy，其中C是圆周x²+y²=R²的正向。",
+          "hints": ["应用格林公式", "计算二重积分"],
+          "solution": {
+            "steps": [
+              "设P=x²-y²，Q=2xy",
+              "∂Q/∂x=2y，∂P/∂y=-2y",
+              "由格林公式：∮_C Pdx+Qdy=∫∫_D(∂Q/∂x-∂P/∂y)dxdy",
+              "=∫∫_D(2y-(-2y))dxdy=∫∫_D 4y dxdy",
+              "使用极坐标：x=r cosθ，y=r sinθ",
+              "=∫₀^(2π)∫₀^R 4r sinθ·r dr dθ",
+              "=∫₀^(2π) 4sinθ dθ·∫₀^R r² dr",
+              "=0·[r³/3]₀^R=0"
+            ],
+            "keyPoints": ["格林公式", "曲线积分", "极坐标"]
+          },
+          "relatedNodes": ["node-domain-2-line-integral-1771839732135-5"],
+          "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-030",
+          "difficulty": 4,
+          "question": "求曲面z=x²+y²在点(1,1,2)处的切平面方程。",
+          "hints": ["计算法向量", "使用点法式"],
+          "solution": {
+            "steps": [
+              "设F(x,y,z)=x²+y²-z",
+              "∇F=(2x,2y,-1)",
+              "在点(1,1,2)处：∇F(1,1,2)=(2,2,-1)",
+              "切平面方程：2(x-1)+2(y-1)-(z-2)=0",
+              "化简：2x+2y-z-2=0"
+            ],
+            "keyPoints": ["梯度", "切平面", "法向量"]
+          },
+          "relatedNodes": ["node-gradient"],
+          "estimatedTime": 20
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-005",
+          "title": "多元函数优化算法实现",
+          "description": "实现多种多元函数优化算法，包括梯度下降和拉格朗日乘数法",
+          "difficulty": 5,
+          "objectives": [
+            "理解多元函数优化的数学原理",
+            "实现梯度下降、牛顿法和拉格朗日乘数法",
+            "比较不同算法的收敛速度和精度"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现梯度下降法",
+              "code": "def gradient_descent(f, grad_f, x0, learning_rate=0.01, max_iter=1000):\n    # 梯度下降优化\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "实现拉格朗日乘数法",
+              "code": "def lagrange_multiplier(f, g, x0):\n    # 约束优化\n    pass"
+            },
+            {
+              "step": 3,
+              "description": "可视化优化过程",
+              "visualization": "绘制等高线图和优化路径"
+            }
+          ],
+          "deliverables": ["Python实现", "算法比较报告", "可视化结果"],
+          "estimatedTime": 200
+        },
+        {
+          "id": "project-006",
+          "title": "三维曲面可视化工具",
+          "description": "开发一个交互式工具来可视化多元函数的图像和等高线",
+          "difficulty": 4,
+          "objectives": [
+            "实现三维曲面绘制",
+            "添加等高线和梯度场可视化",
+            "支持交互式参数调整"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "实现曲面绘制",
+              "code": "def plot_surface(f, x_range, y_range):\n    # 绘制三维曲面\n    pass"
+            },
+            {
+              "step": 2,
+              "description": "添加等高线",
+              "code": "def plot_contour(f, x_range, y_range, levels):\n    # 绘制等高线\n    pass"
+            }
+          ],
+          "deliverables": ["可视化工具", "示例集", "用户手册"],
+          "estimatedTime": 160
+        }
+      ],
+      "metadata": {
+      "generatedDate": "2026-02-23T10:00:00.000Z",
+      "version": "2.0",
+      "totalTopics": 3,
+      "totalExercises": 10,
+      "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "积分技巧Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-substitution-method",
+          "title": "换元积分法套路",
+          "description": "通过恰当的变量替换，将复杂积分转化为熟悉的基本积分，是处理根式、指数、三角函数等复杂被积函数的常用方法。",
+          "formula": "\\int f(g(x))g'(x)dx = \\int f(u)du,\\quad u=g(x)",
+          "examples": [
+            "线性换元：\\int e^{2x+1}dx",
+            "三角换元：\\int \\frac{dx}{\\sqrt{a^2-x^2}}",
+            "根式换元：\\int \\sqrt{x^2+a^2}\\,dx"
+          ],
+          "applications": ["处理根式积分", "三角函数积分", "指数与对数积分"]
+        },
+        {
+          "id": "topic-integration-by-parts",
+          "title": "分部积分与循环分部",
+          "description": "分部积分是微分的“逆运算”，适合多项式 × 指数 / 三角、对数等形式，有时需要多次或循环使用。",
+          "formula": "\\int u\\,dv = uv-\\int v\\,du",
+          "examples": [
+            "\\int x e^x dx",
+            "\\int x\\sin x\\,dx",
+            "循环分部：\\int e^x\\cos x\\,dx"
+          ],
+          "applications": ["多项式与指数/三角函数", "含对数的积分", "推导 Wallis 公式"]
+        },
+        {
+          "id": "topic-symmetry-integral",
+          "title": "对称性与周期性的利用",
+          "description": "对称性（奇偶性）和周期性可以大幅简化某些定积分的计算，尤其是在对称区间或多个周期上的积分。",
+          "formula": "\\int_{-a}^a f(x)dx = \\begin{cases}2\\int_0^a f(x)dx, & f\\text{为偶函数} \\\\ 0, & f\\text{为奇函数}\\end{cases}",
+          "examples": [
+            "\\int_{-\\pi}^{\\pi} \\sin x\\,dx=0",
+            "\\int_{-a}^{a} (x^2+1)dx = 2\\int_0^{a}(x^2+1)dx"
+          ],
+          "applications": ["简化三角积分", "周期函数积分", "物理对称性分析"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-int-tech-001",
+          "difficulty": 3,
+          "question": "使用适当的变量替换计算积分：\\int \\frac{dx}{\\sqrt{a^2-x^2}}。",
+          "hints": ["考虑三角换元 x=a\\sin t", "利用 1-\\sin^2 t = \\cos^2 t"],
+          "solution": {
+            "steps": [
+              "令 x=a\\sin t, dx=a\\cos t\\,dt, |t|<\\pi/2",
+              "则 \\sqrt{a^2-x^2}=\\sqrt{a^2-a^2\\sin^2 t}=a\\cos t",
+              "积分变为 \\int \\frac{a\\cos t\\,dt}{a\\cos t}=\\int dt=t+C",
+              "由 x=a\\sin t 得 t=\\arcsin(x/a)",
+              "最终结果：\\int \\frac{dx}{\\sqrt{a^2-x^2}} = \\arcsin\\frac{x}{a}+C"
+            ],
+            "keyPoints": ["三角换元", "根式化简", "反三角函数"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-int-tech-002",
+          "difficulty": 3,
+          "question": "计算积分：\\int x e^x dx。",
+          "hints": ["取 u=x, dv=e^x dx", "应用分部积分公式"],
+          "solution": {
+            "steps": [
+              "设 u=x, dv=e^x dx，则 du=dx, v=e^x",
+              "由分部积分公式：\\int x e^x dx = x e^x-\\int e^x dx",
+              "= x e^x-e^x+C",
+              "= e^x(x-1)+C"
+            ],
+            "keyPoints": ["分部积分", "选择合适的 u 与 dv", "多项式×指数"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-int-tech-003",
+          "difficulty": 4,
+          "question": "计算积分：\\int x\\cos x\\,dx。",
+          "hints": ["两次分部积分或使用递推思想", "注意整理常数项"],
+          "solution": {
+            "steps": [
+              "设 u=x, dv=\\cos x dx, 则 du=dx, v=\\sin x",
+              "得 \\int x\\cos x dx = x\\sin x-\\int \\sin x dx",
+              "= x\\sin x+\\cos x+C"
+            ],
+            "keyPoints": ["分部积分", "三角函数积分", "符号注意"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-int-tech-004",
+          "difficulty": 4,
+          "question": "利用对称性计算：\\int_{-\\pi}^{\\pi} (x^2+\\sin x)dx。",
+          "hints": ["拆分为 x^2 与 \\sin x 两部分", "判断奇偶性"],
+          "solution": {
+            "steps": [
+              "x^2 为偶函数，\\sin x 为奇函数",
+              "原积分 = \\int_{-\\pi}^{\\pi} x^2 dx+\\int_{-\\pi}^{\\pi} \\sin x dx",
+              "第二项为奇函数在对称区间积分，等于 0",
+              "第一项：2\\int_0^{\\pi} x^2 dx = 2\\cdot[\\frac{x^3}{3}]_0^{\\pi}=2\\cdot\\frac{\\pi^3}{3}=\\frac{2\\pi^3}{3}"
+            ],
+            "keyPoints": ["奇偶性", "对称区间", "拆分积分"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-int-tech-005",
+          "difficulty": 4,
+          "question": "使用分部积分证明：\\int x e^{-x} dx = -(x+1)e^{-x}+C。",
+          "hints": ["注意处理负号", "分部后再次整理"],
+          "solution": {
+            "steps": [
+              "设 u=x, dv=e^{-x} dx, 则 du=dx, v=-e^{-x}",
+              "原积分 = -x e^{-x}-\\int -e^{-x} dx",
+              "= -x e^{-x}-(-e^{-x})+C",
+              "= -(x+1)e^{-x}+C"
+            ],
+            "keyPoints": ["分部积分", "指数积分", "符号管理"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-int-tech-006",
+          "difficulty": 5,
+          "question": "证明递推公式：I_n=\\int_0^{\\pi/2} \\sin^n x dx 满足 n I_n=(n-1)I_{n-2}。",
+          "hints": ["使用分部积分", "把高次幂拆成低次幂加余项"],
+          "solution": {
+            "steps": [
+              "写 I_n=\\int_0^{\\pi/2} \\sin^{n-1}x\\sin x dx，设 u=\\sin^{n-1}x, dv=\\sin x dx",
+              "则 du=(n-1)\\sin^{n-2}x\\cos x dx, v=-\\cos x",
+              "I_n = [-\\sin^{n-1}x\\cos x]_0^{\\pi/2} + (n-1)\\int_0^{\\pi/2} \\sin^{n-2}x\\cos^2 x dx",
+              "两端值为0，代入 \\cos^2 x = 1-\\sin^2 x",
+              "I_n=(n-1)\\int_0^{\\pi/2} \\sin^{n-2}x(1-\\sin^2 x) dx=(n-1)(I_{n-2}-I_n)",
+              "整理得 nI_n=(n-1)I_{n-2}"
+            ],
+            "keyPoints": ["分部积分", "递推公式", "三角函数幂积分"]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 25
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-int-tech-01",
+          "title": "积分技巧小册子",
+          "description": "整理换元积分、分部积分、对称性利用等技巧，制作一份“积分技巧小册子”。",
+          "difficulty": 3,
+          "objectives": [
+            "梳理常见积分技巧的适用场景",
+            "为每种技巧准备代表性习题及解法",
+            "形成个人可复用的积分工具集"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "分别整理换元积分、分部积分、对称性/周期性三大技巧的公式与要点。"
+            },
+            {
+              "step": 2,
+              "description": "为每种技巧选 2～3 道典型题，写出详细解题步骤与点评。"
+            }
+          ],
+          "deliverables": ["积分技巧总结文档", "配套例题与解析"],
+          "estimatedTime": 120
+        },
+        {
+          "id": "project-int-tech-02",
+          "title": "积分技巧在线练习题组",
+          "description": "设计一组分层积分计算题（基础/进阶/挑战），用于在线练习或课堂小测。",
+          "difficulty": 4,
+          "objectives": [
+            "根据难度合理分类积分题型",
+            "覆盖不同技巧的典型应用",
+            "给出可自动判分的标准答案"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "设计不少于 10 题的积分计算题，按“基础/进阶/挑战”三档标注。"
+            },
+            {
+              "step": 2,
+              "description": "为每题准备标准答案和关键中间步骤，便于系统判分与讲解。"
+            }
+          ],
+          "deliverables": ["题目列表", "答案与步骤说明"],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+      "generatedDate": "2026-02-23T10:00:00.000Z",
+      "version": "2.0",
+      "totalTopics": 3,
+      "totalExercises": 6,
+      "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "级数收敛Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-positive-series-tests",
+          "title": "正项级数的收敛判别法",
+          "description": "比较判别法、比值判别法和根值判别法是研究正项级数收敛性的三大常用工具。",
+          "formula": "\\sum a_n,\\ a_n\\ge 0:\\ \\text{比较法},\\ \\text{比值法},\\ \\text{根值法}",
+          "examples": [
+            "p 级数：\\sum 1/n^p 的收敛性",
+            "与几何级数比较判断：\\sum (3/4)^n"
+          ],
+          "applications": ["函数展开", "误差估计", "概率论中的级数"]
+        },
+        {
+          "id": "topic-alternating-series",
+          "title": "交错级数与绝对/条件收敛",
+          "description": "交错级数判别法给出了一类符号交替级数的收敛条件，绝对收敛与条件收敛刻画了收敛性强弱。",
+          "formula": "a_n\\downarrow 0 \\Rightarrow \\sum (-1)^n a_n \\text{ 收敛}",
+          "examples": [
+            "交错调和级数：\\sum (-1)^{n+1}/n",
+            "绝对收敛与条件收敛的差异"
+          ],
+          "applications": ["傅里叶级数", "误差界估计", "条件收敛反例构造"]
+        },
+        {
+          "id": "topic-series-counterexamples",
+          "title": "典型反例与边界情形",
+          "description": "通过构造反例理解判别法的适用边界，如部分和有界但级数发散、绝对收敛与条件收敛的分界等。",
+          "formula": "S_n=1+\\frac12+\\cdots+\\frac1n\\ \\text{有界/无界等经典例子}",
+          "examples": [
+            "调和级数发散但项趋于 0",
+            "排列改变和的 Riemann 级数例子（概念层面）"
+          ],
+          "applications": ["加深对收敛概念的理解", "构造开放性题目"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-series-001",
+          "difficulty": 3,
+          "question": "判断级数\\sum_{n=1}^\\infty \\frac{1}{n^p} 的收敛性（p>0）。",
+          "hints": ["与积分 ∫₁^∞ 1/x^p dx 比较", "记住 p=1 是分界点"],
+          "solution": {
+            "steps": [
+              "考虑积分判别法：∫₁^∞ 1/x^p dx",
+              "当 p>1 时，积分收敛，故级数收敛",
+              "当 0<p≤1 时，积分发散，故级数发散",
+              "特别地，p=1 时得到调和级数发散"
+            ],
+            "keyPoints": ["p 级数", "积分判别法", "临界指数"]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-series-002",
+          "difficulty": 4,
+          "question": "利用比值判别法判断级数\\sum_{n=1}^\\infty \\frac{n!}{3^n} 的收敛性。",
+          "hints": ["计算 a_{n+1}/a_n", "分析极限"],
+          "solution": {
+            "steps": [
+              "a_n=\\frac{n!}{3^n}",
+              "a_{n+1}/a_n=\\frac{(n+1)!/3^{n+1}}{n!/3^n}=\\frac{n+1}{3}",
+              "当 n\\to\\infty 时，a_{n+1}/a_n \\to \\infty",
+              "比值判别法给出：若极限>1，则级数发散",
+              "故该级数发散"
+            ],
+            "keyPoints": ["比值判别法", "阶乘级数", "快速发散"]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-series-003",
+          "difficulty": 4,
+          "question": "判断级数\\sum_{n=1}^\\infty \\frac{(-1)^{n+1}}{n} 的收敛性，并讨论其绝对/条件收敛。",
+          "hints": ["使用交错级数判别法", "比较与调和级数"],
+          "solution": {
+            "steps": [
+              "令 a_n=1/n，则 a_n 单调递减且 a_n\\to 0",
+              "由交错级数判别法，级数 \\sum (-1)^{n+1} a_n 收敛",
+              "考虑绝对值级数：\\sum |(-1)^{n+1}/n|=\\sum 1/n，为调和级数，发散",
+              "因此原级数为条件收敛而非绝对收敛"
+            ],
+            "keyPoints": ["交错级数判别法", "绝对收敛与条件收敛", "调和级数"]
+          },
+          "relatedNodes": ["node-alternating-series"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-series-004",
+          "difficulty": 4,
+          "question": "利用根值判别法判断级数\\sum_{n=1}^\\infty \\left(\\frac{2n}{3n+1}\\right)^n 的收敛性。",
+          "hints": ["计算 \\sqrt[n]{a_n}", "化简分式极限"],
+          "solution": {
+            "steps": [
+              "a_n=\\left(\\frac{2n}{3n+1}\\right)^n",
+              "根值判别法需要 L=\\lim_{n\\to\\infty} \\sqrt[n]{a_n}=\\lim \\frac{2n}{3n+1}",
+              "L=\\lim \\frac{2}{3+1/n}=2/3<1",
+              "由根值判别法，级数收敛"
+            ],
+            "keyPoints": ["根值判别法", "指数型级数", "极限化简"]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-series-005",
+          "difficulty": 5,
+          "question": "构造一个级数，使得部分和 S_n 有界，但级数 \\sum a_n 发散。",
+          "hints": ["考虑正负项成对抵消", "可以从调和级数中“分块”构造"],
+          "solution": {
+            "steps": [
+              "经典例子：令 a_1=1, a_2=-1/2, a_3=-1/2, a_4=1/3, a_5=1/3, a_6=1/3, ...",
+              "一般构造：第 k 块包含 k 个正项 1/k，后面接 k 个负项 -1/k",
+              "部分和在每一块内上下波动，但整体保持在有界区间内",
+              "然而正项总和类似调和级数，整体发散；排列后得到部分和有界而级数发散的例子"
+            ],
+            "keyPoints": ["反例构造", "部分和有界≠绝对收敛", "级数重排思想"]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-series-006",
+          "difficulty": 5,
+          "question": "判断级数\\sum_{n=1}^\\infty \\frac{(-1)^n}{\\sqrt{n}} 的收敛性，并估计截断误差。",
+          "hints": ["先用交错级数判别法", "利用交错级数余项估计 |R_N|\\le a_{N+1}"],
+          "solution": {
+            "steps": [
+              "a_n=1/\\sqrt{n} 单调递减且趋于 0，故交错级数收敛",
+              "考虑绝对值级数 \\sum 1/\\sqrt{n}，p=1/2<1，发散",
+              "因此原级数条件收敛",
+              "余项估计：对交错级数，有 |R_N|=|S-S_N|\\le a_{N+1}=1/\\sqrt{N+1}",
+              "若希望误差<0.01，只需选取 N 满足 1/\\sqrt{N+1}<0.01 即可"
+            ],
+            "keyPoints": ["交错级数余项估计", "条件收敛", "误差控制"]
+          },
+          "relatedNodes": ["node-alternating-series"],
+          "estimatedTime": 20
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-series-01",
+          "title": "级数收敛判别思维导图",
+          "description": "整理常见级数收敛判别法，制作一张“级数收敛判别思维导图”。",
+          "difficulty": 3,
+          "objectives": [
+            "区分不同判别法的适用条件",
+            "为每种判别法准备典型例子与反例",
+            "形成个人级数学习的“导航图”"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "按“先判断是否正项级数 → 再选择比较/比值/根值 → 若交错再用交错判别”的思路设计流程图。"
+            },
+            {
+              "step": 2,
+              "description": "为每条分支配 1～2 个代表例子，并标注关键步骤。"
+            }
+          ],
+          "deliverables": ["思维导图", "配套例题清单"],
+          "estimatedTime": 120
+        },
+        {
+          "id": "project-series-02",
+          "title": "级数收敛性判别小工具",
+          "description": "实现一个简单的级数收敛判别工具，对输入的若干典型级数给出“推荐判别法”和收敛性结论。",
+          "difficulty": 4,
+          "objectives": [
+            "将理论判别规则程序化",
+            "处理几类常见级数（p 级数、几何级数、阶乘/指数型、交错级数）",
+            "输出判别过程的简要说明"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "为几类典型级数设计判别逻辑（例如根据通项形式选择比较法或比值/根值法）。"
+            },
+            {
+              "step": 2,
+              "description": "实现命令行或简单可视化界面，展示级数、推荐判别法和判断结论。"
+            }
+          ],
+          "deliverables": ["判别工具代码", "示例输入输出", "使用说明"],
+          "estimatedTime": 160
+        }
+      ],
+      "metadata": {
+      "generatedDate": "2026-02-23T10:00:00.000Z",
+      "version": "2.0",
+      "totalTopics": 3,
+      "totalExercises": 6,
+      "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "定积分应用Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-area-volume",
+          "title": "面积与体积建模",
+          "description": "通过定积分表达平面图形面积、旋转体体积等几何量，是“结构与累积”学域的基础应用。",
+          "formula": "S = \\int_a^b [f(x)-g(x)]dx,\\quad V = \\pi\\int_a^b [f(x)]^2 dx",
+          "examples": [
+            "两曲线围成区域的面积",
+            "绕 x 轴旋转得到旋转体的体积"
+          ],
+          "applications": ["工程结构设计", "物理中的质量与体积计算"]
+        },
+        {
+          "id": "topic-arc-length-surface",
+          "title": "弧长与曲面面积",
+          "description": "曲线弧长和旋转曲面的面积都可以通过定积分刻画，是将“局部斜率”累积为“整体长度/面积”的典型例子。",
+          "formula": "L = \\int_a^b \\sqrt{1+[y'(x)]^2}\\,dx,\\quad S = 2\\pi\\int_a^b y(x)\\sqrt{1+[y'(x)]^2}\\,dx",
+          "examples": [
+            "抛物线弧长的近似与精确计算",
+            "旋转曲面面积问题"
+          ],
+          "applications": ["机械零件设计", "土木工程中钢筋/材料预估"]
+        },
+        {
+          "id": "topic-physical-quantities",
+          "title": "物理量的积分表达",
+          "description": "功、质心、转动惯量等物理量都可以转化为定积分，体现“连续分布量的累积”。",
+          "formula": "W = \\int_a^b F(x)dx,\\quad x_\\text{cm} = \\frac{1}{M}\\int x\\rho(x)dx",
+          "examples": [
+            "变力做功 W=\\int_a^b F(x)dx",
+            "非均匀棒的质心位置"
+          ],
+          "applications": ["工程力学", "材料科学", "概率密度与期望"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-def-app-001",
+          "difficulty": 3,
+          "question": "求由 y=x² 与 y=x 围成区域的面积。",
+          "hints": ["画图确定交点", "注意上、下函数的顺序"],
+          "solution": {
+            "steps": [
+              "求交点：x²=x ⇒ x=0,1。",
+              "在[0,1]上，y=x 在上，y=x² 在下。",
+              "面积 S = \\int_0^1 (x-x²)dx = [x²/2 - x³/3]_0^1 = 1/2 - 1/3 = 1/6。",
+              "因此区域面积为 1/6。"
+            ],
+            "keyPoints": ["交点求解", "上减下", "定积分计算"]
+          },
+          "relatedNodes": ["node-area-volume"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-def-app-002",
+          "difficulty": 4,
+          "question": "求曲线 y=\\sqrt{x} (0≤x≤4) 绕 x 轴旋转得到的旋转体体积。",
+          "hints": ["使用 V=\\pi∫y² dx", "注意积分区间"],
+          "solution": {
+            "steps": [
+              "旋转体体积公式：V = \\pi\\int_a^b y^2 dx。",
+              "此处 y=\\sqrt{x}，y²=x。",
+              "V = \\pi\\int_0^4 x dx = \\pi[x²/2]_0^4 = \\pi·(16/2) = 8\\pi。",
+              "因此体积为 8\\pi。"
+            ],
+            "keyPoints": ["旋转体体积公式", "代入 y²", "简单定积分"]
+          },
+          "relatedNodes": ["node-area-volume"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-def-app-003",
+          "difficulty": 4,
+          "question": "求曲线 y=\\ln x (1≤x≤e) 的弧长。",
+          "hints": ["弧长公式 L=∫√(1+[y']²)dx", "计算导数 y'=1/x"],
+          "solution": {
+            "steps": [
+              "y=\\ln x ⇒ y'=1/x。",
+              "弧长公式：L = \\int_1^e \\sqrt{1 + (1/x)^2}\\,dx = \\int_1^e \\sqrt{1+1/x^2}\\,dx。",
+              "可写为 \\int_1^e \\frac{\\sqrt{x^2+1}}{x}dx，尝试换元或估算。",
+              "本题重点在于建立弧长积分表达式并分析其性质，可留作数值计算练习。"
+            ],
+            "keyPoints": ["弧长公式", "导数代入", "换元或数值估算"]
+          },
+          "relatedNodes": ["node-arc-length"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-def-app-004",
+          "difficulty": 3,
+          "question": "一根细棒占据区间[0,L]，线密度为 \\rho(x)=kx。求其总质量 M。",
+          "hints": ["质量=积分 ρ(x)dx", "注意常数 k 的保留"],
+          "solution": {
+            "steps": [
+              "总质量 M=\\int_0^L \\rho(x)dx=\\int_0^L kx dx。",
+              "计算积分：M = k[x²/2]_0^L = kL²/2。",
+              "因此质量与长度的平方成正比。"
+            ],
+            "keyPoints": ["密度模型", "定积分物理意义", "参数 k 的保留"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-def-app-005",
+          "difficulty": 4,
+          "question": "一维变力 F(x)=x² 作用在物体上，将物体从 x=0 推到 x=2，求做功 W。",
+          "hints": ["变力做功 W=∫F(x)dx", "积分上下限为位移区间"],
+          "solution": {
+            "steps": [
+              "变力做功公式：W = \\int_a^b F(x)dx。",
+              "此处 F(x)=x²，[a,b]=[0,2]。",
+              "W = \\int_0^2 x² dx = [x³/3]_0^2 = 8/3。",
+              "因此做功为 8/3（单位：J，若 F 单位为 N 且 x 单位为 m）。"
+            ],
+            "keyPoints": ["变力做功", "定积分物理应用", "单位意识"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 10
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-def-app-01",
+          "title": "面积/体积应用题小集",
+          "description": "整理若干典型的面积与旋转体体积应用题，形成一个专题练习集。",
+          "difficulty": 3,
+          "objectives": [
+            "熟练从文字描述到积分表达式的建模过程",
+            "掌握多种几何量（面积、体积、弧长）的公式与用法",
+            "形成一套可复用的建模步骤模板"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "从教材与课外资料中挑选不少于 5 题面积/体积应用题，按类型分类。"
+            },
+            {
+              "step": 2,
+              "description": "为每题写出“文字→草图→积分表达式→计算”的完整解题过程。"
+            }
+          ],
+          "deliverables": ["专题练习文档", "配套草图与解析"],
+          "estimatedTime": 150
+        },
+        {
+          "id": "project-def-app-02",
+          "title": "物理量的积分建模小项目",
+          "description": "选择一个简单物理情境（如变力做功、非均匀棒质心），完成从物理描述到定积分模型再到数值结果的完整分析。",
+          "difficulty": 4,
+          "objectives": [
+            "理解物理量与积分表达之间的联系",
+            "能够将真实情境抽象为积分表达式",
+            "撰写简短的“从问题到模型”的说明报告"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "选择一个情境（如变力做功、非均匀棒、带电体电荷量等），给出合理的密度/力函数模型。"
+            },
+            {
+              "step": 2,
+              "description": "写出积分表达式，给出解析或数值结果，并用图像或表格展示结果含义。"
+            }
+          ],
+          "deliverables": ["建模报告", "计算过程与结果图表"],
+          "estimatedTime": 180
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 5,
+        "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "级数分析Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-power-series",
+          "title": "幂级数与收敛半径",
+          "description": "幂级数通过参数 x 引入，收敛半径与收敛区间刻画了它在哪些点上代表一个函数。",
+          "formula": "R = 1/\\limsup_{n\\to\\infty} \\sqrt[n]{|a_n|}",
+          "examples": [
+            "几何级数 ∑x^n 在 |x|<1 上收敛",
+            "e^x, \\sin x, \\cos x 的幂级数展开"
+          ],
+          "applications": ["函数展开与近似", "微分方程解的幂级数形式"]
+        },
+        {
+          "id": "topic-functional-series",
+          "title": "函数项级数与一致收敛",
+          "description": "函数项级数的极限函数是否保留连续、可积、可导等性质，与一致收敛密切相关。",
+          "formula": "\\sum f_n \\text{ 一致收敛 }\\Rightarrow \\lim_{n\\to\\infty} \\int f_n = \\int \\lim_{n\\to\\infty} f_n",
+          "examples": [
+            "Weierstrass 判别法的一致收敛例子",
+            "逐点收敛但不一致收敛的反例"
+          ],
+          "applications": ["交换极限与积分/导数的条件", "傅里叶级数理论基础"]
+        },
+        {
+          "id": "topic-fourier-series-concept",
+          "title": "傅里叶级数的概念理解",
+          "description": "傅里叶级数把函数分解为三角函数的“无穷和”，是级数逼近与信号分析的重要桥梁。",
+          "formula": "f(x) \\sim a_0/2 + \\sum_{n=1}^\\infty [a_n\\cos nx + b_n\\sin nx]",
+          "examples": [
+            "简单周期函数的傅里叶展开",
+            "Gibbs 现象的直观认识"
+          ],
+          "applications": ["信号与系统", "采样定理的数学基础", "偏微分方程解"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-series-adv-001",
+          "difficulty": 4,
+          "question": "求幂级数 \\sum_{n=1}^\\infty \\frac{x^n}{n}\\ 的收敛半径 R，并讨论收敛区间。",
+          "hints": ["使用根值或比值判别", "单独分析边界点 x=±1"],
+          "solution": {
+            "steps": [
+              "a_n=1/n，考虑根值判别：L=\\limsup \\sqrt[n]{|a_n|}=1。",
+              "因此收敛半径 R=1。",
+              "当 |x|<1 时，级数绝对收敛。",
+              "x=1 时为 ∑1/n 调和级数，发散；x=-1 时为 ∑(-1)^n/n，条件收敛。",
+              "故收敛区间为 (-1,1]，在 -1 处条件收敛，在 1 处发散。"
+            ],
+            "keyPoints": ["幂级数收敛半径", "边界点单独讨论", "绝对/条件收敛"]
+          },
+          "relatedNodes": ["node-power-series"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-series-adv-002",
+          "difficulty": 4,
+          "question": "给出一个函数项级数的例子，使其在区间[0,1]上逐点收敛但不一致收敛。",
+          "hints": ["经典例子：f_n(x)=x^n", "思考极限函数的形状"],
+          "solution": {
+            "steps": [
+              "考虑级数 ∑f_n(x)，其中 f_n(x)=x^n。",
+              "对每个固定 x∈[0,1)，有 x^n→0；对 x=1，有 x^n=1。",
+              "因此逐点极限函数 f(x)=0 (0≤x<1), f(1)=1。",
+              "f 在 [0,1] 上不连续，而每个 f_n 连续。",
+              "若级数一致收敛，极限应保持连续性，矛盾。",
+              "故该函数项级数仅逐点收敛、不一致收敛。"
+            ],
+            "keyPoints": ["逐点 vs 一致收敛", "极限函数连续性破坏", "经典反例 x^n"]
+          },
+          "relatedNodes": ["node-uniform-convergence"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-series-adv-003",
+          "difficulty": 5,
+          "question": "设函数项级数 \\sum f_n(x) 在[0,1]上一致收敛且每个 f_n 连续。证明：其和函数 f(x)=\\sum f_n(x) 在[0,1] 上连续。",
+          "hints": ["利用一致收敛与连续函数的极限交换", "ε-δ 证明"],
+          "solution": {
+            "steps": [
+              "已知：每个 f_n 在[0,1]上连续，且 ∑f_n 一致收敛到 f。",
+              "对任意 ε>0，选择 N 使得 n≥N 时 |\\sum_{k=N}^n f_k(x)|<ε/3 对所有 x∈[0,1] 成立。",
+              "有限和 g_N(x)=\\sum_{k=1}^{N-1} f_k(x) 为连续函数。",
+              "对给定 x_0，由 g_N 连续性，存在 δ>0 使得 |x-x_0|<δ ⇒ |g_N(x)-g_N(x_0)|<ε/3。",
+              "利用三角不等式分解 f(x)-f(x_0) 为有限和差 + 尾和差，两部分均可控制在 ε/3。",
+              "综合可得 |f(x)-f(x_0)|<ε，因此 f 在[0,1] 上连续。"
+            ],
+            "keyPoints": ["一致收敛与连续性", "有限和连续性", "ε-δ 结构"]
+          },
+          "relatedNodes": ["node-uniform-convergence"],
+          "estimatedTime": 30
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-series-adv-01",
+          "title": "幂级数收敛区间与函数逼近实验",
+          "description": "选择若干幂级数，分析其收敛半径与区间，并用数值方式观察不同 x 点上的收敛行为。",
+          "difficulty": 4,
+          "objectives": [
+            "熟悉幂级数收敛半径的计算方法",
+            "理解不同 x 点上收敛行为的差异",
+            "用图像直观展示幂级数逼近函数的效果"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "选取 2～3 个典型幂级数（如 e^x, ln(1+x) 附近展开），给出其收敛半径与区间。"
+            },
+            {
+              "step": 2,
+              "description": "用编程或图形工具绘制部分和 S_N(x) 随 N 增大在不同 x 点上的收敛情况。"
+            }
+          ],
+          "deliverables": ["分析报告", "收敛行为图像"],
+          "estimatedTime": 180
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 3,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "数值分析Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-interpolation",
+          "title": "插值与逼近",
+          "description": "插值通过有限数据点构造通过这些点的函数，是数值逼近的基础工具。",
+          "formula": "L_n(x) = \\sum_{k=0}^n y_k \\ell_k(x),\\quad \\ell_k(x)=\\prod_{j\\ne k} \\frac{x-x_j}{x_k-x_j}",
+          "examples": [
+            "分段线性插值",
+            "拉格朗日插值多项式"
+          ],
+          "applications": ["数据拟合", "函数逼近", "数值积分节点选择"]
+        },
+        {
+          "id": "topic-numerical-integration",
+          "title": "数值积分方法",
+          "description": "数值积分用有限加和近似定积分值，常用方法包括梯形公式和辛普森公式。",
+          "formula": "\\int_a^b f(x)dx \\approx \\frac{b-a}{2n}\\big[f(x_0)+2\\sum_{k=1}^{n-1} f(x_k)+f(x_n)\\big]",
+          "examples": [
+            "梯形公式、辛普森公式的误差阶分析",
+            "比较不同步长下的误差"
+          ],
+          "applications": ["工程数值计算", "科学仿真", "统计积分估计"]
+        },
+        {
+          "id": "topic-iterative-methods",
+          "title": "迭代法与收敛性",
+          "description": "通过构造迭代格式 x_{k+1}=g(x_k) 或牛顿法逐步逼近方程根，体现“逼近 + 收敛”的思想。",
+          "formula": "x_{k+1} = x_k-\\frac{f(x_k)}{f'(x_k)}",
+          "examples": [
+            "不动点迭代收敛条件",
+            "牛顿法求解非线性方程"
+          ],
+          "applications": ["非线性方程求解", "优化算法", "机器学习训练"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-na-001",
+          "difficulty": 3,
+          "question": "给出通过两点 (0,0),(1,1) 的线性插值函数，并估计在 x=0.5 处的值与真实函数 f(x)=x 的差异。",
+          "hints": ["线性插值公式", "对比真实函数"],
+          "solution": {
+            "steps": [
+              "线性插值多项式为 L(x)=0+(1-0)/(1-0)(x-0)=x。",
+              "在 x=0.5 处，L(0.5)=0.5, f(0.5)=0.5。",
+              "差异为 0，本例只是说明插值在数据点之间可以完全还原线性函数。"
+            ],
+            "keyPoints": ["线性插值", "与真实函数比较"]
+          },
+          "relatedNodes": ["node-numerical-methods"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-na-002",
+          "difficulty": 4,
+          "question": "用梯形公式近似计算 ∫_0^1 e^x dx，取 n=4，将结果与精确值 e-1 对比。",
+          "hints": ["步长 h=(b-a)/n", "列出节点 x_k 与 f(x_k)"],
+          "solution": {
+            "steps": [
+              "区间[0,1], n=4 ⇒ h=0.25, 节点 x_k=0,0.25,0.5,0.75,1。",
+              "计算 f(x_k)=e^{x_k}。",
+              "梯形公式：T=\\frac{h}{2}[f(x_0)+2(f(x_1)+f(x_2)+f(x_3))+f(x_4)]。",
+              "数值代入可得近似值 T，精确值为 e-1≈1.71828。",
+              "对比 |T-(e-1)|，分析误差来源。"
+            ],
+            "keyPoints": ["梯形公式", "节点与权重", "误差分析"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-na-003",
+          "difficulty": 5,
+          "question": "用不动点迭代法求解方程 x=\\cos x，在[0,1] 上选取合适的 g(x)，并讨论收敛性。",
+          "hints": ["考虑 g(x)=\\cos x", "检查 |g'(x)|<1 的条件"],
+          "solution": {
+            "steps": [
+              "取 g(x)=\\cos x，迭代格式 x_{k+1}=\\cos x_k。",
+              "在[0,1] 上，g([0,1])⊂[\\cos 1,1]⊂[0,1]。",
+              "g'(x)=-\\sin x，在[0,1] 上，|g'(x)|≤\\sin 1<1。",
+              "由压缩映射原理，迭代在该区间内收敛到唯一不动点。",
+              "实际迭代数值，验证收敛速度。"
+            ],
+            "keyPoints": ["不动点迭代收敛条件", "导数界限", "压缩映射思想"]
+          },
+          "relatedNodes": ["node-numerical-methods"],
+          "estimatedTime": 25
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-na-01",
+          "title": "数值积分方法比较实验",
+          "description": "实现梯形公式与辛普森公式，对若干测试函数进行数值积分，比较误差与效率。",
+          "difficulty": 4,
+          "objectives": [
+            "实现基础数值积分算法",
+            "理解误差阶与步长关系",
+            "用图像展示不同方法的误差变化"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "分别实现梯形公式与辛普森公式，对 f(x)=e^x, sin x 等函数在不同 n 下计算积分。"
+            },
+            {
+              "step": 2,
+              "description": "绘制误差随 n 的变化曲线，比较两种方法的收敛速度。"
+            }
+          ],
+          "deliverables": ["代码实现", "误差曲线图", "实验报告"],
+          "estimatedTime": 200
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 3,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "常微分方程Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-ode-modeling",
+          "title": "常微分方程建模初步",
+          "description": "从人口增长、放射性衰变、冷却定律等具体情境出发，建立一阶常微分方程模型。",
+          "formula": "y' = ky,\\ y' = -k(y-T_0),\\ \\text{等}",
+          "examples": [
+            "人口增长模型 y'=ky",
+            "牛顿冷却定律 y'=-k(y-T_0)"
+          ],
+          "applications": ["生物群体动力学", "热传导近似", "经济/金融中的简单增长模型"]
+        },
+        {
+          "id": "topic-first-order-odes",
+          "title": "一阶方程分类与求解思路",
+          "description": "一阶可分离变量、线性方程、齐次方程、伯努利方程等类型的识别与求解策略。",
+          "formula": "y'+p(x)y=q(x),\\ y'+p(x)y=q(x)y^n \\text{(伯努利)},\\ \\frac{dy}{dx}=f\\left(\\frac{y}{x}\\right)",
+          "examples": [
+            "可分离变量方程 y'=xy",
+            "线性方程 y'+y=x",
+            "伯努利方程 y'+y=y^2"
+          ],
+          "applications": ["电路模型", "混合问题", "简单非线性系统"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-ode-basic-001",
+          "difficulty": 3,
+          "question": "根据“人口增长率与当前人口成正比”这一描述，建立相应的一阶常微分方程模型，并给出通解形式。",
+          "hints": ["记人口为 y(t)", "增长率与 y 成正比 ⇒ y'=ky"],
+          "solution": {
+            "steps": [
+              "设人口为 y(t)，假设增长率与当前人口成正比，即 y'(t)=ky(t)。",
+              "这是可分离变量方程：dy/y = k dt。",
+              "积分得 ln|y|=kt+C，即 y=Ce^{kt}。",
+              "其中 C>0 由初始人口 y(0)=y_0 决定：C=y_0。"
+            ],
+            "keyPoints": ["从文字到方程", "可分离变量", "指数增长模型"]
+          },
+          "relatedNodes": ["node-ode-basic"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-ode-basic-002",
+          "difficulty": 4,
+          "question": "牛顿冷却定律：物体温度 y(t) 满足 y'=-k(y-T_0)。求通解，并说明长期行为。",
+          "hints": ["视作一阶线性方程", "可分离变量也可"],
+          "solution": {
+            "steps": [
+              "方程 y'=-k(y-T_0) 可写为 dy/(y-T_0)=-k dt。",
+              "积分得 ln|y-T_0|=-kt+C。",
+              "整理：y-T_0=Ce^{-kt} ⇒ y(t)=T_0+Ce^{-kt}。",
+              "当 t→∞ 时，e^{-kt}→0，故 y(t)→T_0，即物体温度趋近环境温度。"
+            ],
+            "keyPoints": ["一阶线性方程", "冷却定律", "长期极限行为"]
+          },
+          "relatedNodes": ["node-ode-basic"],
+          "estimatedTime": 20
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-ode-basic-01",
+          "title": "从生活场景到一阶微分方程模型",
+          "description": "选择一个简单的实际情境（如药物浓度、混合问题等），完成从文字描述到一阶常微分方程模型的搭建与求解。",
+          "difficulty": 3,
+          "objectives": [
+            "能够识别“变化率与当前状态关系”类描述",
+            "把文字条件翻译为微分方程",
+            "解释方程解的实际意义"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "用 3～5 句话描述一个实际变化过程，并写出相应的一阶 ODE 模型。"
+            },
+            {
+              "step": 2,
+              "description": "给出解析解或数值解，并用图像解释解随时间的变化趋势。"
+            }
+          ],
+          "deliverables": ["建模说明", "解析/数值解曲线"],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 2,
+        "totalExercises": 2,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "常微分方程求解Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-linear-ode",
+          "title": "一阶线性常微分方程求解",
+          "description": "一阶线性方程 y'+p(x)y=q(x) 可通过积分因子法统一求解。",
+          "formula": "y'+p(x)y=q(x) \\Rightarrow y e^{\\int p(x)dx} = \\int q(x)e^{\\int p(x)dx}dx + C",
+          "examples": [
+            "y'+y=x",
+            "y'+(1/x)y=1"
+          ],
+          "applications": ["电路方程", "混合问题"]
+        },
+        {
+          "id": "topic-bernoulli-ode",
+          "title": "伯努利方程与非线性变换",
+          "description": "伯努利方程 y'+p(x)y=q(x)y^n 通过适当代换转化为线性方程。",
+          "formula": "y'+p(x)y=q(x)y^n,\\ n\\ne 1,\\ v=y^{1-n}",
+          "examples": [
+            "y'+y=y^2",
+            "y'+(2/x)y=y^3"
+          ],
+          "applications": ["非线性阻尼模型", "人口模型修正"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-ode-solve-001",
+          "difficulty": 4,
+          "question": "求解一阶线性方程 y'+y=x。",
+          "hints": ["积分因子 μ(x)=e^{∫1 dx}=e^x", "整理为 (y e^x)'"],
+          "solution": {
+            "steps": [
+              "标准形式：y'+y=x。",
+              "积分因子 μ(x)=e^{∫1 dx}=e^x。",
+              "两端乘 μ(x)：e^x y'+e^x y=xe^x ⇒ (y e^x)'=xe^x。",
+              "积分：y e^x=∫xe^x dx + C。",
+              "∫xe^x dx 由分部积分：得 (x-1)e^x + C。",
+              "故 y e^x=(x-1)e^x + C ⇒ y=x-1+Ce^{-x}。"
+            ],
+            "keyPoints": ["积分因子法", "分部积分", "线性 ODE 通解"]
+          },
+          "relatedNodes": ["node-ode-basic"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-ode-solve-002",
+          "difficulty": 5,
+          "question": "求解伯努利方程 y'+y=y^2。",
+          "hints": ["写成 y'+y=y^2", "令 v=y^{1-n}=y^{-1}", "转化为线性方程"],
+          "solution": {
+            "steps": [
+              "方程 y'+y=y^2。",
+              "写成 y'+y=y^2，n=2。",
+              "令 v=y^{1-n}=y^{-1}，则 v'=-y^{-2}y'。",
+              "由原方程 y'=y^2-y，代入得 v'=-y^{-2}(y^2-y)=-1+y^{-1}=-1+v。",
+              "整理：v'-v=-1，为一阶线性方程。",
+              "积分因子 μ(x)=e^{-x}，得 (v e^{-x})'=-e^{-x}。",
+              "积分：v e^{-x} = e^{-x}+C ⇒ v=1+Ce^{x}。",
+              "回代 v=1/y，得 1/y=1+Ce^{x} ⇒ y=1/(1+Ce^{x})。"
+            ],
+            "keyPoints": ["伯努利代换", "线性方程求解", "回代得到通解"]
+          },
+          "relatedNodes": ["node-ode-basic"],
+          "estimatedTime": 30
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-ode-solve-01",
+          "title": "常微分方程求解方法小总结",
+          "description": "整理一阶方程（可分离、线性、伯努利）的求解套路，并配上 1～2 道代表性习题。",
+          "difficulty": 3,
+          "objectives": [
+            "掌握常见一阶 ODE 的识别与求解策略",
+            "能根据方程形式选择合适方法",
+            "形成一张“ODE 求解思维导图”"
+          ],
+          "tasks": [
+            {
+              "step": 1,
+              "description": "为“可分离变量/线性/伯努利”三类方程整理判断条件与求解步骤。"
+            },
+            {
+              "step": 2,
+              "description": "为每类方程选一道典型例题，完整写出解题过程。"
+            }
+          ],
+          "deliverables": ["思维导图", "例题与解答"],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T10:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 2,
+        "totalExercises": 2,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "推导动画Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-derivative-derivation",
+          "title": "导数定义的逐步推导",
+          "description": "从割线斜率到切线斜率的极限过程，用分步动画呈现 Δx→0 时 (f(x+Δx)-f(x))/Δx 的几何与代数含义",
+          "formula": "f'(x) = \\lim_{\\Delta x \\to 0} \\frac{f(x+\\Delta x) - f(x)}{\\Delta x}",
+          "examples": [
+            "割线斜率 → 切线斜率",
+            "瞬时变化率与平均变化率的关系"
+          ],
+          "applications": ["概念教学", "微积分入门", "可视化课件"]
+        },
+        {
+          "id": "topic-taylor-derivation",
+          "title": "泰勒级数推导动画",
+          "description": "从多项式逼近到泰勒公式的推导步骤：逐阶求导、系数确定、余项估计",
+          "formula": "f(x) = \\sum_{n=0}^{\\infty} \\frac{f^{(n)}(a)}{n!}(x-a)^n",
+          "examples": [
+            "e^x、sin x 的泰勒展开推导",
+            "拉格朗日余项与佩亚诺余项"
+          ],
+          "applications": ["函数逼近", "数值计算", "级数收敛演示"]
+        },
+        {
+          "id": "topic-fourier-derivation",
+          "title": "傅里叶级数推导步骤",
+          "description": "从周期函数的正交分解到傅里叶系数的积分公式，分步展示 a_n、b_n 的推导与几何意义",
+          "formula": "a_n = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi} f(x)\\cos(nx)dx,\\quad b_n = \\frac{1}{\\pi}\\int_{-\\pi}^{\\pi} f(x)\\sin(nx)dx",
+          "examples": [
+            "方波、三角波的傅里叶系数",
+            "吉布斯现象的可视化"
+          ],
+          "applications": ["信号处理", "傅里叶分析入门", "收敛性演示"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-deriv-anim-001",
+          "difficulty": 3,
+          "question": "为导数定义 f'(a)=lim_{h→0}(f(a+h)-f(a))/h 设计 4～6 步推导动画的脚本（每步文字说明 + 对应图形变化）。",
+          "hints": ["第一步：画出割线；第二步：标出 Δx 与 Δy；第三步：写出差商；第四步：令 Δx→0；第五步：割线趋于切线"],
+          "solution": {
+            "steps": [
+              "画出曲线 y=f(x) 及点 (a,f(a))",
+              "取动点 (a+h, f(a+h))，画出割线",
+              "标出 Δx=h 与 Δy=f(a+h)-f(a)，写出差商 Δy/Δx",
+              "动画中令 h→0，割线绕 (a,f(a)) 旋转",
+              "极限位置为切线，斜率即 f'(a)"
+            ],
+            "keyPoints": ["割线", "差商", "极限", "切线斜率"]
+          },
+          "relatedNodes": ["node-derivative-def"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-deriv-anim-002",
+          "difficulty": 4,
+          "question": "为泰勒公式 f(x)=f(a)+f'(a)(x-a)+… 的前三项推导设计分步动画：先写出一次逼近，再写出二次逼近。",
+          "hints": ["一次：切线逼近；二次：加上 (1/2)f''(a)(x-a)^2"],
+          "solution": {
+            "steps": [
+              "一次逼近：P1(x)=f(a)+f'(a)(x-a)，几何上为切线",
+              "二次逼近：P2(x)=P1(x)+(1/2)f''(a)(x-a)^2",
+              "说明二阶项对“弯曲”的修正",
+              "可配合 e^x 在 a=0 处的展开做动画"
+            ],
+            "keyPoints": ["泰勒多项式", "切线逼近", "二阶修正"]
+          },
+          "relatedNodes": ["node-taylor-series"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-deriv-anim-003",
+          "difficulty": 4,
+          "question": "说明在“傅里叶级数推导动画”中，应依次展示哪几个步骤（从周期函数到 a_n、b_n 公式）？",
+          "hints": ["正交性、逐项乘 cos(nx) 或 sin(nx) 再积分"],
+          "solution": {
+            "steps": [
+              "写出傅里叶级数形式 f(x)～a0/2+Σ(an cos nx+bn sin nx)",
+              "对等式两边乘 cos(nx) 并在 [-π,π] 上积分",
+              "利用正交性：∫cos(nx)cos(kx)dx 仅当 k=n 非零",
+              "得到 a_n 的积分公式；同理得 b_n"
+            ],
+            "keyPoints": ["正交性", "傅里叶系数", "积分公式"]
+          },
+          "relatedNodes": ["node-fourier-series"],
+          "estimatedTime": 20
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-deriv-anim-01",
+          "title": "制作一则“导数定义”推导动画脚本",
+          "description": "为某教材中的导数定义一节，写出一则 5～8 步的推导动画脚本，每步包含旁白文字与建议的图形/公式高亮。",
+          "difficulty": 3,
+          "objectives": [
+            "能把极限的几何意义拆成可动画的步骤",
+            "与板书或 PPT 顺序一致，便于课堂使用"
+          ],
+          "tasks": [
+            { "step": 1, "description": "列出从“割线”到“切线斜率”的 5～8 个关键步骤。" },
+            { "step": 2, "description": "为每步写一句旁白与建议的图形状态（如：标出 Δx、Δy）。" }
+          ],
+          "deliverables": ["推导动画脚本", "步骤-旁白对照表"],
+          "estimatedTime": 90
+        },
+        {
+          "id": "project-deriv-anim-02",
+          "title": "泰勒展开与傅里叶系数推导动画对比",
+          "description": "分别为泰勒公式和傅里叶系数 a_n 的推导各设计一个 4～6 步的动画脚本，并比较两者“逐步推导”的异同。",
+          "difficulty": 4,
+          "objectives": [
+            "理解泰勒与傅里叶两种逼近的推导逻辑",
+            "能用统一格式写出分步脚本"
+          ],
+          "tasks": [
+            { "step": 1, "description": "写出泰勒三项展开的推导步骤与对应可视化建议。" },
+            { "step": 2, "description": "写出 a_n 积分公式的推导步骤与对应可视化建议。" },
+            { "step": 3, "description": "用一段短文比较两者：求系数的方式（求导 vs 积分）、适用函数类型。" }
+          ],
+          "deliverables": ["两份推导脚本", "对比短文"],
+          "estimatedTime": 120
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T12:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 3,
+        "totalProjects": 2
+      }
+    },
+    {
+      "skillId": "概念可视化Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-epsilon-delta-viz",
+          "title": "ε-δ 极限定义的几何可视化",
+          "description": "用“带形区域”与“邻域”的几何语言呈现极限定义：对任意 ε 带，存在 δ 邻域使函数落在带内",
+          "formula": "\\forall \\varepsilon > 0, \\exists \\delta > 0: 0 < |x-a| < \\delta \\Rightarrow |f(x)-L| < \\varepsilon",
+          "examples": [
+            "交互式调节 ε、δ 观察带形与邻域",
+            "左右极限不一致时的可视化"
+          ],
+          "applications": ["极限概念教学", "微积分入门", "GGB/Desmos 课件"]
+        },
+        {
+          "id": "topic-secant-tangent-viz",
+          "title": "割线到切线的动态演示",
+          "description": "动点沿曲线逼近定点时，割线绕定点旋转并趋于切线的过程，配合差商 (Δy/Δx) 的数值变化",
+          "formula": "\\text{割线斜率} = \\frac{f(x+\\Delta x)-f(x)}{\\Delta x} \\to f'(x)",
+          "examples": [
+            "二次函数、正弦函数上的割线-切线",
+            "Δx→0 时差商趋于导数的动画"
+          ],
+          "applications": ["导数几何意义", "变化率概念", "交互式学件"]
+        },
+        {
+          "id": "topic-riemann-sum-viz",
+          "title": "黎曼和到定积分的可视化",
+          "description": "矩形逼近曲线下面积：左和、右和、中点和的比较，以及 n 增大时逼近积分的过程",
+          "formula": "\\int_a^b f(x)dx = \\lim_{n\\to\\infty} \\sum_{i=1}^n f(\\xi_i)\\Delta x_i",
+          "examples": [
+            "调节 n 观察矩形和与真实面积",
+            "可积与不可积的对比（如狄利克雷函数）"
+          ],
+          "applications": ["积分定义", "数值积分直观", "面积与累积"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-concept-viz-001",
+          "difficulty": 3,
+          "question": "设计一个“ε-δ 极限”的可视化方案：需要展示哪几个图形元素（如水平带、竖直带、函数曲线）？",
+          "hints": ["两条水平线 y=L±ε；两条竖直线 x=a±δ；曲线在带内的部分"],
+          "solution": {
+            "steps": [
+              "画出 y=L 与 y=L±ε 两条水平带边界",
+              "画出 x=a±δ 的竖直边界（可先固定 ε 再选 δ）",
+              "标出 (a-δ,a+δ) 内曲线落在 (L-ε,L+ε) 内的部分",
+              "交互：调节 ε 观察所需 δ 的变化"
+            ],
+            "keyPoints": ["带形区域", "邻域", "存在性", "任意-存在"]
+          },
+          "relatedNodes": ["node-limit-def"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-concept-viz-002",
+          "difficulty": 3,
+          "question": "为“割线→切线”设计 3 个关键帧：应分别展示什么状态？",
+          "hints": ["第一帧：割线明显倾斜；第二帧：Δx 变小；第三帧：切线"],
+          "solution": {
+            "steps": [
+              "关键帧1：取较大的 Δx，画出割线，标出 Δx、Δy 与差商",
+              "关键帧2：Δx 减半，割线更接近切线，差商数值更新",
+              "关键帧3：Δx→0（或足够小），割线与切线重合，差商→f'(x)"
+            ],
+            "keyPoints": ["割线", "差商", "极限", "切线"]
+          },
+          "relatedNodes": ["node-derivative-def"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-concept-viz-003",
+          "difficulty": 4,
+          "question": "黎曼和可视化中，“左和”“右和”“中点和”在图形上如何区分？各适合说明什么概念？",
+          "hints": ["左和：左端点高；右和：右端点高；中点：往往更接近真实面积"],
+          "solution": {
+            "steps": [
+              "左和：每个小区间取左端点函数值作高，矩形可能偏大或偏小",
+              "右和：取右端点函数值作高",
+              "中点和：取区间中点函数值作高，通常误差更小",
+              "单调增函数：左和≤积分≤右和；中点和对光滑函数收敛更快"
+            ],
+            "keyPoints": ["黎曼和", "左/右/中点", "收敛性", "数值积分"]
+          },
+          "relatedNodes": ["node-definite-integral", "node-riemann-sum"],
+          "estimatedTime": 25
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-concept-viz-01",
+          "title": "极限·导数·积分三概念的可视化对照表",
+          "description": "制作一张表格：对“极限”“导数”“积分”各给出一种推荐的可视化方式（如 ε-δ 带、割线-切线、黎曼和），并写出 1～2 句使用场景。",
+          "difficulty": 3,
+          "objectives": [
+            "归纳三大概念对应的经典可视化",
+            "便于在备课或学件中选择合适图示"
+          ],
+          "tasks": [
+            { "step": 1, "description": "为极限、导数、积分各选一种可视化，写出名称与简短描述。" },
+            { "step": 2, "description": "为每种方式写 1～2 句适用场景（如：适合第一次引入/复习）。" }
+          ],
+          "deliverables": ["三概念可视化对照表", "使用场景说明"],
+          "estimatedTime": 60
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T12:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 3,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "导数与微分Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-differential-approx",
+          "title": "微分与线性逼近",
+          "description": "微分 dy=f'(x)dx 表示切线方向上的增量，是函数改变量 Δy 的线性主部；Δy≈dy 当 Δx 很小时成立",
+          "formula": "\\Delta y \\approx f'(x)\\Delta x = dy,\\quad \\Delta x = dx",
+          "examples": [
+            "用微分估计 √(1.01)、sin(0.02)",
+            "误差与高阶无穷小"
+          ],
+          "applications": ["近似计算", "误差估计", "物理中的小量分析"]
+        },
+        {
+          "id": "topic-chain-rule-viz",
+          "title": "链式法则与复合函数求导",
+          "description": "复合函数求导的链式法则：(f∘g)'(x)=f'(g(x))g'(x)；可结合“外函数-内函数”的层次与导数传播理解",
+          "formula": "\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}",
+          "examples": [
+            "e^{x^2}、sin(ln x) 的求导",
+            "多重复合与逐层求导"
+          ],
+          "applications": ["复合函数", "隐函数求导", "反向传播思想"]
+        },
+        {
+          "id": "topic-implicit-diff",
+          "title": "隐函数求导",
+          "description": "由方程 F(x,y)=0 确定的隐函数 y=y(x)，通过对方程两边关于 x 求导得到 dy/dx，无需显式解出 y",
+          "formula": "F_x + F_y \\frac{dy}{dx} = 0 \\Rightarrow \\frac{dy}{dx} = -\\frac{F_x}{F_y}",
+          "examples": [
+            "圆 x^2+y^2=1 的切线斜率",
+            "拉格朗日乘数法中的一阶条件"
+          ],
+          "applications": ["几何切线", "约束优化", "微分方程"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-deriv-diff-001",
+          "difficulty": 3,
+          "question": "用微分近似计算 (1.02)^3。",
+          "hints": ["取 f(x)=x^3，a=1，Δx=0.02", "f(1.02)≈f(1)+f'(1)·0.02"],
+          "solution": {
+            "steps": [
+              "f(x)=x^3，f'(x)=3x^2",
+              "f(1.02)≈f(1)+f'(1)·(0.02)=1+3·0.02=1.06",
+              "精确值 (1.02)^3=1.061208，误差约为 0.0012"
+            ],
+            "keyPoints": ["线性逼近", "微分", "近似计算"]
+          },
+          "relatedNodes": ["node-derivative-rules"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-deriv-diff-002",
+          "difficulty": 4,
+          "question": "求 y = e^{\\sin x^2} 的导数。",
+          "hints": ["外层 e^u，内层 sin v，最内层 v=x^2", "链式法则逐层求导"],
+          "solution": {
+            "steps": [
+              "设 u=sin(x^2)，则 y=e^u，dy/du=e^u",
+              "du/dx=cos(x^2)·2x",
+              "dy/dx=(dy/du)(du/dx)=e^{sin(x^2)}·cos(x^2)·2x"
+            ],
+            "keyPoints": ["链式法则", "复合函数", "逐层求导"]
+          },
+          "relatedNodes": ["node-derivative-rules"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-deriv-diff-003",
+          "difficulty": 4,
+          "question": "由方程 x^2 + y^2 - xy = 1 确定 y 为 x 的函数，求 dy/dx。",
+          "hints": ["两边对 x 求导", "把 y 视为 x 的函数，出现 y'"],
+          "solution": {
+            "steps": [
+              "两边对 x 求导：2x + 2y·y' - (1·y + x·y') = 0",
+              "整理：(2y - x)y' = y - 2x",
+              "当 2y≠x 时，y' = (y - 2x)/(2y - x)"
+            ],
+            "keyPoints": ["隐函数求导", "链式法则", "整理解出 y'"]
+          },
+          "relatedNodes": ["node-derivative-rules", "node-implicit-function"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-deriv-diff-004",
+          "difficulty": 3,
+          "question": "解释“微分 dy 是 Δy 的线性主部”的含义，并说明在近似计算中如何用 dy 代替 Δy。",
+          "hints": ["Δy = f(x+Δx)-f(x)；dy = f'(x)Δx；Δy - dy 是比 Δx 高阶的无穷小"],
+          "solution": {
+            "steps": [
+              "Δy = f(x+Δx)-f(x) 是真实改变量",
+              "dy = f'(x)Δx 是切线方向上的改变量",
+              "Δy - dy = o(Δx)，故当 Δx 很小时 Δy≈dy",
+              "近似计算：f(x+Δx)≈f(x)+f'(x)Δx"
+            ],
+            "keyPoints": ["线性主部", "高阶无穷小", "近似公式"]
+          },
+          "relatedNodes": ["node-derivative-def"],
+          "estimatedTime": 15
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-deriv-diff-01",
+          "title": "导数与微分应用小册",
+          "description": "整理“微分近似”“链式法则”“隐函数求导”各 2 道典型题，并写出解题步骤与易错点。",
+          "difficulty": 3,
+          "objectives": [
+            "巩固三种核心运算",
+            "形成可复用的解题套路"
+          ],
+          "tasks": [
+            { "step": 1, "description": "微分近似：选 2 题（如根号、三角函数值估计），写出 f、a、Δx 与近似式。" },
+            { "step": 2, "description": "链式法则：选 2 题多重复合，写出 u、v 层次与 dy/dx。" },
+            { "step": 3, "description": "隐函数求导：选 2 题，写出 F(x,y)=0 与求导后的式子及 dy/dx。" }
+          ],
+          "deliverables": ["典型题与解答", "易错点小结"],
+          "estimatedTime": 120
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T12:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 4,
+        "totalProjects": 1
+      }
+    },
+    {
+      "skillId": "H5P交互Skill",
+      "phase": "phase2",
+      "advancedTopics": [
+        {
+          "id": "topic-h5p-quiz-types",
+          "title": "H5P 题型与数学内容适配",
+          "description": "选择题、填空题、拖拽排序、交互式图像等 H5P 题型如何与极限、导数、积分、级数等知识点匹配，提升练习的交互性与反馈质量",
+          "formula": null,
+          "examples": [
+            "极限：选择题（极限值）、拖拽（ε-δ 配对）",
+            "导数：填空（求导结果）、图像点选（切线斜率）"
+          ],
+          "applications": ["在线练习", "即时反馈", "自适应学习"]
+        },
+        {
+          "id": "topic-h5p-feedback",
+          "title": "即时反馈与错因归类",
+          "description": "为 H5P 题目设计分层反馈：正误判断、提示层级、常见错误选项对应的错因说明，便于学生自我纠偏",
+          "formula": null,
+          "examples": [
+            "错选“极限存在则连续”时反馈：极限存在且等于函数值才连续",
+            "积分题：对常见换元错误给出针对性提示"
+          ],
+          "applications": ["形成性评价", "学习分析", "错题本"]
+        },
+        {
+          "id": "topic-h5p-accessibility",
+          "title": "可访问性与数学公式",
+          "description": "在 H5P 中正确使用 LaTeX 与 MathJax 显示公式，以及键盘导航、屏幕阅读器友好等无障碍设计要点",
+          "formula": null,
+          "examples": [
+            "题目与选项中的 LaTeX 渲染",
+            "图表与交互控件的 alt 与 aria 说明"
+          ],
+          "applications": ["无障碍", "多设备", "标准化题库"]
+        }
+      ],
+      "advancedExercises": [
+        {
+          "id": "exercise-h5p-001",
+          "difficulty": 2,
+          "question": "为“函数在一点连续”设计一道 H5P 选择题：题干与 4 个选项应分别强调什么概念？",
+          "hints": ["连续三要素：有定义、极限存在、极限等于函数值；选项可包含“只满足其一”的干扰项"],
+          "solution": {
+            "steps": [
+              "题干：给出 f(x) 在 x₀ 处的定义与极限信息",
+              "正确选项：三者都满足",
+              "干扰项1：极限存在但不等于 f(x₀)",
+              "干扰项2：f(x₀) 无定义",
+              "干扰项3：极限不存在"
+            ],
+            "keyPoints": ["连续定义", "三要素", "干扰项设计"]
+          },
+          "relatedNodes": ["node-continuity"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-h5p-002",
+          "difficulty": 3,
+          "question": "设计一道“求导数”的 H5P 填空题：应如何设置空白位置与反馈（正确/典型错误）？",
+          "hints": ["可设 1～2 个空；对常见错误如符号、链式法则漏乘，设置对应反馈"],
+          "solution": {
+            "steps": [
+              "题干：给出函数表达式，如 f(x)=e^{x^2}",
+              "空白：填写 f'(x) 的表达式",
+              "正确答案：2x·e^{x^2}",
+              "典型错误反馈：若填 e^{x^2}，提示“是否漏了内函数导数”；若填 2e^{x^2}，提示“链式法则中的内函数导数”"
+            ],
+            "keyPoints": ["填空题设计", "链式法则", "分层反馈"]
+          },
+          "relatedNodes": ["node-derivative-rules"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-h5p-003",
+          "difficulty": 3,
+          "question": "为“定积分几何意义”设计一个 H5P 拖拽题：将“面积”“正负”“对称区间”等概念与对应表述配对。",
+          "hints": ["左侧：概念或图形；右侧：文字描述；拖拽配对"],
+          "solution": {
+            "steps": [
+              "左侧项：∫ₐᵇ f(x)dx、∫ₐᵇ |f(x)|dx、奇函数在对称区间积分",
+              "右侧项：代数和、面积和、等于 0",
+              "学生拖拽完成配对",
+              "反馈：说明每对对应的几何或代数含义"
+            ],
+            "keyPoints": ["定积分几何意义", "配对题", "即时反馈"]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 25
+        }
+      ],
+      "projects": [
+        {
+          "id": "project-h5p-01",
+          "title": "一小节“极限与连续”H5P 题组",
+          "description": "为“极限与连续”小节设计 5 道 H5P 题：含 2 道选择、2 道填空、1 道拖拽或排序，并写出每题的反馈与知识点标注。",
+          "difficulty": 3,
+          "objectives": [
+            "掌握 H5P 多题型的组合使用",
+            "形成“题干-选项/空-反馈”的完整设计"
+          ],
+          "tasks": [
+            { "step": 1, "description": "2 道选择题：分别考查极限定义与连续定义，写出题干、选项与反馈。" },
+            { "step": 2, "description": "2 道填空题：分别考查求极限与判断连续，写出正确答案与 1～2 条典型错误反馈。" },
+            { "step": 3, "description": "1 道拖拽/排序题：如 ε-δ 顺序或连续三要素排序，写出配对/顺序与反馈。" }
+          ],
+          "deliverables": ["5 道题的题目与反馈文档", "知识点-题目对应表"],
+          "estimatedTime": 150
+        }
+      ],
+      "metadata": {
+        "generatedDate": "2026-02-23T12:00:00.000Z",
+        "version": "2.0",
+        "totalTopics": 3,
+        "totalExercises": 3,
+        "totalProjects": 1
+      }
+    }
+  ]
+}

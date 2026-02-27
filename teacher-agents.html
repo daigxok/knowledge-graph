@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👨‍🏫 教师侧 AI Agents | 高等数学知识图谱</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .ta-page {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #141e30 0%, #243b55 40%, #16222a 100%);
+            color: #ecf0f1;
+            padding: var(--spacing-lg, 24px);
+        }
+        .ta-header {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .ta-header__title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ta-header__title h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ta-header__title p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.9);
+        }
+        .ta-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .ta-back:hover {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .ta-meta {
+            max-width: 1200px;
+            margin: 0 auto 18px;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.85);
+        }
+        .ta-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+        .ta-card {
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.08), rgba(0,0,0,0.4));
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 16px 18px 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+            backdrop-filter: blur(6px);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+        .ta-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+            border-color: rgba(0, 242, 254, 0.45);
+        }
+        .ta-card__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: rgba(236, 240, 241, 0.9);
+            margin-bottom: 6px;
+        }
+        .ta-card__title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .ta-card__desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: rgba(236, 240, 241, 0.9);
+            margin-bottom: 8px;
+        }
+        .ta-card__hint {
+            font-size: 0.78rem;
+            color: rgba(236, 240, 241, 0.75);
+        }
+        .ta-cases {
+            max-width: 1200px;
+            margin: 28px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+        }
+        .ta-cases-title {
+            max-width: 1200px;
+            margin: 32px auto 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: rgba(236, 240, 241, 0.98);
+        }
+        .ta-cases-sub {
+            max-width: 1200px;
+            margin: 0 auto 6px;
+            font-size: 0.88rem;
+            color: rgba(236, 240, 241, 0.82);
+        }
+        .ta-card--case .ta-card__tag {
+            background: rgba(0, 242, 254, 0.12);
+            color: #00f2fe;
+        }
+        .ta-card__steps {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.86rem;
+            line-height: 1.55;
+            color: rgba(236, 240, 241, 0.9);
+        }
+        .ta-card__steps li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body class="ta-page">
+    <header class="ta-header">
+        <div class="ta-header__title">
+            <h1>👨‍🏫 教师侧 AI Agents</h1>
+            <p>围绕学域知识图谱，为教师提供诊断、设计、评价与反思的一体化智能支持。</p>
+        </div>
+        <a href="index.html" class="ta-back">← 返回学域知识图谱</a>
+    </header>
+    <p class="ta-meta">七大 Agents 与“变化与逼近、结构与累积、优化与决策、不确定性处理、真实问题建模”等学域对齐，为备课、上课与课后反思提供可视化、可操作的支持。</p>
+
+    <section class="ta-grid" aria-label="教师侧七大 AI Agents">
+        <article class="ta-card">
+            <div class="ta-card__tag">① 课前 · 学域视角</div>
+            <h2 class="ta-card__title">学域诊断 Agent</h2>
+            <p class="ta-card__desc">基于知识图谱与测验/练习数据生成学域雷达图，识别薄弱前置链与“孤立概念”，为备课提供“哪里出问题”的诊断视图。</p>
+            <p class="ta-card__hint">典型输出：学域热力图、断裂前置链列表、建议重点补救节点。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">② 课前 · 路径规划</div>
+            <h2 class="ta-card__title">学习路径规划 Agent</h2>
+            <p class="ta-card__desc">结合学域诊断结果与教学进度，自动规划“拔尖 / 标准 / 巩固”三类学习路径，输出可直接作为教案主线的节点序列与节奏建议。</p>
+            <p class="ta-card__hint">典型输出：按时间轴排序的节点路径、每节课主线与备选延伸。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">③ 课前·课中 · 设计冲突</div>
+            <h2 class="ta-card__title">认知冲突设计 Agent</h2>
+            <p class="ta-card__desc">围绕极限等核心概念，自动组合典型误解、反例与真实情境，生成可直接用于课堂的“认知冲突”教学方案与板书提纲。</p>
+            <p class="ta-card__hint">典型输出：误区类型库、情境脚本、反例集合与板书结构建议。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">④ 课中 · 实时教练</div>
+            <h2 class="ta-card__title">课堂同伴教练 Agent</h2>
+            <p class="ta-card__desc">课堂中实时汇总学生作答与提问，识别高频误区，提醒教师在合适节点停下来重构概念、追问关键问题。</p>
+            <p class="ta-card__hint">典型输出：误区雷达、需要追问的学生/小组建议、即时提示语。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">⑤ 课中 · 资源编排</div>
+            <h2 class="ta-card__title">资源与可视化编排 Agent</h2>
+            <p class="ta-card__desc">按本节学域路径自动编排 GGB 动态演示、Skills 内容与工程案例，形成可直接在课堂调用的可视化脚本与演示顺序。</p>
+            <p class="ta-card__hint">典型输出：本节 GGB 清单、Skills 触发点、案例展示顺序。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">⑥ 课中·课后 · 评价生成</div>
+            <h2 class="ta-card__title">评价与作业生成 Agent</h2>
+            <p class="ta-card__desc">根据所选学域与节点，自动生成课堂即时评价、小测与分层作业，并标注各题对应的学域维度（掌握、结构、应用、过程等）。</p>
+            <p class="ta-card__hint">典型输出：课堂小测、课后作业包、与学域评价结构对齐的题目标记。</p>
+        </article>
+
+        <article class="ta-card">
+            <div class="ta-card__tag">⑦ 课后 · 教学反思</div>
+            <h2 class="ta-card__title">学习分析与反思 Agent</h2>
+            <p class="ta-card__desc">课后汇总学域学习数据与课堂互动记录，生成教学反思报告：哪些冲突设计有效、高频误区有哪些，以及下一轮教学的改进建议。</p>
+            <p class="ta-card__hint">典型输出：学域教学成效报告、典型课堂片段、改进清单。</p>
+        </article>
+    </section>
+
+    <h2 class="ta-cases-title">使用案例：如何实际运用七大 Agents？</h2>
+    <p class="ta-cases-sub">下面给出三个典型场景，帮助教师从“一个想法”出发，快速调动合适的 Agents 组合。</p>
+
+    <section class="ta-cases" aria-label="教师侧 AI Agents 使用案例">
+        <article class="ta-card ta-card--case">
+            <div class="ta-card__tag">案例一 · 极限单元备课</div>
+            <h2 class="ta-card__title">从零搭建“极限认知冲突”课</h2>
+            <p class="ta-card__desc">教师准备讲授函数极限，希望一节课内完成“直觉 → 冲突 → 重构 → 迁移”。</p>
+            <ol class="ta-card__steps">
+                <li>调用 <strong>学域诊断 Agent</strong>：查看“变化与逼近”学域下极限簇的薄弱前置链。</li>
+                <li>调用 <strong>认知冲突设计 Agent</strong>：生成典型误解 + 反例，产出极限认知冲突教案（对应你现有的极限页面）。</li>
+                <li>调用 <strong>资源与可视化编排 Agent</strong>：自动插入极限 GGB 演示与相关 Skills 内容。</li>
+                <li>调用 <strong>评价与作业生成 Agent</strong>：生成与本节冲突点对应的小测与课后作业。</li>
+            </ol>
+        </article>
+
+        <article class="ta-card ta-card--case">
+            <div class="ta-card__tag">案例二 · 工程建模专题</div>
+            <h2 class="ta-card__title">设计“真实问题建模”跨学域项目</h2>
+            <p class="ta-card__desc">教师希望用一个工程案例（如自动驾驶轨迹规划或采样定理）串联多个学域知识。</p>
+            <ol class="ta-card__steps">
+                <li>调用 <strong>学习路径规划 Agent</strong>：在相关学域中生成跨学域节点路径（极限、导数、积分、概率等）。</li>
+                <li>调用 <strong>资源与可视化编排 Agent</strong>：为项目自动匹配 GGB 动态演示与真实问题建模案例页面。</li>
+                <li>调用 <strong>评价与作业生成 Agent</strong>：生成项目说明书、评分量规和阶段性检查点。</li>
+                <li>课后由 <strong>学习分析与反思 Agent</strong> 汇总项目表现，形成一次“学域整合教学”反思报告。</li>
+            </ol>
+        </article>
+
+        <article class="ta-card ta-card--case">
+            <div class="ta-card__tag">案例三 · 单元结束诊断与改进</div>
+            <h2 class="ta-card__title">基于学域报告调整下一轮教学</h2>
+            <p class="ta-card__desc">一个学期结束后，教师希望了解本学期高数课程在各学域上的真实效果。</p>
+            <ol class="ta-card__steps">
+                <li>调用 <strong>学域诊断 Agent</strong>：生成五大学域的最终雷达图与关键节点掌握情况。</li>
+                <li>调用 <strong>学习分析与反思 Agent</strong>：产出“哪些认知冲突设计有效、哪些前置链仍薄弱”的综合报告。</li>
+                <li>结合报告，由 <strong>学习路径规划 Agent</strong> 推荐下一轮教学的重构路径（压缩已掌握内容、强化薄弱链）。</li>
+            </ol>
+        </article>
+    </section>
+</body>
+</html>
+

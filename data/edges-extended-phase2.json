@@ -1,0 +1,753 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "phase": "Phase 2 - 内容深度扩展",
+    "totalItems": 92,
+    "createdDate": "2026-02-25",
+    "description": "Phase 2节点的边关系网络",
+    "author": "EdgeGenerator",
+    "edgeTypes": {
+      "prerequisite": 46,
+      "cross-domain": 2,
+      "application": 44
+    }
+  },
+  "data": [
+    {
+      "id": "edge-phase2-1",
+      "source": "node-domain-1-curvature-1772027700608-0",
+      "target": "node-domain-1-function-plotting-1772027700609-1",
+      "type": "prerequisite",
+      "strength": 0.8197289146288051,
+      "description": "曲率是函数作图的前置知识"
+    },
+    {
+      "id": "edge-phase2-2",
+      "source": "node-domain-1-function-plotting-1772027700609-1",
+      "target": "node-domain-1-inequality-proof-1772027700609-2",
+      "type": "prerequisite",
+      "strength": 0.8464069389397422,
+      "description": "函数作图是不等式证明的前置知识"
+    },
+    {
+      "id": "edge-phase2-3",
+      "source": "node-domain-1-inequality-proof-1772027700609-2",
+      "target": "node-domain-1-taylor-expansion-1772027700609-3",
+      "type": "prerequisite",
+      "strength": 0.740356994406428,
+      "description": "不等式证明是泰勒展开应用的前置知识"
+    },
+    {
+      "id": "edge-phase2-4",
+      "source": "node-domain-1-taylor-expansion-1772027700609-3",
+      "target": "node-domain-1-拐点分析-1772027700610-6",
+      "type": "prerequisite",
+      "strength": 0.7008246439007974,
+      "description": "泰勒展开应用是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-5",
+      "source": "node-domain-1-inequality-proof-1772027700609-2",
+      "target": "node-domain-1-极值问题-1772027700610-7",
+      "type": "prerequisite",
+      "strength": 0.7747469734180755,
+      "description": "不等式证明是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-6",
+      "source": "node-domain-1-inequality-proof-1772027700609-2",
+      "target": "node-domain-1-中值定理应用-1772027700610-9",
+      "type": "prerequisite",
+      "strength": 0.8951618995465568,
+      "description": "不等式证明是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-7",
+      "source": "node-domain-1-function-plotting-1772027700609-1",
+      "target": "node-domain-1-参数方程求导-1772027700610-12",
+      "type": "prerequisite",
+      "strength": 0.7814347319599613,
+      "description": "函数作图是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-8",
+      "source": "node-domain-1-curvature-1772027700608-0",
+      "target": "node-domain-1-极坐标求导-1772027700610-13",
+      "type": "prerequisite",
+      "strength": 0.8262476459791944,
+      "description": "曲率是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-9",
+      "source": "node-domain-1-inequality-proof-1772027700609-2",
+      "target": "node-domain-1-微分中值定理-1772027700610-14",
+      "type": "prerequisite",
+      "strength": 0.9967169962986612,
+      "description": "不等式证明是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-10",
+      "source": "node-domain-1-中值定理应用-1772027700610-9",
+      "target": "node-domain-1-洛必达法则-1772027700610-15",
+      "type": "prerequisite",
+      "strength": 0.8432363961586097,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-11",
+      "source": "node-domain-1-function-plotting-1772027700609-1",
+      "target": "node-domain-1-函数单调性-1772027700611-17",
+      "type": "prerequisite",
+      "strength": 0.8084597906679462,
+      "description": "函数作图是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-12",
+      "source": "node-domain-1-最值定理-1772027700610-8",
+      "target": "node-domain-1-函数单调性-1772027700611-17",
+      "type": "prerequisite",
+      "strength": 0.8423778575535457,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-13",
+      "source": "node-domain-1-function-plotting-1772027700609-1",
+      "target": "node-domain-1-曲线的性质-1772027700611-19",
+      "type": "prerequisite",
+      "strength": 0.8536696545256005,
+      "description": "函数作图是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-14",
+      "source": "node-domain-2-surface-integral-1772027700623-21",
+      "target": "node-domain-2-field-theory-1772027700623-22",
+      "type": "prerequisite",
+      "strength": 0.7348374265158728,
+      "description": "曲面积分是场论的前置知识"
+    },
+    {
+      "id": "edge-phase2-15",
+      "source": "node-domain-2-格林公式-1772027700623-23",
+      "target": "node-domain-2-高斯公式-1772027700623-24",
+      "type": "prerequisite",
+      "strength": 0.7742588400675363,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-16",
+      "source": "node-domain-2-field-theory-1772027700623-22",
+      "target": "node-domain-2-斯托克斯公式-1772027700623-25",
+      "type": "prerequisite",
+      "strength": 0.7930076500887627,
+      "description": "场论是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-17",
+      "source": "node-domain-2-surface-integral-1772027700623-21",
+      "target": "node-domain-2-旋度-1772027700623-27",
+      "type": "prerequisite",
+      "strength": 0.864214666108013,
+      "description": "曲面积分是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-18",
+      "source": "node-domain-2-旋度-1772027700623-27",
+      "target": "node-domain-2-保守场-1772027700623-29",
+      "type": "prerequisite",
+      "strength": 0.8262503131870255,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-19",
+      "source": "node-domain-2-line-integral-1772027700623-20",
+      "target": "node-domain-2-一阶微分方程-1772027700623-30",
+      "type": "prerequisite",
+      "strength": 0.7279346170223695,
+      "description": "曲线积分是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-20",
+      "source": "node-domain-2-格林公式-1772027700623-23",
+      "target": "node-domain-2-二阶微分方程-1772027700623-31",
+      "type": "prerequisite",
+      "strength": 0.8826185246635653,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-21",
+      "source": "node-domain-2-高斯公式-1772027700623-24",
+      "target": "node-domain-2-二阶微分方程-1772027700623-31",
+      "type": "prerequisite",
+      "strength": 0.7055503827817075,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-22",
+      "source": "node-domain-2-高斯公式-1772027700623-24",
+      "target": "node-domain-2-高阶微分方程-1772027700623-32",
+      "type": "prerequisite",
+      "strength": 0.8104938415490871,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-23",
+      "source": "node-domain-2-surface-integral-1772027700623-21",
+      "target": "node-domain-2-特征值问题-1772027700623-35",
+      "type": "prerequisite",
+      "strength": 0.7809377798180281,
+      "description": "曲面积分是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-24",
+      "source": "node-domain-2-散度定理-1772027700623-26",
+      "target": "node-domain-2-pde-1772027700623-36",
+      "type": "prerequisite",
+      "strength": 0.8171532947333913,
+      "description": "数学概念是偏微分方程的前置知识"
+    },
+    {
+      "id": "edge-phase2-25",
+      "source": "node-domain-2-高阶微分方程-1772027700623-32",
+      "target": "node-domain-2-波动方程-1772027700623-38",
+      "type": "prerequisite",
+      "strength": 0.8806587262932695,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-26",
+      "source": "node-domain-2-散度定理-1772027700623-26",
+      "target": "node-domain-2-拉普拉斯方程-1772027700623-39",
+      "type": "prerequisite",
+      "strength": 0.8257311541415906,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-27",
+      "source": "node-domain-2-旋度-1772027700623-27",
+      "target": "node-domain-2-拉普拉斯方程-1772027700623-39",
+      "type": "prerequisite",
+      "strength": 0.7215191084330267,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-28",
+      "source": "node-domain-2-边值问题-1772027700623-34",
+      "target": "node-domain-2-series-application-1772027700623-40",
+      "type": "prerequisite",
+      "strength": 0.757114449709558,
+      "description": "数学概念是级数应用的前置知识"
+    },
+    {
+      "id": "edge-phase2-29",
+      "source": "node-domain-2-一阶微分方程-1772027700623-30",
+      "target": "node-domain-2-幂级数应用-1772027700623-42",
+      "type": "prerequisite",
+      "strength": 0.7290828070565774,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-30",
+      "source": "node-domain-2-傅里叶级数-1772027700623-41",
+      "target": "node-domain-2-幂级数应用-1772027700623-42",
+      "type": "prerequisite",
+      "strength": 0.7138868303558882,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-31",
+      "source": "node-domain-3-vector-analysis-1772027700628-44",
+      "target": "node-domain-3-向量场-1772027700628-45",
+      "type": "prerequisite",
+      "strength": 0.9582412662332388,
+      "description": "向量分析是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-32",
+      "source": "node-domain-3-vector-analysis-1772027700628-44",
+      "target": "node-domain-3-散度-1772027700629-46",
+      "type": "prerequisite",
+      "strength": 0.9730801547860499,
+      "description": "向量分析是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-33",
+      "source": "node-domain-3-向量场-1772027700628-45",
+      "target": "node-domain-3-梯度-1772027700633-48",
+      "type": "prerequisite",
+      "strength": 0.8807542696638775,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-34",
+      "source": "node-domain-3-梯度-1772027700633-48",
+      "target": "node-domain-3-张量基础-1772027700633-49",
+      "type": "prerequisite",
+      "strength": 0.7269794014734536,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-35",
+      "source": "node-domain-3-vector-analysis-1772027700628-44",
+      "target": "node-domain-3-张量运算-1772027700634-50",
+      "type": "prerequisite",
+      "strength": 0.9989917500263212,
+      "description": "向量分析是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-36",
+      "source": "node-domain-3-calculus-of-variations-1772027700634-51",
+      "target": "node-domain-3-哈密顿系统-1772027700634-55",
+      "type": "prerequisite",
+      "strength": 0.7148976503569946,
+      "description": "变分法是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-37",
+      "source": "node-domain-3-calculus-of-variations-1772027700634-51",
+      "target": "node-domain-3-牛顿法优化-1772027700634-58",
+      "type": "prerequisite",
+      "strength": 0.7792818268059227,
+      "description": "变分法是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-38",
+      "source": "node-domain-3-旋度-1772027700629-47",
+      "target": "node-domain-3-拟牛顿法-1772027700634-59",
+      "type": "prerequisite",
+      "strength": 0.8722787028438643,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-39",
+      "source": "node-domain-3-泛函-1772027700634-52",
+      "target": "node-domain-3-共轭梯度法-1772027700634-60",
+      "type": "prerequisite",
+      "strength": 0.8680021674647562,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-40",
+      "source": "node-domain-3-泛函-1772027700634-52",
+      "target": "node-domain-3-共轭梯度法-1772027700634-60",
+      "type": "prerequisite",
+      "strength": 0.7799901482549546,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-41",
+      "source": "node-domain-4-random-variable-1772027700639-63",
+      "target": "node-domain-4-概率分布-1772027700640-64",
+      "type": "prerequisite",
+      "strength": 0.7204085910041298,
+      "description": "随机变量是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-42",
+      "source": "node-domain-4-概率分布-1772027700640-64",
+      "target": "node-domain-4-正态分布-1772027700640-65",
+      "type": "prerequisite",
+      "strength": 0.8123111624352478,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-43",
+      "source": "node-domain-4-正态分布-1772027700640-65",
+      "target": "node-domain-4-泊松分布-1772027700640-66",
+      "type": "prerequisite",
+      "strength": 0.8182368849857378,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-44",
+      "source": "node-domain-4-正态分布-1772027700640-65",
+      "target": "node-domain-4-参数估计-1772027700641-68",
+      "type": "prerequisite",
+      "strength": 0.9331151076510618,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-45",
+      "source": "node-domain-4-泊松分布-1772027700640-66",
+      "target": "node-domain-4-stochastic-process-1772027700641-70",
+      "type": "prerequisite",
+      "strength": 0.9560044843806548,
+      "description": "数学概念是随机过程的前置知识"
+    },
+    {
+      "id": "edge-phase2-46",
+      "source": "node-domain-4-参数估计-1772027700641-68",
+      "target": "node-domain-4-马尔可夫链-1772027700641-71",
+      "type": "prerequisite",
+      "strength": 0.7443715697933688,
+      "description": "数学概念是数学概念的前置知识"
+    },
+    {
+      "id": "edge-phase2-47",
+      "source": "node-domain-4-stochastic-process-1772027700641-70",
+      "target": "node-domain-2-pde-1772027700623-36",
+      "type": "cross-domain",
+      "strength": 0.7572552961461154,
+      "description": "随机过程与偏微分方程有跨域关联"
+    },
+    {
+      "id": "edge-phase2-48",
+      "source": "node-domain-5-ai-application-1772027700644-72",
+      "target": "node-domain-3-numerical-optimization-1772027700634-56",
+      "type": "cross-domain",
+      "strength": 0.7755764858707324,
+      "description": "人工智能应用与数值优化有跨域关联"
+    },
+    {
+      "id": "edge-phase2-49",
+      "source": "node-domain-1-curvature-1772027700608-0",
+      "target": "application-node-domain-1-curvature-1772027700608-0-0",
+      "type": "application",
+      "strength": 0.8287797222311641,
+      "description": "曲率应用于土木工程"
+    },
+    {
+      "id": "edge-phase2-50",
+      "source": "node-domain-1-渐近线分析-1772027700609-4",
+      "target": "application-node-domain-1-渐近线分析-1772027700609-4-0",
+      "type": "application",
+      "strength": 0.9526276903403178,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-51",
+      "source": "node-domain-1-渐近线分析-1772027700609-4",
+      "target": "application-node-domain-1-渐近线分析-1772027700609-4-1",
+      "type": "application",
+      "strength": 0.8825917379837325,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-52",
+      "source": "node-domain-1-凹凸性判断-1772027700610-5",
+      "target": "application-node-domain-1-凹凸性判断-1772027700610-5-0",
+      "type": "application",
+      "strength": 0.8501669496094562,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-53",
+      "source": "node-domain-1-凹凸性判断-1772027700610-5",
+      "target": "application-node-domain-1-凹凸性判断-1772027700610-5-1",
+      "type": "application",
+      "strength": 0.8027278234259829,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-54",
+      "source": "node-domain-1-极值问题-1772027700610-7",
+      "target": "application-node-domain-1-极值问题-1772027700610-7-0",
+      "type": "application",
+      "strength": 0.8834593984236979,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-55",
+      "source": "node-domain-1-极值问题-1772027700610-7",
+      "target": "application-node-domain-1-极值问题-1772027700610-7-1",
+      "type": "application",
+      "strength": 0.9422946891489021,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-56",
+      "source": "node-domain-1-中值定理应用-1772027700610-9",
+      "target": "application-node-domain-1-中值定理应用-1772027700610-9-0",
+      "type": "application",
+      "strength": 0.9338826962700026,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-57",
+      "source": "node-domain-1-参数方程求导-1772027700610-12",
+      "target": "application-node-domain-1-参数方程求导-1772027700610-12-0",
+      "type": "application",
+      "strength": 0.9297199128154952,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-58",
+      "source": "node-domain-1-极坐标求导-1772027700610-13",
+      "target": "application-node-domain-1-极坐标求导-1772027700610-13-0",
+      "type": "application",
+      "strength": 0.8151357056529311,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-59",
+      "source": "node-domain-1-极坐标求导-1772027700610-13",
+      "target": "application-node-domain-1-极坐标求导-1772027700610-13-1",
+      "type": "application",
+      "strength": 0.8587115866014355,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-60",
+      "source": "node-domain-1-洛必达法则-1772027700610-15",
+      "target": "application-node-domain-1-洛必达法则-1772027700610-15-0",
+      "type": "application",
+      "strength": 0.8977717336198329,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-61",
+      "source": "node-domain-1-函数单调性-1772027700611-17",
+      "target": "application-node-domain-1-函数单调性-1772027700611-17-0",
+      "type": "application",
+      "strength": 0.9519927762421165,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-62",
+      "source": "node-domain-1-曲线的性质-1772027700611-19",
+      "target": "application-node-domain-1-曲线的性质-1772027700611-19-0",
+      "type": "application",
+      "strength": 0.9854206908386226,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-63",
+      "source": "node-domain-2-field-theory-1772027700623-22",
+      "target": "application-node-domain-2-field-theory-1772027700623-22-0",
+      "type": "application",
+      "strength": 0.8125114194348299,
+      "description": "场论应用于物理学"
+    },
+    {
+      "id": "edge-phase2-64",
+      "source": "node-domain-2-格林公式-1772027700623-23",
+      "target": "application-node-domain-2-格林公式-1772027700623-23-0",
+      "type": "application",
+      "strength": 0.8241167594043373,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-65",
+      "source": "node-domain-2-热传导方程-1772027700623-37",
+      "target": "application-node-domain-2-热传导方程-1772027700623-37-0",
+      "type": "application",
+      "strength": 0.9257404092179599,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-66",
+      "source": "node-domain-2-热传导方程-1772027700623-37",
+      "target": "application-node-domain-2-热传导方程-1772027700623-37-1",
+      "type": "application",
+      "strength": 0.875508896078228,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-67",
+      "source": "node-domain-2-波动方程-1772027700623-38",
+      "target": "application-node-domain-2-波动方程-1772027700623-38-0",
+      "type": "application",
+      "strength": 0.9362111938406016,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-68",
+      "source": "node-domain-2-波动方程-1772027700623-38",
+      "target": "application-node-domain-2-波动方程-1772027700623-38-1",
+      "type": "application",
+      "strength": 0.864366430041735,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-69",
+      "source": "node-domain-2-傅里叶级数-1772027700623-41",
+      "target": "application-node-domain-2-傅里叶级数-1772027700623-41-0",
+      "type": "application",
+      "strength": 0.8879572104644935,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-70",
+      "source": "node-domain-3-向量场-1772027700628-45",
+      "target": "application-node-domain-3-向量场-1772027700628-45-0",
+      "type": "application",
+      "strength": 0.8014868483802118,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-71",
+      "source": "node-domain-3-向量场-1772027700628-45",
+      "target": "application-node-domain-3-向量场-1772027700628-45-1",
+      "type": "application",
+      "strength": 0.9258068321165679,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-72",
+      "source": "node-domain-3-散度-1772027700629-46",
+      "target": "application-node-domain-3-散度-1772027700629-46-0",
+      "type": "application",
+      "strength": 0.9291146565677482,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-73",
+      "source": "node-domain-3-散度-1772027700629-46",
+      "target": "application-node-domain-3-散度-1772027700629-46-1",
+      "type": "application",
+      "strength": 0.8598042452706415,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-74",
+      "source": "node-domain-3-张量运算-1772027700634-50",
+      "target": "application-node-domain-3-张量运算-1772027700634-50-0",
+      "type": "application",
+      "strength": 0.9910529427483108,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-75",
+      "source": "node-domain-3-张量运算-1772027700634-50",
+      "target": "application-node-domain-3-张量运算-1772027700634-50-1",
+      "type": "application",
+      "strength": 0.9549402306689079,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-76",
+      "source": "node-domain-3-calculus-of-variations-1772027700634-51",
+      "target": "application-node-domain-3-calculus-of-variations-1772027700634-51-0",
+      "type": "application",
+      "strength": 0.9670593333855387,
+      "description": "变分法应用于物理学"
+    },
+    {
+      "id": "edge-phase2-77",
+      "source": "node-domain-3-泛函-1772027700634-52",
+      "target": "application-node-domain-3-泛函-1772027700634-52-0",
+      "type": "application",
+      "strength": 0.9323729139328372,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-78",
+      "source": "node-domain-3-optimal-control-1772027700634-54",
+      "target": "application-node-domain-3-optimal-control-1772027700634-54-0",
+      "type": "application",
+      "strength": 0.8998472154878676,
+      "description": "最优控制应用于航空航天"
+    },
+    {
+      "id": "edge-phase2-79",
+      "source": "node-domain-3-optimal-control-1772027700634-54",
+      "target": "application-node-domain-3-optimal-control-1772027700634-54-1",
+      "type": "application",
+      "strength": 0.811285099155235,
+      "description": "最优控制应用于机器人"
+    },
+    {
+      "id": "edge-phase2-80",
+      "source": "node-domain-3-哈密顿系统-1772027700634-55",
+      "target": "application-node-domain-3-哈密顿系统-1772027700634-55-0",
+      "type": "application",
+      "strength": 0.8130469163236207,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-81",
+      "source": "node-domain-3-牛顿法优化-1772027700634-58",
+      "target": "application-node-domain-3-牛顿法优化-1772027700634-58-0",
+      "type": "application",
+      "strength": 0.8728165938088457,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-82",
+      "source": "node-domain-3-共轭梯度法-1772027700634-60",
+      "target": "application-node-domain-3-共轭梯度法-1772027700634-60-0",
+      "type": "application",
+      "strength": 0.9339113031922093,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-83",
+      "source": "node-domain-3-约束优化-1772027700634-61",
+      "target": "application-node-domain-3-约束优化-1772027700634-61-0",
+      "type": "application",
+      "strength": 0.990035706281576,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-84",
+      "source": "node-domain-4-正态分布-1772027700640-65",
+      "target": "application-node-domain-4-正态分布-1772027700640-65-0",
+      "type": "application",
+      "strength": 0.8444416006730002,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-85",
+      "source": "node-domain-4-正态分布-1772027700640-65",
+      "target": "application-node-domain-4-正态分布-1772027700640-65-1",
+      "type": "application",
+      "strength": 0.9136517453925923,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-86",
+      "source": "node-domain-4-参数估计-1772027700641-68",
+      "target": "application-node-domain-4-参数估计-1772027700641-68-0",
+      "type": "application",
+      "strength": 0.9516998857846555,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-87",
+      "source": "node-domain-4-参数估计-1772027700641-68",
+      "target": "application-node-domain-4-参数估计-1772027700641-68-1",
+      "type": "application",
+      "strength": 0.8997868951949446,
+      "description": "数学概念应用于工程"
+    },
+    {
+      "id": "edge-phase2-88",
+      "source": "node-domain-4-假设检验-1772027700641-69",
+      "target": "application-node-domain-4-假设检验-1772027700641-69-0",
+      "type": "application",
+      "strength": 0.8377310760089803,
+      "description": "数学概念应用于科学研究"
+    },
+    {
+      "id": "edge-phase2-89",
+      "source": "node-domain-4-stochastic-process-1772027700641-70",
+      "target": "application-node-domain-4-stochastic-process-1772027700641-70-0",
+      "type": "application",
+      "strength": 0.9711913982662389,
+      "description": "随机过程应用于金融"
+    },
+    {
+      "id": "edge-phase2-90",
+      "source": "node-domain-4-stochastic-process-1772027700641-70",
+      "target": "application-node-domain-4-stochastic-process-1772027700641-70-1",
+      "type": "application",
+      "strength": 0.9410600228712245,
+      "description": "随机过程应用于通信"
+    },
+    {
+      "id": "edge-phase2-91",
+      "source": "node-domain-5-financial-engineering-1772027700644-73",
+      "target": "application-node-domain-5-financial-engineering-1772027700644-73-0",
+      "type": "application",
+      "strength": 0.8337302101991962,
+      "description": "金融工程应用应用于金融"
+    },
+    {
+      "id": "edge-phase2-92",
+      "source": "node-domain-5-financial-engineering-1772027700644-73",
+      "target": "application-node-domain-5-financial-engineering-1772027700644-73-1",
+      "type": "application",
+      "strength": 0.9678720916224005,
+      "description": "金融工程应用应用于风险管理"
+    }
+  ]
+}

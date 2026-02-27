@@ -1,0 +1,344 @@
+/**
+ * Onboarding Guide Styles
+ * 
+ * Provides styles for the interactive onboarding system including:
+ * - Overlay backdrop
+ * - Tooltip positioning and animations
+ * - Element highlighting
+ * - Responsive design
+ * - Dark mode support
+ */
+
+/* ===== Overlay ===== */
+.onboarding-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9998;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Tooltip ===== */
+.onboarding-tooltip {
+  position: fixed;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  max-width: 400px;
+  min-width: 320px;
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .onboarding-tooltip {
+    background: #2d2d2d;
+    color: #e0e0e0;
+  }
+}
+
+/* ===== Tooltip Header ===== */
+.onboarding-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-tooltip-header {
+    border-bottom-color: #444;
+  }
+}
+
+.onboarding-tooltip-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-tooltip-title {
+    color: #e0e0e0;
+  }
+}
+
+.onboarding-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.onboarding-close-btn:hover {
+  background: #f5f5f5;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-close-btn:hover {
+    background: #444;
+    color: #ccc;
+  }
+}
+
+/* ===== Tooltip Content ===== */
+.onboarding-tooltip-content {
+  padding: 20px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-tooltip-content {
+    color: #ccc;
+  }
+}
+
+/* ===== Tooltip Footer ===== */
+.onboarding-tooltip-footer {
+  padding: 16px 24px 20px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-tooltip-footer {
+    border-top-color: #444;
+  }
+}
+
+.onboarding-progress {
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+.onboarding-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===== Buttons ===== */
+.onboarding-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.onboarding-btn-skip {
+  background: transparent;
+  color: #999;
+}
+
+.onboarding-btn-skip:hover {
+  background: #f5f5f5;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-btn-skip:hover {
+    background: #444;
+    color: #ccc;
+  }
+}
+
+.onboarding-btn-prev {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.onboarding-btn-prev:hover {
+  background: #e0e0e0;
+}
+
+.onboarding-btn-prev:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-btn-prev {
+    background: #444;
+    color: #ccc;
+  }
+  
+  .onboarding-btn-prev:hover {
+    background: #555;
+  }
+}
+
+.onboarding-btn-next {
+  background: #4CAF50;
+  color: white;
+}
+
+.onboarding-btn-next:hover {
+  background: #45a049;
+}
+
+@media (prefers-color-scheme: dark) {
+  .onboarding-btn-next {
+    background: #388E3C;
+  }
+  
+  .onboarding-btn-next:hover {
+    background: #2E7D32;
+  }
+}
+
+/* ===== Element Highlighting ===== */
+.onboarding-highlight {
+  position: relative;
+  z-index: 9997;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.5),
+              0 0 0 8px rgba(76, 175, 80, 0.3),
+              0 0 20px rgba(76, 175, 80, 0.4);
+  border-radius: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.5),
+                0 0 0 8px rgba(76, 175, 80, 0.3),
+                0 0 20px rgba(76, 175, 80, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0.6),
+                0 0 0 12px rgba(76, 175, 80, 0.4),
+                0 0 30px rgba(76, 175, 80, 0.5);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .onboarding-tooltip {
+    max-width: calc(100% - 40px);
+    min-width: 280px;
+  }
+  
+  .onboarding-tooltip-header {
+    padding: 16px 20px 12px;
+  }
+  
+  .onboarding-tooltip-title {
+    font-size: 16px;
+  }
+  
+  .onboarding-tooltip-content {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+  
+  .onboarding-tooltip-footer {
+    padding: 12px 20px 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .onboarding-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .onboarding-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .onboarding-tooltip {
+    min-width: 260px;
+  }
+  
+  .onboarding-tooltip-header {
+    padding: 12px 16px 10px;
+  }
+  
+  .onboarding-tooltip-title {
+    font-size: 15px;
+  }
+  
+  .onboarding-tooltip-content {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .onboarding-tooltip-footer {
+    padding: 10px 16px 12px;
+  }
+  
+  .onboarding-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Accessibility ===== */
+.onboarding-btn:focus {
+  outline: 2px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+.onboarding-close-btn:focus {
+  outline: 2px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-overlay,
+  .onboarding-tooltip,
+  .onboarding-highlight {
+    animation: none;
+  }
+  
+  .onboarding-btn,
+  .onboarding-close-btn {
+    transition: none;
+  }
+}

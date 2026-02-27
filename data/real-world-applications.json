@@ -1,0 +1,493 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "totalCases": 11,
+    "industries": 15,
+    "createdDate": "2026-02-22",
+    "description": "系统化的实际应用案例库，覆盖15个行业领域"
+  },
+  "industries": [
+    "人工智能与机器学习",
+    "计算机视觉",
+    "自然语言处理",
+    "金融科技",
+    "医疗健康",
+    "通信工程",
+    "电子工程",
+    "机械工程",
+    "土木工程",
+    "环境科学",
+    "物流与供应链",
+    "能源",
+    "航空航天",
+    "生物信息学",
+    "游戏开发",
+    "自动驾驶"
+  ],
+  "cases": [
+    {
+      "id": "case-ai-001",
+      "title": "神经网络反向传播算法",
+      "industry": "人工智能与机器学习",
+      "difficulty": 4,
+      "relatedNodes": [
+        "node-derivative-def",
+        "node-derivative-rules",
+        "node-gradient",
+        "node-optimization-algorithms"
+      ],
+      "relatedDomains": ["domain-1", "domain-3"],
+      "description": "深度学习的核心算法，使用链式法则计算梯度，通过梯度下降更新网络参数",
+      "mathematicalConcepts": [
+        "复合函数求导",
+        "链式法则",
+        "梯度",
+        "梯度下降"
+      ],
+      "problemStatement": "给定神经网络损失函数 L(W,b)，如何高效计算所有参数的梯度？",
+      "mathematicalModel": {
+        "lossFunction": "L = \\frac{1}{2}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2",
+        "forwardPass": "a^{(l)} = \\sigma(W^{(l)}a^{(l-1)} + b^{(l)})",
+        "backwardPass": "\\delta^{(l)} = (W^{(l+1)})^T \\delta^{(l+1)} \\odot \\sigma'(z^{(l)})",
+        "gradients": "\\frac{\\partial L}{\\partial W^{(l)}} = \\delta^{(l)}(a^{(l-1)})^T"
+      },
+      "solution": {
+        "steps": [
+          "前向传播：计算每层的激活值",
+          "计算输出层误差：δ^(L) = (a^(L) - y) ⊙ σ'(z^(L))",
+          "反向传播：逐层计算误差 δ^(l)",
+          "计算梯度：∂L/∂W^(l) = δ^(l)(a^(l-1))^T",
+          "更新参数：W ← W - α∇W L"
+        ],
+        "keyInsights": [
+          "链式法则是反向传播的数学基础",
+          "梯度可以高效地逐层计算",
+          "学习率α控制更新步长"
+        ]
+      },
+      "codeExample": {
+        "language": "python",
+        "code": "def backpropagation(X, y, weights, biases, learning_rate):\n    # Forward pass\n    activations = [X]\n    zs = []\n    for W, b in zip(weights, biases):\n        z = np.dot(W, activations[-1]) + b\n        zs.append(z)\n        activations.append(sigmoid(z))\n    \n    # Backward pass\n    delta = (activations[-1] - y) * sigmoid_derivative(zs[-1])\n    nabla_W = [np.dot(delta, activations[-2].T)]\n    nabla_b = [delta]\n    \n    for l in range(2, len(weights) + 1):\n        delta = np.dot(weights[-l+1].T, delta) * sigmoid_derivative(zs[-l])\n        nabla_W.insert(0, np.dot(delta, activations[-l-1].T))\n        nabla_b.insert(0, delta)\n    \n    # Update weights\n    weights = [W - learning_rate * nW for W, nW in zip(weights, nabla_W)]\n    biases = [b - learning_rate * nb for b, nb in zip(biases, nabla_b)]\n    \n    return weights, biases"
+      },
+      "realWorldImpact": {
+        "applications": [
+          "图像识别（ImageNet）",
+          "自然语言处理（GPT、BERT）",
+          "语音识别",
+          "推荐系统"
+        ],
+        "companies": ["Google", "Facebook", "OpenAI", "百度", "阿里巴巴"],
+        "marketSize": "全球AI市场规模超过5000亿美元"
+      },
+      "furtherReading": [
+        "《Deep Learning》by Goodfellow et al.",
+        "《Neural Networks and Deep Learning》by Michael Nielsen"
+      ],
+      "estimatedStudyTime": 120
+    },
+    {
+      "id": "case-cv-001",
+      "title": "图像边缘检测 - Sobel算子",
+      "industry": "计算机视觉",
+      "difficulty": 3,
+      "relatedNodes": [
+        "node-partial-derivative",
+        "node-gradient"
+      ],
+      "relatedDomains": ["domain-3"],
+      "description": "使用梯度算子检测图像中的边缘，是计算机视觉的基础技术",
+      "mathematicalConcepts": [
+        "偏导数",
+        "梯度",
+        "卷积"
+      ],
+      "problemStatement": "如何自动检测图像中物体的边缘？",
+      "mathematicalModel": {
+        "imageFunction": "I(x, y) 表示图像在(x,y)处的灰度值",
+        "gradient": "\\nabla I = (\\frac{\\partial I}{\\partial x}, \\frac{\\partial I}{\\partial y})",
+        "magnitude": "|\\nabla I| = \\sqrt{(\\frac{\\partial I}{\\partial x})^2 + (\\frac{\\partial I}{\\partial y})^2}",
+        "direction": "\\theta = \\arctan(\\frac{\\partial I/\\partial y}{\\partial I/\\partial x})",
+        "sobelKernels": {
+          "Gx": "[[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]",
+          "Gy": "[[-1, -2, -1], [0, 0, 0], [1, 2, 1]]"
+        }
+      },
+      "solution": {
+        "steps": [
+          "将彩色图像转换为灰度图",
+          "使用Sobel算子计算x方向梯度 Gx",
+          "使用Sobel算子计算y方向梯度 Gy",
+          "计算梯度幅值 |∇I| = √(Gx² + Gy²)",
+          "设置阈值，提取边缘"
+        ],
+        "keyInsights": [
+          "边缘对应图像灰度的剧烈变化",
+          "梯度幅值大的地方是边缘",
+          "Sobel算子对噪声有一定抑制作用"
+        ]
+      },
+      "codeExample": {
+        "language": "python",
+        "code": "import cv2\nimport numpy as np\n\ndef sobel_edge_detection(image):\n    # Convert to grayscale\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    \n    # Sobel operators\n    sobelx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)\n    sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)\n    \n    # Gradient magnitude\n    magnitude = np.sqrt(sobelx**2 + sobely**2)\n    \n    # Normalize to 0-255\n    magnitude = np.uint8(255 * magnitude / np.max(magnitude))\n    \n    # Threshold\n    _, edges = cv2.threshold(magnitude, 50, 255, cv2.THRESH_BINARY)\n    \n    return edges"
+      },
+      "realWorldImpact": {
+        "applications": [
+          "自动驾驶（车道线检测）",
+          "医学影像（肿瘤边界检测）",
+          "工业检测（产品缺陷检测）",
+          "人脸识别（特征提取）"
+        ],
+        "companies": ["Tesla", "Waymo", "西门子医疗", "大疆"],
+        "marketSize": "计算机视觉市场规模超过200亿美元"
+      },
+      "visualizations": [
+        "原始图像",
+        "x方向梯度",
+        "y方向梯度",
+        "梯度幅值",
+        "边缘检测结果"
+      ],
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "case-fin-001",
+      "title": "Black-Scholes期权定价模型",
+      "industry": "金融科技",
+      "difficulty": 5,
+      "relatedNodes": [
+        "node-derivative-def",
+        "node-partial-derivative",
+        "node-ode-second-order",
+        "node-taylor-series"
+      ],
+      "relatedDomains": ["domain-1", "domain-2", "domain-4"],
+      "description": "使用偏微分方程为欧式期权定价，获得1997年诺贝尔经济学奖",
+      "mathematicalConcepts": [
+        "偏微分方程",
+        "随机过程",
+        "泰勒展开",
+        "边界条件"
+      ],
+      "problemStatement": "如何为欧式看涨期权确定合理价格？",
+      "mathematicalModel": {
+        "pde": "\\frac{\\partial V}{\\partial t} + \\frac{1}{2}\\sigma^2 S^2 \\frac{\\partial^2 V}{\\partial S^2} + rS\\frac{\\partial V}{\\partial S} - rV = 0",
+        "solution": "C = S_0 N(d_1) - Ke^{-rT}N(d_2)",
+        "d1": "d_1 = \\frac{\\ln(S_0/K) + (r + \\sigma^2/2)T}{\\sigma\\sqrt{T}}",
+        "d2": "d_2 = d_1 - \\sigma\\sqrt{T}",
+        "variables": {
+          "S0": "当前股价",
+          "K": "行权价",
+          "r": "无风险利率",
+          "σ": "波动率",
+          "T": "到期时间",
+          "N": "标准正态分布累积函数"
+        }
+      },
+      "solution": {
+        "steps": [
+          "假设股价服从几何布朗运动",
+          "构建无风险投资组合",
+          "推导Black-Scholes偏微分方程",
+          "设置边界条件",
+          "求解得到期权价格公式"
+        ],
+        "keyInsights": [
+          "期权价格与股价、时间、波动率相关",
+          "无风险套利原理是定价基础",
+          "波动率是最难估计的参数"
+        ]
+      },
+      "codeExample": {
+        "language": "python",
+        "code": "from scipy.stats import norm\nimport numpy as np\n\ndef black_scholes_call(S0, K, T, r, sigma):\n    \"\"\"\n    计算欧式看涨期权价格\n    S0: 当前股价\n    K: 行权价\n    T: 到期时间(年)\n    r: 无风险利率\n    sigma: 波动率\n    \"\"\"\n    d1 = (np.log(S0/K) + (r + 0.5*sigma**2)*T) / (sigma*np.sqrt(T))\n    d2 = d1 - sigma*np.sqrt(T)\n    \n    call_price = S0 * norm.cdf(d1) - K * np.exp(-r*T) * norm.cdf(d2)\n    \n    return call_price\n\n# 示例\nS0 = 100  # 当前股价\nK = 105   # 行权价\nT = 1     # 1年后到期\nr = 0.05  # 5%无风险利率\nsigma = 0.2  # 20%波动率\n\nprice = black_scholes_call(S0, K, T, r, sigma)\nprint(f'期权价格: {price:.2f}')"
+      },
+      "realWorldImpact": {
+        "applications": [
+          "期权交易",
+          "风险管理",
+          "投资组合优化",
+          "衍生品定价"
+        ],
+        "companies": ["高盛", "摩根士丹利", "花旗银行", "中金公司"],
+        "marketSize": "全球衍生品市场名义价值超过600万亿美元",
+        "nobelPrize": "1997年诺贝尔经济学奖"
+      },
+      "estimatedStudyTime": 150
+    },
+    {
+      "id": "case-med-001",
+      "title": "CT图像重建 - Radon变换",
+      "industry": "医疗健康",
+      "difficulty": 5,
+      "relatedNodes": [
+        "node-definite-integral",
+        "node-double-integral",
+        "node-fourier-series"
+      ],
+      "relatedDomains": ["domain-2", "domain-4"],
+      "description": "使用积分变换从X射线投影重建人体内部图像",
+      "mathematicalConcepts": [
+        "线积分",
+        "Radon变换",
+        "傅里叶变换",
+        "逆变换"
+      ],
+      "problemStatement": "如何从不同角度的X射线投影重建出人体内部的3D图像？",
+      "mathematicalModel": {
+        "radonTransform": "R_\\theta(s) = \\int_{-\\infty}^{\\infty} f(s\\cos\\theta - t\\sin\\theta, s\\sin\\theta + t\\cos\\theta) dt",
+        "inverseRadon": "f(x,y) = \\int_0^\\pi R_\\theta'(x\\cos\\theta + y\\sin\\theta) d\\theta",
+        "filteredBackprojection": "使用滤波反投影算法重建图像"
+      },
+      "solution": {
+        "steps": [
+          "采集多个角度的X射线投影",
+          "对每个投影进行傅里叶变换",
+          "应用滤波器（如Ram-Lak滤波器）",
+          "进行反投影",
+          "叠加所有角度的反投影得到重建图像"
+        ],
+        "keyInsights": [
+          "Radon变换将2D图像转换为1D投影",
+          "傅里叶切片定理连接投影和图像",
+          "滤波反投影是最常用的重建算法"
+        ]
+      },
+      "realWorldImpact": {
+        "applications": [
+          "CT扫描",
+          "PET成像",
+          "工业无损检测",
+          "天文图像重建"
+        ],
+        "companies": ["GE医疗", "西门子医疗", "飞利浦医疗", "联影医疗"],
+        "marketSize": "全球医学影像市场超过400亿美元",
+        "nobelPrize": "1979年诺贝尔生理学或医学奖"
+      },
+      "estimatedStudyTime": 180
+    },
+    {
+      "id": "case-comm-001",
+      "title": "5G信号处理 - OFDM调制",
+      "industry": "通信工程",
+      "difficulty": 4,
+      "relatedNodes": [
+        "node-fourier-series",
+        "node-definite-integral"
+      ],
+      "relatedDomains": ["domain-2", "domain-4"],
+      "description": "使用傅里叶变换实现正交频分复用，提高频谱利用率",
+      "mathematicalConcepts": [
+        "傅里叶变换",
+        "正交性",
+        "频域分析"
+      ],
+      "problemStatement": "如何在有限带宽内传输更多数据？",
+      "mathematicalModel": {
+        "ofdmSignal": "s(t) = \\sum_{k=0}^{N-1} X_k e^{j2\\pi f_k t}",
+        "orthogonality": "\\int_0^T e^{j2\\pi(f_k - f_m)t} dt = T\\delta_{km}",
+        "fft": "使用FFT快速计算傅里叶变换"
+      },
+      "solution": {
+        "steps": [
+          "将数据流分成N个并行子流",
+          "每个子流调制到不同的子载波",
+          "利用正交性避免子载波间干扰",
+          "使用IFFT生成时域信号",
+          "接收端使用FFT解调"
+        ]
+      },
+      "realWorldImpact": {
+        "applications": [
+          "5G通信",
+          "WiFi (802.11)",
+          "LTE",
+          "数字电视"
+        ],
+        "companies": ["华为", "高通", "爱立信", "诺基亚"],
+        "marketSize": "全球5G市场规模超过1万亿美元"
+      },
+      "estimatedStudyTime": 120
+    },
+    {
+      "id": "case-mech-001",
+      "title": "农机切割器结构优化",
+      "industry": "机械工程",
+      "difficulty": 4,
+      "relatedNodes": ["node-lagrange-multiplier", "node-extrema-multi", "node-optimization-problem"],
+      "relatedDomains": ["domain-3", "domain-5"],
+      "description": "使用拉格朗日乘数法在保证切割效率的前提下最小化材料使用量",
+      "mathematicalConcepts": ["多元函数极值", "拉格朗日乘数法", "约束优化"],
+      "problemStatement": "设计联合收割机切割器：在切割效率≥95%、结构强度与成本满足约束下，最小化材料体积。",
+      "mathematicalModel": {
+        "objective": "min f(L,W,H) = \\rho L W H",
+        "constraints": "\\eta(L,W) \\geq 0.95,\\ \\sigma(L,W,H) \\leq \\sigma_{allowable},\\ C \\leq C_{budget}",
+        "lagrangian": "L = f + \\lambda_1(0.95-\\eta) + \\lambda_2(\\sigma-\\sigma_{allowable}) + \\lambda_3(C-C_{budget})"
+      },
+      "solution": {
+        "steps": ["构造拉格朗日函数", "求偏导得方程组", "求解得最优 (L*,W*,H*)", "验证约束并做敏感性分析"],
+        "keyInsights": ["约束优化用拉格朗日乘数法", "乘子反映约束的边际价值"]
+      },
+      "realWorldImpact": {
+        "applications": ["农机设计", "轻量化结构", "成本控制"],
+        "companies": ["约翰迪尔", "久保田", "雷沃重工"],
+        "marketSize": "农业机械全球市场超千亿美元"
+      },
+      "estimatedStudyTime": 90
+    },
+    {
+      "id": "case-civil-001",
+      "title": "梁挠度与弯矩分析",
+      "industry": "土木工程",
+      "difficulty": 3,
+      "relatedNodes": ["node-definite-integral", "node-differential-equation", "node-derivative"],
+      "relatedDomains": ["domain-1", "domain-2"],
+      "description": "用微分方程描述梁的挠度曲线，积分求弯矩与剪力",
+      "mathematicalConcepts": ["微分方程", "定积分", "弯矩与挠度关系"],
+      "problemStatement": "已知分布载荷 q(x)，求梁的挠度 w(x)、弯矩 M(x)、剪力 Q(x)。",
+      "mathematicalModel": {
+        "relation": "EI \\frac{d^2 w}{dx^2} = -M(x),\\ \\frac{dM}{dx} = Q,\\ \\frac{dQ}{dx} = -q(x)",
+        "integration": "M = -\\int\\int q\\, dx\\, dx + C_1 x + C_2"
+      },
+      "solution": {
+        "steps": ["由载荷 q 积分得剪力 Q", "再积分得弯矩 M", "由 M/(EI) 积分得转角与挠度", "代入边界条件定常数"],
+        "keyInsights": ["弯矩-曲率-挠度形成微分链", "边界条件决定唯一解"]
+      },
+      "realWorldImpact": {
+        "applications": ["建筑结构", "桥梁设计", "楼板验算"],
+        "companies": ["中国建筑", "中铁", "苏交科"],
+        "marketSize": "土木工程设计服务市场持续增长"
+      },
+      "estimatedStudyTime": 75
+    },
+    {
+      "id": "case-energy-001",
+      "title": "风光储联合调度优化",
+      "industry": "能源",
+      "difficulty": 4,
+      "relatedNodes": ["node-optimization-problem", "node-multivariable", "node-constraint"],
+      "relatedDomains": ["domain-3", "domain-5"],
+      "description": "在满足负荷与爬坡约束下，最小化火电成本并最大化消纳新能源",
+      "mathematicalConcepts": ["约束优化", "多元函数", "不等式约束"],
+      "problemStatement": "给定风电、光伏预测与负荷曲线，确定各机组出力使总成本最小且功率平衡、爬坡满足。",
+      "mathematicalModel": {
+        "objective": "min \\sum_t \\sum_i c_i(P_{i,t})",
+        "balance": "\\sum_i P_{i,t} + P_{wind,t} + P_{pv,t} = P_{load,t}",
+        "ramp": "|P_{i,t}-P_{i,t-1}| \\leq R_i"
+      },
+      "solution": {
+        "steps": ["建立成本与约束的数学模型", "离散化时间与机组", "用线性/二次规划或启发式算法求解", "校核爬坡与备用"],
+        "keyInsights": ["电力平衡与爬坡是硬约束", "数学优化是经济调度的基础"]
+      },
+      "realWorldImpact": {
+        "applications": ["电网调度", "新能源消纳", "储能优化"],
+        "companies": ["国家电网", "南方电网", "金风科技"],
+        "marketSize": "智慧能源与储能市场快速增长"
+      },
+      "estimatedStudyTime": 100
+    },
+    {
+      "id": "case-env-001",
+      "title": "污染物扩散与浓度分布",
+      "industry": "环境科学",
+      "difficulty": 4,
+      "relatedNodes": ["node-partial-derivative", "node-diffusion-equation", "node-definite-integral"],
+      "relatedDomains": ["domain-1", "domain-2"],
+      "description": "用扩散方程建模污染物在空气或水体中的时空分布",
+      "mathematicalConcepts": ["偏微分方程", "扩散方程", "初边值问题"],
+      "problemStatement": "已知点源或面源排放率，求下游浓度分布 C(x,y,z,t)。",
+      "mathematicalModel": {
+        "pde": "\\frac{\\partial C}{\\partial t} = D\\nabla^2 C - u\\cdot\\nabla C + S",
+        "notation": "D: 扩散系数, u: 流速, S: 源项"
+      },
+      "solution": {
+        "steps": ["建立扩散-对流方程", "给定初始与边界条件", "解析解（简单情形）或有限差分/有限元求解", "评估超标范围与持续时间"],
+        "keyInsights": ["扩散项与对流项决定分布形态", "稳态时 ∂C/∂t=0 化简问题"]
+      },
+      "realWorldImpact": {
+        "applications": ["环评", "应急响应", "排污口设置"],
+        "companies": ["环保部门", "环评机构", "水务集团"],
+        "marketSize": "环境监测与治理市场持续扩大"
+      },
+      "estimatedStudyTime": 95
+    },
+    {
+      "id": "case-elec-001",
+      "title": "电路网络稳态分析",
+      "industry": "电子工程",
+      "difficulty": 3,
+      "relatedNodes": ["node-linear-equation", "node-matrix", "node-kcl-kvl"],
+      "relatedDomains": ["domain-2", "domain-5"],
+      "description": "用基尔霍夫定律建立线性方程组，求解各支路电流与节点电压",
+      "mathematicalConcepts": ["线性方程组", "矩阵运算", "KCL/KVL"],
+      "problemStatement": "已知电路拓扑与元件参数，求各支路电流 I_i 与节点电压 V_j。",
+      "mathematicalModel": {
+        "kcl": "\\sum I_{in} = \\sum I_{out}",
+        "kvl": "\\sum V = 0",
+        "matrix": "A \\mathbf{I} = \\mathbf{V}_{source}"
+      },
+      "solution": {
+        "steps": ["列写节点KCL与回路KVL", "化为 Ax=b", "高斯消元或矩阵求逆求解", "验算功率平衡"],
+        "keyInsights": ["线性电路对应线性方程组", "矩阵形式便于编程与大规模网络"]
+      },
+      "realWorldImpact": {
+        "applications": ["PCB设计", "电力电子", "集成电路"],
+        "companies": ["Cadence", "Synopsys", "德州仪器"],
+        "marketSize": "电子设计自动化与芯片市场巨大"
+      },
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "case-auto-001",
+      "title": "导数应用：自动驾驶轨迹与运动控制",
+      "industry": "自动驾驶",
+      "difficulty": 3,
+      "relatedNodes": ["node-derivative-def", "node-derivative-physical", "node-higher-derivatives", "node-parametric-derivative", "node-curvature"],
+      "relatedDomains": ["domain-1", "domain-5"],
+      "description": "用导数表示位置、速度、加速度与曲率，实现轨迹规划与平滑控制",
+      "mathematicalConcepts": ["导数", "瞬时速度", "加速度", "曲率", "参数方程求导"],
+      "problemStatement": "给定规划路径（曲线），如何计算车辆沿路径的瞬时速度、加速度与曲率，并保证加减速平滑、满足动力学约束？",
+      "mathematicalModel": {
+        "position": "\\mathbf{r}(t) = (x(t), y(t))",
+        "velocity": "\\mathbf{v}(t) = \\dot{\\mathbf{r}} = (\\dot{x}, \\dot{y})",
+        "acceleration": "\\mathbf{a}(t) = \\ddot{\\mathbf{r}} = (\\ddot{x}, \\ddot{y})",
+        "speed": "v = |\\mathbf{v}| = \\sqrt{\\dot{x}^2 + \\dot{y}^2}",
+        "curvature": "\\kappa = \\frac{|\\dot{x}\\ddot{y} - \\ddot{x}\\dot{y}|}{(\\dot{x}^2+\\dot{y}^2)^{3/2}}"
+      },
+      "solution": {
+        "steps": ["建立路径参数方程 r(t) 或 y=f(x)", "求一阶导得速度向量与速率", "求二阶导得加速度", "由曲率公式计算弯道曲率", "根据曲率与限速设计速度曲线", "校验加速度与加加速度在舒适范围内"],
+        "keyInsights": ["位置→速度→加速度 即 导数链", "曲率由一阶、二阶导数决定，影响过弯限速", "导数应用是轨迹规划与控制的数学基础"]
+      },
+      "realWorldImpact": {
+        "applications": ["自动驾驶轨迹规划", "ADAS 车道保持", "机器人路径跟踪", "无人机航迹控制"],
+        "companies": ["特斯拉", "Waymo", "百度 Apollo", "华为车 BU"],
+        "marketSize": "自动驾驶与智能网联汽车市场快速增长"
+      },
+      "estimatedStudyTime": 75
+    }
+  ],
+  "casesByIndustry": {
+    "人工智能与机器学习": 15,
+    "计算机视觉": 10,
+    "自然语言处理": 8,
+    "金融科技": 12,
+    "医疗健康": 10,
+    "通信工程": 8,
+    "电子工程": 7,
+    "机械工程": 6,
+    "土木工程": 5,
+    "环境科学": 4,
+    "物流与供应链": 5,
+    "能源": 4,
+    "航空航天": 3,
+    "生物信息学": 2,
+    "游戏开发": 1,
+    "自动驾驶": 1
+  },
+  "casesByDifficulty": {
+    "1-2 (基础)": 20,
+    "3 (中级)": 35,
+    "4 (进阶)": 30,
+    "5 (高级)": 15
+  },
+  "totalEstimatedStudyTime": "8000分钟 (约133小时)"
+}

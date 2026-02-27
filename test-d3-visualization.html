@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3VisualizationEngine Test</title>
+    
+    <!-- D3.js v7.8.5 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .test-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #5568d3;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        #graphCanvas {
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            background: #fafafa;
+            position: relative;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .test-result {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        
+        .test-result.pass {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .test-result.fail {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+        
+        .test-result.info {
+            background: #e1f5fe;
+            color: #01579b;
+        }
+        
+        /* D3 Graph Styles */
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+        
+        .link.prerequisite {
+            stroke: #666;
+        }
+        
+        .link.cross-domain {
+            stroke: #ff9800;
+            stroke-dasharray: 5,5;
+        }
+        
+        .link.faded {
+            stroke-opacity: 0.1;
+        }
+        
+        .node circle {
+            stroke: #fff;
+            stroke-width: 2px;
+            cursor: pointer;
+        }
+        
+        .node text {
+            font-size: 12px;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .node.highlighted circle {
+            stroke: #ff5722;
+            stroke-width: 4px;
+        }
+        
+        .node.faded {
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 D3VisualizationEngine Test Suite</h1>
+        
+        <div class="test-info">
+            <strong>Task 5.1:</strong> Create D3VisualizationEngine class with basic rendering<br>
+            <strong>Requirements:</strong> 4.1 (Interactive force-directed graph), 4.8 (Edge strength visualization)<br>
+            <strong>Test Coverage:</strong> Constructor, setupForceSimulation(), render(), node/edge rendering with D3 data binding
+        </div>
+        
+        <div class="controls">
+            <button onclick="testRender()">🎨 Test Render</button>
+            <button onclick="testZoomIn()">🔍 Zoom In</button>
+            <button onclick="testZoomOut()">🔍 Zoom Out</button>
+            <button onclick="testResetView()">⟲ Reset View</button>
+            <button onclick="testFitToView()">📐 Fit to View</button>
+            <button onclick="testHighlight()">✨ Test Highlight</button>
+            <button onclick="testFade()">👻 Test Fade</button>
+            <button onclick="testClearHighlights()">🧹 Clear Highlights</button>
+            <button onclick="runAllTests()">▶️ Run All Tests</button>
+        </div>
+        
+        <div id="graphCanvas"></div>
+        
+        <div class="test-results" id="testResults">
+            <h3>Test Results:</h3>
+            <div id="resultsContent">Click "Run All Tests" to start testing...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { D3VisualizationEngine } from './js/modules/D3VisualizationEngine.js';
+        
+        // Test data
+        const testNodes = [
+            {
+                id: "node-1",
+                name: "极限",
+                domains: ["domain-1"],
+                importance: 5
+            },
+            {
+                id: "node-2",
+                name: "导数",
+                domains: ["domain-1"],
+                importance: 5
+            },
+            {
+                id: "node-3",
+                name: "积分",
+                domains: ["domain-2"],
+                importance: 5
+            },
+            {
+                id: "node-4",
+                name: "梯度",
+                domains: ["domain-3"],
+                importance: 4
+            },
+            {
+                id: "node-5",
+                name: "级数",
+                domains: ["domain-4"],
+                importance: 4
+            }
+        ];
+        
+        const testEdges = [
+            {
+                id: "edge-1",
+                source: "node-1",
+                target: "node-2",
+                type: "prerequisite",
+                strength: 1.0
+            },
+            {
+                id: "edge-2",
+                source: "node-1",
+                target: "node-3",
+                type: "prerequisite",
+                strength: 0.8
+            },
+            {
+                id: "edge-3",
+                source: "node-2",
+                target: "node-4",
+                type: "prerequisite",
+                strength: 0.9
+            },
+            {
+                id: "edge-4",
+                source: "node-3",
+                target: "node-4",
+                type: "cross-domain",
+                strength: 0.5
+            },
+            {
+                id: "edge-5",
+                source: "node-1",
+                target: "node-5",
+                type: "prerequisite",
+                strength: 0.7
+            }
+        ];
+        
+        // Initialize visualization engine
+        let vizEngine;
+        const results = [];
+        
+        function logResult(message, status = 'info') {
+            results.push({ message, status });
+            updateResultsDisplay();
+        }
+        
+        function updateResultsDisplay() {
+            const content = document.getElementById('resultsContent');
+            content.innerHTML = results.map(r => 
+                `<div class="test-result ${r.status}">${r.message}</div>`
+            ).join('');
+        }
+        
+        // Test 1: Constructor and Initialization
+        function testConstructor() {
+            try {
+                const container = document.getElementById('graphCanvas');
+                container.innerHTML = ''; // Clear previous content
+                
+                vizEngine = new D3VisualizationEngine('#graphCanvas', 1200, 600);
+                
+                // Check if SVG was created
+                const svg = d3.select('#graphCanvas svg');
+                if (svg.empty()) {
+                    logResult('❌ FAIL: SVG element not created', 'fail');
+                    return false;
+                }
+                
+                // Check SVG dimensions
+                const width = svg.attr('width');
+                const height = svg.attr('height');
+                if (width !== '1200' || height !== '600') {
+                    logResult(`❌ FAIL: SVG dimensions incorrect (${width}x${height})`, 'fail');
+                    return false;
+                }
+                
+                // Check if force simulation was created
+                if (!vizEngine.simulation) {
+                    logResult('❌ FAIL: Force simulation not initialized', 'fail');
+                    return false;
+                }
+                
+                logResult('✅ PASS: Constructor and initialization successful', 'pass');
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Constructor error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 2: Force Simulation Setup
+        function testForceSimulation() {
+            try {
+                if (!vizEngine || !vizEngine.simulation) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                const sim = vizEngine.simulation;
+                
+                // Check if required forces are configured
+                const forces = ['charge', 'link', 'center', 'collision'];
+                const missingForces = forces.filter(f => !sim.force(f));
+                
+                if (missingForces.length > 0) {
+                    logResult(`❌ FAIL: Missing forces: ${missingForces.join(', ')}`, 'fail');
+                    return false;
+                }
+                
+                // Check force parameters
+                const charge = sim.force('charge');
+                const link = sim.force('link');
+                
+                if (charge.strength()() !== -300) {
+                    logResult(`❌ FAIL: Charge strength incorrect (${charge.strength()()})`, 'fail');
+                    return false;
+                }
+                
+                if (link.distance()() !== 100) {
+                    logResult(`❌ FAIL: Link distance incorrect (${link.distance()()})`, 'fail');
+                    return false;
+                }
+                
+                logResult('✅ PASS: Force simulation configured correctly', 'pass');
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Force simulation test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 3: Render Method
+        function testRender() {
+            try {
+                if (!vizEngine) {
+                    testConstructor();
+                }
+                
+                vizEngine.render(testNodes, testEdges);
+                
+                // Wait for D3 to render
+                setTimeout(() => {
+                    // Check if nodes were rendered
+                    const nodeElements = d3.select('#graphCanvas').selectAll('.node');
+                    if (nodeElements.size() !== testNodes.length) {
+                        logResult(`❌ FAIL: Expected ${testNodes.length} nodes, found ${nodeElements.size()}`, 'fail');
+                        return false;
+                    }
+                    
+                    // Check if edges were rendered
+                    const linkElements = d3.select('#graphCanvas').selectAll('.link');
+                    if (linkElements.size() !== testEdges.length) {
+                        logResult(`❌ FAIL: Expected ${testEdges.length} edges, found ${linkElements.size()}`, 'fail');
+                        return false;
+                    }
+                    
+                    // Check if nodes have circles
+                    const circles = d3.select('#graphCanvas').selectAll('.node circle');
+                    if (circles.size() !== testNodes.length) {
+                        logResult(`❌ FAIL: Not all nodes have circles`, 'fail');
+                        return false;
+                    }
+                    
+                    // Check if nodes have labels
+                    const labels = d3.select('#graphCanvas').selectAll('.node text');
+                    if (labels.size() !== testNodes.length) {
+                        logResult(`❌ FAIL: Not all nodes have labels`, 'fail');
+                        return false;
+                    }
+                    
+                    logResult('✅ PASS: Render method works correctly', 'pass');
+                    logResult(`ℹ️ INFO: Rendered ${testNodes.length} nodes and ${testEdges.length} edges`, 'info');
+                }, 100);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Render test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 4: Edge Strength Visualization
+        function testEdgeStrength() {
+            try {
+                if (!vizEngine) {
+                    testConstructor();
+                    vizEngine.render(testNodes, testEdges);
+                }
+                
+                setTimeout(() => {
+                    const links = d3.select('#graphCanvas').selectAll('.link');
+                    
+                    // Check if stroke-width varies based on strength
+                    let hasVariableWidth = false;
+                    const widths = [];
+                    
+                    links.each(function(d) {
+                        const width = parseFloat(d3.select(this).attr('stroke-width'));
+                        widths.push(width);
+                    });
+                    
+                    // Check if widths are different (indicating strength-based rendering)
+                    const uniqueWidths = [...new Set(widths)];
+                    if (uniqueWidths.length > 1) {
+                        hasVariableWidth = true;
+                    }
+                    
+                    if (!hasVariableWidth) {
+                        logResult('⚠️ WARNING: All edges have same width (strength not visualized)', 'fail');
+                        return false;
+                    }
+                    
+                    logResult('✅ PASS: Edge strength affects visual thickness', 'pass');
+                    logResult(`ℹ️ INFO: Found ${uniqueWidths.length} different edge widths`, 'info');
+                }, 200);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Edge strength test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 5: Node Colors by Domain
+        function testNodeColors() {
+            try {
+                setTimeout(() => {
+                    const nodes = d3.select('#graphCanvas').selectAll('.node circle');
+                    const colors = new Set();
+                    
+                    nodes.each(function() {
+                        const color = d3.select(this).attr('fill');
+                        colors.add(color);
+                    });
+                    
+                    if (colors.size < 2) {
+                        logResult('⚠️ WARNING: All nodes have same color', 'fail');
+                        return false;
+                    }
+                    
+                    logResult('✅ PASS: Nodes have domain-based colors', 'pass');
+                    logResult(`ℹ️ INFO: Found ${colors.size} different node colors`, 'info');
+                }, 300);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Node color test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 6: Zoom Controls
+        function testZoomIn() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                const beforeZoom = vizEngine.currentZoom;
+                vizEngine.zoomIn();
+                
+                setTimeout(() => {
+                    const afterZoom = vizEngine.currentZoom;
+                    if (afterZoom > beforeZoom) {
+                        logResult(`✅ PASS: Zoom in works (${beforeZoom.toFixed(2)} → ${afterZoom.toFixed(2)})`, 'pass');
+                    } else {
+                        logResult('❌ FAIL: Zoom in did not increase zoom level', 'fail');
+                    }
+                }, 400);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Zoom in test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        function testZoomOut() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                const beforeZoom = vizEngine.currentZoom;
+                vizEngine.zoomOut();
+                
+                setTimeout(() => {
+                    const afterZoom = vizEngine.currentZoom;
+                    if (afterZoom < beforeZoom) {
+                        logResult(`✅ PASS: Zoom out works (${beforeZoom.toFixed(2)} → ${afterZoom.toFixed(2)})`, 'pass');
+                    } else {
+                        logResult('❌ FAIL: Zoom out did not decrease zoom level', 'fail');
+                    }
+                }, 400);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Zoom out test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        function testResetView() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                vizEngine.resetView();
+                
+                setTimeout(() => {
+                    const zoom = vizEngine.currentZoom;
+                    if (Math.abs(zoom - 1.0) < 0.01) {
+                        logResult(`✅ PASS: Reset view works (zoom = ${zoom.toFixed(2)})`, 'pass');
+                    } else {
+                        logResult(`❌ FAIL: Reset view did not reset zoom to 1.0 (current: ${zoom.toFixed(2)})`, 'fail');
+                    }
+                }, 600);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Reset view test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        function testFitToView() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                vizEngine.fitToView();
+                logResult('✅ PASS: Fit to view executed', 'pass');
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Fit to view test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Test 7: Highlighting
+        function testHighlight() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                vizEngine.highlightNodes(['node-1', 'node-2']);
+                
+                setTimeout(() => {
+                    const highlighted = d3.select('#graphCanvas').selectAll('.node.highlighted');
+                    if (highlighted.size() === 2) {
+                        logResult('✅ PASS: Node highlighting works', 'pass');
+                    } else {
+                        logResult(`❌ FAIL: Expected 2 highlighted nodes, found ${highlighted.size()}`, 'fail');
+                    }
+                }, 100);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Highlight test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        function testFade() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                vizEngine.fadeNonRelated('node-1');
+                
+                setTimeout(() => {
+                    const faded = d3.select('#graphCanvas').selectAll('.node.faded');
+                    if (faded.size() > 0) {
+                        logResult(`✅ PASS: Fade non-related works (${faded.size()} nodes faded)`, 'pass');
+                    } else {
+                        logResult('❌ FAIL: No nodes were faded', 'fail');
+                    }
+                }, 100);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Fade test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        function testClearHighlights() {
+            try {
+                if (!vizEngine) {
+                    logResult('❌ FAIL: Visualization engine not initialized', 'fail');
+                    return false;
+                }
+                
+                vizEngine.clearHighlights();
+                
+                setTimeout(() => {
+                    const highlighted = d3.select('#graphCanvas').selectAll('.node.highlighted');
+                    const faded = d3.select('#graphCanvas').selectAll('.node.faded');
+                    
+                    if (highlighted.size() === 0 && faded.size() === 0) {
+                        logResult('✅ PASS: Clear highlights works', 'pass');
+                    } else {
+                        logResult('❌ FAIL: Highlights not fully cleared', 'fail');
+                    }
+                }, 100);
+                
+                return true;
+            } catch (error) {
+                logResult(`❌ FAIL: Clear highlights test error - ${error.message}`, 'fail');
+                return false;
+            }
+        }
+        
+        // Run all tests
+        function runAllTests() {
+            results.length = 0; // Clear previous results
+            logResult('🚀 Starting D3VisualizationEngine Test Suite...', 'info');
+            logResult('', 'info');
+            
+            // Test 1: Constructor
+            logResult('📋 Test 1: Constructor and Initialization', 'info');
+            testConstructor();
+            
+            // Test 2: Force Simulation
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 2: Force Simulation Setup', 'info');
+                testForceSimulation();
+            }, 200);
+            
+            // Test 3: Render
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 3: Render Method', 'info');
+                testRender();
+            }, 400);
+            
+            // Test 4: Edge Strength
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 4: Edge Strength Visualization', 'info');
+                testEdgeStrength();
+            }, 800);
+            
+            // Test 5: Node Colors
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 5: Node Colors by Domain', 'info');
+                testNodeColors();
+            }, 1200);
+            
+            // Test 6: Zoom Controls
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 6: Zoom Controls', 'info');
+                testZoomIn();
+            }, 1600);
+            
+            setTimeout(() => {
+                testZoomOut();
+            }, 2200);
+            
+            setTimeout(() => {
+                testResetView();
+            }, 2800);
+            
+            setTimeout(() => {
+                testFitToView();
+            }, 3600);
+            
+            // Test 7: Highlighting
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('📋 Test 7: Highlighting and Fading', 'info');
+                testHighlight();
+            }, 4400);
+            
+            setTimeout(() => {
+                testFade();
+            }, 4600);
+            
+            setTimeout(() => {
+                testClearHighlights();
+            }, 4800);
+            
+            // Summary
+            setTimeout(() => {
+                logResult('', 'info');
+                logResult('✨ Test Suite Complete!', 'info');
+                const passed = results.filter(r => r.status === 'pass').length;
+                const failed = results.filter(r => r.status === 'fail').length;
+                logResult(`📊 Results: ${passed} passed, ${failed} failed`, 'info');
+            }, 5000);
+        }
+        
+        // Make functions available globally
+        window.testRender = testRender;
+        window.testZoomIn = testZoomIn;
+        window.testZoomOut = testZoomOut;
+        window.testResetView = testResetView;
+        window.testFitToView = testFitToView;
+        window.testHighlight = testHighlight;
+        window.testFade = testFade;
+        window.testClearHighlights = testClearHighlights;
+        window.runAllTests = runAllTests;
+        
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 500);
+        });
+    </script>
+</body>
+</html>

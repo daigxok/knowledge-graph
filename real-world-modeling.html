@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 真实问题建模 - 实践案例 | 高等数学知识图谱</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .rwm-page {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #ecf0f1;
+            padding: var(--spacing-lg, 24px);
+        }
+        .rwm-header {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-xl, 32px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .rwm-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .rwm-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 242, 254, 0.15);
+            color: #00f2fe;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .rwm-back:hover {
+            background: rgba(0, 242, 254, 0.25);
+            border-color: rgba(0, 242, 254, 0.5);
+        }
+        .rwm-meta {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            font-size: 0.95rem;
+            color: rgba(236, 240, 241, 0.85);
+        }
+        .rwm-filters {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+        .rwm-filters label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .rwm-filters select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: #ecf0f1;
+            font-size: 0.9rem;
+            min-width: 160px;
+        }
+        .rwm-filters .count {
+            margin-left: auto;
+            color: rgba(0, 242, 254, 0.9);
+            font-weight: 500;
+        }
+        .rwm-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .rwm-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .rwm-card:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.08);
+        }
+        .rwm-card__head {
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            cursor: pointer;
+        }
+        .rwm-card__title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .rwm-card__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: rgba(236, 240, 241, 0.75);
+        }
+        .rwm-card__meta span {
+            padding: 2px 8px;
+            background: rgba(0, 242, 254, 0.12);
+            border-radius: 4px;
+            color: #00f2fe;
+        }
+        .rwm-card__difficulty {
+            flex-shrink: 0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .rwm-card__difficulty.d1 { background: rgba(76, 175, 80, 0.25); color: #81c784; }
+        .rwm-card__difficulty.d2 { background: rgba(76, 175, 80, 0.2); color: #a5d6a7; }
+        .rwm-card__difficulty.d3 { background: rgba(255, 193, 7, 0.25); color: #ffca28; }
+        .rwm-card__difficulty.d4 { background: rgba(255, 152, 0, 0.25); color: #ffb74d; }
+        .rwm-card__difficulty.d5 { background: rgba(244, 67, 54, 0.25); color: #e57373; }
+        .rwm-card__body {
+            padding: 0 24px 20px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .rwm-card__body.collapsed { display: none; }
+        .rwm-card__desc {
+            color: rgba(236, 240, 241, 0.9);
+            margin-bottom: 16px;
+        }
+        .rwm-card__section {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .rwm-card__section h4 {
+            font-size: 0.85rem;
+            color: #00f2fe;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .rwm-card__section ul, .rwm-card__section ol {
+            margin: 0;
+            padding-left: 20px;
+            color: rgba(236, 240, 241, 0.88);
+        }
+        .rwm-card__section li { margin-bottom: 4px; }
+        .rwm-card__section pre, .rwm-card__section code {
+            background: rgba(0,0,0,0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        .rwm-card__section pre { padding: 10px; white-space: pre-wrap; margin: 8px 0; }
+        .rwm-card__toggle {
+            padding: 0 24px 16px;
+            font-size: 0.85rem;
+            color: #00f2fe;
+            cursor: pointer;
+            user-select: none;
+        }
+        .rwm-card__toggle:hover { text-decoration: underline; }
+        .rwm-loading, .rwm-error {
+            text-align: center;
+            padding: 48px 24px;
+            color: rgba(236, 240, 241, 0.8);
+        }
+        .rwm-error { color: #e57373; }
+    </style>
+</head>
+<body class="rwm-page">
+    <header class="rwm-header">
+        <h1>🌐 真实问题建模学习内容</h1>
+        <a href="index.html" class="rwm-back">← 返回知识图谱</a>
+    </header>
+    <p class="rwm-meta">学域五：从数学到工程场景的建模与求解。以下实践案例覆盖多行业，包含问题描述、数学模型、求解步骤与学习建议。</p>
+
+    <div class="rwm-filters">
+        <label>行业：<select id="filterIndustry"><option value="">全部</option></select></label>
+        <label>难度：<select id="filterDifficulty">
+            <option value="">全部</option>
+            <option value="1">1 基础</option>
+            <option value="2">2</option>
+            <option value="3">3 中级</option>
+            <option value="4">4 进阶</option>
+            <option value="5">5 高级</option>
+        </select></label>
+        <span class="count" id="caseCount">共 0 个实践案例</span>
+    </div>
+
+    <div id="caseList" class="rwm-list">
+        <div class="rwm-loading" id="loading">加载实践案例中...</div>
+    </div>
+
+    <script>
+        'use strict';
+
+        const filterIndustry = document.getElementById('filterIndustry');
+        const filterDifficulty = document.getElementById('filterDifficulty');
+        const caseCount = document.getElementById('caseCount');
+        const caseList = document.getElementById('caseList');
+        const loading = document.getElementById('loading');
+
+        let allCases = [];
+        let industries = [];
+
+        function renderCase(c) {
+            const steps = c.solution && c.solution.steps ? c.solution.steps : [];
+            const keyInsights = c.solution && c.solution.keyInsights ? c.solution.keyInsights : [];
+            const modelKeys = c.mathematicalModel && typeof c.mathematicalModel === 'object' ? Object.entries(c.mathematicalModel) : [];
+            const impact = c.realWorldImpact || {};
+            const apps = impact.applications || [];
+            const companies = impact.companies || [];
+            const difficultyClass = 'd' + (c.difficulty || 3);
+
+            let modelHtml = '';
+            if (modelKeys.length) {
+                modelHtml = '<div class="rwm-card__section"><h4>数学模型</h4>';
+                modelKeys.forEach(([k, v]) => {
+                    if (Array.isArray(v)) return;
+                    const str = typeof v === 'string' ? v : JSON.stringify(v);
+                    modelHtml += '<p><code>' + escapeHtml(str) + '</code></p>';
+                });
+                modelHtml += '</div>';
+            }
+
+            let problemHtml = c.problemStatement ? '<div class="rwm-card__section"><h4>问题描述</h4><p>' + escapeHtml(c.problemStatement) + '</p></div>' : '';
+
+            let solutionHtml = '';
+            if (steps.length || keyInsights.length) {
+                solutionHtml = '<div class="rwm-card__section"><h4>求解步骤与要点</h4>';
+                if (steps.length) solutionHtml += '<ol><li>' + steps.map(s => escapeHtml(s)).join('</li><li>') + '</li></ol>';
+                if (keyInsights.length) solutionHtml += '<p><strong>要点：</strong></p><ul><li>' + keyInsights.map(s => escapeHtml(s)).join('</li><li>') + '</li></ul>';
+                solutionHtml += '</div>';
+            }
+
+            let impactHtml = '';
+            if (apps.length || companies.length || impact.marketSize) {
+                impactHtml = '<div class="rwm-card__section"><h4>应用与影响</h4><ul>';
+                if (apps.length) impactHtml += '<li>应用：' + escapeHtml(apps.join('、')) + '</li>';
+                if (companies.length) impactHtml += '<li>代表企业：' + escapeHtml(companies.join('、')) + '</li>';
+                if (impact.marketSize) impactHtml += '<li>' + escapeHtml(impact.marketSize) + '</li>';
+                impactHtml += '</ul></div>';
+            }
+
+            const concepts = (c.mathematicalConcepts || []).join('、');
+            const conceptsHtml = concepts ? '<p><strong>涉及概念：</strong>' + escapeHtml(concepts) + '</p>' : '';
+            const studyTime = c.estimatedStudyTime ? '<p>建议学习时间：约 ' + c.estimatedStudyTime + ' 分钟</p>' : '';
+
+            const card = document.createElement('div');
+            card.className = 'rwm-card';
+            card.dataset.id = c.id;
+            card.innerHTML =
+                '<div class="rwm-card__head" role="button" tabindex="0" aria-expanded="false">' +
+                '  <div><div class="rwm-card__title">' + escapeHtml(c.title) + '</div>' +
+                '  <div class="rwm-card__meta">' +
+                '    <span>' + escapeHtml(c.industry) + '</span>' +
+                (concepts ? '<span>' + escapeHtml(concepts.slice(0, 30)) + (concepts.length > 30 ? '…' : '') + '</span>' : '') +
+                '  </div></div>' +
+                '  <span class="rwm-card__difficulty ' + difficultyClass + '">难度 ' + (c.difficulty || '-') + '</span>' +
+                '</div>' +
+                '<div class="rwm-card__body collapsed">' +
+                '  <div class="rwm-card__desc">' + escapeHtml(c.description || '') + '</div>' +
+                conceptsHtml + studyTime +
+                problemHtml + modelHtml + solutionHtml + impactHtml +
+                '</div>' +
+                '<div class="rwm-card__toggle" aria-hidden="true">展开详情 ▼</div>';
+
+            const head = card.querySelector('.rwm-card__head');
+            const body = card.querySelector('.rwm-card__body');
+            const toggle = card.querySelector('.rwm-card__toggle');
+
+            function open() {
+                body.classList.remove('collapsed');
+                toggle.textContent = '收起详情 ▲';
+                head.setAttribute('aria-expanded', 'true');
+            }
+            function close() {
+                body.classList.add('collapsed');
+                toggle.textContent = '展开详情 ▼';
+                head.setAttribute('aria-expanded', 'false');
+            }
+
+            head.addEventListener('click', () => { body.classList.contains('collapsed') ? open() : close(); });
+            toggle.addEventListener('click', (e) => { e.stopPropagation(); body.classList.contains('collapsed') ? open() : close(); });
+
+            return card;
+        }
+
+        function escapeHtml(s) {
+            if (s == null) return '';
+            const div = document.createElement('div');
+            div.textContent = s;
+            return div.innerHTML;
+        }
+
+        function applyFilters() {
+            const ind = filterIndustry.value;
+            const diff = filterDifficulty.value;
+            const filtered = allCases.filter(c => {
+                if (ind && c.industry !== ind) return false;
+                if (diff && String(c.difficulty) !== diff) return false;
+                return true;
+            });
+            caseCount.textContent = '共 ' + filtered.length + ' 个实践案例';
+            caseList.innerHTML = '';
+            caseList.appendChild(loading);
+            loading.style.display = 'none';
+            filtered.forEach(c => caseList.appendChild(renderCase(c)));
+        }
+
+        fetch('data/real-world-applications.json')
+            .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
+            .then(data => {
+                loading.style.display = 'none';
+                allCases = data.cases || [];
+                industries = data.industries || [];
+                const seen = new Set();
+                industries.forEach(ind => {
+                    if (seen.has(ind)) return;
+                    seen.add(ind);
+                    const opt = document.createElement('option');
+                    opt.value = ind;
+                    opt.textContent = ind;
+                    filterIndustry.appendChild(opt);
+                });
+                applyFilters();
+            })
+            .catch(err => {
+                loading.classList.add('rwm-error');
+                loading.textContent = '加载失败：' + err.message + '。请确认 data/real-world-applications.json 存在并可访问。';
+            });
+
+        filterIndustry.addEventListener('change', applyFilters);
+        filterDifficulty.addEventListener('change', applyFilters);
+    </script>
+</body>
+</html>

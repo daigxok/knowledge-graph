@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 学生侧 Skills 看板 | 高等数学知识图谱</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .ss-page {
+            min-height: 100vh;
+            background: linear-gradient(150deg, #1f1c2c 0%, #302b63 45%, #24243e 100%);
+            color: #ecf0f1;
+            padding: var(--spacing-lg, 24px);
+        }
+        .ss-header {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .ss-header__title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ss-header__title h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ss-header__title p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.9);
+        }
+        .ss-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .ss-back:hover {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .ss-meta {
+            max-width: 1200px;
+            margin: 0 auto 16px;
+            font-size: 0.9rem;
+            color: rgba(236, 240, 241, 0.85);
+        }
+        .ss-section-title {
+            max-width: 1200px;
+            margin: 24px auto 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: rgba(236, 240, 241, 0.96);
+        }
+        .ss-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+        .ss-card {
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.06), rgba(0,0,0,0.4));
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 14px 16px 16px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+            backdrop-filter: blur(6px);
+            transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out;
+        }
+        .ss-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+            border-color: rgba(0, 242, 254, 0.45);
+        }
+        .ss-card__tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: rgba(236, 240, 241, 0.9);
+            margin-bottom: 6px;
+        }
+        .ss-card__title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .ss-card__domain {
+            font-size: 0.8rem;
+            color: rgba(0, 242, 254, 0.9);
+            margin-bottom: 6px;
+        }
+        .ss-card__desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: rgba(236, 240, 241, 0.9);
+            margin-bottom: 6px;
+        }
+        .ss-card__hint {
+            font-size: 0.8rem;
+            color: rgba(236, 240, 241, 0.78);
+        }
+        .ss-cases {
+            max-width: 1200px;
+            margin: 26px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 18px;
+        }
+        .ss-card--case .ss-card__tag {
+            background: rgba(0, 242, 254, 0.15);
+            color: #00f2fe;
+        }
+        .ss-card__steps {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.86rem;
+            line-height: 1.55;
+            color: rgba(236, 240, 241, 0.9);
+        }
+        .ss-card__steps li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body class="ss-page">
+    <header class="ss-header">
+        <div class="ss-header__title">
+            <h1>🎯 学生侧 Skills 看板</h1>
+            <p>围绕学域知识图谱，为学生提供“看得见、能动手、有练习”的技能模块。</p>
+        </div>
+        <a href="index.html" class="ss-back">← 返回学域知识图谱</a>
+    </header>
+    <p class="ss-meta">当前项目中，节点可关联到的学生侧 Skills 共 14 个，可大致分为三类：深度概念学习 Skills、可视化/交互 Skills，以及专题进阶 Skills。</p>
+
+    <h2 class="ss-section-title">一、深度概念学习 Skills（Phase 2 深度内容已就绪）</h2>
+    <section class="ss-grid" aria-label="深度概念学习 Skills">
+        <article class="ss-card">
+            <div class="ss-card__tag">phase2 · 核心簇</div>
+            <h2 class="ss-card__title">函数极限与连续Skill</h2>
+            <p class="ss-card__domain">📈 学域：变化与逼近</p>
+            <p class="ss-card__desc">围绕极限与连续，一致连续、利普希茨条件、压缩映射等进阶概念，以及相关证明题和应用题，帮助学生从“会算极限”走向“理解极限结构”。</p>
+            <p class="ss-card__hint">代表任务：闭区间上一致连续性证明、压缩映射定理证明、构造极限反例并解释。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">phase2 · 面积到累积</div>
+            <h2 class="ss-card__title">积分概念Skill</h2>
+            <p class="ss-card__domain">🔄 学域：结构与累积</p>
+            <p class="ss-card__desc">围绕定积分的定义、黎曼和、可积性条件等核心问题，通过进阶练习与例题，把“积分=面积”的直觉提升为严谨的极限与累积理解。</p>
+            <p class="ss-card__hint">代表任务：从黎曼和到定积分的极限证明、积分中值定理与几何意义解析。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">phase2 · 多元升级</div>
+            <h2 class="ss-card__title">多元函数Skill</h2>
+            <p class="ss-card__domain">📈🎯 学域：变化与逼近 · 优化与决策</p>
+            <p class="ss-card__desc">聚焦多元函数极限与连续、偏导数、全微分、梯度与方向导数，帮助学生从一元微积分自然过渡到多元情形。</p>
+            <p class="ss-card__hint">代表任务：多元链式法则推导、可微性判定、小型极值/最优化练习。</p>
+        </article>
+    </section>
+
+    <h2 class="ss-section-title">二、可视化 / 交互 Skills（与节点实时联动）</h2>
+    <section class="ss-grid" aria-label="可视化与交互 Skills">
+        <article class="ss-card">
+            <div class="ss-card__tag">可视化 · 概念图景</div>
+            <h2 class="ss-card__title">概念可视化Skill</h2>
+            <p class="ss-card__domain">📈🔄 学域：变化与逼近 · 结构与累积</p>
+            <p class="ss-card__desc">通过动态图和交互图像展示极限、导数、积分等核心概念，帮助学生把公式和图像联结起来。</p>
+            <p class="ss-card__hint">代表用法：在节点详情中点击“去运用”，打开对应概念的动态图像探索界面。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">可视化 · 梯度/向量</div>
+            <h2 class="ss-card__title">梯度可视化Skill</h2>
+            <p class="ss-card__domain">🎯 学域：优化与决策</p>
+            <p class="ss-card__desc">以 3D 曲面、梯度向量和等高线为主，让学生在几何视角下理解“最陡上升方向”和优化中的梯度概念。</p>
+            <p class="ss-card__hint">代表用法：在含有梯度/方向导数的节点上，调用梯度可视化来观察不同点的梯度变化。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">动画 · 公式推导</div>
+            <h2 class="ss-card__title">推导动画Skill</h2>
+            <p class="ss-card__domain">📈🎲 学域：变化与逼近 · 不确定性处理</p>
+            <p class="ss-card__desc">用逐步动画演示复杂公式和定理（如泰勒展开、级数判别法等）的推导过程，降低“看懂公式推演”的门槛。</p>
+            <p class="ss-card__hint">代表用法：在级数、泰勒等节点详情中，通过动画一步步 replay 推导过程。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">交互 · H5P</div>
+            <h2 class="ss-card__title">H5P交互Skill</h2>
+            <p class="ss-card__domain">🌐 学域：真实问题建模</p>
+            <p class="ss-card__desc">为真实问题建模与综合应用场景提供 H5P 互动练习和即时反馈，例如拖拽匹配、填空、分步解题等形式。</p>
+            <p class="ss-card__hint">代表用法：在应用/建模型节点下，进入 H5P 互动练习，完成一系列小任务。</p>
+        </article>
+    </section>
+
+    <h2 class="ss-section-title">三、专题进阶 Skills（专题练习与拓展）</h2>
+    <section class="ss-grid" aria-label="专题进阶 Skills">
+        <article class="ss-card">
+            <div class="ss-card__tag">技巧 · 计算与方法</div>
+            <h2 class="ss-card__title">积分技巧Skill</h2>
+            <p class="ss-card__domain">🔄 学域：结构与累积</p>
+            <p class="ss-card__desc">针对换元积分、分部积分、特殊函数积分等技巧型内容，提供分层练习与典型套路归纳。</p>
+            <p class="ss-card__hint">代表任务：从简单到复杂地练习换元/分部积分，归纳常见模式。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">应用 · 定积分</div>
+            <h2 class="ss-card__title">定积分应用Skill</h2>
+            <p class="ss-card__domain">🔄 学域：结构与累积</p>
+            <p class="ss-card__desc">聚焦定积分在面积、体积、弧长、物理量（功、质心等）中的应用，提供建模与计算结合的练习。</p>
+            <p class="ss-card__hint">代表任务：面积/体积建模题、物理应用题的定积分表达与求解。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">级数 · 收敛性</div>
+            <h2 class="ss-card__title">级数收敛Skill & 级数分析Skill</h2>
+            <p class="ss-card__domain">📈 学域：变化与逼近</p>
+            <p class="ss-card__desc">围绕正项级数、交错级数、绝对/条件收敛以及常见判别法，训练学生对级数收敛性的判断与反例构造能力。</p>
+            <p class="ss-card__hint">代表任务：比较判别、比值判别、根值判别综合题，以及“给出一个发散但部分和有界的级数”等开放题。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">数值 · 计算实验</div>
+            <h2 class="ss-card__title">数值分析Skill</h2>
+            <p class="ss-card__domain">📈🌐 学域：变化与逼近 · 真实问题建模</p>
+            <p class="ss-card__desc">通过插值、数值积分、迭代法等数值方法的小实验，把“极限与逼近”的思想落到可计算的算法上。</p>
+            <p class="ss-card__hint">代表任务：用迭代法近似求解方程、比较数值积分方法精度等。</p>
+        </article>
+
+        <article class="ss-card">
+            <div class="ss-card__tag">方程 · 常微分</div>
+            <h2 class="ss-card__title">常微分方程Skill & 常微分方程求解Skill</h2>
+            <p class="ss-card__domain">📈🔄 学域：变化与逼近 · 结构与累积</p>
+            <p class="ss-card__desc">围绕一阶/高阶常微分方程的建模、分类与求解方法（如可分离变量、齐次方程、伯努利方程等），提供系统化练习。</p>
+            <p class="ss-card__hint">代表任务：从实际情境建立微分方程模型，并选择合适方法求解与解释结果。</p>
+        </article>
+    </section>
+
+    <h2 class="ss-section-title">四、使用案例：学生如何利用 Skills 提升学习</h2>
+    <section class="ss-cases" aria-label="学生使用 Skills 的典型场景">
+        <article class="ss-card ss-card--case">
+            <div class="ss-card__tag">案例一 · 预习极限单元</div>
+            <h2 class="ss-card__title">用“函数极限与连续Skill”做深度预习</h2>
+            <p class="ss-card__desc">学生在课堂前希望不只是看书，而是提前理解极限与连续的核心难点。</p>
+            <ol class="ss-card__steps">
+                <li>在知识图谱中点击“函数极限”节点，打开节点详情。</li>
+                <li>在“🎯 Skills 运用”处选择 <strong>函数极限与连续Skill</strong>，查看系统生成的进阶主题与代表习题。</li>
+                <li>先完成 1～2 个证明题，再带着问题进入课堂的“认知冲突”环节。</li>
+            </ol>
+        </article>
+
+        <article class="ss-card ss-card--case">
+            <div class="ss-card__tag">案例二 · 攻克积分计算</div>
+            <h2 class="ss-card__title">结合“积分概念Skill + 积分技巧Skill”刷题</h2>
+            <p class="ss-card__desc">学生在做章节作业时，发现积分计算特别吃力。</p>
+            <ol class="ss-card__steps">
+                <li>在积分相关节点（如“定积分的概念”“积分技巧”）详情中，调用 <strong>积分概念Skill</strong> 复习定义与黎曼和。</li>
+                <li>再调用 <strong>积分技巧Skill</strong>，按难度分组练习换元、分部等典型题型。</li>
+                <li>把错题回写到知识图谱中的相关节点，作为日后复习的“错题锚点”。</li>
+            </ol>
+        </article>
+
+        <article class="ss-card ss-card--case">
+            <div class="ss-card__tag">案例三 · 做一个小型建模项目</div>
+            <h2 class="ss-card__title">用“多元函数Skill + 数值分析Skill”完成建模作业</h2>
+            <p class="ss-card__desc">在“真实问题建模”任务中，学生需要分析一个含多变量参数的模型并给出数值解。</p>
+            <ol class="ss-card__steps">
+                <li>先在相关节点上使用 <strong>多元函数Skill</strong>，巩固多元极限、偏导与梯度的概念。</li>
+                <li>再通过 <strong>数值分析Skill</strong> 学习简单迭代法或数值积分方法。</li>
+                <li>最终把理论推导 + 数值实验结果整理成一份小型建模报告，在系统中与节点关联保存。</li>
+            </ol>
+        </article>
+    </section>
+</body>
+</html>
+

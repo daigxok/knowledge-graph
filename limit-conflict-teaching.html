@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ 极限认知冲突教学 | 高等数学学域知识图谱</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --limit-bg: radial-gradient(circle at top left, #2b5876 0%, #4e4376 40%, #141e30 100%);
+            --limit-accent: #ffca28;
+            --limit-accent-soft: rgba(255, 202, 40, 0.15);
+        }
+        body.limit-page {
+            min-height: 100vh;
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--limit-bg);
+            color: #f5f5f5;
+        }
+        .limit-layout {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+        .limit-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .limit-header__title {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .limit-header__title h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .limit-header__title p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(245,245,245,0.85);
+        }
+        .limit-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.18);
+            font-size: 0.88rem;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+        .limit-back-link:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        .limit-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+            font-size: 0.85rem;
+            color: rgba(245,245,245,0.85);
+        }
+        .limit-meta__tag {
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .limit-meta__tag--accent {
+            background: var(--limit-accent-soft);
+            border-color: rgba(255, 202, 40, 0.6);
+            color: var(--limit-accent);
+        }
+        .limit-card-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+            gap: 18px;
+        }
+        @media (max-width: 900px) {
+            .limit-card-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+        .limit-card {
+            background: rgba(0, 0, 0, 0.32);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 16px 18px 18px;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+        }
+        .limit-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .limit-card__title {
+            font-size: 1.02rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .limit-pill {
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            font-size: 0.78rem;
+            color: rgba(245,245,245,0.85);
+        }
+        .limit-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .limit-tab {
+            padding: 5px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(0,0,0,0.2);
+            font-size: 0.82rem;
+            cursor: pointer;
+            color: rgba(245,245,245,0.9);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .limit-tab--active {
+            background: var(--limit-accent-soft);
+            border-color: rgba(255, 202, 40, 0.9);
+            color: #222;
+            font-weight: 600;
+        }
+        .limit-steps {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .limit-steps li {
+            margin-bottom: 6px;
+        }
+        .limit-steps strong {
+            color: var(--limit-accent);
+            font-weight: 600;
+        }
+        .limit-note {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: rgba(245,245,245,0.8);
+        }
+        .limit-board {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .limit-board__block {
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.4);
+            border: 1px dashed rgba(255,255,255,0.15);
+            margin-bottom: 10px;
+        }
+        .limit-board__block h3 {
+            margin: 0 0 6px;
+            font-size: 0.96rem;
+            color: var(--limit-accent);
+        }
+        .limit-board ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .limit-board li {
+            margin-bottom: 4px;
+        }
+        .limit-math {
+            font-size: 0.9rem;
+            color: rgba(245,245,245,0.9);
+        }
+        .limit-kpi {
+            margin-top: 4px;
+            font-size: 0.82rem;
+            color: rgba(245,245,245,0.85);
+        }
+        .limit-kpi ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+        .limit-kpi li {
+            margin-bottom: 3px;
+        }
+        .limit-section-title {
+            margin: 28px 0 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.96);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .limit-section-title span {
+            font-size: 0.88rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.16);
+            color: rgba(245,245,245,0.9);
+        }
+        /* 案例版面优化 */
+        .limit-case-section {
+            margin-bottom: 32px;
+        }
+        .limit-case-section:last-of-type { margin-bottom: 0; }
+        .limit-card-grid--case {
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .limit-card-grid--case { grid-template-columns: minmax(0, 1fr); }
+        }
+        .limit-card--flow { min-height: 1px; }
+        .limit-card--board .limit-board__block:last-child { margin-bottom: 0; }
+        /* GGB Skills 调用区 */
+        .limit-ggb-section {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .limit-ggb-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .limit-ggb-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--limit-accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .limit-ggb-skill-badge {
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--limit-accent-soft);
+            border: 1px solid rgba(255, 202, 40, 0.5);
+            color: var(--limit-accent);
+        }
+        .limit-ggb-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .limit-ggb-tab {
+            padding: 6px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.25);
+            color: rgba(245,245,245,0.9);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .limit-ggb-tab:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.3);
+        }
+        .limit-ggb-tab--active {
+            background: var(--limit-accent-soft);
+            border-color: rgba(255, 202, 40, 0.7);
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .limit-ggb-pane {
+            display: none;
+            background: rgba(0,0,0,0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+        }
+        .limit-ggb-pane--active { display: block; }
+        .limit-ggb-desc {
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: rgba(245,245,245,0.88);
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .limit-ggb-embed-wrap {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            background: #0d1117;
+        }
+        .limit-ggb-embed-wrap iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .limit-ggb-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 10px 14px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .limit-ggb-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            color: var(--limit-accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 202, 40, 0.3);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .limit-ggb-link:hover {
+            background: var(--limit-accent-soft);
+            border-color: rgba(255, 202, 40, 0.6);
+            color: #1a1a1a;
+        }
+        /* 案例内 GGB 展示卡片 */
+        .limit-case-ggb {
+            margin-top: 20px;
+            background: rgba(0,0,0,0.35);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 202, 40, 0.2);
+            overflow: hidden;
+        }
+        .limit-case-ggb__head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 12px 18px;
+            background: rgba(255, 202, 40, 0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .limit-case-ggb__title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--limit-accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .limit-case-ggb__badge {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.3);
+            color: rgba(245,245,245,0.9);
+        }
+        .limit-case-ggb__hint {
+            padding: 10px 18px;
+            font-size: 0.86rem;
+            color: rgba(245,245,245,0.85);
+            line-height: 1.55;
+        }
+        .limit-case-ggb__embed {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            background: #0d1117;
+        }
+        .limit-case-ggb__embed iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .limit-case-ggb__foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .limit-case-ggb__tip {
+            font-size: 0.8rem;
+            color: rgba(245,245,245,0.7);
+        }
+        .limit-case-ggb__open {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: rgba(255, 202, 40, 0.12);
+            color: var(--limit-accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 202, 40, 0.4);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .limit-case-ggb__open:hover {
+            background: var(--limit-accent-soft);
+            border-color: rgba(255, 202, 40, 0.7);
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body class="limit-page">
+    <div class="limit-layout">
+        <header class="limit-header">
+            <div class="limit-header__title">
+                <h1>⚠️ 极限认知冲突教学</h1>
+                <p>学域模式下，两节课例展示从“直觉 → 冲突 → 重构 → 迁移”的极限教学设计。</p>
+            </div>
+            <a href="index.html" class="limit-back-link">← 返回学域知识图谱</a>
+        </header>
+
+        <div class="limit-meta">
+            <span class="limit-meta__tag limit-meta__tag--accent">学域：变化与逼近</span>
+            <span class="limit-meta__tag">适用对象：高等数学（工科/理科）</span>
+            <span class="limit-meta__tag">课时建议：45 分钟</span>
+        </div>
+
+        <div class="limit-case-section">
+        <h2 class="limit-section-title">案例一：函数极限与严格定义 <span>变化与逼近 · 基础课型</span></h2>
+        <section class="limit-card-grid limit-card-grid--case" aria-label="极限认知冲突教学设计 - 案例一">
+            <article class="limit-card limit-card--flow" aria-label="教学流程三阶九步">
+                <div class="limit-card__header">
+                    <div class="limit-card__title">三阶九步 · 课堂流程（函数极限）</div>
+                    <span class="limit-pill">课前 · 课中 · 课后 一体</span>
+                </div>
+                <div class="limit-tabs" id="limitPhaseTabs" role="tablist">
+                    <button class="limit-tab limit-tab--active" data-phase="phase1" role="tab" aria-selected="true">Ⅰ 课前诊断</button>
+                    <button class="limit-tab" data-phase="phase2" role="tab" aria-selected="false">Ⅱ 课中建构</button>
+                    <button class="limit-tab" data-phase="phase3" role="tab" aria-selected="false">Ⅲ 课后巩固</button>
+                </div>
+                <ol class="limit-steps" id="limitSteps">
+                    <li><strong>1. 学域基线诊断（5 min）</strong>：基于“极限簇”小测或问卷，获取学生对“极限=函数值”等直觉看法。</li>
+                    <li><strong>2. 个性化导学单生成</strong>：AI 依据诊断结果，为不同层次学生生成预习提示与必看节点。</li>
+                    <li><strong>3. 情境预热</strong>：在学域图谱中标出本节涉及节点，让学生课前浏览相关路径。</li>
+                </ol>
+                <p class="limit-note">可在课堂开始前 1–2 天完成，结果直接反馈到学域评价与学习路径中。</p>
+            </article>
+
+            <aside class="limit-card limit-card--board" aria-label="板书与评价要点">
+                <div class="limit-card__header">
+                    <div class="limit-card__title">板书提纲 · 评价要点（案例一）</div>
+                    <span class="limit-pill">黑板 / 电子白板通用</span>
+                </div>
+                <div class="limit-board">
+                    <div class="limit-board__block">
+                        <h3>板书提纲（函数极限）</h3>
+                        <ul>
+                            <li>1. 情境与直觉表述（图像 / 数值表）</li>
+                            <li>2. 反例：函数值 ≠ 极限值；左极限 ≠ 右极限</li>
+                            <li>3. 极限严格定义：邻域、$\varepsilon$–$\delta$ 两层约束</li>
+                            <li>4. 链接：极限 → 连续 → 导数 → 逼近</li>
+                            <li>5. 本节认知冲突与修正结论</li>
+                        </ul>
+                    </div>
+                    <div class="limit-board__block">
+                        <h3>即时评价关注点</h3>
+                        <div class="limit-kpi">
+                            <ul>
+                                <li>· 能否举出“函数值 ≠ 极限值”的例子并正确解释。</li>
+                                <li>· 能否用自己的话说出极限定义中“自变量约束 + 函数值约束”。</li>
+                                <li>· 在导数 / 连续情境中，能否指出“这里用到极限”的环节。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="limit-board__block">
+                        <h3>关键数学表达</h3>
+                        <p class="limit-math">1）函数极限记号：$\lim_{x\to x_0} f(x) = L$</p>
+                        <p class="limit-math">2）$\varepsilon$–$\delta$ 语言：$\forall \varepsilon &gt; 0,\; \exists \delta &gt; 0,\; 0&lt;|x-x_0|&lt;\delta \Rightarrow |f(x)-L|&lt;\varepsilon$</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+            <!-- 案例一 GGB 展示 -->
+            <div class="limit-case-ggb" aria-label="案例一 GeoGebra 展示">
+                <div class="limit-case-ggb__head">
+                    <span class="limit-case-ggb__title">📐 案例一 GGB 展示</span>
+                    <span class="limit-case-ggb__badge">函数极限 · 概念可视化 Skill</span>
+                </div>
+                <p class="limit-case-ggb__hint">拖动或调整参数观察函数在一点处的极限、左右极限与函数值的关系，用于课堂「认知冲突」演示：先让学生猜极限值，再与 $f(x_0)$ 对比。</p>
+                <div class="limit-case-ggb__embed">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/k2vxc3zn/width/800/height/450/border/888888/smb/false/stb/false/stbh/false/ai/false/sdz/true/smbg/false/rs/false" title="GeoGebra：函数极限"></iframe>
+                </div>
+                <div class="limit-case-ggb__foot">
+                    <span class="limit-case-ggb__tip">课堂建议：在「触发认知冲突」环节全屏或新窗口打开，让学生先写答案再展示结果。</span>
+                    <a href="https://www.geogebra.org/m/k2vxc3zn" target="_blank" rel="noopener noreferrer" class="limit-case-ggb__open">在新窗口打开 GGB ↗</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="limit-case-section">
+        <h2 class="limit-section-title">案例二：以采样定理为例的极限认知冲突教学 <span>变化与逼近 × 真实问题建模</span></h2>
+        <section class="limit-card-grid limit-card-grid--case" aria-label="极限认知冲突教学设计 - 案例二">
+            <article class="limit-card limit-card--flow" aria-label="采样定理情境下的极限冲突">
+                <div class="limit-card__header">
+                    <div class="limit-card__title">课堂流程 · 从直觉采样到极限表达</div>
+                    <span class="limit-pill">工程情境：音频 / 雷达 / 图像</span>
+                </div>
+                <ol class="limit-steps">
+                    <li><strong>1. 工程情境导入（5 min）</strong>：播放音频 / 显示图像采样示意，提出“把连续信号变成一串离散点”的直观说法（如“点越多越接近原信号”）。</li>
+                    <li><strong>2. 直觉与误解收集（5 min）</strong>：让学生回答“如果采样点足够多，是否一定可以完全还原原信号？为什么？”，板书常见说法。</li>
+                    <li><strong>3. 采样反例与混叠现象（10 min）</strong>：给出采样频率不足时出现混叠的波形对比，暴露“点多即可还原”的直觉冲突。</li>
+                    <li><strong>4. 抽象成数学模型（10 min）</strong>：引入带限信号、采样周期 $T_s$ 与采样频率 $f_s = 1/T_s$，用符号表示离散样本 $\{x(nT_s)\}$。</li>
+                    <li><strong>5. 采样定理与极限思想（10 min）</strong>：
+                        说明“在带限条件和 $f_s &gt; 2f_{\max}$ 下，连续信号可由无限多样本经极限过程重建”并给出典型形式：
+                        <span class="limit-math">$$x(t) = \sum_{n=-\infty}^{+\infty} x(nT_s)\,\mathrm{sinc}\Big(\frac{t-nT_s}{T_s}\Big).$$</span>
+                        讨论该式中“无限求和→极限”的含义。
+                    </li>
+                    <li><strong>6. 回扣原始直觉（5 min）</strong>：
+                        引导学生区分：
+                        “采样点数增加” vs “满足带限 + 奈奎斯特条件 + 极限意义下的无穷求和”，澄清“点多≠必然可还原”。
+                    </li>
+                </ol>
+                <p class="limit-note">本案例适合作为“极限在工程中的意义”专题课或在学完傅里叶分析、采样定理后回顾极限思想。</p>
+            </article>
+
+            <aside class="limit-card limit-card--board" aria-label="采样定理案例的板书与评价要点">
+                <div class="limit-card__header">
+                    <div class="limit-card__title">板书提纲 · 评价要点（案例二）</div>
+                    <span class="limit-pill">联系信号处理与极限概念</span>
+                </div>
+                <div class="limit-board">
+                    <div class="limit-board__block">
+                        <h3>板书提纲（采样定理视角）</h3>
+                        <ul>
+                            <li>1. 工程情境：音频 / 图像采样示意，学生直觉说法。</li>
+                            <li>2. 反例：采样频率过低导致的混叠波形。</li>
+                            <li>3. 数学抽象：带限信号、$T_s$、$f_s$、样本序列 $\{x(nT_s)\}$。</li>
+                            <li>4. 采样定理公式与无穷和：$x(t)$ 由样本和 sinc 函数组成。</li>
+                            <li>5. 极限视角：无穷求和 $\Rightarrow$ “在极限意义下逼近原信号”。</li>
+                            <li>6. 冲突与修正：
+                                “点越多越接近原信号” → “在带限 + 奈奎斯特条件下，通过极限过程才能精确重建”。
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="limit-board__block">
+                        <h3>即时评价关注点</h3>
+                        <div class="limit-kpi">
+                            <ul>
+                                <li>· 能否说明“采样定理”需要的三个关键条件：带限、奈奎斯特频率、无限样本的极限过程。</li>
+                                <li>· 能否用自然语言解释采样公式中无穷和的“极限意义”。</li>
+                                <li>· 面对“只要采得足够密就一定能还原”的说法，能否指出其缺失的前提条件。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="limit-board__block">
+                        <h3>关键数学表达（采样定理）</h3>
+                        <p class="limit-math">1）采样频率与奈奎斯特条件：$f_s &gt; 2 f_{\max}$。</p>
+                        <p class="limit-math">2）带限信号重建公式（典型形式）：
+                            $$x(t) = \sum_{n=-\infty}^{+\infty} x(nT_s)\,\mathrm{sinc}\Big(\frac{t-nT_s}{T_s}\Big).$$
+                        </p>
+                        <p class="limit-math">3）极限思想：部分和序列 $S_N(t)=\sum_{n=-N}^{N} x(nT_s)\,\mathrm{sinc}\big(\tfrac{t-nT_s}{T_s}\big)$，考虑 $N\to\infty$ 时 $S_N(t)$ 与 $x(t)$ 的关系。</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+            <!-- 案例二 GGB 展示 -->
+            <div class="limit-case-ggb" aria-label="案例二 GeoGebra 展示">
+                <div class="limit-case-ggb__head">
+                    <span class="limit-case-ggb__title">📐 案例二 GGB 展示</span>
+                    <span class="limit-case-ggb__badge">采样与傅里叶 · 概念可视化 Skill</span>
+                </div>
+                <p class="limit-case-ggb__hint">傅里叶级数逼近：调节项数 $N$ 观察部分和 $S_N(t)$ 趋近于周期信号，体会「极限意义下的逼近」与采样定理中无穷和 $\sum_{n=-\infty}^{+\infty}$ 的直观。</p>
+                <div class="limit-case-ggb__embed">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/wqfqpk9m/width/800/height/450/border/888888/smb/false/stb/false/stbh/false/ai/false/sdz/true/smbg/false/rs/false" title="GeoGebra：傅里叶级数"></iframe>
+                </div>
+                <div class="limit-case-ggb__foot">
+                    <span class="limit-case-ggb__tip">课堂建议：在「采样定理与极限思想」步骤中演示 $N$ 增大时逼近效果，再引出无穷和的极限定义。</span>
+                    <a href="https://www.geogebra.org/m/wqfqpk9m" target="_blank" rel="noopener noreferrer" class="limit-case-ggb__open">在新窗口打开 GGB ↗</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        'use strict';
+        (function initLimitTabs() {
+            const tabs = document.querySelectorAll('.limit-tab');
+            const steps = document.getElementById('limitSteps');
+            if (!tabs.length || !steps) return;
+
+            const phaseContent = {
+                phase1: [
+                    '1. 学域基线诊断（5 min）：基于“极限簇”小测或问卷，获取学生对“极限=函数值”等直觉看法。',
+                    '2. 个性化导学单生成：AI 依据诊断结果，为不同层次学生生成预习提示与必看节点。',
+                    '3. 情境预热：在学域图谱中标出本节涉及节点，让学生课前浏览相关路径。'
+                ],
+                phase2: [
+                    '4. 情境导入与直觉表达（5–8 min）：用自动驾驶接近停止线、温度趋近某值等情境，引导学生用自然语言说“最后会怎样”。',
+                    '5. 设计反例触发冲突（10–15 min）：展示函数值与极限值不同、左右极限不相等的例子，收集并分类学生的错误解释。',
+                    '6. 回到严格定义与结构建构（15–20 min）：拆解 $\\varepsilon$–$\\delta$ 定义，沿“极限→连续→导数→逼近”路径在图谱中高亮讲解。'
+                ],
+                phase3: [
+                    '7. 课堂内即时巩固（5 min）：小测或口头问答，要求学生解释刚才反例中的极限是否存在及理由。',
+                    '8. 课后遗忘曲线复习：系统将极限相关核心节点加入个性化复习计划，推送含“旧误区+新题”的巩固任务。',
+                    '9. 学域层反思与迁移：引导学生在学域视角下回顾“极限在后续导数、级数、数值逼近中的作用”。'
+                ]
+            };
+
+            function renderPhase(phaseKey) {
+                const items = phaseContent[phaseKey] || [];
+                steps.innerHTML = '';
+                items.forEach(text => {
+                    const li = document.createElement('li');
+                    li.textContent = text;
+                    steps.appendChild(li);
+                });
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const phase = tab.dataset.phase;
+                    tabs.forEach(t => {
+                        t.classList.toggle('limit-tab--active', t === tab);
+                        t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+                    });
+                    renderPhase(phase);
+                    if (window.MathJax && typeof MathJax.typesetPromise === 'function') {
+                        MathJax.typesetPromise().catch(function (err) {
+                            console.error('MathJax typeset error:', err);
+                        });
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+

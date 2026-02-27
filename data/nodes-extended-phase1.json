@@ -1,0 +1,175 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - 基础扩展",
+    "totalNewNodes": 50,
+    "createdDate": "2026-02-22",
+    "description": "第一阶段扩展：从25个节点扩展到75个节点"
+  },
+  "newNodes": [
+    {
+      "id": "node-sequence-limit",
+      "name": "数列极限",
+      "nameEn": "Sequence Limit",
+      "description": "数列极限的ε-N定义、性质和计算方法，是理解函数极限的基础",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["函数极限与连续Skill", "概念可视化Skill"],
+      "formula": "\\lim_{n \\to \\infty} a_n = A \\Leftrightarrow \\forall \\varepsilon > 0, \\exists N, n > N \\Rightarrow |a_n - A| < \\varepsilon",
+      "keywords": ["数列", "极限", "收敛", "发散"],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "算法复杂度分析",
+          "description": "分析递归算法的时间复杂度，判断算法收敛性",
+          "industry": "计算机科学"
+        },
+        {
+          "title": "金融复利计算",
+          "description": "计算连续复利的极限值，理解e的金融意义",
+          "industry": "金融"
+        }
+      ]
+    },
+    {
+      "id": "node-limit-properties",
+      "name": "极限的运算法则",
+      "nameEn": "Limit Properties",
+      "description": "极限的四则运算、复合运算、夹逼准则等基本性质",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["函数极限与连续Skill"],
+      "formula": "\\lim(f \\pm g) = \\lim f \\pm \\lim g, \\quad \\lim(fg) = \\lim f \\cdot \\lim g",
+      "keywords": ["极限运算", "四则运算", "复合函数"],
+      "importance": 4,
+      "estimatedStudyTime": 45
+    },
+    {
+      "id": "node-infinitesimal",
+      "name": "无穷小与无穷大",
+      "nameEn": "Infinitesimal and Infinity",
+      "description": "无穷小量的定义、比较、等价无穷小替换",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["概念可视化Skill"],
+      "formula": "\\alpha \\sim \\beta \\Leftrightarrow \\lim \\frac{\\alpha}{\\beta} = 1",
+      "keywords": ["无穷小", "等价无穷小", "阶的比较"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "算法渐近分析",
+          "description": "使用大O记号分析算法复杂度",
+          "industry": "计算机科学"
+        }
+      ]
+    },
+    {
+      "id": "node-limit-existence",
+      "name": "极限存在准则",
+      "nameEn": "Limit Existence Criteria",
+      "description": "夹逼准则、单调有界准则、柯西收敛准则",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["推导动画Skill"],
+      "formula": "f(x) \\leq g(x) \\leq h(x), \\lim f = \\lim h = A \\Rightarrow \\lim g = A",
+      "keywords": ["夹逼准则", "单调有界", "收敛准则"],
+      "importance": 4,
+      "estimatedStudyTime": 60
+    },
+    {
+      "id": "node-continuity-properties",
+      "name": "连续函数的性质",
+      "nameEn": "Properties of Continuous Functions",
+      "description": "最值定理、介值定理、零点定理及其应用",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": ["node-continuity"],
+      "relatedSkills": ["概念可视化Skill"],
+      "formula": "f \\in C[a,b] \\Rightarrow \\exists \\xi \\in [a,b], f(\\xi) = \\max f(x)",
+      "keywords": ["最值定理", "介值定理", "零点定理"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "方程求根算法",
+          "description": "二分法求解非线性方程的理论基础",
+          "industry": "数值计算"
+        }
+      ]
+    },
+    {
+      "id": "node-discontinuity-types",
+      "name": "间断点的分类",
+      "nameEn": "Types of Discontinuity",
+      "description": "第一类间断点(跳跃、可去)、第二类间断点(无穷、振荡)",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 2,
+      "prerequisites": ["node-continuity"],
+      "relatedSkills": ["概念可视化Skill"],
+      "keywords": ["间断点", "跳跃间断", "可去间断", "无穷间断"],
+      "importance": 3,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "信号处理",
+          "description": "分析信号的突变点和不连续性",
+          "industry": "通信工程"
+        }
+      ]
+    },
+    {
+      "id": "node-uniform-continuity",
+      "name": "一致连续性",
+      "nameEn": "Uniform Continuity",
+      "description": "一致连续的定义、判定定理和性质",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 4,
+      "prerequisites": ["node-continuity"],
+      "relatedSkills": ["推导动画Skill"],
+      "formula": "\\forall \\varepsilon > 0, \\exists \\delta > 0, |x_1-x_2| < \\delta \\Rightarrow |f(x_1)-f(x_2)| < \\varepsilon",
+      "keywords": ["一致连续", "康托定理", "李普希茨条件"],
+      "importance": 3,
+      "estimatedStudyTime": 65
+    },
+    {
+      "id": "node-limit-special",
+      "name": "两个重要极限",
+      "nameEn": "Two Important Limits",
+      "description": "e的定义极限和sinx/x极限及其应用",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-1",
+      "difficulty": 3,
+      "prerequisites": ["node-limit-def"],
+      "relatedSkills": ["概念可视化Skill", "推导动画Skill"],
+      "formula": "\\lim_{x \\to 0} \\frac{\\sin x}{x} = 1, \\quad \\lim_{x \\to \\infty} (1+\\frac{1}{x})^x = e",
+      "keywords": ["重要极限", "自然对数", "三角极限"],
+      "importance": 5,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "复利计算",
+          "description": "连续复利公式的推导和应用",
+          "industry": "金融"
+        },
+        {
+          "title": "小角度近似",
+          "description": "工程中的三角函数近似计算",
+          "industry": "工程"
+        }
+      ]
+    }
+  ]
+}

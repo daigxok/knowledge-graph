@@ -1,0 +1,247 @@
+/**
+ * Language Switcher Styles
+ * Provides styling for the multi-language support UI
+ */
+
+/* Language Switcher Container */
+.language-switcher {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  z-index: 1000;
+}
+
+/* Language Switcher Button */
+.language-switcher-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.language-switcher-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.language-switcher-btn:active {
+  transform: translateY(0);
+}
+
+.language-switcher-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.language-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.language-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Language Dropdown */
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 160px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.language-dropdown[aria-hidden="false"],
+.language-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Language Option */
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: white;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.language-option:last-child {
+  border-bottom: none;
+}
+
+.language-option:hover {
+  background: #f8f9fa;
+}
+
+.language-option:focus {
+  outline: none;
+  background: #e9ecef;
+}
+
+.language-option.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+}
+
+.language-option.active:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+}
+
+.language-option-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.language-option-text {
+  flex: 1;
+}
+
+.language-option-check {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .language-switcher {
+    margin-left: 0;
+  }
+  
+  .language-switcher-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .language-icon {
+    font-size: 1rem;
+  }
+  
+  .language-text {
+    font-size: 0.85rem;
+  }
+  
+  .language-dropdown {
+    min-width: 140px;
+  }
+  
+  .language-option {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .language-switcher-btn {
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .language-text {
+    display: none;
+  }
+  
+  .language-icon {
+    font-size: 1.1rem;
+  }
+  
+  .language-dropdown {
+    right: -10px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .language-dropdown {
+    background: #2d3748;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .language-option {
+    background: #2d3748;
+    border-bottom-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .language-option:hover {
+    background: #374151;
+  }
+  
+  .language-option:focus {
+    background: #4a5568;
+  }
+}
+
+/* Animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-dropdown.open {
+  animation: fadeInDown 0.3s ease;
+}
+
+/* Accessibility */
+.language-switcher-btn:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.language-option:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: -2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .language-switcher-btn {
+    border: 2px solid white;
+  }
+  
+  .language-option {
+    border-bottom: 2px solid #333;
+  }
+  
+  .language-option.active {
+    border: 2px solid white;
+  }
+}

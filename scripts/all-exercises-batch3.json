@@ -1,0 +1,20 @@
+{
+  "级数分析Skill": [
+    {"id": "exercise-adv-004", "difficulty": 4, "question": "求函数f(x)=ln(1+x)的泰勒级数展开。", "hints": ["逐项求导"], "solution": {"steps": ["f(x)=x-x²/2+x³/3-...", "收敛域(-1,1]"], "keyPoints": ["泰勒级数"]}, "relatedNodes": ["node-taylor-series"], "estimatedTime": 25},
+    {"id": "exercise-adv-005", "difficulty": 5, "question": "证明欧拉公式e^(ix)=cos x+i sin x。", "hints": ["使用泰勒展开"], "solution": {"steps": ["展开e^(ix)、cos x、sin x", "比较系数"], "keyPoints": ["欧拉公式"]}, "relatedNodes": ["node-taylor-series"], "estimatedTime": 30},
+    {"id": "exercise-adv-006", "difficulty": 4, "question": "求Σ(n=1 to ∞) 1/n²的和。", "hints": ["巴塞尔问题"], "solution": {"steps": ["答案为π²/6"], "keyPoints": ["级数求和"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 20},
+    {"id": "exercise-adv-007", "difficulty": 5, "question": "判断Σ(sin n)/n的收敛性。", "hints": ["Dirichlet判别法"], "solution": {"steps": ["Σsin n有界", "1/n单调趋于0", "级数收敛"], "keyPoints": ["Dirichlet判别法"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 30},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "求幂级数Σn·xⁿ的和函数。", "hints": ["逐项求导"], "solution": {"steps": ["设S(x)=Σxⁿ=1/(1-x)", "S'(x)=Σn·xⁿ⁻¹", "答案x/(1-x)²"], "keyPoints": ["幂级数求和"]}, "relatedNodes": ["node-power-series"], "estimatedTime": 25},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "证明：若Σaₙ条件收敛，则可重排使其收敛到任意值。", "hints": ["黎曼重排定理"], "solution": {"steps": ["构造重排序列", "证明收敛到指定值"], "keyPoints": ["黎曼重排定理"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 35},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "求f(x)=e^x在x=0处的n阶泰勒多项式。", "hints": ["f^(n)(0)=1"], "solution": {"steps": ["Pₙ(x)=1+x+x²/2!+...+xⁿ/n!"], "keyPoints": ["泰勒多项式"]}, "relatedNodes": ["node-taylor-series"], "estimatedTime": 20}
+  ],
+  "数值分析Skill": [
+    {"id": "exercise-adv-004", "difficulty": 4, "question": "用牛顿法求√2的近似值（精度10⁻⁶）。", "hints": ["f(x)=x²-2"], "solution": {"steps": ["xₙ₊₁=xₙ-f(xₙ)/f'(xₙ)", "迭代至收敛"], "keyPoints": ["牛顿法"]}, "relatedNodes": ["node-numerical-methods"], "estimatedTime": 25},
+    {"id": "exercise-adv-005", "difficulty": 5, "question": "分析二分法的收敛速度。", "hints": ["误差减半"], "solution": {"steps": ["每次迭代误差减半", "线性收敛"], "keyPoints": ["收敛速度"]}, "relatedNodes": ["node-numerical-methods"], "estimatedTime": 30},
+    {"id": "exercise-adv-006", "difficulty": 4, "question": "用梯形公式计算∫₀¹e^x dx（n=4）。", "hints": ["h=(b-a)/n"], "solution": {"steps": ["T=(h/2)[f(x₀)+2Σf(xᵢ)+f(xₙ)]", "≈1.718"], "keyPoints": ["梯形公式"]}, "relatedNodes": ["node-numerical-integration"], "estimatedTime": 20},
+    {"id": "exercise-adv-007", "difficulty": 5, "question": "证明辛普森公式的误差阶为O(h⁴)。", "hints": ["泰勒展开"], "solution": {"steps": ["展开误差项", "主项为h⁴"], "keyPoints": ["误差分析"]}, "relatedNodes": ["node-numerical-integration"], "estimatedTime": 35},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "用拉格朗日插值求过(0,1),(1,2),(2,5)的多项式。", "hints": ["L(x)=ΣyᵢLᵢ(x)"], "solution": {"steps": ["构造基函数", "L(x)=1+x²"], "keyPoints": ["拉格朗日插值"]}, "relatedNodes": ["node-interpolation"], "estimatedTime": 25},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "分析高斯消元法的计算复杂度。", "hints": ["操作次数"], "solution": {"steps": ["主要操作O(n³)", "回代O(n²)"], "keyPoints": ["复杂度分析"]}, "relatedNodes": ["node-linear-systems"], "estimatedTime": 30},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "用欧拉法求解y'=y，y(0)=1在x=1处的值（h=0.1）。", "hints": ["yₙ₊₁=yₙ+h·f(xₙ,yₙ)"], "solution": {"steps": ["逐步迭代", "≈2.594"], "keyPoints": ["欧拉法"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 25}
+  ]
+}

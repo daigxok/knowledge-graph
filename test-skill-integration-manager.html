@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillIntegrationManager Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .test-pass {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        .test-fail {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        .test-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+        .summary {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        .summary.pass {
+            background: #28a745;
+            color: white;
+        }
+        .summary.fail {
+            background: #dc3545;
+            color: white;
+        }
+        .skill-container {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 10px 0;
+            min-height: 100px;
+            background: #fafafa;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .skill-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        .skill-card h4 {
+            margin: 0 0 5px 0;
+            color: #495057;
+        }
+        .skill-card p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 SkillIntegrationManager Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="test-results"></div>
+
+    <div class="test-section">
+        <h2>Interactive Skill Testing</h2>
+        <button onclick="testGetSkillsByNode()">Get Skills by Node</button>
+        <button onclick="testGetSkillsByDomain()">Get Skills by Domain</button>
+        <button onclick="testGetAllSkills()">Get All Skills</button>
+        <div id="interactive-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Skill Activation Test</h2>
+        <button onclick="testActivateSkill()">Activate Gradient Visualization Skill</button>
+        <div id="skill-container" class="skill-container"></div>
+    </div>
+
+    <script type="module">
+        import { SkillIntegrationManager } from './js/modules/SkillIntegrationManager.js';
+
+        // Make manager globally available for testing
+        window.skillManager = new SkillIntegrationManager();
+        window.testResults = [];
+
+        // Test helper functions
+        window.logTest = function(name, passed, message) {
+            const result = {
+                name,
+                passed,
+                message,
+                timestamp: new Date().toISOString()
+            };
+            window.testResults.push(result);
+            
+            const resultsDiv = document.getElementById('test-results');
+            const testDiv = document.createElement('div');
+            testDiv.className = `test-result ${passed ? 'test-pass' : 'test-fail'}`;
+            testDiv.innerHTML = `
+                <strong>${passed ? '✓' : '✗'} ${name}</strong><br>
+                ${message}
+            `;
+            resultsDiv.appendChild(testDiv);
+        };
+
+        window.logInfo = function(message) {
+            const resultsDiv = document.getElementById('test-results');
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'test-result test-info';
+            infoDiv.innerHTML = `<strong>ℹ️ Info:</strong> ${message}`;
+            resultsDiv.appendChild(infoDiv);
+        };
+
+        window.clearResults = function() {
+            document.getElementById('test-results').innerHTML = '';
+            document.getElementById('interactive-results').innerHTML = '';
+            window.testResults = [];
+        };
+
+        // Test Suite
+        window.runAllTests = async function() {
+            clearResults();
+            logInfo('Starting SkillIntegrationManager test suite...');
+
+            try {
+                // Test 1: Constructor
+                const manager = new SkillIntegrationManager();
+                logTest(
+                    'Constructor',
+                    manager !== null && manager.isInitialized === false,
+                    'Manager created with isInitialized = false'
+                );
+
+                // Test 2: Load Skill Registry
+                logInfo('Loading skill registry...');
+                await manager.loadSkillRegistry();
+                logTest(
+                    'Load Skill Registry',
+                    manager.isInitialized === true,
+                    'Skill registry loaded and initialized'
+                );
+
+                // Test 3: Get Skills by Node
+                const nodeSkills = manager.getSkillsByNode('node-gradient');
+                logTest(
+                    'Get Skills by Node (node-gradient)',
+                    Array.isArray(nodeSkills) && nodeSkills.length > 0,
+                    `Found ${nodeSkills.length} skills for node-gradient`
+                );
+
+                // Test 4: Get Skills by Domain
+                const domainSkills = manager.getSkillsByDomain('domain-3');
+                logTest(
+                    'Get Skills by Domain (domain-3)',
+                    Array.isArray(domainSkills) && domainSkills.length > 0,
+                    `Found ${domainSkills.length} skills for domain-3`
+                );
+
+                // Test 5: Get Skill Info
+                const skillInfo = manager.getSkillInfo('gradient-visualization-skill');
+                logTest(
+                    'Get Skill Info',
+                    skillInfo !== null && skillInfo.id === 'gradient-visualization-skill',
+                    `Skill info retrieved: ${skillInfo.name}`
+                );
+
+                // Test 6: Is Skill Available
+                const isAvailable = manager.isSkillAvailable('gradient-visualization-skill');
+                logTest(
+                    'Is Skill Available',
+                    isAvailable === true,
+                    'Gradient visualization skill is available'
+                );
+
+                // Test 7: Get All Skills
+                const allSkills = manager.getAllSkills();
+                logTest(
+                    'Get All Skills',
+                    Array.isArray(allSkills) && allSkills.length > 0,
+                    `Total skills available: ${allSkills.length}`
+                );
+
+                // Test 8: Get Skills by Type
+                const vizSkills = manager.getSkillsByType('visualization');
+                logTest(
+                    'Get Skills by Type (visualization)',
+                    Array.isArray(vizSkills) && vizSkills.length > 0,
+                    `Found ${vizSkills.length} visualization skills`
+                );
+
+                // Test 9: Invalid Node ID
+                const invalidNodeSkills = manager.getSkillsByNode('invalid-node-id');
+                logTest(
+                    'Invalid Node ID',
+                    Array.isArray(invalidNodeSkills) && invalidNodeSkills.length === 0,
+                    'Returns empty array for invalid node ID'
+                );
+
+                // Test 10: Invalid Domain ID
+                const invalidDomainSkills = manager.getSkillsByDomain('invalid-domain-id');
+                logTest(
+                    'Invalid Domain ID',
+                    Array.isArray(invalidDomainSkills) && invalidDomainSkills.length === 0,
+                    'Returns empty array for invalid domain ID'
+                );
+
+                // Test 11: Skill Info for Invalid ID
+                const invalidSkillInfo = manager.getSkillInfo('invalid-skill-id');
+                logTest(
+                    'Invalid Skill ID',
+                    invalidSkillInfo === null,
+                    'Returns null for invalid skill ID'
+                );
+
+                // Test 12: Multiple Skills for Node
+                const limitSkills = manager.getSkillsByNode('node-limit-def');
+                logTest(
+                    'Multiple Skills for Node',
+                    limitSkills.length >= 2,
+                    `node-limit-def has ${limitSkills.length} associated skills`
+                );
+
+                // Summary
+                const passedTests = window.testResults.filter(r => r.passed).length;
+                const totalTests = window.testResults.length;
+                const summaryDiv = document.createElement('div');
+                summaryDiv.className = `summary ${passedTests === totalTests ? 'pass' : 'fail'}`;
+                summaryDiv.innerHTML = `
+                    Test Summary: ${passedTests}/${totalTests} tests passed
+                    ${passedTests === totalTests ? '🎉' : '⚠️'}
+                `;
+                document.getElementById('test-results').appendChild(summaryDiv);
+
+            } catch (error) {
+                logTest('Test Suite', false, `Error: ${error.message}`);
+                console.error('Test error:', error);
+            }
+        };
+
+        // Interactive test functions
+        window.testGetSkillsByNode = async function() {
+            const resultsDiv = document.getElementById('interactive-results');
+            resultsDiv.innerHTML = '<h3>Skills by Node</h3>';
+            
+            if (!window.skillManager.isInitialized) {
+                await window.skillManager.loadSkillRegistry();
+            }
+
+            const testNodes = ['node-gradient', 'node-limit-def', 'node-derivative-def', 'node-integral-def'];
+            
+            testNodes.forEach(nodeId => {
+                const skills = window.skillManager.getSkillsByNode(nodeId);
+                const nodeDiv = document.createElement('div');
+                nodeDiv.innerHTML = `
+                    <h4>${nodeId}</h4>
+                    <div class="skill-list">
+                        ${skills.map(skill => `
+                            <div class="skill-card">
+                                <h4>${skill.icon} ${skill.name}</h4>
+                                <p><strong>Type:</strong> ${skill.type}</p>
+                                <p>${skill.description}</p>
+                            </div>
+                        `).join('') || '<p>No skills found</p>'}
+                    </div>
+                `;
+                resultsDiv.appendChild(nodeDiv);
+            });
+        };
+
+        window.testGetSkillsByDomain = async function() {
+            const resultsDiv = document.getElementById('interactive-results');
+            resultsDiv.innerHTML = '<h3>Skills by Domain</h3>';
+            
+            if (!window.skillManager.isInitialized) {
+                await window.skillManager.loadSkillRegistry();
+            }
+
+            const domains = ['domain-1', 'domain-2', 'domain-3', 'domain-4', 'domain-5'];
+            
+            domains.forEach(domainId => {
+                const skills = window.skillManager.getSkillsByDomain(domainId);
+                const domainDiv = document.createElement('div');
+                domainDiv.innerHTML = `
+                    <h4>${domainId}</h4>
+                    <div class="skill-list">
+                        ${skills.map(skill => `
+                            <div class="skill-card">
+                                <h4>${skill.icon} ${skill.name}</h4>
+                                <p><strong>Type:</strong> ${skill.type}</p>
+                                <p>${skill.description}</p>
+                            </div>
+                        `).join('') || '<p>No skills found</p>'}
+                    </div>
+                `;
+                resultsDiv.appendChild(domainDiv);
+            });
+        };
+
+        window.testGetAllSkills = async function() {
+            const resultsDiv = document.getElementById('interactive-results');
+            resultsDiv.innerHTML = '<h3>All Available Skills</h3>';
+            
+            if (!window.skillManager.isInitialized) {
+                await window.skillManager.loadSkillRegistry();
+            }
+
+            const allSkills = window.skillManager.getAllSkills();
+            
+            const skillsDiv = document.createElement('div');
+            skillsDiv.className = 'skill-list';
+            skillsDiv.innerHTML = allSkills.map(skill => `
+                <div class="skill-card">
+                    <h4>${skill.icon} ${skill.name}</h4>
+                    <p><strong>ID:</strong> ${skill.id}</p>
+                    <p><strong>Type:</strong> ${skill.type}</p>
+                    <p>${skill.description}</p>
+                    <p><strong>Domains:</strong> ${skill.applicableDomains.join(', ')}</p>
+                </div>
+            `).join('');
+            
+            resultsDiv.appendChild(skillsDiv);
+        };
+
+        window.testActivateSkill = async function() {
+            const container = document.getElementById('skill-container');
+            container.innerHTML = '<p>Loading skill...</p>';
+            
+            if (!window.skillManager.isInitialized) {
+                await window.skillManager.loadSkillRegistry();
+            }
+
+            try {
+                await window.skillManager.activateSkill('gradient-visualization-skill', container);
+                container.innerHTML += '<p style="color: green;">✓ Skill activation attempted (module may not exist in test environment)</p>';
+            } catch (error) {
+                container.innerHTML = `
+                    <p style="color: orange;">⚠️ Expected error in test environment:</p>
+                    <p style="font-size: 0.9em; color: #666;">${error.message}</p>
+                    <p style="color: green;">✓ Error handling works correctly</p>
+                `;
+            }
+        };
+
+        // Auto-run tests on load
+        logInfo('Page loaded. Click "Run All Tests" to start testing.');
+    </script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Guide Test - Phase 2 Knowledge Graph</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .test-section {
+            margin-bottom: 40px;
+        }
+
+        .test-section h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .test-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .demo-ui {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            min-height: 400px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        #domainFilters {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-item {
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-item:hover {
+            background: #e0e0e0;
+        }
+
+        .main-area {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #graphCanvas {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .zoom-controls {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .zoom-btn:hover {
+            background: #f5f5f5;
+            transform: scale(1.1);
+        }
+
+        #languageSwitcher {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .info-box h4 {
+            color: #1976D2;
+            margin-bottom: 8px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+        }
+
+        .info-box li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-left: 10px;
+        }
+
+        .status-active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .status-inactive {
+            background: #999;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .demo-ui {
+                grid-template-columns: 1fr;
+            }
+
+            .test-controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles/onboarding.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Onboarding Guide Test</h1>
+            <p>Interactive Onboarding System - Task 27</p>
+        </div>
+
+        <div class="content">
+            <!-- Test Controls -->
+            <div class="test-section">
+                <h2>🎮 Test Controls</h2>
+                
+                <div class="info-box">
+                    <h4>Test Instructions:</h4>
+                    <ul>
+                        <li>Click "Start Onboarding" to begin the guided tour</li>
+                        <li>Use "Next" and "Previous" buttons to navigate steps</li>
+                        <li>Click "Skip" or "×" to exit the guide</li>
+                        <li>Use "Reset" to clear the "has seen" flag and test again</li>
+                        <li>The guide will highlight UI elements and show tooltips</li>
+                    </ul>
+                </div>
+
+                <div class="test-controls">
+                    <button class="btn btn-primary" onclick="startOnboarding()">
+                        🚀 Start Onboarding
+                    </button>
+                    <button class="btn btn-secondary" onclick="checkStatus()">
+                        📊 Check Status
+                    </button>
+                    <button class="btn btn-danger" onclick="resetOnboarding()">
+                        🔄 Reset (Clear Flag)
+                    </button>
+                </div>
+
+                <div id="statusDisplay" style="margin-top: 15px; padding: 15px; background: #f5f5f5; border-radius: 8px; display: none;">
+                    <strong>Status:</strong>
+                    <div id="statusContent" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+
+            <!-- Demo UI -->
+            <div class="test-section">
+                <h2>🎨 Demo UI (Onboarding Targets)</h2>
+                
+                <div class="demo-ui">
+                    <div class="sidebar">
+                        <h3>🔍 Search & Filter</h3>
+                        <input type="text" id="searchInput" placeholder="Search nodes...">
+                        
+                        <h3 style="margin-top: 20px;">📚 Domains</h3>
+                        <div id="domainFilters">
+                            <div class="filter-item">📈 Domain 1</div>
+                            <div class="filter-item">🔢 Domain 2</div>
+                            <div class="filter-item">🎯 Domain 3</div>
+                            <div class="filter-item">📊 Domain 4</div>
+                            <div class="filter-item">🌐 Domain 5</div>
+                        </div>
+                    </div>
+
+                    <div class="main-area">
+                        <div id="languageSwitcher">🌐 中文 / EN</div>
+                        
+                        <div class="zoom-controls">
+                            <button class="zoom-btn">+</button>
+                            <button class="zoom-btn">−</button>
+                            <button class="zoom-btn">⟲</button>
+                        </div>
+
+                        <div id="graphCanvas">
+                            📊 Knowledge Graph Canvas
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Results -->
+            <div class="test-section">
+                <h2>✅ Test Checklist</h2>
+                
+                <div class="info-box">
+                    <h4>Verify the following:</h4>
+                    <ul>
+                        <li>✓ Overlay appears with semi-transparent background</li>
+                        <li>✓ Tooltip shows with correct content for each step</li>
+                        <li>✓ Target elements are highlighted with green glow</li>
+                        <li>✓ Navigation buttons work (Next, Previous, Skip)</li>
+                        <li>✓ Progress indicator shows current step (e.g., "1 / 6")</li>
+                        <li>✓ Close button (×) exits the guide</li>
+                        <li>✓ Clicking overlay exits the guide</li>
+                        <li>✓ "Finish" button on last step marks guide as seen</li>
+                        <li>✓ Guide doesn't show again after being marked as seen</li>
+                        <li>✓ Reset button clears the flag and allows replay</li>
+                        <li>✓ Responsive design works on mobile (resize window)</li>
+                        <li>✓ Dark mode support (if system preference is dark)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { onboardingGuide } from './js/modules/OnboardingGuide.js';
+
+        // Make onboardingGuide globally accessible
+        window.onboardingGuide = onboardingGuide;
+
+        // Test functions
+        window.startOnboarding = function() {
+            console.log('Starting onboarding guide...');
+            onboardingGuide.start();
+        };
+
+        window.checkStatus = function() {
+            const hasSeenGuide = localStorage.getItem('hasSeenOnboarding') === 'true';
+            const shouldShow = onboardingGuide.shouldShow();
+            const isActive = onboardingGuide.isActive;
+
+            const statusDisplay = document.getElementById('statusDisplay');
+            const statusContent = document.getElementById('statusContent');
+
+            statusContent.innerHTML = `
+                <div style="display: grid; gap: 10px;">
+                    <div>
+                        <strong>Has Seen Guide:</strong> 
+                        <span class="status ${hasSeenGuide ? 'status-active' : 'status-inactive'}">
+                            ${hasSeenGuide ? 'Yes' : 'No'}
+                        </span>
+                    </div>
+                    <div>
+                        <strong>Should Show:</strong> 
+                        <span class="status ${shouldShow ? 'status-active' : 'status-inactive'}">
+                            ${shouldShow ? 'Yes' : 'No'}
+                        </span>
+                    </div>
+                    <div>
+                        <strong>Currently Active:</strong> 
+                        <span class="status ${isActive ? 'status-active' : 'status-inactive'}">
+                            ${isActive ? 'Yes' : 'No'}
+                        </span>
+                    </div>
+                    <div>
+                        <strong>Current Step:</strong> ${onboardingGuide.currentStep + 1} / ${onboardingGuide.steps.length}
+                    </div>
+                </div>
+            `;
+
+            statusDisplay.style.display = 'block';
+
+            console.log('Onboarding Status:', {
+                hasSeenGuide,
+                shouldShow,
+                isActive,
+                currentStep: onboardingGuide.currentStep
+            });
+        };
+
+        window.resetOnboarding = function() {
+            onboardingGuide.reset();
+            console.log('Onboarding flag cleared. You can now test the first-time experience again.');
+            alert('✅ Onboarding flag cleared!\n\nThe guide will now show again when you click "Start Onboarding".');
+            
+            // Update status display if visible
+            const statusDisplay = document.getElementById('statusDisplay');
+            if (statusDisplay.style.display !== 'none') {
+                checkStatus();
+            }
+        };
+
+        // Auto-check status on load
+        console.log('Onboarding Guide Test Page Loaded');
+        console.log('Use the buttons above to test the onboarding functionality');
+    </script>
+</body>
+</html>

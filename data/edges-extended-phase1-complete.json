@@ -1,0 +1,931 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - 边关系扩展",
+    "totalNewEdges": 115,
+    "createdDate": "2026-02-22",
+    "description": "Phase 1新增节点的边关系定义"
+  },
+  "newEdges": [
+    {
+      "id": "edge-ext-1",
+      "source": "node-limit-def",
+      "target": "node-sequence-limit",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "函数极限基于数列极限"
+    },
+    {
+      "id": "edge-ext-2",
+      "source": "node-limit-def",
+      "target": "node-limit-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "极限运算法则基于极限定义"
+    },
+    {
+      "id": "edge-ext-3",
+      "source": "node-limit-def",
+      "target": "node-infinitesimal",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "无穷小概念基于极限"
+    },
+    {
+      "id": "edge-ext-4",
+      "source": "node-limit-def",
+      "target": "node-limit-existence",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "极限存在准则基于极限定义"
+    },
+    {
+      "id": "edge-ext-5",
+      "source": "node-limit-def",
+      "target": "node-limit-special",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "两个重要极限是特殊极限"
+    },
+    {
+      "id": "edge-ext-6",
+      "source": "node-continuity",
+      "target": "node-continuity-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "连续函数性质基于连续性定义"
+    },
+    {
+      "id": "edge-ext-7",
+      "source": "node-continuity",
+      "target": "node-discontinuity-types",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "间断点分类基于连续性"
+    },
+    {
+      "id": "edge-ext-8",
+      "source": "node-continuity",
+      "target": "node-uniform-continuity",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "一致连续是连续的推广"
+    },
+    {
+      "id": "edge-ext-9",
+      "source": "node-derivative-def",
+      "target": "node-derivative-geometric",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "几何意义基于导数定义"
+    },
+    {
+      "id": "edge-ext-10",
+      "source": "node-derivative-def",
+      "target": "node-derivative-physical",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "物理意义基于导数定义"
+    },
+    {
+      "id": "edge-ext-11",
+      "source": "node-derivative-def",
+      "target": "node-higher-derivatives",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "高阶导数基于导数定义"
+    },
+    {
+      "id": "edge-ext-12",
+      "source": "node-derivative-rules",
+      "target": "node-implicit-derivative",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "隐函数求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-13",
+      "source": "node-derivative-rules",
+      "target": "node-parametric-derivative",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "参数方程求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-14",
+      "source": "node-derivative-rules",
+      "target": "node-logarithmic-derivative",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "对数求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-15",
+      "source": "node-higher-derivatives",
+      "target": "node-curvature",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "曲率需要二阶导数"
+    },
+    {
+      "id": "edge-ext-16",
+      "source": "node-mean-value-theorem",
+      "target": "node-rolle-theorem",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "罗尔定理是中值定理特例"
+    },
+    {
+      "id": "edge-ext-17",
+      "source": "node-rolle-theorem",
+      "target": "node-lagrange-theorem",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "拉格朗日定理推广罗尔定理"
+    },
+    {
+      "id": "edge-ext-18",
+      "source": "node-lagrange-theorem",
+      "target": "node-cauchy-theorem",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "柯西定理推广拉格朗日定理"
+    },
+    {
+      "id": "edge-ext-19",
+      "source": "node-cauchy-theorem",
+      "target": "node-lhopital-rule",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "洛必达法则基于柯西定理"
+    },
+    {
+      "id": "edge-ext-20",
+      "source": "node-lagrange-theorem",
+      "target": "node-taylor-theorem",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "泰勒定理是拉格朗日定理推广"
+    },
+    {
+      "id": "edge-ext-21",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-22",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-23",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-24",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-25",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-26",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-27",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-28",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-29",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-30",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-31",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-32",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-33",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-34",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-35",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-36",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-37",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-38",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-39",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-40",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-41",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-42",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-43",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-44",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-45",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-46",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-47",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-48",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-49",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-50",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-51",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-52",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-53",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-54",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-55",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-56",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-57",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-58",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-59",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-60",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-61",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-62",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-63",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-64",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-65",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-66",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-67",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-68",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-69",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-70",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-71",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-72",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-73",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-74",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-75",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-76",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-77",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-78",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-79",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-80",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-81",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-82",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-83",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-84",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-85",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-86",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-87",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-88",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-89",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-90",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-91",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-92",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-93",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-94",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-95",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-96",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-97",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-98",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-99",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-100",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-101",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-102",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-103",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-104",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-105",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-106",
+      "source": "node-substitution-method-2",
+      "target": "node-trigonometric-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "三角函数积分使用换元法"
+    },
+    {
+      "id": "edge-ext-107",
+      "source": "node-integral-def",
+      "target": "node-definite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-108",
+      "source": "node-definite-integral-properties",
+      "target": "node-improper-integral",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "反常积分是定积分推广"
+    },
+    {
+      "id": "edge-ext-109",
+      "source": "node-definite-integral-properties",
+      "target": "node-area-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "面积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-110",
+      "source": "node-definite-integral-properties",
+      "target": "node-volume-calculation",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "体积计算使用定积分"
+    },
+    {
+      "id": "edge-ext-111",
+      "source": "node-integral-def",
+      "target": "node-indefinite-integral-properties",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "不定积分性质基于积分定义"
+    },
+    {
+      "id": "edge-ext-112",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-1",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第一类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-113",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-substitution-method-2",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "第二类换元法使用积分性质"
+    },
+    {
+      "id": "edge-ext-114",
+      "source": "node-indefinite-integral-properties",
+      "target": "node-integration-by-parts-detail",
+      "type": "prerequisite",
+      "strength": 1,
+      "description": "分部积分基于积分性质"
+    },
+    {
+      "id": "edge-ext-115",
+      "source": "node-substitution-method-1",
+      "target": "node-rational-function-integration",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "有理函数积分使用换元法"
+    }
+  ]
+}

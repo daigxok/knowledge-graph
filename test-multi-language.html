@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多语言支持测试 - Multi-language Support Test</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .test-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .test-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .test-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-card .label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .domain-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .domain-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .domain-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .info-box p {
+            color: #333;
+            margin: 0;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-indicator.active {
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+        }
+        
+        .status-indicator.inactive {
+            background: #6b7280;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .test-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .test-button:active {
+            transform: translateY(0);
+        }
+        
+        .notification-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+        
+        .notification-toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="styles/language-switcher.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Language Switcher -->
+        <div class="header">
+            <div class="header-content">
+                <h1 data-i18n="app.title">高等数学学域知识图谱</h1>
+                <p class="subtitle" data-i18n="app.subtitle">从章节记忆到学域理解 · 5大学域整合范式</p>
+            </div>
+            <div id="languageSwitcher"></div>
+        </div>
+        
+        <!-- Test Section 1: Domain Names -->
+        <div class="test-section">
+            <h2>
+                <span data-i18n="sidebar.domainOverview">学域概览</span>
+            </h2>
+            <div class="domain-badges">
+                <span class="domain-badge" data-i18n="domain.1">变化与逼近</span>
+                <span class="domain-badge" data-i18n="domain.2">结构与累积</span>
+                <span class="domain-badge" data-i18n="domain.3">优化与决策</span>
+                <span class="domain-badge" data-i18n="domain.4">不确定性处理</span>
+                <span class="domain-badge" data-i18n="domain.5">真实问题建模</span>
+            </div>
+            <div class="info-box">
+                <p><strong>Domain Descriptions:</strong></p>
+                <p>1. <span data-i18n="domain.1.desc">用离散逼近连续</span></p>
+                <p>2. <span data-i18n="domain.2.desc">从局部累积到整体</span></p>
+                <p>3. <span data-i18n="domain.3.desc">多元系统最优决策</span></p>
+                <p>4. <span data-i18n="domain.4.desc">无穷与随机工具</span></p>
+                <p>5. <span data-i18n="domain.5.desc">综合运用解决复杂问题</span></p>
+            </div>
+        </div>
+        
+        <!-- Test Section 2: Sample Nodes -->
+        <div class="test-section">
+            <h2>Sample Nodes (Node Name Translation)</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3 id="node1Name">函数极限</h3>
+                    <p><span class="label" data-i18n="detail.description">描述:</span> <span id="node1Desc">研究函数在某点附近的变化趋势</span></p>
+                    <p><span class="label" data-i18n="detail.difficulty">难度:</span> 2</p>
+                    <p><span class="label" data-i18n="detail.studyTime">预计学习时间:</span> 45 min</p>
+                </div>
+                <div class="test-card">
+                    <h3 id="node2Name">导数定义</h3>
+                    <p><span class="label" data-i18n="detail.description">描述:</span> <span id="node2Desc">函数在某点的瞬时变化率</span></p>
+                    <p><span class="label" data-i18n="detail.difficulty">难度:</span> 3</p>
+                    <p><span class="label" data-i18n="detail.studyTime">预计学习时间:</span> 60 min</p>
+                </div>
+                <div class="test-card">
+                    <h3 id="node3Name">定积分</h3>
+                    <p><span class="label" data-i18n="detail.description">描述:</span> <span id="node3Desc">曲边梯形的面积计算</span></p>
+                    <p><span class="label" data-i18n="detail.difficulty">难度:</span> 3</p>
+                    <p><span class="label" data-i18n="detail.studyTime">预计学习时间:</span> 75 min</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Section 3: UI Elements -->
+        <div class="test-section">
+            <h2>UI Elements Translation</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3 data-i18n="filter.domain">学域筛选</h3>
+                    <p data-i18n="filter.nodeType">节点类型</p>
+                    <p data-i18n="filter.difficulty">难度范围</p>
+                    <p data-i18n="filter.chapter">传统章节</p>
+                </div>
+                <div class="test-card">
+                    <h3 data-i18n="stats.title">学习统计</h3>
+                    <p><span data-i18n="stats.completed">已完成节点:</span> 15</p>
+                    <p><span data-i18n="stats.total">总节点数:</span> 150</p>
+                    <p><span data-i18n="stats.progress">学习进度:</span> 10%</p>
+                </div>
+                <div class="test-card">
+                    <h3>Actions</h3>
+                    <p data-i18n="export.pdf">导出为 PDF</p>
+                    <p data-i18n="export.markdown">导出为 Markdown</p>
+                    <p data-i18n="share.link">分享链接</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Section 4: Language Status -->
+        <div class="test-section">
+            <h2>Language Manager Status</h2>
+            <div class="info-box">
+                <p>
+                    <span class="status-indicator active"></span>
+                    <strong>Current Language:</strong> <span id="currentLang">zh</span>
+                </p>
+                <p>
+                    <span class="status-indicator active"></span>
+                    <strong>Browser Language:</strong> <span id="browserLang">-</span>
+                </p>
+                <p>
+                    <span class="status-indicator active"></span>
+                    <strong>Saved Preference:</strong> <span id="savedLang">-</span>
+                </p>
+                <p>
+                    <span class="status-indicator active"></span>
+                    <strong>HTML Lang Attribute:</strong> <span id="htmlLang">-</span>
+                </p>
+            </div>
+            <div class="button-group">
+                <button class="test-button" onclick="testLanguageSwitch('zh')">Switch to 中文</button>
+                <button class="test-button" onclick="testLanguageSwitch('en')">Switch to English</button>
+                <button class="test-button" onclick="testClearPreference()">Clear Preference</button>
+                <button class="test-button" onclick="testReload()">Reload Page</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast" role="alert" aria-live="polite">
+        <span id="notificationMessage"></span>
+    </div>
+    
+    <script type="module">
+        import { languageManager } from './js/modules/LanguageManager.js';
+        import { LanguageSwitcher } from './js/modules/LanguageSwitcher.js';
+        
+        // Sample node data
+        const sampleNodes = {
+            node1: {
+                name: '函数极限',
+                nameEn: 'Function Limit',
+                description: '研究函数在某点附近的变化趋势',
+                descriptionEn: 'Study the trend of function changes near a point'
+            },
+            node2: {
+                name: '导数定义',
+                nameEn: 'Derivative Definition',
+                description: '函数在某点的瞬时变化率',
+                descriptionEn: 'Instantaneous rate of change at a point'
+            },
+            node3: {
+                name: '定积分',
+                nameEn: 'Definite Integral',
+                description: '曲边梯形的面积计算',
+                descriptionEn: 'Area calculation of curved trapezoid'
+            }
+        };
+        
+        // Initialize language switcher
+        const switcher = new LanguageSwitcher();
+        
+        // Update node names and descriptions
+        function updateNodeContent() {
+            document.getElementById('node1Name').textContent = languageManager.getNodeName(sampleNodes.node1);
+            document.getElementById('node1Desc').textContent = languageManager.getNodeDescription(sampleNodes.node1);
+            
+            document.getElementById('node2Name').textContent = languageManager.getNodeName(sampleNodes.node2);
+            document.getElementById('node2Desc').textContent = languageManager.getNodeDescription(sampleNodes.node2);
+            
+            document.getElementById('node3Name').textContent = languageManager.getNodeName(sampleNodes.node3);
+            document.getElementById('node3Desc').textContent = languageManager.getNodeDescription(sampleNodes.node3);
+        }
+        
+        // Update status display
+        function updateStatus() {
+            document.getElementById('currentLang').textContent = languageManager.getCurrentLanguage();
+            document.getElementById('browserLang').textContent = navigator.language || navigator.userLanguage;
+            document.getElementById('savedLang').textContent = localStorage.getItem('preferredLanguage') || 'None';
+            document.getElementById('htmlLang').textContent = document.documentElement.lang;
+        }
+        
+        // Listen for language changes
+        languageManager.onLanguageChange((language) => {
+            updateNodeContent();
+            updateStatus();
+            console.log('Language changed to:', language);
+        });
+        
+        // Initial update
+        updateNodeContent();
+        updateStatus();
+        
+        // Expose test functions to global scope
+        window.testLanguageSwitch = function(lang) {
+            languageManager.switchLanguage(lang);
+        };
+        
+        window.testClearPreference = function() {
+            localStorage.removeItem('preferredLanguage');
+            updateStatus();
+            showNotification('Language preference cleared');
+        };
+        
+        window.testReload = function() {
+            location.reload();
+        };
+        
+        function showNotification(message) {
+            const toast = document.getElementById('notificationToast');
+            const messageEl = document.getElementById('notificationMessage');
+            
+            messageEl.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        console.log('Multi-language test page loaded');
+        console.log('Current language:', languageManager.getCurrentLanguage());
+        console.log('Available languages:', languageManager.getAvailableLanguages());
+    </script>
+</body>
+</html>

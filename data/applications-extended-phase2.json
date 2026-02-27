@@ -1,0 +1,2745 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "phase": "Phase 2 - 内容深度扩展",
+    "totalItems": 100,
+    "createdDate": "2026-02-25",
+    "description": "Phase 2的100个行业应用案例",
+    "author": "ApplicationGenerator",
+    "industries": 30,
+    "industryDistribution": {
+      "工程": 4,
+      "航空航天": 5,
+      "生物信息学": 2,
+      "自然语言处理": 5,
+      "量子力学": 4,
+      "机器学习": 5,
+      "物理学": 6,
+      "流体力学": 5,
+      "环境科学": 5,
+      "风险管理": 4,
+      "大数据分析": 7,
+      "保险精算": 6,
+      "控制系统": 3,
+      "经济学": 2,
+      "深度学习": 1,
+      "电气工程": 3,
+      "商业智能": 3,
+      "图像处理": 3,
+      "土木工程": 2,
+      "人工智能": 3,
+      "药物研发": 1,
+      "机械工程": 2,
+      "计算机视觉": 4,
+      "量化交易": 2,
+      "气候建模": 1,
+      "计量经济学": 4,
+      "数据科学": 3,
+      "金融工程": 1,
+      "信号处理": 3,
+      "医疗健康": 1
+    }
+  },
+  "data": [
+    {
+      "id": "application-phase2-1",
+      "title": "曲率在工程中的应用",
+      "description": "本案例展示了曲率的理论如何应用于工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "工程",
+      "relatedNodes": [
+        "node-domain-1-curvature-1772027700608-0"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在工程领域中，我们经常遇到需要使用曲率来解决的问题。",
+      "mathematicalModel": "建立基于曲率的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用曲率的理论和方法，结合工程的特点，得出解决方案。",
+      "code": "// 曲率应用示例\nfunction solveCurvature() {\n  // 实现曲率算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "曲率应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "曲率理论基础",
+        "工程应用实践"
+      ],
+      "estimatedTime": 103
+    },
+    {
+      "id": "application-phase2-2",
+      "title": "曲率在航空航天中的应用",
+      "description": "本案例展示了曲率的理论如何应用于航空航天领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "航空航天",
+      "relatedNodes": [
+        "node-domain-1-curvature-1772027700608-0"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在航空航天领域中，我们经常遇到需要使用曲率来解决的问题。",
+      "mathematicalModel": "建立基于曲率的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用曲率的理论和方法，结合航空航天的特点，得出解决方案。",
+      "code": "// 曲率应用示例\nfunction solveCurvature() {\n  // 实现曲率算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "曲率应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "曲率理论基础",
+        "航空航天应用实践"
+      ],
+      "estimatedTime": 80
+    },
+    {
+      "id": "application-phase2-3",
+      "title": "函数作图在生物信息学中的应用",
+      "description": "本案例展示了函数作图的理论如何应用于生物信息学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "生物信息学",
+      "relatedNodes": [
+        "node-domain-1-function-plotting-1772027700609-1"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在生物信息学领域中，我们经常遇到需要使用函数作图来解决的问题。",
+      "mathematicalModel": "建立基于函数作图的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用函数作图的理论和方法，结合生物信息学的特点，得出解决方案。",
+      "code": "// 函数作图应用示例\nfunction solveFunction Plotting() {\n  // 实现函数作图算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "函数作图应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "函数作图理论基础",
+        "生物信息学应用实践"
+      ],
+      "estimatedTime": 113
+    },
+    {
+      "id": "application-phase2-4",
+      "title": "不等式证明在自然语言处理中的应用",
+      "description": "本案例展示了不等式证明的理论如何应用于自然语言处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "自然语言处理",
+      "relatedNodes": [
+        "node-domain-1-inequality-proof-1772027700609-2"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在自然语言处理领域中，我们经常遇到需要使用不等式证明来解决的问题。",
+      "mathematicalModel": "建立基于不等式证明的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用不等式证明的理论和方法，结合自然语言处理的特点，得出解决方案。",
+      "code": "// 不等式证明应用示例\nfunction solveInequality Proof() {\n  // 实现不等式证明算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "不等式证明应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "不等式证明理论基础",
+        "自然语言处理应用实践"
+      ],
+      "estimatedTime": 71
+    },
+    {
+      "id": "application-phase2-5",
+      "title": "泰勒展开应用在量子力学中的应用",
+      "description": "本案例展示了泰勒展开应用的理论如何应用于量子力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量子力学",
+      "relatedNodes": [
+        "node-domain-1-taylor-expansion-1772027700609-3"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在量子力学领域中，我们经常遇到需要使用泰勒展开应用来解决的问题。",
+      "mathematicalModel": "建立基于泰勒展开应用的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用泰勒展开应用的理论和方法，结合量子力学的特点，得出解决方案。",
+      "code": "// 泰勒展开应用应用示例\nfunction solveTaylor Expansion Applications() {\n  // 实现泰勒展开应用算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "泰勒展开应用应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "泰勒展开应用理论基础",
+        "量子力学应用实践"
+      ],
+      "estimatedTime": 82
+    },
+    {
+      "id": "application-phase2-6",
+      "title": "泰勒展开应用在机器学习中的应用",
+      "description": "本案例展示了泰勒展开应用的理论如何应用于机器学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机器学习",
+      "relatedNodes": [
+        "node-domain-1-taylor-expansion-1772027700609-3"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在机器学习领域中，我们经常遇到需要使用泰勒展开应用来解决的问题。",
+      "mathematicalModel": "建立基于泰勒展开应用的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用泰勒展开应用的理论和方法，结合机器学习的特点，得出解决方案。",
+      "code": "// 泰勒展开应用应用示例\nfunction solveTaylor Expansion Applications() {\n  // 实现泰勒展开应用算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "泰勒展开应用应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "泰勒展开应用理论基础",
+        "机器学习应用实践"
+      ],
+      "estimatedTime": 111
+    },
+    {
+      "id": "application-phase2-7",
+      "title": "数学概念在生物信息学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于生物信息学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "生物信息学",
+      "relatedNodes": [
+        "node-domain-1-渐近线分析-1772027700609-4"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在生物信息学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合生物信息学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "生物信息学应用实践"
+      ],
+      "estimatedTime": 66
+    },
+    {
+      "id": "application-phase2-8",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-1-凹凸性判断-1772027700610-5"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 102
+    },
+    {
+      "id": "application-phase2-9",
+      "title": "数学概念在流体力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于流体力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "流体力学",
+      "relatedNodes": [
+        "node-domain-1-凹凸性判断-1772027700610-5"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在流体力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合流体力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "流体力学应用实践"
+      ],
+      "estimatedTime": 61
+    },
+    {
+      "id": "application-phase2-10",
+      "title": "数学概念在环境科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于环境科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "环境科学",
+      "relatedNodes": [
+        "node-domain-1-拐点分析-1772027700610-6"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在环境科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合环境科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "环境科学应用实践"
+      ],
+      "estimatedTime": 77
+    },
+    {
+      "id": "application-phase2-11",
+      "title": "数学概念在环境科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于环境科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "环境科学",
+      "relatedNodes": [
+        "node-domain-1-拐点分析-1772027700610-6"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在环境科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合环境科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "环境科学应用实践"
+      ],
+      "estimatedTime": 66
+    },
+    {
+      "id": "application-phase2-12",
+      "title": "数学概念在风险管理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于风险管理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "风险管理",
+      "relatedNodes": [
+        "node-domain-1-极值问题-1772027700610-7"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在风险管理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合风险管理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "风险管理应用实践"
+      ],
+      "estimatedTime": 107
+    },
+    {
+      "id": "application-phase2-13",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-1-最值定理-1772027700610-8"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 102
+    },
+    {
+      "id": "application-phase2-14",
+      "title": "数学概念在保险精算中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-1-中值定理应用-1772027700610-9"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 60
+    },
+    {
+      "id": "application-phase2-15",
+      "title": "数学概念在控制系统中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于控制系统领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "控制系统",
+      "relatedNodes": [
+        "node-domain-1-高阶导数-1772027700610-10"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在控制系统领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合控制系统的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "控制系统应用实践"
+      ],
+      "estimatedTime": 61
+    },
+    {
+      "id": "application-phase2-16",
+      "title": "数学概念在环境科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于环境科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "环境科学",
+      "relatedNodes": [
+        "node-domain-1-高阶导数-1772027700610-10"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在环境科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合环境科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "环境科学应用实践"
+      ],
+      "estimatedTime": 118
+    },
+    {
+      "id": "application-phase2-17",
+      "title": "数学概念在控制系统中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于控制系统领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "控制系统",
+      "relatedNodes": [
+        "node-domain-1-隐函数求导-1772027700610-11"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在控制系统领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合控制系统的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "控制系统应用实践"
+      ],
+      "estimatedTime": 118
+    },
+    {
+      "id": "application-phase2-18",
+      "title": "数学概念在机器学习中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于机器学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机器学习",
+      "relatedNodes": [
+        "node-domain-1-隐函数求导-1772027700610-11"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在机器学习领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合机器学习的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "机器学习应用实践"
+      ],
+      "estimatedTime": 93
+    },
+    {
+      "id": "application-phase2-19",
+      "title": "数学概念在经济学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "经济学",
+      "relatedNodes": [
+        "node-domain-1-参数方程求导-1772027700610-12"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在经济学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合经济学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "经济学应用实践"
+      ],
+      "estimatedTime": 64
+    },
+    {
+      "id": "application-phase2-20",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-1-极坐标求导-1772027700610-13"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 72
+    },
+    {
+      "id": "application-phase2-21",
+      "title": "数学概念在深度学习中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于深度学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "深度学习",
+      "relatedNodes": [
+        "node-domain-1-微分中值定理-1772027700610-14"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在深度学习领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合深度学习的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "深度学习应用实践"
+      ],
+      "estimatedTime": 105
+    },
+    {
+      "id": "application-phase2-22",
+      "title": "数学概念在航空航天中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于航空航天领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "航空航天",
+      "relatedNodes": [
+        "node-domain-1-洛必达法则-1772027700610-15"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在航空航天领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合航空航天的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "航空航天应用实践"
+      ],
+      "estimatedTime": 65
+    },
+    {
+      "id": "application-phase2-23",
+      "title": "数学概念在风险管理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于风险管理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "风险管理",
+      "relatedNodes": [
+        "node-domain-1-洛必达法则-1772027700610-15"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在风险管理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合风险管理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "风险管理应用实践"
+      ],
+      "estimatedTime": 105
+    },
+    {
+      "id": "application-phase2-24",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-1-导数应用-1772027700610-16"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 60
+    },
+    {
+      "id": "application-phase2-25",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-1-函数单调性-1772027700611-17"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 93
+    },
+    {
+      "id": "application-phase2-26",
+      "title": "数学概念在风险管理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于风险管理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "风险管理",
+      "relatedNodes": [
+        "node-domain-1-函数极值-1772027700611-18"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在风险管理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合风险管理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "风险管理应用实践"
+      ],
+      "estimatedTime": 86
+    },
+    {
+      "id": "application-phase2-27",
+      "title": "数学概念在流体力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于流体力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "流体力学",
+      "relatedNodes": [
+        "node-domain-1-曲线的性质-1772027700611-19"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在流体力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合流体力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "流体力学应用实践"
+      ],
+      "estimatedTime": 115
+    },
+    {
+      "id": "application-phase2-28",
+      "title": "曲线积分在自然语言处理中的应用",
+      "description": "本案例展示了曲线积分的理论如何应用于自然语言处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "自然语言处理",
+      "relatedNodes": [
+        "node-domain-2-line-integral-1772027700623-20"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在自然语言处理领域中，我们经常遇到需要使用曲线积分来解决的问题。",
+      "mathematicalModel": "建立基于曲线积分的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用曲线积分的理论和方法，结合自然语言处理的特点，得出解决方案。",
+      "code": "// 曲线积分应用示例\nfunction solveLine Integral() {\n  // 实现曲线积分算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "曲线积分应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "曲线积分理论基础",
+        "自然语言处理应用实践"
+      ],
+      "estimatedTime": 63
+    },
+    {
+      "id": "application-phase2-29",
+      "title": "曲面积分在电气工程中的应用",
+      "description": "本案例展示了曲面积分的理论如何应用于电气工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "电气工程",
+      "relatedNodes": [
+        "node-domain-2-surface-integral-1772027700623-21"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在电气工程领域中，我们经常遇到需要使用曲面积分来解决的问题。",
+      "mathematicalModel": "建立基于曲面积分的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用曲面积分的理论和方法，结合电气工程的特点，得出解决方案。",
+      "code": "// 曲面积分应用示例\nfunction solveSurface Integral() {\n  // 实现曲面积分算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "曲面积分应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "曲面积分理论基础",
+        "电气工程应用实践"
+      ],
+      "estimatedTime": 66
+    },
+    {
+      "id": "application-phase2-30",
+      "title": "场论在工程中的应用",
+      "description": "本案例展示了场论的理论如何应用于工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "工程",
+      "relatedNodes": [
+        "node-domain-2-field-theory-1772027700623-22"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在工程领域中，我们经常遇到需要使用场论来解决的问题。",
+      "mathematicalModel": "建立基于场论的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用场论的理论和方法，结合工程的特点，得出解决方案。",
+      "code": "// 场论应用示例\nfunction solveField Theory() {\n  // 实现场论算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "场论应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "场论理论基础",
+        "工程应用实践"
+      ],
+      "estimatedTime": 73
+    },
+    {
+      "id": "application-phase2-31",
+      "title": "数学概念在工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "工程",
+      "relatedNodes": [
+        "node-domain-2-格林公式-1772027700623-23"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "工程应用实践"
+      ],
+      "estimatedTime": 71
+    },
+    {
+      "id": "application-phase2-32",
+      "title": "数学概念在保险精算中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-2-高斯公式-1772027700623-24"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 73
+    },
+    {
+      "id": "application-phase2-33",
+      "title": "数学概念在商业智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于商业智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "商业智能",
+      "relatedNodes": [
+        "node-domain-2-高斯公式-1772027700623-24"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在商业智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合商业智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "商业智能应用实践"
+      ],
+      "estimatedTime": 78
+    },
+    {
+      "id": "application-phase2-34",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-2-斯托克斯公式-1772027700623-25"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 88
+    },
+    {
+      "id": "application-phase2-35",
+      "title": "数学概念在环境科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于环境科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "环境科学",
+      "relatedNodes": [
+        "node-domain-2-斯托克斯公式-1772027700623-25"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在环境科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合环境科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "环境科学应用实践"
+      ],
+      "estimatedTime": 105
+    },
+    {
+      "id": "application-phase2-36",
+      "title": "数学概念在自然语言处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于自然语言处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "自然语言处理",
+      "relatedNodes": [
+        "node-domain-2-散度定理-1772027700623-26"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在自然语言处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合自然语言处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "自然语言处理应用实践"
+      ],
+      "estimatedTime": 64
+    },
+    {
+      "id": "application-phase2-37",
+      "title": "数学概念在图像处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于图像处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "图像处理",
+      "relatedNodes": [
+        "node-domain-2-旋度-1772027700623-27"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在图像处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合图像处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "图像处理应用实践"
+      ],
+      "estimatedTime": 69
+    },
+    {
+      "id": "application-phase2-38",
+      "title": "数学概念在土木工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于土木工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "土木工程",
+      "relatedNodes": [
+        "node-domain-2-旋度-1772027700623-27"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在土木工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合土木工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "土木工程应用实践"
+      ],
+      "estimatedTime": 62
+    },
+    {
+      "id": "application-phase2-39",
+      "title": "数学概念在自然语言处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于自然语言处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "自然语言处理",
+      "relatedNodes": [
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在自然语言处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合自然语言处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "自然语言处理应用实践"
+      ],
+      "estimatedTime": 77
+    },
+    {
+      "id": "application-phase2-40",
+      "title": "数学概念在流体力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于流体力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "流体力学",
+      "relatedNodes": [
+        "node-domain-2-梯度场-1772027700623-28"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在流体力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合流体力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "流体力学应用实践"
+      ],
+      "estimatedTime": 105
+    },
+    {
+      "id": "application-phase2-41",
+      "title": "数学概念在人工智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于人工智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "人工智能",
+      "relatedNodes": [
+        "node-domain-2-保守场-1772027700623-29"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在人工智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合人工智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "人工智能应用实践"
+      ],
+      "estimatedTime": 80
+    },
+    {
+      "id": "application-phase2-42",
+      "title": "数学概念在药物研发中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于药物研发领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "药物研发",
+      "relatedNodes": [
+        "node-domain-2-一阶微分方程-1772027700623-30"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在药物研发领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合药物研发的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "药物研发应用实践"
+      ],
+      "estimatedTime": 90
+    },
+    {
+      "id": "application-phase2-43",
+      "title": "数学概念在机械工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于机械工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机械工程",
+      "relatedNodes": [
+        "node-domain-2-二阶微分方程-1772027700623-31"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在机械工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合机械工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "机械工程应用实践"
+      ],
+      "estimatedTime": 82
+    },
+    {
+      "id": "application-phase2-44",
+      "title": "数学概念在计算机视觉中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于计算机视觉领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计算机视觉",
+      "relatedNodes": [
+        "node-domain-2-高阶微分方程-1772027700623-32"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在计算机视觉领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合计算机视觉的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "计算机视觉应用实践"
+      ],
+      "estimatedTime": 62
+    },
+    {
+      "id": "application-phase2-45",
+      "title": "数学概念在电气工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于电气工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "电气工程",
+      "relatedNodes": [
+        "node-domain-2-微分方程组-1772027700623-33"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在电气工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合电气工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "电气工程应用实践"
+      ],
+      "estimatedTime": 69
+    },
+    {
+      "id": "application-phase2-46",
+      "title": "数学概念在经济学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "经济学",
+      "relatedNodes": [
+        "node-domain-2-微分方程组-1772027700623-33"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在经济学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合经济学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "经济学应用实践"
+      ],
+      "estimatedTime": 118
+    },
+    {
+      "id": "application-phase2-47",
+      "title": "数学概念在量化交易中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于量化交易领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量化交易",
+      "relatedNodes": [
+        "node-domain-2-边值问题-1772027700623-34"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在量化交易领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合量化交易的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "量化交易应用实践"
+      ],
+      "estimatedTime": 109
+    },
+    {
+      "id": "application-phase2-48",
+      "title": "数学概念在气候建模中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于气候建模领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "气候建模",
+      "relatedNodes": [
+        "node-domain-2-特征值问题-1772027700623-35"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在气候建模领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合气候建模的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "气候建模应用实践"
+      ],
+      "estimatedTime": 87
+    },
+    {
+      "id": "application-phase2-49",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-2-特征值问题-1772027700623-35"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 118
+    },
+    {
+      "id": "application-phase2-50",
+      "title": "偏微分方程在量子力学中的应用",
+      "description": "本案例展示了偏微分方程的理论如何应用于量子力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量子力学",
+      "relatedNodes": [
+        "node-domain-2-pde-1772027700623-36"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在量子力学领域中，我们经常遇到需要使用偏微分方程来解决的问题。",
+      "mathematicalModel": "建立基于偏微分方程的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用偏微分方程的理论和方法，结合量子力学的特点，得出解决方案。",
+      "code": "// 偏微分方程应用示例\nfunction solvePartial Differential Equations() {\n  // 实现偏微分方程算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "偏微分方程应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "偏微分方程理论基础",
+        "量子力学应用实践"
+      ],
+      "estimatedTime": 92
+    },
+    {
+      "id": "application-phase2-51",
+      "title": "偏微分方程在流体力学中的应用",
+      "description": "本案例展示了偏微分方程的理论如何应用于流体力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "流体力学",
+      "relatedNodes": [
+        "node-domain-2-pde-1772027700623-36"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在流体力学领域中，我们经常遇到需要使用偏微分方程来解决的问题。",
+      "mathematicalModel": "建立基于偏微分方程的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用偏微分方程的理论和方法，结合流体力学的特点，得出解决方案。",
+      "code": "// 偏微分方程应用示例\nfunction solvePartial Differential Equations() {\n  // 实现偏微分方程算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "偏微分方程应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "偏微分方程理论基础",
+        "流体力学应用实践"
+      ],
+      "estimatedTime": 87
+    },
+    {
+      "id": "application-phase2-52",
+      "title": "数学概念在流体力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于流体力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "流体力学",
+      "relatedNodes": [
+        "node-domain-2-热传导方程-1772027700623-37"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在流体力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合流体力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "流体力学应用实践"
+      ],
+      "estimatedTime": 82
+    },
+    {
+      "id": "application-phase2-53",
+      "title": "数学概念在人工智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于人工智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "人工智能",
+      "relatedNodes": [
+        "node-domain-2-热传导方程-1772027700623-37"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在人工智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合人工智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "人工智能应用实践"
+      ],
+      "estimatedTime": 85
+    },
+    {
+      "id": "application-phase2-54",
+      "title": "数学概念在航空航天中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于航空航天领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "航空航天",
+      "relatedNodes": [
+        "node-domain-2-波动方程-1772027700623-38"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在航空航天领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合航空航天的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "航空航天应用实践"
+      ],
+      "estimatedTime": 114
+    },
+    {
+      "id": "application-phase2-55",
+      "title": "数学概念在自然语言处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于自然语言处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "自然语言处理",
+      "relatedNodes": [
+        "node-domain-2-波动方程-1772027700623-38"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在自然语言处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合自然语言处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "自然语言处理应用实践"
+      ],
+      "estimatedTime": 98
+    },
+    {
+      "id": "application-phase2-56",
+      "title": "数学概念在计算机视觉中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于计算机视觉领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计算机视觉",
+      "relatedNodes": [
+        "node-domain-2-拉普拉斯方程-1772027700623-39"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在计算机视觉领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合计算机视觉的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "计算机视觉应用实践"
+      ],
+      "estimatedTime": 106
+    },
+    {
+      "id": "application-phase2-57",
+      "title": "级数应用在机器学习中的应用",
+      "description": "本案例展示了级数应用的理论如何应用于机器学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机器学习",
+      "relatedNodes": [
+        "node-domain-2-series-application-1772027700623-40"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在机器学习领域中，我们经常遇到需要使用级数应用来解决的问题。",
+      "mathematicalModel": "建立基于级数应用的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用级数应用的理论和方法，结合机器学习的特点，得出解决方案。",
+      "code": "// 级数应用应用示例\nfunction solveSeries Applications() {\n  // 实现级数应用算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "级数应用应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "级数应用理论基础",
+        "机器学习应用实践"
+      ],
+      "estimatedTime": 68
+    },
+    {
+      "id": "application-phase2-58",
+      "title": "级数应用在机器学习中的应用",
+      "description": "本案例展示了级数应用的理论如何应用于机器学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机器学习",
+      "relatedNodes": [
+        "node-domain-2-series-application-1772027700623-40"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在机器学习领域中，我们经常遇到需要使用级数应用来解决的问题。",
+      "mathematicalModel": "建立基于级数应用的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用级数应用的理论和方法，结合机器学习的特点，得出解决方案。",
+      "code": "// 级数应用应用示例\nfunction solveSeries Applications() {\n  // 实现级数应用算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "级数应用应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "级数应用理论基础",
+        "机器学习应用实践"
+      ],
+      "estimatedTime": 84
+    },
+    {
+      "id": "application-phase2-59",
+      "title": "数学概念在计算机视觉中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于计算机视觉领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计算机视觉",
+      "relatedNodes": [
+        "node-domain-2-傅里叶级数-1772027700623-41"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在计算机视觉领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合计算机视觉的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "计算机视觉应用实践"
+      ],
+      "estimatedTime": 115
+    },
+    {
+      "id": "application-phase2-60",
+      "title": "数学概念在计量经济学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于计量经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计量经济学",
+      "relatedNodes": [
+        "node-domain-2-幂级数应用-1772027700623-42"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在计量经济学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合计量经济学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "计量经济学应用实践"
+      ],
+      "estimatedTime": 99
+    },
+    {
+      "id": "application-phase2-61",
+      "title": "数学概念在量子力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于量子力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量子力学",
+      "relatedNodes": [
+        "node-domain-2-幂级数应用-1772027700623-42"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在量子力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合量子力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "量子力学应用实践"
+      ],
+      "estimatedTime": 79
+    },
+    {
+      "id": "application-phase2-62",
+      "title": "数学概念在数据科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于数据科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "数据科学",
+      "relatedNodes": [
+        "node-domain-2-泰勒级数应用-1772027700623-43"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在数据科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合数据科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "数据科学应用实践"
+      ],
+      "estimatedTime": 119
+    },
+    {
+      "id": "application-phase2-63",
+      "title": "向量分析在计量经济学中的应用",
+      "description": "本案例展示了向量分析的理论如何应用于计量经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计量经济学",
+      "relatedNodes": [
+        "node-domain-3-vector-analysis-1772027700628-44"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在计量经济学领域中，我们经常遇到需要使用向量分析来解决的问题。",
+      "mathematicalModel": "建立基于向量分析的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用向量分析的理论和方法，结合计量经济学的特点，得出解决方案。",
+      "code": "// 向量分析应用示例\nfunction solveVector Analysis() {\n  // 实现向量分析算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "向量分析应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "向量分析理论基础",
+        "计量经济学应用实践"
+      ],
+      "estimatedTime": 87
+    },
+    {
+      "id": "application-phase2-64",
+      "title": "向量分析在控制系统中的应用",
+      "description": "本案例展示了向量分析的理论如何应用于控制系统领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "控制系统",
+      "relatedNodes": [
+        "node-domain-3-vector-analysis-1772027700628-44"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在控制系统领域中，我们经常遇到需要使用向量分析来解决的问题。",
+      "mathematicalModel": "建立基于向量分析的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用向量分析的理论和方法，结合控制系统的特点，得出解决方案。",
+      "code": "// 向量分析应用示例\nfunction solveVector Analysis() {\n  // 实现向量分析算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "向量分析应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "向量分析理论基础",
+        "控制系统应用实践"
+      ],
+      "estimatedTime": 118
+    },
+    {
+      "id": "application-phase2-65",
+      "title": "数学概念在航空航天中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于航空航天领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "航空航天",
+      "relatedNodes": [
+        "node-domain-3-向量场-1772027700628-45"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在航空航天领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合航空航天的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "航空航天应用实践"
+      ],
+      "estimatedTime": 62
+    },
+    {
+      "id": "application-phase2-66",
+      "title": "数学概念在金融工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于金融工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "金融工程",
+      "relatedNodes": [
+        "node-domain-3-散度-1772027700629-46"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在金融工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合金融工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "金融工程应用实践"
+      ],
+      "estimatedTime": 106
+    },
+    {
+      "id": "application-phase2-67",
+      "title": "数学概念在量子力学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于量子力学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量子力学",
+      "relatedNodes": [
+        "node-domain-3-散度-1772027700629-46"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在量子力学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合量子力学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "量子力学应用实践"
+      ],
+      "estimatedTime": 109
+    },
+    {
+      "id": "application-phase2-68",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-3-旋度-1772027700629-47"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 112
+    },
+    {
+      "id": "application-phase2-69",
+      "title": "数学概念在保险精算中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-3-梯度-1772027700633-48"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 83
+    },
+    {
+      "id": "application-phase2-70",
+      "title": "数学概念在保险精算中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-3-梯度-1772027700633-48"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 88
+    },
+    {
+      "id": "application-phase2-71",
+      "title": "数学概念在信号处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于信号处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "信号处理",
+      "relatedNodes": [
+        "node-domain-3-张量基础-1772027700633-49"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在信号处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合信号处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "信号处理应用实践"
+      ],
+      "estimatedTime": 94
+    },
+    {
+      "id": "application-phase2-72",
+      "title": "数学概念在航空航天中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于航空航天领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "航空航天",
+      "relatedNodes": [
+        "node-domain-3-张量运算-1772027700634-50"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在航空航天领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合航空航天的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "航空航天应用实践"
+      ],
+      "estimatedTime": 91
+    },
+    {
+      "id": "application-phase2-73",
+      "title": "变分法在信号处理中的应用",
+      "description": "本案例展示了变分法的理论如何应用于信号处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "信号处理",
+      "relatedNodes": [
+        "node-domain-3-calculus-of-variations-1772027700634-51"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在信号处理领域中，我们经常遇到需要使用变分法来解决的问题。",
+      "mathematicalModel": "建立基于变分法的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用变分法的理论和方法，结合信号处理的特点，得出解决方案。",
+      "code": "// 变分法应用示例\nfunction solveCalculus of Variations() {\n  // 实现变分法算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "变分法应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "变分法理论基础",
+        "信号处理应用实践"
+      ],
+      "estimatedTime": 60
+    },
+    {
+      "id": "application-phase2-74",
+      "title": "变分法在量化交易中的应用",
+      "description": "本案例展示了变分法的理论如何应用于量化交易领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "量化交易",
+      "relatedNodes": [
+        "node-domain-3-calculus-of-variations-1772027700634-51"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在量化交易领域中，我们经常遇到需要使用变分法来解决的问题。",
+      "mathematicalModel": "建立基于变分法的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用变分法的理论和方法，结合量化交易的特点，得出解决方案。",
+      "code": "// 变分法应用示例\nfunction solveCalculus of Variations() {\n  // 实现变分法算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "变分法应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "变分法理论基础",
+        "量化交易应用实践"
+      ],
+      "estimatedTime": 68
+    },
+    {
+      "id": "application-phase2-75",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-3-泛函-1772027700634-52"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 96
+    },
+    {
+      "id": "application-phase2-76",
+      "title": "数学概念在风险管理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于风险管理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "风险管理",
+      "relatedNodes": [
+        "node-domain-3-欧拉-拉格朗日方程-1772027700634-53"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在风险管理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合风险管理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "风险管理应用实践"
+      ],
+      "estimatedTime": 89
+    },
+    {
+      "id": "application-phase2-77",
+      "title": "数学概念在商业智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于商业智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "商业智能",
+      "relatedNodes": [
+        "node-domain-3-欧拉-拉格朗日方程-1772027700634-53"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在商业智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合商业智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "商业智能应用实践"
+      ],
+      "estimatedTime": 98
+    },
+    {
+      "id": "application-phase2-78",
+      "title": "最优控制在计算机视觉中的应用",
+      "description": "本案例展示了最优控制的理论如何应用于计算机视觉领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计算机视觉",
+      "relatedNodes": [
+        "node-domain-3-optimal-control-1772027700634-54"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在计算机视觉领域中，我们经常遇到需要使用最优控制来解决的问题。",
+      "mathematicalModel": "建立基于最优控制的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用最优控制的理论和方法，结合计算机视觉的特点，得出解决方案。",
+      "code": "// 最优控制应用示例\nfunction solveOptimal Control() {\n  // 实现最优控制算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "最优控制应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "最优控制理论基础",
+        "计算机视觉应用实践"
+      ],
+      "estimatedTime": 93
+    },
+    {
+      "id": "application-phase2-79",
+      "title": "数学概念在数据科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于数据科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "数据科学",
+      "relatedNodes": [
+        "node-domain-3-哈密顿系统-1772027700634-55"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在数据科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合数据科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "数据科学应用实践"
+      ],
+      "estimatedTime": 63
+    },
+    {
+      "id": "application-phase2-80",
+      "title": "数值优化在计量经济学中的应用",
+      "description": "本案例展示了数值优化的理论如何应用于计量经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计量经济学",
+      "relatedNodes": [
+        "node-domain-3-numerical-optimization-1772027700634-56"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在计量经济学领域中，我们经常遇到需要使用数值优化来解决的问题。",
+      "mathematicalModel": "建立基于数值优化的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数值优化的理论和方法，结合计量经济学的特点，得出解决方案。",
+      "code": "// 数值优化应用示例\nfunction solveNumerical Optimization() {\n  // 实现数值优化算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数值优化应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数值优化理论基础",
+        "计量经济学应用实践"
+      ],
+      "estimatedTime": 109
+    },
+    {
+      "id": "application-phase2-81",
+      "title": "数学概念在商业智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于商业智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "商业智能",
+      "relatedNodes": [
+        "node-domain-3-梯度下降-1772027700634-57"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在商业智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合商业智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "商业智能应用实践"
+      ],
+      "estimatedTime": 97
+    },
+    {
+      "id": "application-phase2-82",
+      "title": "数学概念在工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "工程",
+      "relatedNodes": [
+        "node-domain-3-梯度下降-1772027700634-57"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "工程应用实践"
+      ],
+      "estimatedTime": 84
+    },
+    {
+      "id": "application-phase2-83",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-3-牛顿法优化-1772027700634-58"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 77
+    },
+    {
+      "id": "application-phase2-84",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-3-拟牛顿法-1772027700634-59"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 72
+    },
+    {
+      "id": "application-phase2-85",
+      "title": "数学概念在大数据分析中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于大数据分析领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "大数据分析",
+      "relatedNodes": [
+        "node-domain-3-拟牛顿法-1772027700634-59"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在大数据分析领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合大数据分析的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "大数据分析应用实践"
+      ],
+      "estimatedTime": 62
+    },
+    {
+      "id": "application-phase2-86",
+      "title": "数学概念在机器学习中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于机器学习领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机器学习",
+      "relatedNodes": [
+        "node-domain-3-共轭梯度法-1772027700634-60"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在机器学习领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合机器学习的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "机器学习应用实践"
+      ],
+      "estimatedTime": 63
+    },
+    {
+      "id": "application-phase2-87",
+      "title": "数学概念在土木工程中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于土木工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "土木工程",
+      "relatedNodes": [
+        "node-domain-3-约束优化-1772027700634-61"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在土木工程领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合土木工程的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "土木工程应用实践"
+      ],
+      "estimatedTime": 65
+    },
+    {
+      "id": "application-phase2-88",
+      "title": "概率论基础在电气工程中的应用",
+      "description": "本案例展示了概率论基础的理论如何应用于电气工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "电气工程",
+      "relatedNodes": [
+        "node-domain-4-probability-basics-1772027700639-62"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在电气工程领域中，我们经常遇到需要使用概率论基础来解决的问题。",
+      "mathematicalModel": "建立基于概率论基础的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用概率论基础的理论和方法，结合电气工程的特点，得出解决方案。",
+      "code": "// 概率论基础应用示例\nfunction solveProbability Basics() {\n  // 实现概率论基础算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "概率论基础应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "概率论基础理论基础",
+        "电气工程应用实践"
+      ],
+      "estimatedTime": 99
+    },
+    {
+      "id": "application-phase2-89",
+      "title": "概率论基础在保险精算中的应用",
+      "description": "本案例展示了概率论基础的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-4-probability-basics-1772027700639-62"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用概率论基础来解决的问题。",
+      "mathematicalModel": "建立基于概率论基础的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用概率论基础的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 概率论基础应用示例\nfunction solveProbability Basics() {\n  // 实现概率论基础算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "概率论基础应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "概率论基础理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 88
+    },
+    {
+      "id": "application-phase2-90",
+      "title": "随机变量在环境科学中的应用",
+      "description": "本案例展示了随机变量的理论如何应用于环境科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "环境科学",
+      "relatedNodes": [
+        "node-domain-4-random-variable-1772027700639-63"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在环境科学领域中，我们经常遇到需要使用随机变量来解决的问题。",
+      "mathematicalModel": "建立基于随机变量的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用随机变量的理论和方法，结合环境科学的特点，得出解决方案。",
+      "code": "// 随机变量应用示例\nfunction solveRandom Variable() {\n  // 实现随机变量算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "随机变量应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "随机变量理论基础",
+        "环境科学应用实践"
+      ],
+      "estimatedTime": 99
+    },
+    {
+      "id": "application-phase2-91",
+      "title": "数学概念在保险精算中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于保险精算领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "保险精算",
+      "relatedNodes": [
+        "node-domain-4-概率分布-1772027700640-64"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在保险精算领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合保险精算的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "保险精算应用实践"
+      ],
+      "estimatedTime": 105
+    },
+    {
+      "id": "application-phase2-92",
+      "title": "数学概念在图像处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于图像处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "图像处理",
+      "relatedNodes": [
+        "node-domain-4-正态分布-1772027700640-65"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在图像处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合图像处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "图像处理应用实践"
+      ],
+      "estimatedTime": 113
+    },
+    {
+      "id": "application-phase2-93",
+      "title": "数学概念在图像处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于图像处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "图像处理",
+      "relatedNodes": [
+        "node-domain-4-泊松分布-1772027700640-66"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在图像处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合图像处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "图像处理应用实践"
+      ],
+      "estimatedTime": 90
+    },
+    {
+      "id": "application-phase2-94",
+      "title": "数理统计在计量经济学中的应用",
+      "description": "本案例展示了数理统计的理论如何应用于计量经济学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "计量经济学",
+      "relatedNodes": [
+        "node-domain-4-mathematical-statistics-1772027700641-67"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在计量经济学领域中，我们经常遇到需要使用数理统计来解决的问题。",
+      "mathematicalModel": "建立基于数理统计的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数理统计的理论和方法，结合计量经济学的特点，得出解决方案。",
+      "code": "// 数理统计应用示例\nfunction solveMathematical Statistics() {\n  // 实现数理统计算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数理统计应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数理统计理论基础",
+        "计量经济学应用实践"
+      ],
+      "estimatedTime": 116
+    },
+    {
+      "id": "application-phase2-95",
+      "title": "数学概念在物理学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于物理学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "物理学",
+      "relatedNodes": [
+        "node-domain-4-参数估计-1772027700641-68"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在物理学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合物理学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "物理学应用实践"
+      ],
+      "estimatedTime": 79
+    },
+    {
+      "id": "application-phase2-96",
+      "title": "数学概念在数据科学中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于数据科学领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "数据科学",
+      "relatedNodes": [
+        "node-domain-4-假设检验-1772027700641-69"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在数据科学领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合数据科学的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "数据科学应用实践"
+      ],
+      "estimatedTime": 117
+    },
+    {
+      "id": "application-phase2-97",
+      "title": "数学概念在信号处理中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于信号处理领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "信号处理",
+      "relatedNodes": [
+        "node-domain-4-假设检验-1772027700641-69"
+      ],
+      "difficulty": 3,
+      "problemStatement": "在信号处理领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合信号处理的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "信号处理应用实践"
+      ],
+      "estimatedTime": 96
+    },
+    {
+      "id": "application-phase2-98",
+      "title": "随机过程在机械工程中的应用",
+      "description": "本案例展示了随机过程的理论如何应用于机械工程领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "机械工程",
+      "relatedNodes": [
+        "node-domain-4-stochastic-process-1772027700641-70"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在机械工程领域中，我们经常遇到需要使用随机过程来解决的问题。",
+      "mathematicalModel": "建立基于随机过程的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用随机过程的理论和方法，结合机械工程的特点，得出解决方案。",
+      "code": "// 随机过程应用示例\nfunction solveStochastic Process() {\n  // 实现随机过程算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "随机过程应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "随机过程理论基础",
+        "机械工程应用实践"
+      ],
+      "estimatedTime": 60
+    },
+    {
+      "id": "application-phase2-99",
+      "title": "随机过程在医疗健康中的应用",
+      "description": "本案例展示了随机过程的理论如何应用于医疗健康领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "医疗健康",
+      "relatedNodes": [
+        "node-domain-4-stochastic-process-1772027700641-70"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在医疗健康领域中，我们经常遇到需要使用随机过程来解决的问题。",
+      "mathematicalModel": "建立基于随机过程的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用随机过程的理论和方法，结合医疗健康的特点，得出解决方案。",
+      "code": "// 随机过程应用示例\nfunction solveStochastic Process() {\n  // 实现随机过程算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "随机过程应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "随机过程理论基础",
+        "医疗健康应用实践"
+      ],
+      "estimatedTime": 78
+    },
+    {
+      "id": "application-phase2-100",
+      "title": "数学概念在人工智能中的应用",
+      "description": "本案例展示了数学概念的理论如何应用于人工智能领域，通过数学建模和计算方法解决实际问题。",
+      "industry": "人工智能",
+      "relatedNodes": [
+        "node-domain-4-马尔可夫链-1772027700641-71"
+      ],
+      "difficulty": 5,
+      "problemStatement": "在人工智能领域中，我们经常遇到需要使用数学概念来解决的问题。",
+      "mathematicalModel": "建立基于数学概念的数学模型，使用相关公式和定理进行分析。",
+      "solution": "应用数学概念的理论和方法，结合人工智能的特点，得出解决方案。",
+      "code": "// 数学概念应用示例\nfunction solveMathematical Concept() {\n  // 实现数学概念算法\n  const result = compute();\n  return result;\n}",
+      "visualization": {
+        "type": "chart",
+        "config": {
+          "title": "数学概念应用效果",
+          "xAxis": "输入参数",
+          "yAxis": "输出结果"
+        }
+      },
+      "references": [
+        "数学概念理论基础",
+        "人工智能应用实践"
+      ],
+      "estimatedTime": 61
+    }
+  ]
+}

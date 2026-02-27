@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高等数学学域知识图谱系统</title>
+    
+    <!-- D3.js v7.8.5 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <!-- MathJax 3.2.2 for LaTeX rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1>📊 高等数学学域知识图谱</h1>
+            <p class="subtitle">从章节记忆到学域理解 · 5大学域整合范式</p>
+            <div class="header-domain-badges" id="headerDomainBadges" aria-label="五大学域">
+                <span class="domain-badge" data-domain="domain-1" title="变化与逼近">📈 变化与逼近</span>
+                <span class="domain-badge" data-domain="domain-2" title="结构与累积">🔄 结构与累积</span>
+                <span class="domain-badge" data-domain="domain-3" title="优化与决策">🎯 优化与决策</span>
+                <span class="domain-badge" data-domain="domain-4" title="不确定性处理">🎲 不确定性</span>
+                <span class="domain-badge" data-domain="domain-5" title="真实问题建模">🌐 真实建模</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>🔍 探索与筛选</h2>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <span>☰</span>
+                </button>
+            </div>
+
+            <!-- 学域模式说明 -->
+            <div class="domain-mode-section filter-section">
+                <h3>📐 学域模式</h3>
+                <p class="domain-mode-intro">从章节记忆到学域理解：按五大数学学域整合知识，点击学域可筛选节点。</p>
+                <details class="domain-mode-details" id="domainModeDetails">
+                    <summary>五大学域一览</summary>
+                    <ul class="domain-mode-list" aria-label="五大学域说明">
+                        <li><span class="domain-mode-dot" style="--d: #667eea"></span>变化与逼近：用离散逼近连续</li>
+                        <li><span class="domain-mode-dot" style="--d: #f093fb"></span>结构与累积：从局部累积到整体</li>
+                        <li><span class="domain-mode-dot" style="--d: #4facfe"></span>优化与决策：多元系统最优决策</li>
+                        <li><span class="domain-mode-dot" style="--d: #fa709a"></span>不确定性处理：无穷与随机工具</li>
+                        <li><span class="domain-mode-dot" style="--d: #00f2fe"></span>真实问题建模：综合运用解决复杂问题</li>
+                    </ul>
+                </details>
+            </div>
+
+            <!-- 学域概览 -->
+            <div class="domain-overview-section filter-section">
+                <h3>📚 学域概览</h3>
+                <div class="domain-overview-list" id="domainOverviewList">
+                    <!-- Filled by UIController -->
+                </div>
+            </div>
+
+            <!-- Skills 运用 入口 -->
+            <div class="skills-hint-section filter-section">
+                <h3>🎯 Skills 运用</h3>
+                <p class="skills-hint-text"><span id="skillsNodeCount">0</span> 个节点可运用 Skills</p>
+                <a href="student-skills.html" class="skills-hint-link">查看学生侧 Skills 看板 →</a>
+                <a href="test-skills-system.html" class="skills-hint-link" id="openSkillsExperienceLink">进入 Skills 真实体验（测试平台） →</a>
+                <div class="skill-current-node-block hidden" id="skillCurrentNodeBlock">
+                    <p class="skill-current-node-label">当前节点</p>
+                    <p class="skill-current-node-name" id="skillCurrentNodeName"></p>
+                    <button type="button" class="skill-apply-now-btn" id="skillApplyNowBtn">去运用</button>
+                </div>
+            </div>
+
+            <!-- 极限认知冲突教学：单独页面入口 -->
+            <div class="limit-conflict-section filter-section">
+                <h3>⚠️ 极限认知冲突教学</h3>
+                <p class="limit-conflict-intro">围绕“极限”构建认知冲突，从学域视角设计一节完整课例。</p>
+                <a href="limit-conflict-teaching.html" class="skills-hint-link">进入极限认知冲突教学 →</a>
+            </div>
+
+            <!-- 教师侧 AI Agents：单独页面入口 -->
+            <div class="teacher-agents-section filter-section">
+                <h3>👨‍🏫 教师侧 AI Agents</h3>
+                <p class="teacher-agents-intro">七大 Agents：从学域诊断、路径规划，到课堂教练、评价生成与教学反思。</p>
+                <a href="teacher-agents.html" class="skills-hint-link">查看教师侧七大 Agents →</a>
+            </div>
+
+            <!-- 真实问题建模学习内容 -->
+            <div class="real-modeling-section filter-section">
+                <h3>🌐 真实问题建模学习内容</h3>
+                <p class="real-modeling-hint-text">学域五：从数学到工程场景的建模与求解</p>
+                <a href="real-world-modeling.html" class="real-modeling-link" id="openRealModelingLink">进入真实问题建模 →</a>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-section">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="搜索知识节点、学域、关键词..."
+                    aria-label="Search knowledge nodes"
+                />
+                <div class="search-results-count" id="searchResultsCount"></div>
+            </div>
+
+            <!-- Domain Filter -->
+            <div class="filter-section">
+                <h3>学域筛选</h3>
+                <div class="domain-filters" id="domainFilters">
+                    <!-- Domain checkboxes will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Node Type Filter（概念/定理/方法/应用） -->
+            <div class="filter-section">
+                <h3>节点类型</h3>
+                <div class="node-type-filters" id="nodeTypeFilters" role="group" aria-label="按节点类型筛选">
+                    <label class="node-type-filter-item"><input type="checkbox" id="nodeType-concept" value="concept"> 概念</label>
+                    <label class="node-type-filter-item"><input type="checkbox" id="nodeType-theorem" value="theorem"> 定理</label>
+                    <label class="node-type-filter-item"><input type="checkbox" id="nodeType-method" value="method"> 方法</label>
+                    <label class="node-type-filter-item"><input type="checkbox" id="nodeType-application" value="application"> 应用</label>
+                </div>
+            </div>
+
+            <!-- Chapter Filter -->
+            <div class="filter-section">
+                <h3>传统章节</h3>
+                <select id="chapterFilter" class="chapter-select" aria-label="Filter by chapter">
+                    <option value="">全部章节</option>
+                    <!-- Chapter options will be dynamically generated -->
+                </select>
+            </div>
+
+            <!-- Difficulty Filter -->
+            <div class="filter-section">
+                <h3>难度范围</h3>
+                <div class="difficulty-slider">
+                    <input 
+                        type="range" 
+                        id="difficultyMin" 
+                        min="1" 
+                        max="5" 
+                        value="1"
+                        aria-label="Minimum difficulty"
+                    />
+                    <input 
+                        type="range" 
+                        id="difficultyMax" 
+                        min="1" 
+                        max="5" 
+                        value="5"
+                        aria-label="Maximum difficulty"
+                    />
+                    <div class="difficulty-labels">
+                        <span id="difficultyMinLabel">1</span> - 
+                        <span id="difficultyMaxLabel">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning Stats -->
+            <div class="stats-section">
+                <h3>学习统计</h3>
+                <div class="stats-content" id="learningStats">
+                    <div class="stat-item">
+                        <span class="stat-label">已完成节点:</span>
+                        <span class="stat-value" id="completedCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">总节点数:</span>
+                        <span class="stat-value" id="totalCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">学习进度:</span>
+                        <span class="stat-value" id="progressPercent">0%</span>
+                    </div>
+                </div>
+                <div class="progress-bar" aria-label="总体学习进度">
+                    <div class="progress-bar__fill" id="overallProgressBar"></div>
+                </div>
+            </div>
+
+            <!-- Learning Data (local) -->
+            <div class="learning-data-section filter-section">
+                <h3>🗂️ 学习数据</h3>
+                <p class="skills-hint-text">默认仅保存在本机浏览器（localStorage），可导出用于分析与教创赛证据。</p>
+                <div class="learning-data-actions">
+                    <button type="button" class="clear-filters-btn learning-data-btn" id="btnExportLearningData">导出学习数据 JSON</button>
+                    <button type="button" class="clear-filters-btn learning-data-btn learning-data-btn--danger" id="btnResetLearningData">清空学习数据</button>
+                </div>
+            </div>
+
+            <!-- Clear Filters Button -->
+            <button class="clear-filters-btn" id="clearFiltersBtn">清除所有筛选</button>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Zoom Controls -->
+            <div class="zoom-controls">
+                <button id="zoomInBtn" class="zoom-btn" aria-label="Zoom in" title="放大">+</button>
+                <button id="zoomOutBtn" class="zoom-btn" aria-label="Zoom out" title="缩小">−</button>
+                <button id="resetViewBtn" class="zoom-btn" aria-label="Reset view" title="重置视图">⟲</button>
+                <button id="fitViewBtn" class="zoom-btn" aria-label="Fit to view" title="适应画布">⊡</button>
+                <button id="crossDomainViewBtn" class="zoom-btn" aria-label="Cross-domain view" title="跨学域视图">🔗</button>
+            </div>
+
+            <!-- Graph Canvas -->
+            <div id="graphCanvas" class="graph-canvas" role="img" aria-label="Knowledge graph visualization">
+                <!-- D3.js SVG will be rendered here -->
+                <!-- 学域图例：由 JS 根据 domains.json 动态生成 -->
+                <div class="domain-legend" id="domainLegend" aria-label="学域图例">
+                    <div class="domain-legend-title">学域</div>
+                    <div class="domain-legend-list" id="domainLegendList">
+                        <!-- 由 UIController.updateDomainLegend() 填充 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>加载知识图谱中...</p>
+            </div>
+        </main>
+
+        <!-- Detail Panel (Slide-in) -->
+        <aside class="detail-panel" id="detailPanel">
+            <div class="detail-panel-header">
+                <h2 id="detailTitle">节点详情</h2>
+                <button class="close-btn" id="closeDetailBtn" aria-label="Close detail panel">×</button>
+            </div>
+            <div class="detail-panel-content" id="detailContent">
+                <!-- Node details will be dynamically populated -->
+            </div>
+        </aside>
+
+        <!-- Skill 内容展示面板（去运用时自动生成并展示） -->
+        <aside class="skill-panel" id="skillPanel" aria-label="Skill 运用面板">
+            <div class="skill-panel-header">
+                <div class="skill-panel-header-text">
+                    <h2 id="skillPanelTitle">🎯 Skill 运用</h2>
+                    <p class="skill-panel-subtitle" id="skillPanelSubtitle" aria-live="polite"></p>
+                </div>
+                <button class="close-btn" id="closeSkillPanelBtn" aria-label="关闭 Skill 面板">×</button>
+            </div>
+            <div class="skill-panel-content" id="skillPanelContent">
+                <!-- 由 SkillContentGenerator 动态生成 -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast" role="alert" aria-live="polite">
+        <span id="notificationMessage"></span>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

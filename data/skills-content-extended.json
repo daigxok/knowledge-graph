@@ -1,0 +1,564 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "totalSkills": 12,
+    "existingSkills": 7,
+    "newSkills": 5,
+    "updatedDate": "2026-02-22",
+    "description": "Skills系统内容扩展：完善现有7个Skills，新增5个Skills"
+  },
+  "existingSkillsEnhancement": [
+    {
+      "id": "gradient-visualization-skill",
+      "name": "梯度可视化Skill",
+      "currentStatus": "框架完成",
+      "enhancements": {
+        "theory": {
+          "duration": "30分钟",
+          "sections": [
+            {
+              "title": "梯度的定义",
+              "content": "梯度是多元函数在某点处变化最快的方向，由各偏导数组成的向量",
+              "formula": "\\nabla f = (\\frac{\\partial f}{\\partial x}, \\frac{\\partial f}{\\partial y}, \\frac{\\partial f}{\\partial z})",
+              "duration": "8分钟"
+            },
+            {
+              "title": "梯度的几何意义",
+              "content": "梯度方向垂直于等高线，指向函数值增长最快的方向",
+              "visualizations": ["3D曲面", "等高线图", "梯度向量场"],
+              "duration": "10分钟"
+            },
+            {
+              "title": "方向导数",
+              "content": "函数沿任意方向的变化率，梯度是方向导数的最大值",
+              "formula": "D_u f = \\nabla f \\cdot u = |\\nabla f| \\cos \\theta",
+              "duration": "12分钟"
+            }
+          ]
+        },
+        "visualizations": [
+          {
+            "id": "viz-1",
+            "title": "3D曲面与梯度向量",
+            "type": "interactive-3d",
+            "description": "交互式3D曲面，显示梯度向量和等高线",
+            "features": [
+              "旋转视角",
+              "缩放",
+              "选择不同函数",
+              "调整参数",
+              "显示/隐藏梯度向量"
+            ],
+            "functions": [
+              "f(x,y) = x^2 + y^2",
+              "f(x,y) = x^2 - y^2",
+              "f(x,y) = sin(x)cos(y)",
+              "f(x,y) = e^{-(x^2+y^2)}"
+            ]
+          },
+          {
+            "id": "viz-2",
+            "title": "等高线与梯度方向",
+            "type": "2d-contour",
+            "description": "2D等高线图，显示梯度向量垂直于等高线",
+            "features": ["点击查看梯度", "动画演示", "方向导数计算"]
+          },
+          {
+            "id": "viz-3",
+            "title": "梯度下降动画",
+            "type": "animation",
+            "description": "演示梯度下降算法的迭代过程",
+            "features": ["调整学习率", "选择起点", "显示迭代路径"]
+          },
+          {
+            "id": "viz-4",
+            "title": "方向导数可视化",
+            "type": "interactive",
+            "description": "选择任意方向，计算并显示方向导数",
+            "features": ["拖动方向向量", "实时计算", "对比不同方向"]
+          },
+          {
+            "id": "viz-5",
+            "title": "梯度向量场",
+            "type": "vector-field",
+            "description": "显示整个区域的梯度向量场",
+            "features": ["颜色编码", "向量密度调整", "流线显示"]
+          }
+        ],
+        "exercises": {
+          "basic": [
+            {
+              "id": "ex-1",
+              "question": "计算函数 f(x,y) = x^2 + 2y^2 在点 (1,1) 处的梯度",
+              "answer": "(2, 4)",
+              "solution": "∂f/∂x = 2x, ∂f/∂y = 4y, 代入得 ∇f(1,1) = (2, 4)",
+              "difficulty": "basic"
+            },
+            {
+              "id": "ex-2",
+              "question": "函数 f(x,y) = xy 在点 (2,3) 处沿方向 u = (1/√2, 1/√2) 的方向导数是多少？",
+              "answer": "5/√2",
+              "solution": "∇f = (y, x) = (3, 2), D_u f = ∇f·u = 3/√2 + 2/√2 = 5/√2",
+              "difficulty": "basic"
+            }
+          ],
+          "intermediate": [
+            {
+              "id": "ex-3",
+              "question": "求函数 f(x,y) = e^x cos(y) 在点 (0, π/4) 处变化最快的方向",
+              "answer": "(√2/2, -√2/2)",
+              "solution": "梯度方向即为变化最快方向，∇f = (e^x cos(y), -e^x sin(y))",
+              "difficulty": "intermediate"
+            }
+          ],
+          "advanced": [
+            {
+              "id": "ex-4",
+              "question": "使用梯度下降法求 f(x,y) = x^2 + 4y^2 的最小值点",
+              "answer": "(0, 0)",
+              "solution": "迭代公式: (x,y) ← (x,y) - α∇f, 收敛到 (0,0)",
+              "difficulty": "advanced"
+            }
+          ],
+          "total": 15
+        },
+        "applications": [
+          {
+            "id": "app-1",
+            "title": "机器学习中的梯度下降",
+            "description": "使用梯度下降优化神经网络参数",
+            "industry": "人工智能",
+            "concepts": ["梯度", "优化", "损失函数"],
+            "codeExample": "python\ndef gradient_descent(X, y, learning_rate=0.01, epochs=1000):\n    theta = np.zeros(X.shape[1])\n    for _ in range(epochs):\n        gradient = X.T.dot(X.dot(theta) - y) / len(y)\n        theta -= learning_rate * gradient\n    return theta",
+            "visualization": "显示损失函数下降曲线和参数更新路径"
+          },
+          {
+            "id": "app-2",
+            "title": "图像边缘检测",
+            "description": "使用梯度算子检测图像边缘",
+            "industry": "计算机视觉",
+            "concepts": ["梯度", "Sobel算子", "边缘检测"],
+            "realData": "提供示例图像和检测结果"
+          },
+          {
+            "id": "app-3",
+            "title": "地形分析",
+            "description": "计算地形的坡度和坡向",
+            "industry": "地理信息系统",
+            "concepts": ["梯度", "方向导数", "等高线"],
+            "visualization": "3D地形图和坡度分析"
+          }
+        ]
+      },
+      "estimatedCompletionTime": "60分钟"
+    },
+    {
+      "id": "concept-visualization-skill",
+      "name": "概念可视化Skill",
+      "currentStatus": "框架完成",
+      "enhancements": {
+        "concepts": [
+          {
+            "name": "极限概念",
+            "visualizations": [
+              {
+                "title": "ε-δ定义动画",
+                "description": "动态演示ε-δ定义的几何意义",
+                "interactive": true,
+                "duration": "5分钟"
+              },
+              {
+                "title": "数值逼近过程",
+                "description": "显示数列或函数值如何逼近极限",
+                "interactive": true,
+                "duration": "4分钟"
+              },
+              {
+                "title": "左右极限对比",
+                "description": "对比左极限和右极限",
+                "interactive": false,
+                "duration": "3分钟"
+              }
+            ],
+            "exercises": 10,
+            "duration": "15分钟"
+          },
+          {
+            "name": "导数概念",
+            "visualizations": [
+              {
+                "title": "割线到切线",
+                "description": "演示Δx→0时割线如何变成切线",
+                "interactive": true,
+                "duration": "6分钟"
+              },
+              {
+                "title": "瞬时变化率",
+                "description": "物理意义：速度、加速度",
+                "interactive": true,
+                "duration": "5分钟"
+              },
+              {
+                "title": "导数与函数图像",
+                "description": "导数正负与函数单调性的关系",
+                "interactive": true,
+                "duration": "4分钟"
+              }
+            ],
+            "exercises": 12,
+            "duration": "18分钟"
+          },
+          {
+            "name": "积分概念",
+            "visualizations": [
+              {
+                "title": "黎曼和动画",
+                "description": "矩形逼近曲边梯形面积",
+                "interactive": true,
+                "duration": "7分钟"
+              },
+              {
+                "title": "定积分的几何意义",
+                "description": "面积、体积的计算",
+                "interactive": true,
+                "duration": "6分钟"
+              },
+              {
+                "title": "微积分基本定理",
+                "description": "导数与积分的关系",
+                "interactive": false,
+                "duration": "5分钟"
+              }
+            ],
+            "exercises": 15,
+            "duration": "20分钟"
+          }
+        ],
+        "totalVisualizations": 9,
+        "totalExercises": 37
+      },
+      "estimatedCompletionTime": "75分钟"
+    }
+  ],
+  "newSkills": [
+    {
+      "id": "integration-techniques-skill",
+      "name": "积分技巧Skill",
+      "type": "technique",
+      "description": "系统学习各种积分方法和技巧",
+      "applicableNodes": [
+        "node-indefinite-integral",
+        "node-integration-methods",
+        "node-definite-integral"
+      ],
+      "content": {
+        "theory": {
+          "duration": "40分钟",
+          "topics": [
+            "换元积分法",
+            "分部积分法",
+            "有理函数积分",
+            "三角函数积分",
+            "特殊函数积分"
+          ]
+        },
+        "techniques": [
+          {
+            "name": "第一类换元法(凑微分)",
+            "formula": "\\int f(\\phi(x))\\phi'(x)dx = \\int f(u)du",
+            "examples": 8,
+            "exercises": 15
+          },
+          {
+            "name": "第二类换元法(变量替换)",
+            "formula": "x = \\phi(t), dx = \\phi'(t)dt",
+            "examples": 10,
+            "exercises": 18
+          },
+          {
+            "name": "分部积分法",
+            "formula": "\\int udv = uv - \\int vdu",
+            "examples": 12,
+            "exercises": 20
+          },
+          {
+            "name": "有理函数积分",
+            "description": "部分分式分解法",
+            "examples": 10,
+            "exercises": 15
+          }
+        ],
+        "visualizations": 8,
+        "exercises": 68,
+        "applications": [
+          {
+            "title": "物理中的功和能量",
+            "description": "使用积分计算变力做功",
+            "industry": "物理"
+          },
+          {
+            "title": "概率密度函数",
+            "description": "计算连续随机变量的概率",
+            "industry": "统计"
+          }
+        ]
+      },
+      "estimatedDuration": "120分钟"
+    },
+    {
+      "id": "ode-solving-skill",
+      "name": "常微分方程求解Skill",
+      "type": "problem-solving",
+      "description": "掌握各类常微分方程的求解方法",
+      "applicableNodes": [
+        "node-ode-first-order",
+        "node-ode-second-order"
+      ],
+      "content": {
+        "theory": {
+          "duration": "45分钟",
+          "topics": [
+            "可分离变量方程",
+            "齐次方程",
+            "一阶线性方程",
+            "伯努利方程",
+            "二阶常系数线性方程"
+          ]
+        },
+        "methods": [
+          {
+            "name": "可分离变量法",
+            "formula": "\\frac{dy}{dx} = f(x)g(y) \\Rightarrow \\int \\frac{dy}{g(y)} = \\int f(x)dx",
+            "examples": 10,
+            "exercises": 15
+          },
+          {
+            "name": "常数变易法",
+            "description": "求解一阶线性非齐次方程",
+            "examples": 8,
+            "exercises": 12
+          },
+          {
+            "name": "特征方程法",
+            "description": "求解二阶常系数线性方程",
+            "examples": 12,
+            "exercises": 18
+          }
+        ],
+        "visualizations": 10,
+        "exercises": 55,
+        "applications": [
+          {
+            "title": "人口增长模型",
+            "description": "Logistic方程建模人口增长",
+            "industry": "生态学",
+            "equation": "\\frac{dP}{dt} = rP(1 - \\frac{P}{K})"
+          },
+          {
+            "title": "RC电路分析",
+            "description": "电容充放电的微分方程",
+            "industry": "电子工程",
+            "equation": "RC\\frac{dV}{dt} + V = V_0"
+          },
+          {
+            "title": "弹簧振动",
+            "description": "简谐振动的微分方程",
+            "industry": "力学",
+            "equation": "m\\frac{d^2x}{dt^2} + kx = 0"
+          }
+        ]
+      },
+      "estimatedDuration": "135分钟"
+    },
+    {
+      "id": "multivariable-calculus-skill",
+      "name": "多元微积分Skill",
+      "type": "advanced",
+      "description": "多元函数的微分、积分和优化",
+      "applicableNodes": [
+        "node-partial-derivative",
+        "node-gradient",
+        "node-extrema-multivariable",
+        "node-double-integral"
+      ],
+      "content": {
+        "theory": {
+          "duration": "50分钟",
+          "topics": [
+            "偏导数与全微分",
+            "多元复合函数求导",
+            "隐函数求导",
+            "多元函数极值",
+            "拉格朗日乘数法",
+            "二重积分与三重积分"
+          ]
+        },
+        "visualizations": [
+          {
+            "title": "偏导数几何意义",
+            "type": "3d-surface",
+            "description": "3D曲面的切平面",
+            "interactive": true
+          },
+          {
+            "title": "多元函数极值",
+            "type": "contour-3d",
+            "description": "等高线图和3D曲面结合",
+            "interactive": true
+          },
+          {
+            "title": "拉格朗日乘数法",
+            "type": "animation",
+            "description": "约束优化的几何解释",
+            "interactive": true
+          },
+          {
+            "title": "二重积分计算",
+            "type": "volume-visualization",
+            "description": "体积的积分计算",
+            "interactive": true
+          }
+        ],
+        "exercises": 60,
+        "applications": [
+          {
+            "title": "最小二乘法",
+            "description": "线性回归的数学原理",
+            "industry": "数据科学"
+          },
+          {
+            "title": "约束优化问题",
+            "description": "资源分配、成本最小化",
+            "industry": "运筹学"
+          },
+          {
+            "title": "热传导方程",
+            "description": "偏微分方程的数值解",
+            "industry": "工程"
+          }
+        ]
+      },
+      "estimatedDuration": "150分钟"
+    },
+    {
+      "id": "series-analysis-skill",
+      "name": "级数分析Skill",
+      "type": "theory",
+      "description": "级数收敛性判断和函数展开",
+      "applicableNodes": [
+        "node-series-convergence",
+        "node-power-series",
+        "node-taylor-series",
+        "node-fourier-series"
+      ],
+      "content": {
+        "theory": {
+          "duration": "45分钟",
+          "topics": [
+            "数项级数收敛性",
+            "幂级数收敛域",
+            "泰勒级数展开",
+            "傅里叶级数"
+          ]
+        },
+        "convergenceTests": [
+          {
+            "name": "比值判别法",
+            "formula": "\\lim_{n \\to \\infty} |\\frac{a_{n+1}}{a_n}| = \\rho",
+            "examples": 8
+          },
+          {
+            "name": "根值判别法",
+            "formula": "\\lim_{n \\to \\infty} \\sqrt[n]{|a_n|} = \\rho",
+            "examples": 6
+          },
+          {
+            "name": "积分判别法",
+            "description": "用于正项级数",
+            "examples": 5
+          }
+        ],
+        "visualizations": 12,
+        "exercises": 50,
+        "applications": [
+          {
+            "title": "信号处理",
+            "description": "傅里叶级数分析周期信号",
+            "industry": "通信"
+          },
+          {
+            "title": "数值计算",
+            "description": "泰勒级数近似函数值",
+            "industry": "科学计算"
+          }
+        ]
+      },
+      "estimatedDuration": "130分钟"
+    },
+    {
+      "id": "numerical-analysis-skill",
+      "name": "数值分析Skill",
+      "type": "computational",
+      "description": "数值方法和误差分析",
+      "applicableNodes": [
+        "node-numerical-methods",
+        "node-taylor-series"
+      ],
+      "content": {
+        "theory": {
+          "duration": "40分钟",
+          "topics": [
+            "数值微分",
+            "数值积分",
+            "方程求根",
+            "插值与拟合",
+            "误差分析"
+          ]
+        },
+        "methods": [
+          {
+            "name": "牛顿迭代法",
+            "formula": "x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}",
+            "convergence": "二阶收敛",
+            "examples": 8
+          },
+          {
+            "name": "梯形公式",
+            "formula": "\\int_a^b f(x)dx \\approx \\frac{b-a}{2}[f(a)+f(b)]",
+            "error": "O(h^3)",
+            "examples": 6
+          },
+          {
+            "name": "辛普森公式",
+            "formula": "\\int_a^b f(x)dx \\approx \\frac{b-a}{6}[f(a)+4f(\\frac{a+b}{2})+f(b)]",
+            "error": "O(h^5)",
+            "examples": 6
+          }
+        ],
+        "visualizations": 10,
+        "exercises": 45,
+        "applications": [
+          {
+            "title": "科学计算",
+            "description": "求解复杂数学问题",
+            "industry": "科研"
+          },
+          {
+            "title": "工程仿真",
+            "description": "有限元分析",
+            "industry": "工程"
+          }
+        ]
+      },
+      "estimatedDuration": "125分钟"
+    }
+  ],
+  "summary": {
+    "totalSkills": 12,
+    "totalTheoryTime": "420分钟 (7小时)",
+    "totalVisualizations": 85,
+    "totalExercises": 450,
+    "totalApplications": 50,
+    "estimatedTotalDuration": "900分钟 (15小时)"
+  }
+}

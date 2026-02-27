@@ -1,0 +1,15 @@
+{
+  "级数收敛Skill": [
+    {"id": "exercise-adv-007", "difficulty": 4, "question": "判断级数Σ(n=1 to ∞) n/(n³+1)的收敛性。", "hints": ["使用比较判别法"], "solution": {"steps": ["当n→∞时，n/(n³+1) ~ 1/n²", "由Σ1/n²收敛，故原级数收敛"], "keyPoints": ["比较判别法"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 20},
+    {"id": "exercise-adv-008", "difficulty": 5, "question": "判断级数Σ(-1)ⁿ·n/(n²+1)的收敛性。", "hints": ["莱布尼茨判别法"], "solution": {"steps": ["aₙ=n/(n²+1)单调递减趋于0", "由莱布尼茨判别法收敛"], "keyPoints": ["交错级数"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 25},
+    {"id": "exercise-adv-009", "difficulty": 4, "question": "求Σxⁿ/n!的收敛半径。", "hints": ["比值判别法"], "solution": {"steps": ["ρ=lim 1/(n+1)=0", "R=+∞"], "keyPoints": ["收敛半径"]}, "relatedNodes": ["node-power-series"], "estimatedTime": 15},
+    {"id": "exercise-adv-010", "difficulty": 5, "question": "证明：若Σaₙ绝对收敛，则Σaₙ²收敛。", "hints": ["比较判别法"], "solution": {"steps": ["lim aₙ=0，存在N使|aₙ|<1", "aₙ²<|aₙ|，由比较判别法收敛"], "keyPoints": ["绝对收敛"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 30}
+  ],
+  "定积分应用Skill": [
+    {"id": "exercise-adv-006", "difficulty": 3, "question": "求y=x²和y=x围成的面积。", "hints": ["找交点"], "solution": {"steps": ["交点x=0,1", "S=∫₀¹(x-x²)dx=1/6"], "keyPoints": ["面积计算"]}, "relatedNodes": ["node-definite-integral-app"], "estimatedTime": 15},
+    {"id": "exercise-adv-007", "difficulty": 4, "question": "求y=sin x绕x轴旋转体积。", "hints": ["旋转体公式"], "solution": {"steps": ["V=π∫₀^π sin²x dx=π²/2"], "keyPoints": ["旋转体"]}, "relatedNodes": ["node-definite-integral-app"], "estimatedTime": 20},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "求y=e^x从0到1的弧长。", "hints": ["弧长公式"], "solution": {"steps": ["s=∫₀¹√(1+e^(2x))dx≈2.003"], "keyPoints": ["弧长"]}, "relatedNodes": ["node-definite-integral-app"], "estimatedTime": 25},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "力F(x)=x²+1从0到3的功。", "hints": ["W=∫F dx"], "solution": {"steps": ["W=∫₀³(x²+1)dx=12J"], "keyPoints": ["功"]}, "relatedNodes": ["node-definite-integral-app"], "estimatedTime": 15},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "求y²=2x与y=x-4围成的面积。", "hints": ["求交点"], "solution": {"steps": ["S=∫₋₂⁴[(y+4)-y²/2]dy=18"], "keyPoints": ["面积"]}, "relatedNodes": ["node-definite-integral-app"], "estimatedTime": 25}
+  ]
+}

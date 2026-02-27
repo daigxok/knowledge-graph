@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - 边关系扩展",
+    "totalNewEdges": 115,
+    "createdDate": "2026-02-22",
+    "description": "Phase 1新增节点的边关系定义"
+  },
+  "newEdges": [
+    {
+      "id": "edge-ext-1",
+      "source": "node-limit-def",
+      "target": "node-sequence-limit",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "函数极限基于数列极限"
+    },
+    {
+      "id": "edge-ext-2",
+      "source": "node-limit-def",
+      "target": "node-limit-properties",
+      "type": "prerequisite",
+      "strength": 1.0,
+      "description": "极限运算法则基于极限定义"
+    },
+    {
+      "id": "edge-ext-3",
+      "source": "node-limit-def",
+      "target": "node-infinitesimal",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "无穷小概念基于极限"
+    },
+    {
+      "id": "edge-ext-4",
+      "source": "node-limit-def",
+      "target": "node-limit-existence",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "极限存在准则基于极限定义"
+    },
+    {
+      "id": "edge-ext-5",
+      "source": "node-limit-def",
+      "target": "node-limit-special",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "两个重要极限是特殊极限"
+    },
+    {
+      "id": "edge-ext-6",
+      "source": "node-continuity",
+      "target": "node-continuity-properties",
+      "type": "prerequisite",
+      "strength": 1.0,
+      "description": "连续函数性质基于连续性定义"
+    },
+    {
+      "id": "edge-ext-7",
+      "source": "node-continuity",
+      "target": "node-discontinuity-types",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "间断点分类基于连续性"
+    },
+    {
+      "id": "edge-ext-8",
+      "source": "node-continuity",
+      "target": "node-uniform-continuity",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "一致连续是连续的推广"
+    },
+    {
+      "id": "edge-ext-9",
+      "source": "node-derivative-def",
+      "target": "node-derivative-geometric",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "几何意义基于导数定义"
+    },
+    {
+      "id": "edge-ext-10",
+      "source": "node-derivative-def",
+      "target": "node-derivative-physical",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "物理意义基于导数定义"
+    },
+    {
+      "id": "edge-ext-11",
+      "source": "node-derivative-def",
+      "target": "node-higher-derivatives",
+      "type": "prerequisite",
+      "strength": 1.0,
+      "description": "高阶导数基于导数定义"
+    },
+    {
+      "id": "edge-ext-12",
+      "source": "node-derivative-rules",
+      "target": "node-implicit-derivative",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "隐函数求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-13",
+      "source": "node-derivative-rules",
+      "target": "node-parametric-derivative",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "参数方程求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-14",
+      "source": "node-derivative-rules",
+      "target": "node-logarithmic-derivative",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "对数求导使用求导法则"
+    },
+    {
+      "id": "edge-ext-15",
+      "source": "node-higher-derivatives",
+      "target": "node-curvature",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "曲率需要二阶导数"
+    },
+    {
+      "id": "edge-ext-16",
+      "source": "node-mean-value-theorem",
+      "target": "node-rolle-theorem",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "罗尔定理是中值定理特例"
+    }
+  ]
+}

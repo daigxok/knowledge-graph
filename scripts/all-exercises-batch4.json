@@ -1,0 +1,22 @@
+{
+  "常微分方程Skill": [
+    {"id": "exercise-adv-003", "difficulty": 4, "question": "求解y'+2y=e^x。", "hints": ["一阶线性方程"], "solution": {"steps": ["通解y=Ce^(-2x)+e^x/3"], "keyPoints": ["常数变易法"]}, "relatedNodes": ["node-ode-first-order"], "estimatedTime": 20},
+    {"id": "exercise-adv-004", "difficulty": 5, "question": "求解y''+4y'+4y=0。", "hints": ["特征方程"], "solution": {"steps": ["r²+4r+4=0，r=-2(重根)", "y=(C₁+C₂x)e^(-2x)"], "keyPoints": ["重根情况"]}, "relatedNodes": ["node-ode-second-order"], "estimatedTime": 25},
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "求解y''+y=sin x。", "hints": ["特解法"], "solution": {"steps": ["通解y=C₁cos x+C₂sin x-x cos x/2"], "keyPoints": ["共振"]}, "relatedNodes": ["node-ode-second-order"], "estimatedTime": 30},
+    {"id": "exercise-adv-006", "difficulty": 5, "question": "证明：若y₁,y₂是y''+p(x)y'+q(x)y=0的解，则y₁+y₂也是解。", "hints": ["线性性"], "solution": {"steps": ["代入验证线性组合"], "keyPoints": ["叠加原理"]}, "relatedNodes": ["node-ode-second-order"], "estimatedTime": 20},
+    {"id": "exercise-adv-007", "difficulty": 4, "question": "求解伯努利方程y'+y=xy²。", "hints": ["变量替换v=y^(-1)"], "solution": {"steps": ["转化为线性方程"], "keyPoints": ["伯努利方程"]}, "relatedNodes": ["node-ode-first-order"], "estimatedTime": 25},
+    {"id": "exercise-adv-008", "difficulty": 5, "question": "求解欧拉方程x²y''+xy'-y=0。", "hints": ["设y=x^r"], "solution": {"steps": ["特征方程r(r-1)+r-1=0", "y=C₁x+C₂/x"], "keyPoints": ["欧拉方程"]}, "relatedNodes": ["node-ode-second-order"], "estimatedTime": 30},
+    {"id": "exercise-adv-009", "difficulty": 4, "question": "求解y'=y²，y(0)=1。", "hints": ["分离变量"], "solution": {"steps": ["dy/y²=dx", "y=1/(1-x)"], "keyPoints": ["分离变量法"]}, "relatedNodes": ["node-ode-first-order"], "estimatedTime": 15},
+    {"id": "exercise-adv-010", "difficulty": 5, "question": "证明：y''+ω²y=0的解是周期函数。", "hints": ["通解形式"], "solution": {"steps": ["y=C₁cos(ωx)+C₂sin(ωx)", "周期T=2π/ω"], "keyPoints": ["简谐振动"]}, "relatedNodes": ["node-ode-second-order"], "estimatedTime": 25}
+  ],
+  "常微分方程求解Skill": [
+    {"id": "exercise-adv-003", "difficulty": 4, "question": "用龙格-库塔法求解y'=x+y，y(0)=1在x=0.2处的值（h=0.1）。", "hints": ["RK4公式"], "solution": {"steps": ["k₁,k₂,k₃,k₄计算", "≈1.243"], "keyPoints": ["RK4方法"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 30},
+    {"id": "exercise-adv-004", "difficulty": 5, "question": "分析改进欧拉法的局部截断误差。", "hints": ["泰勒展开"], "solution": {"steps": ["误差O(h³)"], "keyPoints": ["误差分析"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 35},
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "求解刚性方程y'=-1000y+1，y(0)=0。", "hints": ["隐式方法"], "solution": {"steps": ["需要隐式方法", "显式方法不稳定"], "keyPoints": ["刚性问题"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 25},
+    {"id": "exercise-adv-006", "difficulty": 5, "question": "证明：RK4方法是四阶精度的。", "hints": ["泰勒展开比较"], "solution": {"steps": ["展开至h⁵项", "前四项相同"], "keyPoints": ["精度证明"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 40},
+    {"id": "exercise-adv-007", "difficulty": 4, "question": "用打靶法求解边值问题y''+y=0，y(0)=0，y(π)=1。", "hints": ["转化为初值问题"], "solution": {"steps": ["调整y'(0)使y(π)=1"], "keyPoints": ["打靶法"]}, "relatedNodes": ["node-ode-bvp"], "estimatedTime": 30},
+    {"id": "exercise-adv-008", "difficulty": 5, "question": "分析Adams方法的稳定性。", "hints": ["特征多项式"], "solution": {"steps": ["根条件分析"], "keyPoints": ["稳定性"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 35},
+    {"id": "exercise-adv-009", "difficulty": 4, "question": "用有限差分法求解y''+y=x，y(0)=0，y(1)=0。", "hints": ["差分近似"], "solution": {"steps": ["建立线性方程组", "求解"], "keyPoints": ["有限差分"]}, "relatedNodes": ["node-ode-bvp"], "estimatedTime": 30},
+    {"id": "exercise-adv-010", "difficulty": 5, "question": "比较显式和隐式欧拉法的稳定域。", "hints": ["稳定性分析"], "solution": {"steps": ["显式：|1+hλ|<1", "隐式：|1-hλ|>1"], "keyPoints": ["稳定域"]}, "relatedNodes": ["node-ode-numerical"], "estimatedTime": 35}
+  ]
+}

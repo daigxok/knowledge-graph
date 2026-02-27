@@ -1,0 +1,250 @@
+/* Exercise System Styles */
+
+.exercise-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.exercise-type {
+    font-size: 14px;
+    font-weight: 600;
+    color: #667eea;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.exercise-difficulty {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.difficulty-basic {
+    background: #d4edda;
+    color: #155724;
+}
+
+.difficulty-intermediate {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.difficulty-advanced {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.difficulty-expert {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.exercise-question {
+    margin-bottom: 24px;
+}
+
+.exercise-question h3 {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+}
+
+.exercise-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-item:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.option-item input[type="radio"] {
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.option-item label {
+    flex: 1;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.exercise-input {
+    margin-bottom: 24px;
+}
+
+.exercise-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.exercise-input input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.exercise-input input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.blank-input {
+    display: inline-block;
+    min-width: 120px;
+    padding: 4px 8px;
+    border: none;
+    border-bottom: 2px solid #667eea;
+    font-size: 16px;
+    text-align: center;
+    background: #f8f9ff;
+}
+
+.blank-input:focus {
+    outline: none;
+    background: #fff;
+}
+
+.exercise-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.btn-submit,
+.btn-hint {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-submit {
+    background: #667eea;
+    color: white;
+    flex: 1;
+}
+
+.btn-submit:hover {
+    background: #5568d3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-hint {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.btn-hint:hover {
+    background: #e0e0e0;
+}
+
+.exercise-feedback {
+    display: none;
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feedback-correct {
+    display: flex;
+    gap: 16px;
+    background: #d4edda;
+    border: 2px solid #c3e6cb;
+}
+
+.feedback-incorrect {
+    display: flex;
+    gap: 16px;
+    background: #f8d7da;
+    border: 2px solid #f5c6cb;
+}
+
+.feedback-hint {
+    display: flex;
+    gap: 16px;
+    background: #fff3cd;
+    border: 2px solid #ffeaa7;
+}
+
+.feedback-icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.feedback-content {
+    flex: 1;
+}
+
+.feedback-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.feedback-content p {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.correct-answer {
+    font-weight: 600;
+    color: #155724;
+}
+
+.explanation {
+    font-style: italic;
+    color: #666;
+}

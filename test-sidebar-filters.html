@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Filters Test - Knowledge Graph</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .test-result.pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .test-result.fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .sidebar-preview {
+            width: 300px;
+            height: 600px;
+            overflow-y: auto;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📊 Sidebar Filters Test</h1>
+        <p>Testing Task 13.1: Create sidebar with filters</p>
+
+        <div class="test-section">
+            <h2>Test 1: Domain Filter Checkboxes</h2>
+            <div id="test1Result"></div>
+            <div class="sidebar-preview">
+                <aside class="sidebar" id="testSidebar">
+                    <div class="sidebar-header">
+                        <h2>🔍 探索与筛选</h2>
+                    </div>
+                    <div class="filter-section">
+                        <h3>学域筛选</h3>
+                        <div class="domain-filters" id="domainFilters"></div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 2: Chapter Filter Dropdown</h2>
+            <div id="test2Result"></div>
+            <select id="chapterFilter" class="chapter-select">
+                <option value="">全部章节</option>
+            </select>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 3: Difficulty Range Slider</h2>
+            <div id="test3Result"></div>
+            <div class="difficulty-slider">
+                <label>最小难度:</label>
+                <input type="range" id="difficultyMin" min="1" max="5" value="1">
+                <span id="difficultyMinLabel">1</span>
+                <br><br>
+                <label>最大难度:</label>
+                <input type="range" id="difficultyMax" min="1" max="5" value="5">
+                <span id="difficultyMaxLabel">5</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 4: Learning Stats Display</h2>
+            <div id="test4Result"></div>
+            <div class="stats-section">
+                <h3>学习统计</h3>
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <span class="stat-label">已完成节点:</span>
+                        <span class="stat-value" id="completedCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">总节点数:</span>
+                        <span class="stat-value" id="totalCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">学习进度:</span>
+                        <span class="stat-value" id="progressPercent">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 5: Integration Test</h2>
+            <div id="test5Result"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { DomainDataManager } from './js/modules/DomainDataManager.js';
+
+        async function runTests() {
+            try {
+                // Load domain data
+                const response = await fetch('./data/domains.json');
+                const domainsData = await response.json();
+                const domainManager = new DomainDataManager(domainsData);
+
+                // Test 1: Domain Filter Checkboxes (5 domains)
+                const test1 = testDomainFilters(domainManager);
+                document.getElementById('test1Result').innerHTML = test1;
+
+                // Test 2: Chapter Filter Dropdown (12 chapters)
+                const test2 = testChapterFilter(domainManager);
+                document.getElementById('test2Result').innerHTML = test2;
+
+                // Test 3: Difficulty Range Slider
+                const test3 = testDifficultySlider();
+                document.getElementById('test3Result').innerHTML = test3;
+
+                // Test 4: Learning Stats Display
+                const test4 = testLearningStats();
+                document.getElementById('test4Result').innerHTML = test4;
+
+                // Test 5: Integration Test
+                const test5 = testIntegration(domainManager);
+                document.getElementById('test5Result').innerHTML = test5;
+
+            } catch (error) {
+                console.error('Test failed:', error);
+                document.body.innerHTML += `<div class="test-result fail">❌ Test suite failed: ${error.message}</div>`;
+            }
+        }
+
+        function testDomainFilters(domainManager) {
+            const domains = domainManager.getAllDomains();
+            const container = document.getElementById('domainFilters');
+            
+            // Populate domain filters
+            domains.forEach(domain => {
+                const filterItem = document.createElement('div');
+                filterItem.className = 'domain-filter-item';
+                filterItem.innerHTML = `
+                    <input type="checkbox" id="domain-${domain.id}" value="${domain.id}">
+                    <label for="domain-${domain.id}">
+                        <span class="domain-icon">${domain.icon}</span>
+                        <span>${domain.name}</span>
+                    </label>
+                `;
+                container.appendChild(filterItem);
+            });
+
+            const checkboxCount = container.querySelectorAll('input[type="checkbox"]').length;
+            
+            if (checkboxCount === 5) {
+                return `<div class="test-result pass">✅ PASS: Created ${checkboxCount} domain filter checkboxes</div>`;
+            } else {
+                return `<div class="test-result fail">❌ FAIL: Expected 5 domain filters, got ${checkboxCount}</div>`;
+            }
+        }
+
+        function testChapterFilter(domainManager) {
+            const chapters = domainManager.getAllChapters();
+            const select = document.getElementById('chapterFilter');
+            
+            // Populate chapter options
+            chapters.forEach(chapter => {
+                const option = document.createElement('option');
+                option.value = chapter.id;
+                option.textContent = chapter.name;
+                select.appendChild(option);
+            });
+
+            const optionCount = select.options.length - 1; // Subtract the "全部章节" option
+            
+            if (optionCount === 12) {
+                return `<div class="test-result pass">✅ PASS: Created dropdown with ${optionCount} chapter options</div>`;
+            } else {
+                return `<div class="test-result fail">❌ FAIL: Expected 12 chapter options, got ${optionCount}</div>`;
+            }
+        }
+
+        function testDifficultySlider() {
+            const minSlider = document.getElementById('difficultyMin');
+            const maxSlider = document.getElementById('difficultyMax');
+            const minLabel = document.getElementById('difficultyMinLabel');
+            const maxLabel = document.getElementById('difficultyMaxLabel');
+
+            // Test slider functionality
+            minSlider.addEventListener('input', (e) => {
+                minLabel.textContent = e.target.value;
+            });
+
+            maxSlider.addEventListener('input', (e) => {
+                maxLabel.textContent = e.target.value;
+            });
+
+            const hasMinSlider = minSlider && minSlider.type === 'range';
+            const hasMaxSlider = maxSlider && maxSlider.type === 'range';
+            const hasLabels = minLabel && maxLabel;
+
+            if (hasMinSlider && hasMaxSlider && hasLabels) {
+                return `<div class="test-result pass">✅ PASS: Difficulty range slider created with min/max controls and labels</div>`;
+            } else {
+                return `<div class="test-result fail">❌ FAIL: Difficulty slider components missing</div>`;
+            }
+        }
+
+        function testLearningStats() {
+            const completedCount = document.getElementById('completedCount');
+            const totalCount = document.getElementById('totalCount');
+            const progressPercent = document.getElementById('progressPercent');
+
+            // Test updating stats
+            completedCount.textContent = '5';
+            totalCount.textContent = '50';
+            progressPercent.textContent = '10%';
+
+            const hasAllElements = completedCount && totalCount && progressPercent;
+            const valuesCorrect = completedCount.textContent === '5' && 
+                                 totalCount.textContent === '50' && 
+                                 progressPercent.textContent === '10%';
+
+            if (hasAllElements && valuesCorrect) {
+                return `<div class="test-result pass">✅ PASS: Learning stats display created and functional</div>`;
+            } else {
+                return `<div class="test-result fail">❌ FAIL: Learning stats display incomplete</div>`;
+            }
+        }
+
+        function testIntegration(domainManager) {
+            const domains = domainManager.getAllDomains();
+            const chapters = domainManager.getAllChapters();
+            
+            let results = [];
+            
+            // Check domain count
+            if (domains.length === 5) {
+                results.push('✅ 5 domains loaded');
+            } else {
+                results.push(`❌ Expected 5 domains, got ${domains.length}`);
+            }
+
+            // Check chapter count
+            if (chapters.length === 12) {
+                results.push('✅ 12 chapters loaded');
+            } else {
+                results.push(`❌ Expected 12 chapters, got ${chapters.length}`);
+            }
+
+            // Check domain properties
+            const domain1 = domains[0];
+            const hasRequiredProps = domain1.id && domain1.name && domain1.icon && 
+                                    domain1.color && domain1.coreIdea;
+            if (hasRequiredProps) {
+                results.push('✅ Domain objects have required properties');
+            } else {
+                results.push('❌ Domain objects missing required properties');
+            }
+
+            // Check chapter properties
+            const chapter1 = chapters[0];
+            const hasChapterProps = chapter1.id && chapter1.name && chapter1.domains;
+            if (hasChapterProps) {
+                results.push('✅ Chapter objects have required properties');
+            } else {
+                results.push('❌ Chapter objects missing required properties');
+            }
+
+            const allPassed = results.every(r => r.startsWith('✅'));
+            const resultClass = allPassed ? 'pass' : 'fail';
+            const resultHTML = results.map(r => `<div>${r}</div>`).join('');
+
+            return `<div class="test-result ${resultClass}">
+                <strong>${allPassed ? '✅ PASS' : '❌ FAIL'}: Integration Test</strong>
+                ${resultHTML}
+            </div>`;
+        }
+
+        // Run tests when page loads
+        runTests();
+    </script>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导出与分享功能测试 - Phase 2</title>
+    
+    <!-- 外部库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+        }
+        
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .demo-area {
+            background: #fafafa;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .demo-graph {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-card .label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .log-area {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📤 导出与分享功能测试</h1>
+            <p>Task 21: PDF导出 + Markdown导出 + 截图导出 + 分享链接</p>
+        </div>
+
+        <!-- 功能概览 -->
+        <div class="section">
+            <h2>📊 功能概览</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="label">导出格式</div>
+                    <div class="value">4</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">分享功能</div>
+                    <div class="value">2</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">批量导出</div>
+                    <div class="value">✓</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">完成度</div>
+                    <div class="value">100%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PDF导出 -->
+        <div class="section">
+            <h2>📄 PDF导出</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 导出学习路径为PDF文件，包含节点列表、难度、学习时长等信息
+            </div>
+            <div class="button-group">
+                <button onclick="testPDFExport()">导出学习路径PDF</button>
+                <button onclick="testPDFWithDetails()">导出详细PDF</button>
+            </div>
+        </div>
+
+        <!-- Markdown导出 -->
+        <div class="section">
+            <h2>📝 Markdown导出</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 导出节点内容为Markdown文件，包含描述、公式、代码等
+            </div>
+            <div class="button-group">
+                <button onclick="testMarkdownExport()">导出节点Markdown</button>
+                <button onclick="testMarkdownWithCode()">导出带代码Markdown</button>
+            </div>
+        </div>
+
+        <!-- PNG截图 -->
+        <div class="section">
+            <h2>🖼️ PNG截图导出</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 导出知识图谱截图为PNG图片
+            </div>
+            <div class="demo-area">
+                <div class="demo-graph" id="demo-graph">
+                    知识图谱演示区域
+                </div>
+            </div>
+            <div class="button-group">
+                <button onclick="testPNGExport()">导出图谱截图</button>
+                <button onclick="testPNGHighRes()">导出高清截图</button>
+            </div>
+        </div>
+
+        <!-- 分享链接 -->
+        <div class="section">
+            <h2>🔗 分享链接</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 生成可分享的链接，包含图谱视图和过滤条件
+            </div>
+            <div class="button-group">
+                <button onclick="testGenerateLink()">生成分享链接</button>
+                <button onclick="testParseLink()">解析分享链接</button>
+                <button onclick="testCopyLink()">复制到剪贴板</button>
+            </div>
+            <div id="share-link-display" style="margin-top: 15px; display: none;">
+                <input type="text" id="share-link-input" readonly style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+        </div>
+
+        <!-- JSON导出/导入 -->
+        <div class="section">
+            <h2>💾 学习进度</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 导出和导入学习进度数据
+            </div>
+            <div class="button-group">
+                <button onclick="testJSONExport()">导出进度JSON</button>
+                <button onclick="testJSONImport()">导入进度JSON</button>
+            </div>
+        </div>
+
+        <!-- 批量导出 -->
+        <div class="section">
+            <h2>📦 批量导出</h2>
+            <div class="info-box">
+                <strong>功能说明:</strong> 一键导出所有格式
+            </div>
+            <div class="button-group">
+                <button onclick="testBatchExport()">批量导出全部</button>
+                <button onclick="openShareDialog()">打开分享对话框</button>
+            </div>
+        </div>
+
+        <!-- 已实现功能 -->
+        <div class="section">
+            <h2>✅ 已实现功能</h2>
+            <ul class="feature-list">
+                <li>PDF导出（学习路径）</li>
+                <li>Markdown导出（节点内容）</li>
+                <li>PNG截图导出（图谱）</li>
+                <li>分享链接生成</li>
+                <li>分享链接解析</li>
+                <li>JSON进度导出/导入</li>
+                <li>批量导出</li>
+                <li>剪贴板复制</li>
+                <li>分享对话框UI</li>
+            </ul>
+        </div>
+
+        <!-- 日志 -->
+        <div class="section">
+            <h2>📋 操作日志</h2>
+            <div class="log-area" id="log-area">
+                <div class="log-entry">等待操作...</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { ExportManager } from './js/modules/ExportManager.js';
+        import { ShareDialog } from './js/modules/ShareDialog.js';
+
+        // 初始化
+        const exportManager = new ExportManager();
+        const shareDialog = new ShareDialog();
+
+        // 日志函数
+        function log(message) {
+            const logArea = document.getElementById('log-area');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logArea.appendChild(entry);
+            logArea.scrollTop = logArea.scrollHeight;
+            console.log(message);
+        }
+
+        // 测试数据
+        const samplePath = [
+            { id: 'node1', name: '函数极限', nameEn: 'Function Limits', difficulty: 2, estimatedStudyTime: 60, description: '学习函数极限的基本概念和计算方法' },
+            { id: 'node2', name: '导数定义', nameEn: 'Derivative Definition', difficulty: 3, estimatedStudyTime: 90, description: '理解导数的定义和几何意义' },
+            { id: 'node3', name: '积分概念', nameEn: 'Integral Concept', difficulty: 3, estimatedStudyTime: 75, description: '掌握定积分和不定积分的概念' }
+        ];
+
+        const sampleNodes = [
+            { 
+                id: 'node1', 
+                name: '函数极限', 
+                nameEn: 'Function Limits',
+                difficulty: 2,
+                estimatedStudyTime: 60,
+                domains: ['domain-1'],
+                keywords: ['极限', '连续'],
+                description: '函数极限是微积分的基础概念，描述函数在某点附近的变化趋势。',
+                formula: '\\lim_{x \\to a} f(x) = L',
+                prerequisites: [],
+                applications: ['数值分析', '物理建模']
+            }
+        ];
+
+        const sampleProgress = {
+            completedNodes: ['node1', 'node2'],
+            currentNode: 'node3',
+            totalTime: 150,
+            lastUpdate: new Date().toISOString()
+        };
+
+        // 全局函数
+        window.testPDFExport = async function() {
+            log('开始导出PDF...');
+            try {
+                const filename = await exportManager.exportLearningPathToPDF(samplePath);
+                log(`✅ PDF导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ PDF导出失败: ${error.message}`);
+            }
+        };
+
+        window.testPDFWithDetails = async function() {
+            log('开始导出详细PDF...');
+            try {
+                const filename = await exportManager.exportLearningPathToPDF(samplePath, {
+                    title: '我的学习路径',
+                    includeDetails: true,
+                    includeEstimatedTime: true
+                });
+                log(`✅ 详细PDF导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ 详细PDF导出失败: ${error.message}`);
+            }
+        };
+
+        window.testMarkdownExport = function() {
+            log('开始导出Markdown...');
+            try {
+                const filename = exportManager.exportNodesToMarkdown(sampleNodes);
+                log(`✅ Markdown导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ Markdown导出失败: ${error.message}`);
+            }
+        };
+
+        window.testMarkdownWithCode = function() {
+            log('开始导出带代码Markdown...');
+            try {
+                const filename = exportManager.exportNodesToMarkdown(sampleNodes, {
+                    includeCode: true,
+                    includeFormulas: true
+                });
+                log(`✅ 带代码Markdown导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ 带代码Markdown导出失败: ${error.message}`);
+            }
+        };
+
+        window.testPNGExport = async function() {
+            log('开始导出PNG截图...');
+            try {
+                const element = document.getElementById('demo-graph');
+                const filename = await exportManager.exportGraphToPNG(element);
+                log(`✅ PNG截图导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ PNG截图导出失败: ${error.message}`);
+            }
+        };
+
+        window.testPNGHighRes = async function() {
+            log('开始导出高清PNG截图...');
+            try {
+                const element = document.getElementById('demo-graph');
+                const filename = await exportManager.exportGraphToPNG(element, {
+                    scale: 3,
+                    backgroundColor: '#ffffff'
+                });
+                log(`✅ 高清PNG截图导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ 高清PNG截图导出失败: ${error.message}`);
+            }
+        };
+
+        window.testGenerateLink = function() {
+            log('开始生成分享链接...');
+            try {
+                const shareData = {
+                    nodes: ['node1', 'node2'],
+                    filters: { difficulty: [2, 3] },
+                    view: { zoom: 1.5, center: [0, 0] }
+                };
+                const shareUrl = exportManager.generateShareLink(shareData);
+                
+                document.getElementById('share-link-display').style.display = 'block';
+                document.getElementById('share-link-input').value = shareUrl;
+                
+                log(`✅ 分享链接生成成功`);
+                log(`链接长度: ${shareUrl.length} 字符`);
+            } catch (error) {
+                log(`❌ 分享链接生成失败: ${error.message}`);
+            }
+        };
+
+        window.testParseLink = function() {
+            log('开始解析分享链接...');
+            try {
+                const input = document.getElementById('share-link-input');
+                if (!input.value) {
+                    log('❌ 请先生成分享链接');
+                    return;
+                }
+                
+                const data = exportManager.parseShareLink(input.value);
+                if (data) {
+                    log(`✅ 分享链接解析成功`);
+                    log(`解析数据: ${JSON.stringify(data, null, 2)}`);
+                } else {
+                    log('❌ 分享链接解析失败');
+                }
+            } catch (error) {
+                log(`❌ 分享链接解析失败: ${error.message}`);
+            }
+        };
+
+        window.testCopyLink = async function() {
+            log('开始复制链接...');
+            try {
+                const input = document.getElementById('share-link-input');
+                if (!input.value) {
+                    log('❌ 请先生成分享链接');
+                    return;
+                }
+                
+                const success = await exportManager.copyShareLinkToClipboard(input.value);
+                if (success) {
+                    log('✅ 链接已复制到剪贴板');
+                } else {
+                    log('❌ 复制失败');
+                }
+            } catch (error) {
+                log(`❌ 复制失败: ${error.message}`);
+            }
+        };
+
+        window.testJSONExport = function() {
+            log('开始导出JSON...');
+            try {
+                const filename = exportManager.exportProgressToJSON(sampleProgress);
+                log(`✅ JSON导出成功: ${filename}`);
+            } catch (error) {
+                log(`❌ JSON导出失败: ${error.message}`);
+            }
+        };
+
+        window.testJSONImport = function() {
+            log('JSON导入功能需要文件选择器，请在实际应用中测试');
+        };
+
+        window.testBatchExport = async function() {
+            log('开始批量导出...');
+            try {
+                const data = {
+                    learningPath: samplePath,
+                    nodes: sampleNodes,
+                    graphElement: document.getElementById('demo-graph'),
+                    progress: sampleProgress
+                };
+                
+                const results = await exportManager.exportAll(data);
+                log(`✅ 批量导出完成`);
+                log(`导出结果: ${JSON.stringify(results, null, 2)}`);
+            } catch (error) {
+                log(`❌ 批量导出失败: ${error.message}`);
+            }
+        };
+
+        window.openShareDialog = function() {
+            log('打开分享对话框...');
+            const data = {
+                learningPath: samplePath,
+                nodes: sampleNodes,
+                graphElement: document.getElementById('demo-graph'),
+                progress: sampleProgress,
+                selectedNodes: ['node1', 'node2'],
+                filters: { difficulty: [2, 3] },
+                view: { zoom: 1.5 }
+            };
+            
+            shareDialog.show(data);
+            log('✅ 分享对话框已打开');
+        };
+
+        // 检查库加载状态
+        const libraries = exportManager.checkLibraries();
+        log(`jsPDF: ${libraries.jsPDF ? '✅ 已加载' : '❌ 未加载'}`);
+        log(`html2canvas: ${libraries.html2canvas ? '✅ 已加载' : '❌ 未加载'}`);
+        log('📤 导出与分享功能测试页面已加载');
+    </script>
+</body>
+</html>

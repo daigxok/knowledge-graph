@@ -1,0 +1,1266 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "phase": "Phase 2 - 边关系生成演示",
+    "totalItems": 99,
+    "createdDate": "2026-02-23",
+    "description": "边关系生成演示输出",
+    "nodeCount": 57,
+    "generationTime": 52
+  },
+  "data": [
+    {
+      "id": "edge-prereq-phase2-0000",
+      "source": "node-003",
+      "target": "node-004",
+      "type": "prerequisite",
+      "strength": 0.9765087036679021,
+      "description": "微分2是泰勒展开3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0001",
+      "source": "node-002",
+      "target": "node-004",
+      "type": "prerequisite",
+      "strength": 0.789581368134494,
+      "description": "导数1是泰勒展开3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0002",
+      "source": "node-002",
+      "target": "node-005",
+      "type": "prerequisite",
+      "strength": 0.9959734979487935,
+      "description": "导数1是曲率4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0003",
+      "source": "node-001",
+      "target": "node-005",
+      "type": "prerequisite",
+      "strength": 0.8412259710553163,
+      "description": "极限是曲率4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0004",
+      "source": "node-002",
+      "target": "node-006",
+      "type": "prerequisite",
+      "strength": 0.9451654325688587,
+      "description": "导数1是极限5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0005",
+      "source": "node-006",
+      "target": "node-007",
+      "type": "prerequisite",
+      "strength": 0.8152927162742452,
+      "description": "极限5是导数6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0006",
+      "source": "node-006",
+      "target": "node-008",
+      "type": "prerequisite",
+      "strength": 0.7326377800482786,
+      "description": "极限5是微分7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0007",
+      "source": "node-003",
+      "target": "node-009",
+      "type": "prerequisite",
+      "strength": 0.9555215181618266,
+      "description": "微分2是泰勒展开8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0008",
+      "source": "node-004",
+      "target": "node-010",
+      "type": "prerequisite",
+      "strength": 0.7306654670427799,
+      "description": "泰勒展开3是曲率9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0009",
+      "source": "node-003",
+      "target": "node-010",
+      "type": "prerequisite",
+      "strength": 0.7018855764941905,
+      "description": "微分2是曲率9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0010",
+      "source": "node-007",
+      "target": "node-011",
+      "type": "prerequisite",
+      "strength": 0.949489983041729,
+      "description": "导数6是极限10的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0011",
+      "source": "node-001",
+      "target": "node-011",
+      "type": "prerequisite",
+      "strength": 0.9873631819153181,
+      "description": "极限是极限10的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0012",
+      "source": "node-004",
+      "target": "node-012",
+      "type": "prerequisite",
+      "strength": 0.8161609143654662,
+      "description": "泰勒展开3是导数11的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0013",
+      "source": "node-010",
+      "target": "node-013",
+      "type": "prerequisite",
+      "strength": 0.7817340479362066,
+      "description": "曲率9是微分12的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0014",
+      "source": "node-007",
+      "target": "node-013",
+      "type": "prerequisite",
+      "strength": 0.7601179890857319,
+      "description": "导数6是微分12的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0015",
+      "source": "node-016",
+      "target": "node-019",
+      "type": "prerequisite",
+      "strength": 0.7345103362104843,
+      "description": "积分是曲线积分3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0016",
+      "source": "node-018",
+      "target": "node-019",
+      "type": "prerequisite",
+      "strength": 0.8434942315458959,
+      "description": "不定积分2是曲线积分3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0017",
+      "source": "node-018",
+      "target": "node-020",
+      "type": "prerequisite",
+      "strength": 0.9416285356057389,
+      "description": "不定积分2是曲面积分4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0018",
+      "source": "node-018",
+      "target": "node-021",
+      "type": "prerequisite",
+      "strength": 0.9850110939181906,
+      "description": "不定积分2是积分5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0019",
+      "source": "node-016",
+      "target": "node-022",
+      "type": "prerequisite",
+      "strength": 0.8044200834967159,
+      "description": "积分是定积分6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0020",
+      "source": "node-017",
+      "target": "node-022",
+      "type": "prerequisite",
+      "strength": 0.9579532056794465,
+      "description": "定积分1是定积分6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0021",
+      "source": "node-017",
+      "target": "node-023",
+      "type": "prerequisite",
+      "strength": 0.8491905264260454,
+      "description": "定积分1是不定积分7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0022",
+      "source": "node-019",
+      "target": "node-023",
+      "type": "prerequisite",
+      "strength": 0.7008002885475263,
+      "description": "曲线积分3是不定积分7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0023",
+      "source": "node-016",
+      "target": "node-024",
+      "type": "prerequisite",
+      "strength": 0.8957618005682682,
+      "description": "积分是曲线积分8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0024",
+      "source": "node-017",
+      "target": "node-024",
+      "type": "prerequisite",
+      "strength": 0.8000895204975011,
+      "description": "定积分1是曲线积分8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0025",
+      "source": "node-019",
+      "target": "node-025",
+      "type": "prerequisite",
+      "strength": 0.7961191633668853,
+      "description": "曲线积分3是曲面积分9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0026",
+      "source": "node-019",
+      "target": "node-026",
+      "type": "prerequisite",
+      "strength": 0.9394412262797989,
+      "description": "曲线积分3是积分10的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0027",
+      "source": "node-022",
+      "target": "node-026",
+      "type": "prerequisite",
+      "strength": 0.9933256504604999,
+      "description": "定积分6是积分10的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0028",
+      "source": "node-028",
+      "target": "node-031",
+      "type": "prerequisite",
+      "strength": 0.9712539552000785,
+      "description": "梯度是变分法3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0029",
+      "source": "node-030",
+      "target": "node-031",
+      "type": "prerequisite",
+      "strength": 0.8898242455960015,
+      "description": "拉格朗日乘数2是变分法3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0030",
+      "source": "node-030",
+      "target": "node-032",
+      "type": "prerequisite",
+      "strength": 0.9230407702813141,
+      "description": "拉格朗日乘数2是最优控制4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0031",
+      "source": "node-028",
+      "target": "node-033",
+      "type": "prerequisite",
+      "strength": 0.9073316428811127,
+      "description": "梯度是梯度5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0032",
+      "source": "node-028",
+      "target": "node-034",
+      "type": "prerequisite",
+      "strength": 0.8198458798728514,
+      "description": "梯度是优化6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0033",
+      "source": "node-033",
+      "target": "node-035",
+      "type": "prerequisite",
+      "strength": 0.9672322639783922,
+      "description": "梯度5是拉格朗日乘数7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0034",
+      "source": "node-029",
+      "target": "node-036",
+      "type": "prerequisite",
+      "strength": 0.7270296992835628,
+      "description": "优化1是变分法8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0035",
+      "source": "node-030",
+      "target": "node-036",
+      "type": "prerequisite",
+      "strength": 0.8983566027714747,
+      "description": "拉格朗日乘数2是变分法8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0036",
+      "source": "node-031",
+      "target": "node-037",
+      "type": "prerequisite",
+      "strength": 0.8714827464106477,
+      "description": "变分法3是最优控制9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0037",
+      "source": "node-040",
+      "target": "node-041",
+      "type": "prerequisite",
+      "strength": 0.9868237199624057,
+      "description": "分布2是期望3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0038",
+      "source": "node-039",
+      "target": "node-041",
+      "type": "prerequisite",
+      "strength": 0.7542562487237127,
+      "description": "随机变量1是期望3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0039",
+      "source": "node-038",
+      "target": "node-042",
+      "type": "prerequisite",
+      "strength": 0.7281837459519238,
+      "description": "概率是方差4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0040",
+      "source": "node-040",
+      "target": "node-042",
+      "type": "prerequisite",
+      "strength": 0.8856786119701847,
+      "description": "分布2是方差4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0041",
+      "source": "node-039",
+      "target": "node-043",
+      "type": "prerequisite",
+      "strength": 0.8505367495983629,
+      "description": "随机变量1是概率5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0042",
+      "source": "node-038",
+      "target": "node-044",
+      "type": "prerequisite",
+      "strength": 0.820087782100349,
+      "description": "概率是随机变量6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0043",
+      "source": "node-042",
+      "target": "node-044",
+      "type": "prerequisite",
+      "strength": 0.8170470589370877,
+      "description": "方差4是随机变量6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0044",
+      "source": "node-043",
+      "target": "node-045",
+      "type": "prerequisite",
+      "strength": 0.8469944957063441,
+      "description": "概率5是分布7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0045",
+      "source": "node-042",
+      "target": "node-045",
+      "type": "prerequisite",
+      "strength": 0.9202500076237076,
+      "description": "方差4是分布7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0046",
+      "source": "node-040",
+      "target": "node-046",
+      "type": "prerequisite",
+      "strength": 0.7614321140994363,
+      "description": "分布2是期望8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0047",
+      "source": "node-038",
+      "target": "node-047",
+      "type": "prerequisite",
+      "strength": 0.7190053839508089,
+      "description": "概率是方差9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0048",
+      "source": "node-039",
+      "target": "node-047",
+      "type": "prerequisite",
+      "strength": 0.7587616205476029,
+      "description": "随机变量1是方差9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0049",
+      "source": "node-048",
+      "target": "node-051",
+      "type": "prerequisite",
+      "strength": 0.7181860077079654,
+      "description": "神经网络是金融建模3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0050",
+      "source": "node-049",
+      "target": "node-051",
+      "type": "prerequisite",
+      "strength": 0.8779808148907016,
+      "description": "机器学习1是金融建模3的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0051",
+      "source": "node-048",
+      "target": "node-052",
+      "type": "prerequisite",
+      "strength": 0.9199817495419496,
+      "description": "神经网络是物理模拟4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0052",
+      "source": "node-049",
+      "target": "node-052",
+      "type": "prerequisite",
+      "strength": 0.8652183746957073,
+      "description": "机器学习1是物理模拟4的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0053",
+      "source": "node-050",
+      "target": "node-053",
+      "type": "prerequisite",
+      "strength": 0.870543245818761,
+      "description": "数据分析2是神经网络5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0054",
+      "source": "node-048",
+      "target": "node-053",
+      "type": "prerequisite",
+      "strength": 0.8410215283051886,
+      "description": "神经网络是神经网络5的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0055",
+      "source": "node-053",
+      "target": "node-054",
+      "type": "prerequisite",
+      "strength": 0.7682676716850247,
+      "description": "神经网络5是机器学习6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0056",
+      "source": "node-048",
+      "target": "node-054",
+      "type": "prerequisite",
+      "strength": 0.8093818085329203,
+      "description": "神经网络是机器学习6的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0057",
+      "source": "node-048",
+      "target": "node-055",
+      "type": "prerequisite",
+      "strength": 0.8107103685701105,
+      "description": "神经网络是数据分析7的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0058",
+      "source": "node-053",
+      "target": "node-056",
+      "type": "prerequisite",
+      "strength": 0.7174536802431039,
+      "description": "神经网络5是金融建模8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0059",
+      "source": "node-051",
+      "target": "node-056",
+      "type": "prerequisite",
+      "strength": 0.7989055023235453,
+      "description": "金融建模3是金融建模8的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-prereq-phase2-0060",
+      "source": "node-049",
+      "target": "node-057",
+      "type": "prerequisite",
+      "strength": 0.8191047766218834,
+      "description": "机器学习1是物理模拟9的前置知识",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0061",
+      "source": "node-002",
+      "target": "node-028",
+      "type": "cross-domain",
+      "strength": 0.6390128662268207,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0062",
+      "source": "node-002",
+      "target": "node-029",
+      "type": "cross-domain",
+      "strength": 0.5393132467334391,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0063",
+      "source": "node-007",
+      "target": "node-028",
+      "type": "cross-domain",
+      "strength": 0.7414412281552337,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0064",
+      "source": "node-007",
+      "target": "node-033",
+      "type": "cross-domain",
+      "strength": 0.5355450592638507,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0065",
+      "source": "node-012",
+      "target": "node-028",
+      "type": "cross-domain",
+      "strength": 0.528420002086905,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0066",
+      "source": "node-012",
+      "target": "node-029",
+      "type": "cross-domain",
+      "strength": 0.65144741939417,
+      "description": "优化相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "优化"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0067",
+      "source": "node-016",
+      "target": "node-038",
+      "type": "cross-domain",
+      "strength": 0.7004115110813702,
+      "description": "概率密度相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "概率密度"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0068",
+      "source": "node-016",
+      "target": "node-043",
+      "type": "cross-domain",
+      "strength": 0.7191268603381265,
+      "description": "概率密度相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "概率密度"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0069",
+      "source": "node-016",
+      "target": "node-045",
+      "type": "cross-domain",
+      "strength": 0.6976847548743195,
+      "description": "概率密度相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "概率密度"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0070",
+      "source": "node-017",
+      "target": "node-038",
+      "type": "cross-domain",
+      "strength": 0.624348027874864,
+      "description": "概率密度相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "概率密度"
+      }
+    },
+    {
+      "id": "edge-cross-phase2-0071",
+      "source": "node-017",
+      "target": "node-041",
+      "type": "cross-domain",
+      "strength": 0.6941694458072253,
+      "description": "概率密度相关的跨域连接",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "topic": "概率密度"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0072",
+      "source": "node-007",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7358322547203533,
+      "description": "导数6在医疗中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "导数的实际应用",
+        "industry": "医疗"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0073",
+      "source": "node-008",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6146226871798988,
+      "description": "微分7在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "微分的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0074",
+      "source": "node-009",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6130244418751465,
+      "description": "泰勒展开8在数据科学中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "泰勒展开的实际应用",
+        "industry": "数据科学"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0075",
+      "source": "node-010",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8557383840219888,
+      "description": "曲率9在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "曲率的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0076",
+      "source": "node-011",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7509498021347374,
+      "description": "极限10在数据科学中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "极限的实际应用",
+        "industry": "数据科学"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0077",
+      "source": "node-012",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6535276832918742,
+      "description": "导数11在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "导数的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0078",
+      "source": "node-013",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.9625737985292812,
+      "description": "微分12在数据科学中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "微分的实际应用",
+        "industry": "数据科学"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0079",
+      "source": "node-014",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7771046033284477,
+      "description": "泰勒展开13在人工智能中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "泰勒展开的实际应用",
+        "industry": "人工智能"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0080",
+      "source": "node-015",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6915786094561321,
+      "description": "曲率14在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "曲率的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0081",
+      "source": "node-022",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.715349293143748,
+      "description": "定积分6在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "定积分的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0082",
+      "source": "node-023",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8402808626250053,
+      "description": "不定积分7在医疗中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "不定积分的实际应用",
+        "industry": "医疗"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0083",
+      "source": "node-024",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6831023643217924,
+      "description": "曲线积分8在人工智能中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "曲线积分的实际应用",
+        "industry": "人工智能"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0084",
+      "source": "node-025",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6119221052692614,
+      "description": "曲面积分9在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "曲面积分的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0085",
+      "source": "node-026",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6186710941584569,
+      "description": "积分10在人工智能中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "积分的实际应用",
+        "industry": "人工智能"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0086",
+      "source": "node-027",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6349312830784618,
+      "description": "定积分11在人工智能中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "定积分的实际应用",
+        "industry": "人工智能"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0087",
+      "source": "node-034",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8761520231292018,
+      "description": "优化6在数据科学中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "优化的实际应用",
+        "industry": "数据科学"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0088",
+      "source": "node-035",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6231778458129991,
+      "description": "拉格朗日乘数7在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "拉格朗日乘数的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0089",
+      "source": "node-036",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.80927463686538,
+      "description": "变分法8在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "变分法的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0090",
+      "source": "node-037",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7461292190007531,
+      "description": "最优控制9在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "最优控制的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0091",
+      "source": "node-044",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.9501113996785919,
+      "description": "随机变量6在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "随机变量的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0092",
+      "source": "node-045",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8977374559462054,
+      "description": "分布7在数据科学中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "分布的实际应用",
+        "industry": "数据科学"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0093",
+      "source": "node-046",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8922958324769719,
+      "description": "期望8在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "期望的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0094",
+      "source": "node-047",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.6617587629898406,
+      "description": "方差9在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "方差的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0095",
+      "source": "node-054",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.9667648058717564,
+      "description": "机器学习6在金融中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "机器学习的实际应用",
+        "industry": "金融"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0096",
+      "source": "node-055",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.8446303996580601,
+      "description": "数据分析7在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "数据分析的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0097",
+      "source": "node-056",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7167055719733554,
+      "description": "金融建模8在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "金融建模的实际应用",
+        "industry": "工程"
+      }
+    },
+    {
+      "id": "edge-app-phase2-0098",
+      "source": "node-057",
+      "target": "app--",
+      "type": "application",
+      "strength": 0.7093281067624473,
+      "description": "物理模拟9在工程中的应用",
+      "metadata": {
+        "phase": "phase2",
+        "createdDate": "2026-02-23",
+        "applicationTitle": "物理模拟的实际应用",
+        "industry": "工程"
+      }
+    }
+  ]
+}

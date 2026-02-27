@@ -1,0 +1,41 @@
+{
+  "name": "knowledge-graph-phase2",
+  "version": "2.0.0",
+  "description": "知识图谱系统 Phase 2 内容深度扩展",
+  "main": "index.html",
+  "scripts": {
+    "generate:phase2": "node scripts/generate-phase2-data.js",
+    "validate:phase2": "node scripts/validate-phase2-data.js",
+    "test": "node scripts/test-runner.js",
+    "test:unit": "echo 'Unit tests will be implemented in Task 24'",
+    "test:property": "echo 'Property tests will be implemented in Task 23'",
+    "test:integration": "echo 'Integration tests will be implemented in Task 29'",
+    "test:coverage": "echo 'Coverage tests will be implemented later'",
+    "build": "echo 'Build process will be configured later'",
+    "deploy": "echo 'Deployment will be configured in Task 31'",
+    "dev": "echo 'Development server - use Live Server or similar tool'",
+    "check:data": "node check-data.js",
+    "integrate:phase1": "node integrate-phase1.js",
+    "verify:phase1": "node verify-phase1-integration.js"
+  },
+  "keywords": [
+    "knowledge-graph",
+    "mathematics",
+    "calculus",
+    "visualization",
+    "d3js",
+    "education"
+  ],
+  "author": "Knowledge Graph Team",
+  "license": "MIT",
+  "devDependencies": {
+    "fast-check": "^3.0.0",
+    "jest": "^29.0.0"
+  },
+  "dependencies": {
+    "d3": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

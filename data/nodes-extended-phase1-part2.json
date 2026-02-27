@@ -1,0 +1,320 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "phase": "Phase 1 - Part 2",
+    "totalNewNodes": 42,
+    "createdDate": "2026-02-22",
+    "description": "Phase 1剩余42个节点：导数理论、积分理论、多元微积分等"
+  },
+  "newNodes": [
+    {
+      "id": "node-derivative-geometric",
+      "name": "导数的几何意义",
+      "nameEn": "Geometric Meaning of Derivative",
+      "description": "导数表示曲线的切线斜率，是函数图像局部线性近似的基础",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": ["node-derivative-def"],
+      "relatedSkills": ["导数与微分Skill", "概念可视化Skill"],
+      "formula": "f'(x_0) = \\tan\\alpha = k_{切线}",
+      "keywords": ["切线", "法线", "切线方程", "几何意义"],
+      "importance": 4,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "曲线拟合",
+          "description": "使用切线近似复杂曲线",
+          "industry": "数据分析"
+        },
+        {
+          "title": "轨迹规划",
+          "description": "机器人运动轨迹的切线方向控制",
+          "industry": "机器人"
+        }
+      ]
+    },
+    {
+      "id": "node-derivative-physical",
+      "name": "导数的物理意义",
+      "nameEn": "Physical Meaning of Derivative",
+      "description": "导数表示瞬时变化率，在物理中对应速度、加速度等概念",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 2,
+      "prerequisites": ["node-derivative-def"],
+      "relatedSkills": ["导数与微分Skill"],
+      "formula": "v(t) = s'(t), \\quad a(t) = v'(t) = s''(t)",
+      "keywords": ["速度", "加速度", "变化率", "物理意义"],
+      "importance": 4,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "运动分析",
+          "description": "分析物体的速度和加速度",
+          "industry": "物理"
+        },
+        {
+          "title": "自动驾驶",
+          "description": "车辆速度和加速度控制",
+          "industry": "自动驾驶"
+        }
+      ]
+    },
+    {
+      "id": "node-higher-derivatives",
+      "name": "高阶导数",
+      "nameEn": "Higher Order Derivatives",
+      "description": "二阶、三阶及n阶导数的定义、计算和应用",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": ["node-derivative-def"],
+      "relatedSkills": ["导数与微分Skill"],
+      "formula": "f''(x) = (f'(x))', \\quad f^{(n)}(x) = (f^{(n-1)}(x))'",
+      "keywords": ["二阶导数", "高阶导数", "加速度", "曲率"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "加速度分析",
+          "description": "二阶导数表示加速度",
+          "industry": "力学"
+        },
+        {
+          "title": "曲率计算",
+          "description": "曲线的弯曲程度",
+          "industry": "几何"
+        }
+      ]
+    },
+    {
+      "id": "node-implicit-derivative",
+      "name": "隐函数求导",
+      "nameEn": "Implicit Differentiation",
+      "description": "对隐函数方程两边同时求导，求出dy/dx",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": ["node-derivative-rules"],
+      "relatedSkills": ["导数与微分Skill"],
+      "formula": "F(x,y) = 0 \\Rightarrow \\frac{dy}{dx} = -\\frac{F_x}{F_y}",
+      "keywords": ["隐函数", "隐函数求导", "偏导数"],
+      "importance": 4,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "隐式曲线分析",
+          "description": "分析圆、椭圆等隐式曲线",
+          "industry": "几何"
+        },
+        {
+          "title": "约束优化",
+          "description": "带约束条件的优化问题",
+          "industry": "优化"
+        }
+      ]
+    },
+    {
+      "id": "node-parametric-derivative",
+      "name": "参数方程求导",
+      "nameEn": "Parametric Differentiation",
+      "description": "参数方程表示的曲线的导数计算",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": ["node-derivative-rules"],
+      "relatedSkills": ["导数与微分Skill"],
+      "formula": "\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt} = \\frac{y'(t)}{x'(t)}",
+      "keywords": ["参数方程", "参数求导", "曲线"],
+      "importance": 3,
+      "estimatedStudyTime": 45,
+      "realWorldApplications": [
+        {
+          "title": "参数曲线",
+          "description": "摆线、螺旋线等参数曲线分析",
+          "industry": "几何"
+        },
+        {
+          "title": "轨迹分析",
+          "description": "物体运动轨迹的参数表示",
+          "industry": "物理"
+        }
+      ]
+    },
+    {
+      "id": "node-logarithmic-derivative",
+      "name": "对数求导法",
+      "nameEn": "Logarithmic Differentiation",
+      "description": "对复杂函数取对数后求导，简化计算",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-2",
+      "difficulty": 3,
+      "prerequisites": ["node-derivative-rules"],
+      "relatedSkills": ["导数与微分Skill"],
+      "formula": "y = f(x) \\Rightarrow \\ln y = \\ln f(x) \\Rightarrow \\frac{y'}{y} = (\\ln f(x))'",
+      "keywords": ["对数求导", "幂指函数", "复杂函数"],
+      "importance": 3,
+      "estimatedStudyTime": 40,
+      "realWorldApplications": [
+        {
+          "title": "幂指函数求导",
+          "description": "x^x类型函数的求导",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-rolle-theorem",
+      "name": "罗尔定理",
+      "nameEn": "Rolle's Theorem",
+      "description": "如果函数在闭区间连续，开区间可导，且端点函数值相等，则存在一点导数为零",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": ["node-mean-value-theorem"],
+      "relatedSkills": ["推导动画Skill"],
+      "formula": "f(a) = f(b), f \\in C[a,b], f'(x) \\text{ 存在} \\Rightarrow \\exists \\xi \\in (a,b), f'(\\xi) = 0",
+      "keywords": ["罗尔定理", "中值定理", "导数为零"],
+      "importance": 4,
+      "estimatedStudyTime": 55,
+      "realWorldApplications": [
+        {
+          "title": "方程根的存在性",
+          "description": "证明方程至少有一个根",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-lagrange-theorem",
+      "name": "拉格朗日中值定理",
+      "nameEn": "Lagrange's Mean Value Theorem",
+      "description": "函数在某点的导数等于函数在区间端点的平均变化率",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": ["node-mean-value-theorem"],
+      "relatedSkills": ["推导动画Skill"],
+      "formula": "f'(\\xi) = \\frac{f(b) - f(a)}{b - a}, \\quad \\xi \\in (a,b)",
+      "keywords": ["拉格朗日", "中值定理", "平均变化率"],
+      "importance": 5,
+      "estimatedStudyTime": 60,
+      "realWorldApplications": [
+        {
+          "title": "不等式证明",
+          "description": "利用中值定理证明不等式",
+          "industry": "数学"
+        },
+        {
+          "title": "误差估计",
+          "description": "估计函数值的误差范围",
+          "industry": "数值计算"
+        }
+      ]
+    },
+    {
+      "id": "node-cauchy-theorem",
+      "name": "柯西中值定理",
+      "nameEn": "Cauchy's Mean Value Theorem",
+      "description": "两个函数的导数比等于函数值的比",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 4,
+      "prerequisites": ["node-mean-value-theorem"],
+      "relatedSkills": ["推导动画Skill"],
+      "formula": "\\frac{f'(\\xi)}{g'(\\xi)} = \\frac{f(b) - f(a)}{g(b) - g(a)}, \\quad \\xi \\in (a,b)",
+      "keywords": ["柯西", "中值定理", "洛必达"],
+      "importance": 4,
+      "estimatedStudyTime": 65,
+      "realWorldApplications": [
+        {
+          "title": "洛必达法则基础",
+          "description": "柯西中值定理是洛必达法则的理论基础",
+          "industry": "数学"
+        }
+      ]
+    },
+    {
+      "id": "node-lhopital-rule",
+      "name": "洛必达法则",
+      "nameEn": "L'Hôpital's Rule",
+      "description": "计算0/0和∞/∞型未定式极限的方法",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": ["node-cauchy-theorem"],
+      "relatedSkills": ["概念可视化Skill"],
+      "formula": "\\lim\\frac{f(x)}{g(x)} = \\lim\\frac{f'(x)}{g'(x)} \\quad (\\frac{0}{0} \\text{ 或 } \\frac{\\infty}{\\infty})",
+      "keywords": ["洛必达", "未定式", "极限计算"],
+      "importance": 5,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "极限计算",
+          "description": "快速计算复杂极限",
+          "industry": "数学"
+        },
+        {
+          "title": "渐近分析",
+          "description": "分析函数的渐近行为",
+          "industry": "算法分析"
+        }
+      ]
+    },
+    {
+      "id": "node-taylor-theorem",
+      "name": "泰勒定理",
+      "nameEn": "Taylor's Theorem",
+      "description": "用多项式逼近函数，包含余项估计",
+      "domains": ["domain-1", "domain-4"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 4,
+      "prerequisites": ["node-mean-value-theorem", "node-higher-derivatives"],
+      "relatedSkills": ["推导动画Skill", "级数收敛Skill"],
+      "formula": "f(x) = \\sum_{k=0}^n \\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + R_n(x)",
+      "keywords": ["泰勒公式", "多项式逼近", "余项"],
+      "importance": 5,
+      "estimatedStudyTime": 75,
+      "realWorldApplications": [
+        {
+          "title": "函数近似",
+          "description": "用多项式近似复杂函数",
+          "industry": "数值计算"
+        },
+        {
+          "title": "误差分析",
+          "description": "估计近似误差",
+          "industry": "工程"
+        }
+      ]
+    },
+    {
+      "id": "node-curvature",
+      "name": "曲率",
+      "nameEn": "Curvature",
+      "description": "曲线弯曲程度的度量，与二阶导数相关",
+      "domains": ["domain-1"],
+      "traditionalChapter": "chapter-3",
+      "difficulty": 3,
+      "prerequisites": ["node-higher-derivatives"],
+      "relatedSkills": ["概念可视化Skill"],
+      "formula": "\\kappa = \\frac{|y''|}{(1+y'^2)^{3/2}}",
+      "keywords": ["曲率", "曲率半径", "曲线性质"],
+      "importance": 3,
+      "estimatedStudyTime": 50,
+      "realWorldApplications": [
+        {
+          "title": "道路设计",
+          "description": "公路弯道的曲率设计",
+          "industry": "土木工程"
+        },
+        {
+          "title": "轨迹规划",
+          "description": "机器人运动轨迹的曲率约束",
+          "industry": "机器人"
+        }
+      ]
+    }
+  ]
+}

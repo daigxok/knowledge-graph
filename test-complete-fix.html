@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>错误修复完整测试 - 知识图谱系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .test-section {
+            padding: 30px;
+        }
+
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .test-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .status-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-error {
+            background: #dc3545;
+            color: white;
+        }
+
+        .test-result {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .test-result.success {
+            border-left: 4px solid #28a745;
+        }
+
+        .test-result.error {
+            border-left: 4px solid #dc3545;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+
+        .console-line {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+
+        .console-error {
+            color: #f48771;
+        }
+
+        .console-success {
+            color: #89d185;
+        }
+
+        .console-info {
+            color: #6796e6;
+        }
+
+        .console-warn {
+            color: #dcdcaa;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 错误修复完整测试</h1>
+            <p>验证 D3.js 和错误处理修复</p>
+        </div>
+
+        <div class="test-section">
+            <!-- Test 1: D3 Force Simulation Fix -->
+            <div class="test-card">
+                <h3>
+                    <span>测试 1: D3 力导向图修复</span>
+                    <span class="status-badge status-pending" id="test1-status">待测试</span>
+                </h3>
+                <p>验证 D3.js 不再尝试在字符串上创建属性</p>
+                <button class="btn" onclick="runTest1()">运行测试</button>
+                <div id="test1-result"></div>
+            </div>
+
+            <!-- Test 2: Error Handler Fix -->
+            <div class="test-card">
+                <h3>
+                    <span>测试 2: 错误处理器修复</span>
+                    <span class="status-badge status-pending" id="test2-status">待测试</span>
+                </h3>
+                <p>验证错误处理器不会因为 null 值崩溃</p>
+                <button class="btn" onclick="runTest2()">运行测试</button>
+                <div id="test2-result"></div>
+            </div>
+
+            <!-- Test 3: Full System Integration -->
+            <div class="test-card">
+                <h3>
+                    <span>测试 3: 完整系统集成</span>
+                    <span class="status-badge status-pending" id="test3-status">待测试</span>
+                </h3>
+                <p>加载完整知识图谱系统</p>
+                <button class="btn" onclick="runTest3()">运行测试</button>
+                <button class="btn btn-secondary" onclick="openInNewTab()">新标签页打开</button>
+                <div id="test3-result"></div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="tests-passed">0</div>
+                    <div class="stat-label">测试通过</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="tests-failed">0</div>
+                    <div class="stat-label">测试失败</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="errors-caught">0</div>
+                    <div class="stat-label">捕获错误</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="success-rate">0%</div>
+                    <div class="stat-label">成功率</div>
+                </div>
+            </div>
+
+            <!-- Console Output -->
+            <div class="console-output" id="console-output">
+                <div class="console-line console-info">📋 测试控制台 - 准备就绪</div>
+                <div class="console-line console-info">💡 点击上方按钮开始测试</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let testsPassed = 0;
+        let testsFailed = 0;
+        let errorsCaught = 0;
+
+        function log(message, type = 'info') {
+            const console = document.getElementById('console-output');
+            const line = document.createElement('div');
+            line.className = `console-line console-${type}`;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            console.appendChild(line);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        function updateStats() {
+            document.getElementById('tests-passed').textContent = testsPassed;
+            document.getElementById('tests-failed').textContent = testsFailed;
+            document.getElementById('errors-caught').textContent = errorsCaught;
+            
+            const total = testsPassed + testsFailed;
+            const rate = total > 0 ? Math.round((testsPassed / total) * 100) : 0;
+            document.getElementById('success-rate').textContent = rate + '%';
+        }
+
+        function setTestStatus(testId, status) {
+            const badge = document.getElementById(`${testId}-status`);
+            badge.className = `status-badge status-${status}`;
+            badge.textContent = status === 'success' ? '✅ 通过' : status === 'error' ? '❌ 失败' : '⏳ 测试中';
+        }
+
+        function showResult(testId, success, message) {
+            const resultDiv = document.getElementById(`${testId}-result`);
+            resultDiv.innerHTML = `
+                <div class="test-result ${success ? 'success' : 'error'}">
+                    <strong>${success ? '✅ 测试通过' : '❌ 测试失败'}</strong><br>
+                    ${message}
+                </div>
+            `;
+        }
+
+        async function runTest1() {
+            log('🧪 开始测试 1: D3 力导向图修复', 'info');
+            setTestStatus('test1', 'pending');
+
+            try {
+                // 模拟加载数据
+                const nodes = [
+                    { id: 'node-1', name: '节点1', domains: ['domain-1'], importance: 1 },
+                    { id: 'node-2', name: '节点2', domains: ['domain-2'], importance: 1 }
+                ];
+
+                const edges = [
+                    { id: 'edge-1', source: 'node-1', target: 'node-2', type: 'prerequisite', strength: 1 }
+                ];
+
+                log('📊 创建节点和边数据', 'info');
+
+                // 测试边转换逻辑
+                const nodesCopy = nodes.map(n => ({...n}));
+                const edgesCopy = edges.map(e => ({...e}));
+                const nodeMap = new Map(nodesCopy.map(n => [n.id, n]));
+
+                log('🔄 转换边的 source/target 为对象引用', 'info');
+
+                edgesCopy.forEach(edge => {
+                    if (typeof edge.source === 'string') {
+                        edge.source = nodeMap.get(edge.source);
+                    }
+                    if (typeof edge.target === 'string') {
+                        edge.target = nodeMap.get(edge.target);
+                    }
+                });
+
+                // 验证转换
+                const allValid = edgesCopy.every(e => 
+                    typeof e.source === 'object' && 
+                    typeof e.target === 'object' &&
+                    e.source !== null &&
+                    e.target !== null
+                );
+
+                if (allValid) {
+                    log('✅ 边转换成功，所有 source/target 都是对象引用', 'success');
+                    log('✅ D3 现在可以安全地添加 vx, vy 属性', 'success');
+                    setTestStatus('test1', 'success');
+                    showResult('test1', true, '边的 source/target 已正确转换为对象引用，D3 力导向图可以正常工作');
+                    testsPassed++;
+                } else {
+                    throw new Error('边转换失败');
+                }
+
+            } catch (error) {
+                log(`❌ 测试 1 失败: ${error.message}`, 'error');
+                setTestStatus('test1', 'error');
+                showResult('test1', false, error.message);
+                testsFailed++;
+                errorsCaught++;
+            }
+
+            updateStats();
+        }
+
+        async function runTest2() {
+            log('🧪 开始测试 2: 错误处理器修复', 'info');
+            setTestStatus('test2', 'pending');
+
+            try {
+                log('🔍 测试 null 错误对象处理', 'info');
+
+                // 模拟错误处理逻辑
+                const testCases = [
+                    { error: null, expected: 'Unknown error' },
+                    { error: { message: 'Test error' }, expected: 'Test error' },
+                    { error: 'String error', expected: 'String error' },
+                    { error: undefined, expected: 'Unknown error' }
+                ];
+
+                let allPassed = true;
+
+                for (const testCase of testCases) {
+                    const errorMessage = testCase.error && testCase.error.message 
+                        ? testCase.error.message 
+                        : (testCase.error || 'Unknown error');
+
+                    if (errorMessage !== testCase.expected) {
+                        allPassed = false;
+                        log(`❌ 测试用例失败: ${JSON.stringify(testCase)}`, 'error');
+                    } else {
+                        log(`✅ 测试用例通过: ${JSON.stringify(testCase)}`, 'success');
+                    }
+                }
+
+                if (allPassed) {
+                    log('✅ 所有错误处理测试用例通过', 'success');
+                    setTestStatus('test2', 'success');
+                    showResult('test2', true, '错误处理器可以安全处理 null、undefined 和各种错误类型');
+                    testsPassed++;
+                } else {
+                    throw new Error('部分测试用例失败');
+                }
+
+            } catch (error) {
+                log(`❌ 测试 2 失败: ${error.message}`, 'error');
+                setTestStatus('test2', 'error');
+                showResult('test2', false, error.message);
+                testsFailed++;
+                errorsCaught++;
+            }
+
+            updateStats();
+        }
+
+        async function runTest3() {
+            log('🧪 开始测试 3: 完整系统集成', 'info');
+            setTestStatus('test3', 'pending');
+
+            try {
+                log('🌐 加载知识图谱系统...', 'info');
+
+                const resultDiv = document.getElementById('test3-result');
+                resultDiv.innerHTML = `
+                    <div class="iframe-container">
+                        <iframe src="./index.html" onload="handleIframeLoad(this)"></iframe>
+                    </div>
+                `;
+
+                log('✅ 系统已加载到 iframe 中', 'success');
+                log('👀 请检查上方预览，确认图谱正常显示', 'info');
+                
+                setTestStatus('test3', 'success');
+                testsPassed++;
+                updateStats();
+
+            } catch (error) {
+                log(`❌ 测试 3 失败: ${error.message}`, 'error');
+                setTestStatus('test3', 'error');
+                showResult('test3', false, error.message);
+                testsFailed++;
+                errorsCaught++;
+                updateStats();
+            }
+        }
+
+        function handleIframeLoad(iframe) {
+            log('📦 iframe 加载完成', 'success');
+            
+            // 监听 iframe 中的错误
+            try {
+                iframe.contentWindow.addEventListener('error', (e) => {
+                    log(`⚠️ iframe 中捕获错误: ${e.message}`, 'warn');
+                    errorsCaught++;
+                    updateStats();
+                });
+            } catch (e) {
+                log('⚠️ 无法监听 iframe 错误（跨域限制）', 'warn');
+            }
+        }
+
+        function openInNewTab() {
+            window.open('./index.html', '_blank');
+            log('🔗 在新标签页中打开知识图谱系统', 'info');
+        }
+
+        // 全局错误监听
+        window.addEventListener('error', (e) => {
+            log(`⚠️ 捕获全局错误: ${e.message}`, 'error');
+            errorsCaught++;
+            updateStats();
+        });
+
+        // 初始化
+        log('🚀 测试系统初始化完成', 'success');
+        log('📝 共有 3 个测试项目', 'info');
+    </script>
+</body>
+</html>

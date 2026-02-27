@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills系统测试 - 知识图谱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .test-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .test-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .back-to-graph-link {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .back-to-graph-link:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .test-header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .test-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        .test-card h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .test-card .icon {
+            font-size: 32px;
+        }
+
+        .test-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .test-button {
+            width: 100%;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .test-button:hover {
+            background: #5568d3;
+        }
+
+        .test-button:active {
+            transform: scale(0.98);
+        }
+
+        .demo-container {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .demo-header h2 {
+            font-size: 28px;
+            color: #333;
+        }
+
+        .close-button {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            color: #666;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .close-button:hover {
+            background: #e0e0e0;
+        }
+
+        #demoContent {
+            min-height: 400px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .stats-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 标签导航 */
+        .test-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .test-tab {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .test-tab:hover { background: rgba(255,255,255,0.3); }
+        .test-tab.active { background: white; color: #667eea; }
+
+        .platform-intro {
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .platform-intro code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; }
+
+        .test-panel { display: none; }
+        .test-panel.active { display: block; }
+        .panel-title { font-size: 22px; color: #333; margin-bottom: 8px; }
+        .panel-desc { color: #666; margin-bottom: 16px; font-size: 14px; }
+
+        /* 注册表 */
+        .registry-section { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .registry-toolbar { margin-bottom: 16px; }
+        .registry-select { padding: 8px 12px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; min-width: 200px; }
+        .registry-table-wrap { overflow-x: auto; }
+        .registry-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .registry-table th, .registry-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .registry-table th { background: #f8f9fa; font-weight: 600; color: #333; }
+        .registry-table td .node-ids, .registry-table td .domain-ids { font-size: 12px; color: #555; }
+        .registry-table td .skill-desc { max-width: 280px; }
+
+        /* 按节点体验 */
+        .node-experience-section { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .node-toolbar { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .node-toolbar-status { font-size: 14px; color: #666; }
+        .node-selector-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+        .node-select { padding: 8px 12px; min-width: 280px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; }
+        .skill-content-preview { margin-top: 20px; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; background: #fafafa; }
+        .skill-content-preview.hidden { display: none; }
+        .skill-content-preview h3 { margin-bottom: 12px; color: #333; }
+        .skill-content-box { font-size: 14px; line-height: 1.6; color: #333; }
+        .skill-content-box .detail-section { margin-bottom: 1rem; }
+        .skill-content-box .formula-display { background: #fff; padding: 8px 12px; border-radius: 6px; margin: 6px 0; overflow-x: auto; }
+
+        /* Phase2 深度内容 */
+        .phase2-section { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .phase2-toolbar { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .phase2-status { font-size: 14px; color: #666; }
+        .phase2-select { padding: 8px 12px; min-width: 280px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; }
+        .phase2-pill { display:inline-flex; align-items:center; gap:6px; padding:2px 8px; border-radius:999px; background:#eef6ff; color:#2563eb; font-size:12px; }
+        .phase2-item { border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; padding: 10px 12px; margin-bottom: 10px; }
+        .phase2-item summary { cursor: pointer; font-weight: 600; color: #333; }
+        .phase2-kv { font-size: 13px; color: #555; margin-top: 6px; }
+        .phase2-kv strong { color: #333; }
+        .phase2-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top: 6px; }
+        .phase2-tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #f3f4f6; color: #374151; }
+    </style>
+    <link rel="stylesheet" href="js/skills/gradient-visualization/styles.css">
+    <link rel="stylesheet" href="js/components/ExerciseSystem.css">
+    <link rel="stylesheet" href="js/components/FeedbackSystem.css">
+    <link rel="stylesheet" href="styles/skills.css">
+    <script>
+        MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']], displayMath: [['$$','$$'], ['\\[','\\]']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <a href="index.html" class="back-to-graph-link">← 返回图谱</a>
+            <h1>🎯 Skills系统测试平台</h1>
+            <p>组件测试 · Skill 注册表与映射 · 按节点体验 Skill 内容生成</p>
+        </div>
+
+        <!-- 标签导航 -->
+        <nav class="test-tabs" role="tablist" aria-label="测试平台模块">
+            <button type="button" class="test-tab active" data-tab="components" role="tab" aria-selected="true">组件测试</button>
+            <button type="button" class="test-tab" data-tab="registry" role="tab" aria-selected="false">注册表与映射</button>
+            <button type="button" class="test-tab" data-tab="phase2" role="tab" aria-selected="false">Phase2 深度内容</button>
+            <button type="button" class="test-tab" data-tab="node-experience" role="tab" aria-selected="false">按节点体验</button>
+        </nav>
+
+        <!-- 平台说明 -->
+        <div class="platform-intro">
+            <p><strong>平台说明：</strong>组件测试用于验证梯度可视化、选择题/计算题/填空/判断题等组件；注册表与映射用于查看所有 Skill 的节点/学域适用范围；按节点体验可加载图谱数据并预览任意节点触发的 Skill 内容生成效果（与主应用一致）。</p>
+        </div>
+
+        <!-- 面板：组件测试 -->
+        <section id="panel-components" class="test-panel active" role="tabpanel">
+        <div class="test-grid">
+            <!-- 梯度可视化测试 -->
+            <div class="test-card">
+                <h2><span class="icon">🎨</span> 梯度可视化</h2>
+                <p>测试3D曲面、梯度向量场和等高线的交互式可视化</p>
+                <button class="test-button" onclick="testGradientVisualization()">
+                    启动测试
+                </button>
+            </div>
+
+            <!-- 选择题测试 -->
+            <div class="test-card">
+                <h2><span class="icon">📝</span> 选择题系统</h2>
+                <p>测试多选题的显示、提交和即时反馈功能</p>
+                <button class="test-button" onclick="testMultipleChoice()">
+                    启动测试
+                </button>
+            </div>
+
+            <!-- 计算题测试 -->
+            <div class="test-card">
+                <h2><span class="icon">🔢</span> 计算题系统</h2>
+                <p>测试计算题的输入、验证和步骤提示功能</p>
+                <button class="test-button" onclick="testCalculation()">
+                    启动测试
+                </button>
+            </div>
+
+            <!-- 填空题测试 -->
+            <div class="test-card">
+                <h2><span class="icon">✏️</span> 填空题系统</h2>
+                <p>测试填空题的多空输入和答案验证功能</p>
+                <button class="test-button" onclick="testFillBlanks()">
+                    启动测试
+                </button>
+            </div>
+
+            <!-- 判断题测试 -->
+            <div class="test-card">
+                <h2><span class="icon">✓✗</span> 判断题系统</h2>
+                <p>测试判断题的快速作答和反馈功能</p>
+                <button class="test-button" onclick="testTrueFalse()">
+                    启动测试
+                </button>
+            </div>
+
+            <!-- 综合测试 -->
+            <div class="test-card">
+                <h2><span class="icon">🎯</span> 综合测试</h2>
+                <p>测试多个组件的集成和交互流程</p>
+                <button class="test-button" onclick="testIntegration()">
+                    启动测试
+                </button>
+            </div>
+        </div>
+        </section>
+
+        <!-- 面板：注册表与映射 -->
+        <section id="panel-registry" class="test-panel" role="tabpanel" hidden>
+            <div class="registry-section">
+                <h2 class="panel-title">📋 Skill 注册表</h2>
+                <p class="panel-desc">以下为系统已注册的 Skill 及其适用的节点 ID、学域。主应用中节点通过 <code>relatedSkills</code> 与注册表名称关联。</p>
+                <div class="registry-toolbar">
+                    <label>按学域筛选：<select id="registryDomainFilter" class="registry-select">
+                        <option value="">全部学域</option>
+                        <option value="domain-1">domain-1 变化与逼近</option>
+                        <option value="domain-2">domain-2 结构与累积</option>
+                        <option value="domain-3">domain-3 优化与决策</option>
+                        <option value="domain-4">domain-4 不确定性处理</option>
+                        <option value="domain-5">domain-5 真实问题建模</option>
+                    </select></label>
+                </div>
+                <div class="registry-table-wrap">
+                    <table class="registry-table" id="registryTable">
+                        <thead>
+                            <tr>
+                                <th>图标</th>
+                                <th>名称</th>
+                                <th>类型</th>
+                                <th>适用节点</th>
+                                <th>适用学域</th>
+                                <th>描述</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 面板：Phase2 深度内容 -->
+        <section id="panel-phase2" class="test-panel" role="tabpanel" hidden>
+            <div class="phase2-section">
+                <h2 class="panel-title">📦 Phase2 Skills 深度内容</h2>
+                <p class="panel-desc">从 <code>data/skills-content-phase2.json</code> 加载进阶主题（advancedTopics）、进阶练习（advancedExercises）与项目任务（projects），用于验证你刚补充的深度内容是否可见。</p>
+                <div class="phase2-toolbar">
+                    <button type="button" class="test-button" id="btnLoadPhase2Deep" style="width:auto;">加载 Phase2 深度内容</button>
+                    <span class="phase2-status" id="phase2Status">未加载</span>
+                </div>
+                <div class="phase2-toolbar">
+                    <label>选择 Skill：<select id="phase2SkillSelect" class="phase2-select" disabled><option value="">请先加载 Phase2 深度内容</option></select></label>
+                    <button type="button" class="test-button" id="btnRenderPhase2" style="width:auto;" disabled>显示内容</button>
+                </div>
+                <div id="phase2Preview" class="skill-content-preview hidden">
+                    <h3>深度内容预览</h3>
+                    <div id="phase2Box" class="skill-content-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 面板：按节点体验 -->
+        <section id="panel-node-experience" class="test-panel" role="tabpanel" hidden>
+            <div class="node-experience-section">
+                <h2 class="panel-title">🔗 按节点体验 Skill 内容</h2>
+                <p class="panel-desc">加载图谱数据后，选择节点可预览主应用中「去运用」时生成的 Skill 内容（公式、前置/延伸、关键词、学习建议等）。</p>
+                <div class="node-toolbar">
+                    <button type="button" class="test-button" id="btnLoadGraphData">加载图谱数据</button>
+                    <span class="node-toolbar-status" id="nodeDataStatus">未加载</span>
+                </div>
+                <div class="node-selector-row">
+                    <label>选择节点：<select id="nodeSelect" class="node-select" disabled><option value="">请先加载图谱数据</option></select></label>
+                    <button type="button" class="test-button" id="btnGenerateSkillContent" disabled>生成 Skill 内容</button>
+                </div>
+                <div id="nodeSkillContentPreview" class="skill-content-preview hidden">
+                    <h3>生成内容预览</h3>
+                    <div id="nodeSkillContentBox" class="skill-content-box"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 演示容器 -->
+        <div id="demoContainer" class="demo-container hidden">
+            <div class="demo-header">
+                <h2 id="demoTitle">测试演示</h2>
+                <button class="close-button" onclick="closeDemo()">关闭</button>
+            </div>
+            <div id="demoContent"></div>
+        </div>
+
+        <!-- 统计面板 -->
+        <div class="stats-panel">
+            <h2 style="margin-bottom: 20px; color: #333;">📊 测试统计</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="statTests">0</div>
+                    <div class="stat-label">测试次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statScore">0</div>
+                    <div class="stat-label">正确答案</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statAccuracy">0%</div>
+                    <div class="stat-label">准确率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="statTime">0s</div>
+                    <div class="stat-label">总用时</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { GradientVisualizationSkill } from './js/skills/gradient-visualization/index.js';
+        import { ExerciseSystem } from './js/components/ExerciseSystem.js';
+        import { FeedbackSystem } from './js/components/FeedbackSystem.js';
+        import { SkillIntegrationManager } from './js/modules/SkillIntegrationManager.js';
+        import { SkillContentManager } from './js/modules/SkillContentManager.js';
+        import { DomainDataManager } from './js/modules/DomainDataManager.js';
+        import { KnowledgeGraphEngine } from './js/modules/KnowledgeGraphEngine.js';
+        import { generateSkillContent, inferNodeType } from './js/modules/SkillContentGenerator.js';
+
+        // 全局变量
+        window.currentSkill = null;
+        window.exerciseSystem = null;
+        window.feedbackSystem = new FeedbackSystem();
+        window.skillManager = new SkillIntegrationManager();
+        window.skillContentManager = new SkillContentManager();
+        window.domainManager = null;
+        window.graphEngine = null;
+        window.testStats = { tests: 0, score: 0, startTime: Date.now() };
+
+        // ---------- 标签切换 ----------
+        document.querySelectorAll('.test-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const id = tab.getAttribute('data-tab');
+                document.querySelectorAll('.test-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.test-panel').forEach(p => { p.classList.remove('active'); p.hidden = true; });
+                tab.classList.add('active');
+                const panel = document.getElementById('panel-' + id.replace(/-/g, '-'));
+                if (panel) { panel.classList.add('active'); panel.hidden = false; }
+            });
+        });
+
+        // ---------- Skill 注册表 ----------
+        async function initRegistry() {
+            await window.skillManager.loadSkillRegistry();
+            renderRegistryTable();
+            document.getElementById('registryDomainFilter').addEventListener('change', () => renderRegistryTable());
+        }
+        function renderRegistryTable() {
+            const domainFilter = document.getElementById('registryDomainFilter').value;
+            let skills = domainFilter
+                ? window.skillManager.getSkillsByDomain(domainFilter)
+                : window.skillManager.getAllSkills();
+            const tbody = document.getElementById('registryTableBody');
+            tbody.innerHTML = skills.map(s => `
+                <tr>
+                    <td>${s.icon || '—'}</td>
+                    <td><strong>${escapeHtml(s.name)}</strong></td>
+                    <td>${escapeHtml(s.type || '—')}</td>
+                    <td class="node-ids">${(s.applicableNodes || []).join(', ') || '—'}</td>
+                    <td class="domain-ids">${(s.applicableDomains || []).join(', ') || '—'}</td>
+                    <td class="skill-desc">${escapeHtml(s.description || '')}</td>
+                </tr>
+            `).join('');
+        }
+        function escapeHtml(str) {
+            if (!str) return '';
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+
+        // ---------- 按节点体验 ----------
+        document.getElementById('btnLoadGraphData').addEventListener('click', async () => {
+            const btn = document.getElementById('btnLoadGraphData');
+            const status = document.getElementById('nodeDataStatus');
+            const nodeSelect = document.getElementById('nodeSelect');
+            const btnGen = document.getElementById('btnGenerateSkillContent');
+            btn.disabled = true;
+            status.textContent = '加载中…';
+            try {
+                const [domainsData, nodesData, edgesData] = await Promise.all([
+                    fetch('data/domains.json').then(r => r.json()),
+                    fetch('data/nodes.json').then(r => r.json()),
+                    fetch('data/edges.json').then(r => r.json())
+                ]);
+                window.domainManager = new DomainDataManager(domainsData);
+                const nodes = nodesData.nodes || [];
+                const edges = (edgesData.edges || []).map(e => ({
+                    ...e,
+                    source: typeof e.source === 'object' ? e.source.id : e.source,
+                    target: typeof e.target === 'object' ? e.target.id : e.target
+                }));
+                nodes.forEach(n => { n.type = n.type || inferNodeType(n); });
+                window.graphEngine = new KnowledgeGraphEngine(nodes, edges);
+                nodeSelect.innerHTML = nodes.map(n => `<option value="${escapeHtml(n.id)}">${escapeHtml(n.name)}</option>`).join('');
+                nodeSelect.disabled = false;
+                btnGen.disabled = false;
+                status.textContent = `已加载 ${nodes.length} 节点`;
+            } catch (err) {
+                status.textContent = '加载失败: ' + err.message;
+                console.error(err);
+            }
+            btn.disabled = false;
+        });
+        document.getElementById('btnGenerateSkillContent').addEventListener('click', () => {
+            if (!window.graphEngine || !window.domainManager) return;
+            const nodeId = document.getElementById('nodeSelect').value;
+            if (!nodeId) return;
+            const node = window.graphEngine.getNode(nodeId);
+            if (!node) return;
+            const html = generateSkillContent(node, window.domainManager, window.graphEngine);
+            const box = document.getElementById('nodeSkillContentBox');
+            const preview = document.getElementById('nodeSkillContentPreview');
+            box.innerHTML = html;
+            preview.classList.remove('hidden');
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([box]).catch(e => console.warn('MathJax:', e));
+            }
+        });
+
+        initRegistry();
+
+        // ---------- Phase2 深度内容 ----------
+        (function initPhase2DeepPanel() {
+            const btnLoad = document.getElementById('btnLoadPhase2Deep');
+            const status = document.getElementById('phase2Status');
+            const select = document.getElementById('phase2SkillSelect');
+            const btnRender = document.getElementById('btnRenderPhase2');
+            const preview = document.getElementById('phase2Preview');
+            const box = document.getElementById('phase2Box');
+
+            function esc(s) {
+                if (s == null) return '';
+                const d = document.createElement('div');
+                d.textContent = String(s);
+                return d.innerHTML;
+            }
+
+            function renderDeepSkill(skill) {
+                if (!skill) return '<p>未找到该 Skill 的 Phase2 深度内容。</p>';
+                const topics = Array.isArray(skill.advancedTopics) ? skill.advancedTopics : [];
+                const exercises = Array.isArray(skill.advancedExercises) ? skill.advancedExercises : [];
+                const projects = Array.isArray(skill.projects) ? skill.projects : [];
+                const md = skill.metadata || {};
+
+                let html = `
+                    <div class="detail-section">
+                        <h3>🎯 Skill：${esc(skill.skillId)}</h3>
+                        <p class="phase2-kv"><span class="phase2-pill">topics ${topics.length}</span> <span class="phase2-pill">exercises ${exercises.length}</span> <span class="phase2-pill">projects ${projects.length}</span></p>
+                    </div>
+                `;
+
+                // Topics
+                html += `<div class="detail-section"><h3>📚 进阶主题（advancedTopics）</h3>`;
+                if (!topics.length) {
+                    html += `<p>暂无进阶主题。</p>`;
+                } else {
+                    topics.forEach(t => {
+                        const examples = Array.isArray(t.examples) ? t.examples : [];
+                        const apps = Array.isArray(t.applications) ? t.applications : [];
+                        html += `
+                            <div class="phase2-item">
+                                <div><strong>${esc(t.title || '')}</strong></div>
+                                ${t.description ? `<div class="phase2-kv">${esc(t.description)}</div>` : ''}
+                                ${t.formula ? `<div class="formula-display">\\[${t.formula}\\]</div>` : ''}
+                                ${examples.length ? `<div class="phase2-kv"><strong>例：</strong><ul>${examples.map(e => `<li>${esc(e)}</li>`).join('')}</ul></div>` : ''}
+                                ${apps.length ? `<div class="phase2-kv"><strong>应用：</strong>${apps.map(a => `<span class="phase2-tag">${esc(a)}</span>`).join(' ')}</div>` : ''}
+                            </div>
+                        `;
+                    });
+                }
+                html += `</div>`;
+
+                // Exercises
+                html += `<div class="detail-section"><h3>📝 进阶练习（advancedExercises）</h3>`;
+                if (!exercises.length) {
+                    html += `<p>暂无进阶练习。</p>`;
+                } else {
+                    exercises.forEach(ex => {
+                        const hints = Array.isArray(ex.hints) ? ex.hints : [];
+                        const steps = Array.isArray(ex.solution?.steps) ? ex.solution.steps : [];
+                        const keyPoints = Array.isArray(ex.solution?.keyPoints) ? ex.solution.keyPoints : [];
+                        html += `
+                            <details class="phase2-item">
+                                <summary>${esc(ex.id || '')} · 难度 ${esc(ex.difficulty ?? '-')} · ${esc(ex.question || '')}</summary>
+                                ${hints.length ? `<div class="phase2-kv"><strong>提示：</strong><ul>${hints.map(h => `<li>${esc(h)}</li>`).join('')}</ul></div>` : ''}
+                                ${steps.length ? `<div class="phase2-kv"><strong>解答关键步骤：</strong><ol>${steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol></div>` : ''}
+                                ${keyPoints.length ? `<div class="phase2-kv"><strong>要点：</strong><div class="phase2-tags">${keyPoints.map(k => `<span class="phase2-tag">${esc(k)}</span>`).join('')}</div></div>` : ''}
+                                ${ex.estimatedTime ? `<div class="phase2-kv">⏱️ 预计用时：${esc(ex.estimatedTime)} 分钟</div>` : ''}
+                            </details>
+                        `;
+                    });
+                }
+                html += `</div>`;
+
+                // Projects
+                html += `<div class="detail-section"><h3>🧩 项目任务（projects）</h3>`;
+                if (!projects.length) {
+                    html += `<p>暂无项目任务。</p>`;
+                } else {
+                    projects.forEach(p => {
+                        const obj = Array.isArray(p.objectives) ? p.objectives : [];
+                        const tasks = Array.isArray(p.tasks) ? p.tasks : [];
+                        const deliverables = Array.isArray(p.deliverables) ? p.deliverables : [];
+                        html += `
+                            <details class="phase2-item">
+                                <summary>${esc(p.id || '')} · 难度 ${esc(p.difficulty ?? '-')} · ${esc(p.title || '')}</summary>
+                                ${p.description ? `<div class="phase2-kv">${esc(p.description)}</div>` : ''}
+                                ${obj.length ? `<div class="phase2-kv"><strong>目标：</strong><ul>${obj.map(o => `<li>${esc(o)}</li>`).join('')}</ul></div>` : ''}
+                                ${tasks.length ? `<div class="phase2-kv"><strong>任务：</strong><ol>${tasks.map(t => `<li><strong>Step ${esc(t.step ?? '')}</strong>：${esc(t.description || '')}${t.code ? `<pre class="formula-display"><code>${esc(t.code)}</code></pre>` : ''}${t.visualization ? `<div class="phase2-kv"><strong>可视化：</strong>${esc(t.visualization)}</div>` : ''}</li>`).join('')}</ol></div>` : ''}
+                                ${deliverables.length ? `<div class="phase2-kv"><strong>交付物：</strong>${deliverables.map(d => `<span class="phase2-tag">${esc(d)}</span>`).join(' ')}</div>` : ''}
+                                ${p.estimatedTime ? `<div class="phase2-kv">⏱️ 预计用时：${esc(p.estimatedTime)} 分钟</div>` : ''}
+                            </details>
+                        `;
+                    });
+                }
+                html += `</div>`;
+
+                if (md && (md.totalTopics || md.totalExercises || md.totalProjects)) {
+                    html += `<div class="detail-section"><h3>📌 元数据</h3><p class="phase2-kv">topics: ${esc(md.totalTopics ?? '-')} · exercises: ${esc(md.totalExercises ?? '-')} · projects: ${esc(md.totalProjects ?? '-')}</p></div>`;
+                }
+                return html;
+            }
+
+            async function loadPhase2() {
+                btnLoad.disabled = true;
+                status.textContent = '加载中…';
+                try {
+                    await window.skillContentManager.initialize();
+                    const { totalItems, skillIds } = await window.skillContentManager.loadPhase2DeepContent('data/skills-content-phase2.json');
+                    select.innerHTML = '<option value=\"\">请选择 Skill</option>' + skillIds.map(id => `<option value=\"${esc(id)}\">${esc(id)}</option>`).join('');
+                    select.disabled = false;
+                    btnRender.disabled = false;
+                    status.textContent = `已加载 ${totalItems} 个 Skill`;
+                } catch (e) {
+                    status.textContent = '加载失败：' + e.message;
+                    console.error(e);
+                } finally {
+                    btnLoad.disabled = false;
+                }
+            }
+
+            function renderSelected() {
+                const id = select.value;
+                if (!id) return;
+                const skill = window.skillContentManager.getPhase2Skill(id);
+                box.innerHTML = renderDeepSkill(skill);
+                preview.classList.remove('hidden');
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([box]).catch(e => console.warn('MathJax:', e));
+                }
+            }
+
+            btnLoad.addEventListener('click', loadPhase2);
+            btnRender.addEventListener('click', renderSelected);
+            select.addEventListener('change', () => { if (select.value) renderSelected(); });
+        })();
+
+        // 梯度可视化测试
+        window.testGradientVisualization = function() {
+            showDemo('🎨 梯度可视化测试');
+            const container = document.getElementById('demoContent');
+            
+            if (window.currentSkill) {
+                window.currentSkill.destroy();
+            }
+            
+            window.currentSkill = new GradientVisualizationSkill(container);
+            window.currentSkill.init();
+            
+            updateStats();
+        };
+
+        // 选择题测试
+        window.testMultipleChoice = function() {
+            showDemo('📝 选择题测试');
+            const container = document.getElementById('demoContent');
+            
+            if (!window.exerciseSystem) {
+                window.exerciseSystem = new ExerciseSystem(container);
+            }
+            
+            const exercise = {
+                type: 'multiple-choice',
+                difficulty: 'intermediate',
+                question: '函数 f(x,y) = x² + y² 在点 (1,2) 处的梯度是什么？',
+                options: [
+                    '∇f(1,2) = (1, 2)',
+                    '∇f(1,2) = (2, 4)',
+                    '∇f(1,2) = (2, 2)',
+                    '∇f(1,2) = (4, 2)'
+                ],
+                answer: 1,
+                explanation: '对x求偏导得 ∂f/∂x = 2x，对y求偏导得 ∂f/∂y = 2y。在点(1,2)处，梯度为 (2×1, 2×2) = (2, 4)。'
+            };
+            
+            window.exerciseSystem.showExercise(exercise);
+            updateStats();
+        };
+
+        // 计算题测试
+        window.testCalculation = function() {
+            showDemo('🔢 计算题测试');
+            const container = document.getElementById('demoContent');
+            
+            if (!window.exerciseSystem) {
+                window.exerciseSystem = new ExerciseSystem(container);
+            }
+            
+            const exercise = {
+                type: 'calculation',
+                difficulty: 'basic',
+                question: '计算极限: lim(x→0) (sin x) / x',
+                answer: '1',
+                explanation: '这是一个重要极限。使用洛必达法则或泰勒展开都可以得到结果为1。'
+            };
+            
+            window.exerciseSystem.showExercise(exercise);
+            updateStats();
+        };
+
+        // 填空题测试
+        window.testFillBlanks = function() {
+            showDemo('✏️ 填空题测试');
+            const container = document.getElementById('demoContent');
+            
+            if (!window.exerciseSystem) {
+                window.exerciseSystem = new ExerciseSystem(container);
+            }
+            
+            const exercise = {
+                type: 'fill-blanks',
+                difficulty: 'intermediate',
+                question: '导数的定义是: f\'(x) = lim(h→___) [f(x+h) - f(x)] / ___',
+                blanks: ['0', 'h'],
+                answers: ['0', 'h'],
+                explanation: '导数定义使用极限，当h趋向于0时，差商的极限就是导数。'
+            };
+            
+            window.exerciseSystem.showExercise(exercise);
+            updateStats();
+        };
+
+        // 判断题测试
+        window.testTrueFalse = function() {
+            showDemo('✓✗ 判断题测试');
+            const container = document.getElementById('demoContent');
+            
+            if (!window.exerciseSystem) {
+                window.exerciseSystem = new ExerciseSystem(container);
+            }
+            
+            const exercise = {
+                type: 'true-false',
+                difficulty: 'basic',
+                question: '梯度向量总是指向函数值增长最快的方向。',
+                answer: true,
+                explanation: '正确！梯度向量的方向就是函数在该点增长最快的方向，其模长表示最大变化率。'
+            };
+            
+            window.exerciseSystem.showExercise(exercise);
+            updateStats();
+        };
+
+        // 综合测试
+        window.testIntegration = function() {
+            showDemo('🎯 综合测试');
+            const container = document.getElementById('demoContent');
+            
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <h3 style="font-size: 24px; color: #333; margin-bottom: 20px;">
+                        🎉 所有组件测试完成！
+                    </h3>
+                    <p style="font-size: 16px; color: #666; margin-bottom: 30px;">
+                        Skills系统已准备就绪，可以集成到主应用中。
+                    </p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <button class="test-button" style="width: auto;" onclick="window.feedbackSystem.showFeedbackForm({type: '系统测试'})">
+                            📝 提交反馈
+                        </button>
+                        <button class="test-button" style="width: auto; background: #28a745;" onclick="window.feedbackSystem.showFeedbackStats()">
+                            📊 查看统计
+                        </button>
+                        <button class="test-button" style="width: auto; background: #17a2b8;" onclick="window.feedbackSystem.exportFeedback()">
+                            💾 导出数据
+                        </button>
+                        <button class="test-button" style="width: auto;" onclick="location.href='index.html'">
+                            🏠 返回主应用
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            updateStats();
+        };
+
+        // 显示演示
+        window.showDemo = function(title) {
+            document.getElementById('demoTitle').textContent = title;
+            document.getElementById('demoContainer').classList.remove('hidden');
+            window.testStats.tests++;
+        };
+
+        // 关闭演示
+        window.closeDemo = function() {
+            document.getElementById('demoContainer').classList.add('hidden');
+            if (window.currentSkill) {
+                window.currentSkill.destroy();
+                window.currentSkill = null;
+            }
+        };
+
+        // 更新统计
+        window.updateStats = function() {
+            document.getElementById('statTests').textContent = window.testStats.tests;
+            
+            if (window.exerciseSystem) {
+                const stats = window.exerciseSystem.getStats();
+                document.getElementById('statScore').textContent = stats.score;
+                document.getElementById('statAccuracy').textContent = stats.accuracy + '%';
+            }
+            
+            const elapsed = Math.floor((Date.now() - window.testStats.startTime) / 1000);
+            document.getElementById('statTime').textContent = elapsed + 's';
+        };
+
+        // 定期更新时间
+        setInterval(() => {
+            const elapsed = Math.floor((Date.now() - window.testStats.startTime) / 1000);
+            document.getElementById('statTime').textContent = elapsed + 's';
+        }, 1000);
+
+        console.log('✅ Skills测试系统已加载');
+    </script>
+</body>
+</html>

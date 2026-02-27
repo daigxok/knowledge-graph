@@ -1,0 +1,74 @@
+{
+  "积分技巧Skill": [
+    {
+      "id": "exercise-adv-007",
+      "difficulty": 4,
+      "question": "计算∫ x²e^x dx。",
+      "hints": ["使用两次分部积分", "设u=x²，dv=e^x dx"],
+      "solution": {
+        "steps": [
+          "第一次分部积分：u=x²，dv=e^x dx，则du=2x dx，v=e^x",
+          "∫x²e^x dx = x²e^x - ∫2xe^x dx",
+          "第二次分部积分：u=2x，dv=e^x dx，则du=2dx，v=e^x",
+          "∫2xe^x dx = 2xe^x - 2e^x",
+          "因此∫x²e^x dx = e^x(x²-2x+2) + C"
+        ],
+        "keyPoints": ["分部积分", "递推应用"]
+      },
+      "relatedNodes": ["node-integration-methods"],
+      "estimatedTime": 20
+    },
+    {
+      "id": "exercise-adv-008",
+      "difficulty": 5,
+      "question": "计算∫ sin³x cos²x dx。",
+      "hints": ["使用三角恒等式", "sin³x = sin x(1-cos²x)"],
+      "solution": {
+        "steps": [
+          "sin³x cos²x = sin x(1-cos²x)cos²x",
+          "设u=cos x，则du=-sin x dx",
+          "∫sin x cos²x dx = -cos³x/3",
+          "∫sin x cos⁴x dx = -cos⁵x/5",
+          "因此∫sin³x cos²x dx = -cos³x/3 + cos⁵x/5 + C"
+        ],
+        "keyPoints": ["三角恒等式", "换元积分"]
+      },
+      "relatedNodes": ["node-integration-methods"],
+      "estimatedTime": 25
+    },
+    {
+      "id": "exercise-adv-009",
+      "difficulty": 4,
+      "question": "计算∫ 1/(x²+4x+5) dx。",
+      "hints": ["配方法", "转化为arctan型积分"],
+      "solution": {
+        "steps": [
+          "x²+4x+5 = (x+2)²+1",
+          "设u=x+2，则du=dx",
+          "∫1/(x²+4x+5)dx = ∫1/(u²+1)du",
+          "= arctan(u) + C = arctan(x+2) + C"
+        ],
+        "keyPoints": ["配方法", "反三角函数积分"]
+      },
+      "relatedNodes": ["node-integration-methods"],
+      "estimatedTime": 15
+    },
+    {
+      "id": "exercise-adv-010",
+      "difficulty": 5,
+      "question": "计算∫ √(1+x²) dx。",
+      "hints": ["使用三角换元", "设x=tan θ"],
+      "solution": {
+        "steps": [
+          "设x=tan θ，则dx=sec²θ dθ，√(1+x²)=sec θ",
+          "∫√(1+x²)dx = ∫sec³θ dθ",
+          "使用分部积分得结果",
+          "回代：= (1/2)(x√(1+x²) + ln|√(1+x²)+x|) + C"
+        ],
+        "keyPoints": ["三角换元", "分部积分"]
+      },
+      "relatedNodes": ["node-integration-methods"],
+      "estimatedTime": 30
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Verification - Knowledge Graph</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ccc;
+            background: #f9f9f9;
+        }
+        .test-item.pass {
+            border-left-color: #27ae60;
+            background: #e8f8f5;
+        }
+        .test-item.fail {
+            border-left-color: #e74c3c;
+            background: #fadbd8;
+        }
+        .test-item.pending {
+            border-left-color: #f39c12;
+            background: #fef5e7;
+        }
+        h1 { color: #2c3e50; }
+        h2 { color: #34495e; margin-top: 0; }
+        .status { font-weight: bold; margin-right: 10px; }
+        .pass .status { color: #27ae60; }
+        .fail .status { color: #e74c3c; }
+        .pending .status { color: #f39c12; }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Knowledge Graph System Verification</h1>
+    
+    <div class="test-section">
+        <h2>Checkpoint 9: Core Visualization Tests</h2>
+        <p>This page verifies that the core visualization system works correctly.</p>
+        
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="openMainApp()">Open Main Application</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        import { DomainDataManager } from './js/modules/DomainDataManager.js';
+        import { KnowledgeGraphEngine } from './js/modules/KnowledgeGraphEngine.js';
+        import { D3VisualizationEngine } from './js/modules/D3VisualizationEngine.js';
+        import { FilterEngine } from './js/modules/FilterEngine.js';
+
+        window.testModules = {
+            DomainDataManager,
+            KnowledgeGraphEngine,
+            D3VisualizationEngine,
+            FilterEngine
+        };
+
+        window.runAllTests = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Running tests...</p>';
+            
+            const tests = [];
+            
+            // Test 1: Load data files
+            tests.push(await testDataLoading());
+            
+            // Test 2: Initialize components
+            tests.push(await testComponentInitialization());
+            
+            // Test 3: Graph rendering
+            tests.push(await testGraphRendering());
+            
+            // Test 4: Zoom and pan
+            tests.push(await testZoomPan());
+            
+            // Test 5: Search and filters
+            tests.push(await testSearchFilters());
+            
+            // Display results
+            displayResults(tests);
+        };
+
+        async function testDataLoading() {
+            try {
+                const [domains, nodes, edges] = await Promise.all([
+                    fetch('./data/domains.json').then(r => r.json()),
+                    fetch('./data/nodes.json').then(r => r.json()),
+                    fetch('./data/edges.json').then(r => r.json())
+                ]);
+                
+                const checks = [
+                    { name: 'Domains file loaded', pass: domains && domains.domains },
+                    { name: '5 domains present', pass: domains.domains.length === 5 },
+                    { name: 'Nodes file loaded', pass: nodes && nodes.nodes },
+                    { name: 'At least 20 nodes', pass: nodes.nodes.length >= 20 },
+                    { name: 'Edges file loaded', pass: edges && edges.edges },
+                    { name: 'Edges present', pass: edges.edges.length > 0 }
+                ];
+                
+                const allPass = checks.every(c => c.pass);
+                
+                return {
+                    name: 'Data Loading',
+                    status: allPass ? 'pass' : 'fail',
+                    details: checks.map(c => `${c.pass ? '✓' : '✗'} ${c.name}`).join('<br>')
+                };
+            } catch (error) {
+                return {
+                    name: 'Data Loading',
+                    status: 'fail',
+                    details: `Error: ${error.message}`
+                };
+            }
+        }
+
+        async function testComponentInitialization() {
+            try {
+                const [domainsData, nodesData, edgesData] = await Promise.all([
+                    fetch('./data/domains.json').then(r => r.json()),
+                    fetch('./data/nodes.json').then(r => r.json()),
+                    fetch('./data/edges.json').then(r => r.json())
+                ]);
+                
+                const domainManager = new window.testModules.DomainDataManager(domainsData);
+                const graphEngine = new window.testModules.KnowledgeGraphEngine(nodesData.nodes, edgesData.edges);
+                const filterEngine = new window.testModules.FilterEngine(graphEngine);
+                
+                const checks = [
+                    { name: 'DomainDataManager initialized', pass: domainManager !== null },
+                    { name: 'getAllDomains() works', pass: domainManager.getAllDomains().length === 5 },
+                    { name: 'KnowledgeGraphEngine initialized', pass: graphEngine !== null },
+                    { name: 'getAllNodes() works', pass: graphEngine.getAllNodes().length >= 20 },
+                    { name: 'FilterEngine initialized', pass: filterEngine !== null }
+                ];
+                
+                const allPass = checks.every(c => c.pass);
+                
+                return {
+                    name: 'Component Initialization',
+                    status: allPass ? 'pass' : 'fail',
+                    details: checks.map(c => `${c.pass ? '✓' : '✗'} ${c.name}`).join('<br>')
+                };
+            } catch (error) {
+                return {
+                    name: 'Component Initialization',
+                    status: 'fail',
+                    details: `Error: ${error.message}`
+                };
+            }
+        }
+
+        async function testGraphRendering() {
+            try {
+                // Create a temporary container
+                const container = document.createElement('div');
+                container.id = 'test-graph-canvas';
+                container.style.width = '800px';
+                container.style.height = '600px';
+                container.style.display = 'none';
+                document.body.appendChild(container);
+                
+                const [nodesData, edgesData] = await Promise.all([
+                    fetch('./data/nodes.json').then(r => r.json()),
+                    fetch('./data/edges.json').then(r => r.json())
+                ]);
+                
+                const graphEngine = new window.testModules.KnowledgeGraphEngine(nodesData.nodes, edgesData.edges);
+                const vizEngine = new window.testModules.D3VisualizationEngine('#test-graph-canvas', 800, 600);
+                
+                vizEngine.render(graphEngine.getAllNodes(), graphEngine.getAllEdges());
+                
+                // Check if SVG was created
+                const svg = container.querySelector('svg');
+                const nodes = container.querySelectorAll('circle');
+                const edges = container.querySelectorAll('line');
+                
+                const checks = [
+                    { name: 'SVG element created', pass: svg !== null },
+                    { name: 'Nodes rendered', pass: nodes.length > 0 },
+                    { name: 'Edges rendered', pass: edges.length > 0 },
+                    { name: 'Correct node count', pass: nodes.length === nodesData.nodes.length }
+                ];
+                
+                // Cleanup
+                document.body.removeChild(container);
+                
+                const allPass = checks.every(c => c.pass);
+                
+                return {
+                    name: 'Graph Rendering',
+                    status: allPass ? 'pass' : 'fail',
+                    details: checks.map(c => `${c.pass ? '✓' : '✗'} ${c.name}`).join('<br>')
+                };
+            } catch (error) {
+                return {
+                    name: 'Graph Rendering',
+                    status: 'fail',
+                    details: `Error: ${error.message}`
+                };
+            }
+        }
+
+        async function testZoomPan() {
+            try {
+                const container = document.createElement('div');
+                container.id = 'test-zoom-canvas';
+                container.style.width = '800px';
+                container.style.height = '600px';
+                container.style.display = 'none';
+                document.body.appendChild(container);
+                
+                const vizEngine = new window.testModules.D3VisualizationEngine('#test-zoom-canvas', 800, 600);
+                
+                const checks = [
+                    { name: 'zoomIn() method exists', pass: typeof vizEngine.zoomIn === 'function' },
+                    { name: 'zoomOut() method exists', pass: typeof vizEngine.zoomOut === 'function' },
+                    { name: 'resetView() method exists', pass: typeof vizEngine.resetView === 'function' }
+                ];
+                
+                // Try calling zoom methods
+                try {
+                    vizEngine.zoomIn();
+                    vizEngine.zoomOut();
+                    vizEngine.resetView();
+                    checks.push({ name: 'Zoom methods execute without error', pass: true });
+                } catch (e) {
+                    checks.push({ name: 'Zoom methods execute without error', pass: false });
+                }
+                
+                document.body.removeChild(container);
+                
+                const allPass = checks.every(c => c.pass);
+                
+                return {
+                    name: 'Zoom and Pan Controls',
+                    status: allPass ? 'pass' : 'fail',
+                    details: checks.map(c => `${c.pass ? '✓' : '✗'} ${c.name}`).join('<br>')
+                };
+            } catch (error) {
+                return {
+                    name: 'Zoom and Pan Controls',
+                    status: 'fail',
+                    details: `Error: ${error.message}`
+                };
+            }
+        }
+
+        async function testSearchFilters() {
+            try {
+                const [nodesData, edgesData] = await Promise.all([
+                    fetch('./data/nodes.json').then(r => r.json()),
+                    fetch('./data/edges.json').then(r => r.json())
+                ]);
+                
+                const graphEngine = new window.testModules.KnowledgeGraphEngine(nodesData.nodes, edgesData.edges);
+                const filterEngine = new window.testModules.FilterEngine(graphEngine);
+                
+                const allNodes = graphEngine.getAllNodes();
+                
+                // Test domain filter
+                const domainFiltered = filterEngine.filterByDomain(['domain-1']);
+                
+                // Test keyword search
+                const searchResults = filterEngine.filterByKeyword('极限');
+                
+                // Test difficulty filter
+                const difficultyFiltered = filterEngine.filterByDifficulty(1, 3);
+                
+                // Test combined filters
+                const combined = filterEngine.applyFilters({
+                    domains: ['domain-1'],
+                    difficultyRange: [1, 3]
+                });
+                
+                const checks = [
+                    { name: 'Domain filter works', pass: domainFiltered.length > 0 && domainFiltered.length < allNodes.length },
+                    { name: 'Keyword search works', pass: searchResults.length > 0 },
+                    { name: 'Difficulty filter works', pass: difficultyFiltered.length > 0 },
+                    { name: 'Combined filters work', pass: combined.length > 0 },
+                    { name: 'Combined filters reduce results', pass: combined.length <= domainFiltered.length }
+                ];
+                
+                const allPass = checks.every(c => c.pass);
+                
+                return {
+                    name: 'Search and Filters',
+                    status: allPass ? 'pass' : 'fail',
+                    details: checks.map(c => `${c.pass ? '✓' : '✗'} ${c.name}`).join('<br>')
+                };
+            } catch (error) {
+                return {
+                    name: 'Search and Filters',
+                    status: 'fail',
+                    details: `Error: ${error.message}`
+                };
+            }
+        }
+
+        function displayResults(tests) {
+            const resultsDiv = document.getElementById('results');
+            
+            const passCount = tests.filter(t => t.status === 'pass').length;
+            const totalCount = tests.length;
+            
+            let html = `<h3>Test Results: ${passCount}/${totalCount} passed</h3>`;
+            
+            tests.forEach(test => {
+                html += `
+                    <div class="test-item ${test.status}">
+                        <span class="status">${test.status === 'pass' ? '✓ PASS' : '✗ FAIL'}</span>
+                        <strong>${test.name}</strong>
+                        <div style="margin-top: 10px; font-size: 14px;">${test.details}</div>
+                    </div>
+                `;
+            });
+            
+            if (passCount === totalCount) {
+                html += `
+                    <div class="test-item pass">
+                        <h3>🎉 All tests passed! The core visualization system is working correctly.</h3>
+                        <p>You can now proceed to the next tasks.</p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="test-item fail">
+                        <h3>⚠️ Some tests failed. Please review the errors above.</h3>
+                    </div>
+                `;
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+
+        window.openMainApp = function() {
+            window.open('./index.html', '_blank');
+        };
+    </script>
+</body>
+</html>

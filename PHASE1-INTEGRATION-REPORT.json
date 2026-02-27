@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-02-22T06:45:45.327Z",
+  "summary": {
+    "totalNodes": 75,
+    "totalEdges": 55,
+    "phase1NodesAdded": 0,
+    "phase1EdgesAdded": 0
+  },
+  "nodesByDomain": {
+    "unknown": 75
+  },
+  "edgesByType": {
+    "prerequisite": 47,
+    "cross-domain": 8
+  }
+}

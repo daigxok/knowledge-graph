@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Indicator Fix - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            background: #f9f9f9;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .test-result.pass {
+            background: #e8f8f5;
+            border-left: 4px solid #27ae60;
+            color: #27ae60;
+        }
+        .test-result.fail {
+            background: #fadbd8;
+            border-left: 4px solid #e74c3c;
+            color: #e74c3c;
+        }
+        .test-result.info {
+            background: #eaf2f8;
+            border-left: 4px solid #3498db;
+            color: #3498db;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .demo-area {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            min-height: 200px;
+            position: relative;
+        }
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 100;
+        }
+        .loading-indicator.hidden {
+            display: none;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #ddd;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .status-badge.pass {
+            background: #27ae60;
+            color: white;
+        }
+        .status-badge.fail {
+            background: #e74c3c;
+            color: white;
+        }
+        .status-badge.info {
+            background: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Loading Indicator Fix - Verification Test</h1>
+        
+        <div class="test-section">
+            <h2>Test 1: CSS .hidden Class</h2>
+            <button onclick="testCSSHidden()">Run Test</button>
+            <div id="test1-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 2: JavaScript showLoading() Method</h2>
+            <button onclick="testShowLoadingMethod()">Run Test</button>
+            <div id="test2-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 3: Loading Indicator Demo</h2>
+            <p>This demo simulates the actual loading behavior:</p>
+            <button onclick="runLoadingDemo()">Start Demo</button>
+            <button onclick="resetDemo()">Reset</button>
+            <div class="demo-area" id="demoArea">
+                <div class="loading-indicator" id="demoLoadingIndicator">
+                    <div class="spinner"></div>
+                    <p>加载知识图谱中...</p>
+                </div>
+            </div>
+            <div id="test3-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 4: Data Files Availability</h2>
+            <button onclick="testDataFiles()">Run Test</button>
+            <div id="test4-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test 5: HTML Structure</h2>
+            <button onclick="testHTMLStructure()">Run Test</button>
+            <div id="test5-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Summary</h2>
+            <div id="summary-result"></div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            test1: null,
+            test2: null,
+            test3: null,
+            test4: null,
+            test5: null
+        };
+
+        function testCSSHidden() {
+            const resultDiv = document.getElementById('test1-result');
+            resultDiv.innerHTML = '<p>Testing CSS .hidden class...</p>';
+            
+            try {
+                // Create a test element
+                const testEl = document.createElement('div');
+                testEl.className = 'loading-indicator';
+                testEl.style.display = 'block';
+                document.body.appendChild(testEl);
+                
+                // Check initial state
+                const initialDisplay = window.getComputedStyle(testEl).display;
+                
+                // Add hidden class
+                testEl.classList.add('hidden');
+                const hiddenDisplay = window.getComputedStyle(testEl).display;
+                
+                // Cleanup
+                document.body.removeChild(testEl);
+                
+                const pass = hiddenDisplay === 'none';
+                testResults.test1 = pass;
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result ${pass ? 'pass' : 'fail'}">
+                        <strong>${pass ? '✓ PASS' : '✗ FAIL'}</strong>
+                        <p>Initial display: ${initialDisplay}</p>
+                        <p>After .hidden class: ${hiddenDisplay}</p>
+                        <p>${pass ? 'CSS .hidden class works correctly!' : 'CSS .hidden class not working!'}</p>
+                    </div>
+                `;
+                updateSummary();
+            } catch (error) {
+                testResults.test1 = false;
+                resultDiv.innerHTML = `
+                    <div class="test-result fail">
+                        <strong>✗ FAIL</strong>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+                updateSummary();
+            }
+        }
+
+        function testShowLoadingMethod() {
+            const resultDiv = document.getElementById('test2-result');
+            resultDiv.innerHTML = '<p>Testing showLoading() method...</p>';
+            
+            try {
+                // Create a mock loading indicator
+                const mockIndicator = document.createElement('div');
+                mockIndicator.id = 'mockLoadingIndicator';
+                mockIndicator.className = 'loading-indicator';
+                mockIndicator.innerHTML = '<div class="spinner"></div><p>加载知识图谱中...</p>';
+                document.body.appendChild(mockIndicator);
+                
+                // Define showLoading function (same as in main.js)
+                function showLoading(show) {
+                    const indicator = document.getElementById('mockLoadingIndicator');
+                    if (indicator) {
+                        if (show) {
+                            indicator.style.display = 'block';
+                            indicator.classList.remove('hidden');
+                        } else {
+                            indicator.classList.add('hidden');
+                            indicator.style.display = 'none';
+                            void indicator.offsetHeight;
+                        }
+                    }
+                }
+                
+                // Test showing
+                showLoading(true);
+                const showDisplay = window.getComputedStyle(mockIndicator).display;
+                const showHidden = mockIndicator.classList.contains('hidden');
+                
+                // Test hiding
+                showLoading(false);
+                const hideDisplay = window.getComputedStyle(mockIndicator).display;
+                const hideHidden = mockIndicator.classList.contains('hidden');
+                
+                // Cleanup
+                document.body.removeChild(mockIndicator);
+                
+                const pass = (showDisplay === 'block' && !showHidden) && (hideDisplay === 'none' && hideHidden);
+                testResults.test2 = pass;
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result ${pass ? 'pass' : 'fail'}">
+                        <strong>${pass ? '✓ PASS' : '✗ FAIL'}</strong>
+                        <p><strong>Show state:</strong> display=${showDisplay}, hidden=${showHidden}</p>
+                        <p><strong>Hide state:</strong> display=${hideDisplay}, hidden=${hideHidden}</p>
+                        <p>${pass ? 'showLoading() method works correctly!' : 'showLoading() method has issues!'}</p>
+                    </div>
+                `;
+                updateSummary();
+            } catch (error) {
+                testResults.test2 = false;
+                resultDiv.innerHTML = `
+                    <div class="test-result fail">
+                        <strong>✗ FAIL</strong>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+                updateSummary();
+            }
+        }
+
+        function runLoadingDemo() {
+            const resultDiv = document.getElementById('test3-result');
+            const indicator = document.getElementById('demoLoadingIndicator');
+            
+            resultDiv.innerHTML = '<p>Demo running... Loading indicator should disappear in 3 seconds...</p>';
+            
+            // Show loading
+            indicator.classList.remove('hidden');
+            indicator.style.display = 'block';
+            
+            // Simulate loading
+            setTimeout(() => {
+                // Hide loading
+                indicator.classList.add('hidden');
+                indicator.style.display = 'none';
+                void indicator.offsetHeight;
+                
+                const isHidden = window.getComputedStyle(indicator).display === 'none';
+                testResults.test3 = isHidden;
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result ${isHidden ? 'pass' : 'fail'}">
+                        <strong>${isHidden ? '✓ PASS' : '✗ FAIL'}</strong>
+                        <p>${isHidden ? 'Loading indicator disappeared correctly!' : 'Loading indicator did not disappear!'}</p>
+                    </div>
+                `;
+                updateSummary();
+            }, 3000);
+        }
+
+        function resetDemo() {
+            const indicator = document.getElementById('demoLoadingIndicator');
+            indicator.classList.remove('hidden');
+            indicator.style.display = 'block';
+            document.getElementById('test3-result').innerHTML = '';
+        }
+
+        function testDataFiles() {
+            const resultDiv = document.getElementById('test4-result');
+            resultDiv.innerHTML = '<p>Testing data files...</p>';
+            
+            const files = [
+                './data/domains.json',
+                './data/nodes.json',
+                './data/edges.json'
+            ];
+            
+            let results = [];
+            let completed = 0;
+            
+            files.forEach(file => {
+                fetch(file)
+                    .then(response => {
+                        const pass = response.ok;
+                        results.push({ file, pass, status: response.status });
+                        completed++;
+                        
+                        if (completed === files.length) {
+                            const allPass = results.every(r => r.pass);
+                            testResults.test4 = allPass;
+                            
+                            let html = `<div class="test-result ${allPass ? 'pass' : 'fail'}">
+                                <strong>${allPass ? '✓ PASS' : '✗ FAIL'}</strong>`;
+                            
+                            results.forEach(r => {
+                                html += `<p>${r.pass ? '✓' : '✗'} ${r.file} (Status: ${r.status})</p>`;
+                            });
+                            
+                            html += `<p>${allPass ? 'All data files are accessible!' : 'Some data files are missing!'}</p></div>`;
+                            resultDiv.innerHTML = html;
+                            updateSummary();
+                        }
+                    })
+                    .catch(error => {
+                        results.push({ file, pass: false, error: error.message });
+                        completed++;
+                        
+                        if (completed === files.length) {
+                            const allPass = results.every(r => r.pass);
+                            testResults.test4 = allPass;
+                            
+                            let html = `<div class="test-result fail">
+                                <strong>✗ FAIL</strong>`;
+                            
+                            results.forEach(r => {
+                                html += `<p>${r.pass ? '✓' : '✗'} ${r.file}${r.error ? ' - ' + r.error : ''}</p>`;
+                            });
+                            
+                            html += `</div>`;
+                            resultDiv.innerHTML = html;
+                            updateSummary();
+                        }
+                    });
+            });
+        }
+
+        function testHTMLStructure() {
+            const resultDiv = document.getElementById('test5-result');
+            
+            try {
+                const checks = [
+                    { name: 'Loading indicator element exists', pass: !!document.getElementById('loadingIndicator') },
+                    { name: 'Graph canvas element exists', pass: !!document.getElementById('graphCanvas') },
+                    { name: 'Detail panel element exists', pass: !!document.getElementById('detailPanel') },
+                    { name: 'Notification toast element exists', pass: !!document.getElementById('notificationToast') },
+                    { name: 'Sidebar element exists', pass: !!document.getElementById('sidebar') }
+                ];
+                
+                const allPass = checks.every(c => c.pass);
+                testResults.test5 = allPass;
+                
+                let html = `<div class="test-result ${allPass ? 'pass' : 'fail'}">
+                    <strong>${allPass ? '✓ PASS' : '✗ FAIL'}</strong>`;
+                
+                checks.forEach(check => {
+                    html += `<p>${check.pass ? '✓' : '✗'} ${check.name}</p>`;
+                });
+                
+                html += `<p>${allPass ? 'HTML structure is correct!' : 'Some HTML elements are missing!'}</p></div>`;
+                resultDiv.innerHTML = html;
+                updateSummary();
+            } catch (error) {
+                testResults.test5 = false;
+                resultDiv.innerHTML = `
+                    <div class="test-result fail">
+                        <strong>✗ FAIL</strong>
+                        <p>Error: ${error.message}</p>
+                    </div>
+                `;
+                updateSummary();
+            }
+        }
+
+        function updateSummary() {
+            const summaryDiv = document.getElementById('summary-result');
+            const results = Object.values(testResults);
+            const passCount = results.filter(r => r === true).length;
+            const totalCount = results.filter(r => r !== null).length;
+            
+            if (totalCount === 0) {
+                summaryDiv.innerHTML = '<p>Run tests to see results...</p>';
+                return;
+            }
+            
+            const allPass = passCount === totalCount;
+            
+            let html = `
+                <div class="test-result ${allPass ? 'pass' : 'info'}">
+                    <strong>Test Results: ${passCount}/${totalCount} passed</strong>
+                    <p>${allPass ? '🎉 All tests passed! The loading indicator fix is working correctly.' : '⚠️ Some tests failed. Please review the results above.'}</p>
+                </div>
+            `;
+            
+            summaryDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

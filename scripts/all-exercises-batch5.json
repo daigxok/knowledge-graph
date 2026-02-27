@@ -1,0 +1,37 @@
+{
+  "推导动画Skill": [
+    {"id": "exercise-adv-004", "difficulty": 3, "question": "设计链式法则的动画演示。", "hints": ["分步展示"], "solution": {"steps": ["展示外层函数", "展示内层函数", "组合求导"], "keyPoints": ["链式法则可视化"]}, "relatedNodes": ["node-chain-rule"], "estimatedTime": 25},
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "创建泰勒级数逼近的动画。", "hints": ["逐项添加"], "solution": {"steps": ["显示各阶多项式", "展示收敛过程"], "keyPoints": ["级数逼近"]}, "relatedNodes": ["node-taylor-series"], "estimatedTime": 30},
+    {"id": "exercise-adv-006", "difficulty": 4, "question": "设计牛顿法迭代的几何演示。", "hints": ["切线法"], "solution": {"steps": ["绘制切线", "显示迭代点", "收敛动画"], "keyPoints": ["牛顿法可视化"]}, "relatedNodes": ["node-newton-method"], "estimatedTime": 30},
+    {"id": "exercise-adv-007", "difficulty": 5, "question": "创建傅里叶级数的动画展示。", "hints": ["叠加正弦波"], "solution": {"steps": ["逐个添加谐波", "展示合成波形"], "keyPoints": ["傅里叶分析"]}, "relatedNodes": ["node-fourier-series"], "estimatedTime": 35},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "设计拉格朗日乘数法的几何解释动画。", "hints": ["等高线和约束"], "solution": {"steps": ["绘制等高线", "显示约束曲线", "标注切点"], "keyPoints": ["约束优化"]}, "relatedNodes": ["node-lagrange-multiplier"], "estimatedTime": 30},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "创建格林公式的动画证明。", "hints": ["分割求和"], "solution": {"steps": ["区域分割", "边界积分", "面积分转换"], "keyPoints": ["格林公式"]}, "relatedNodes": ["node-green-theorem"], "estimatedTime": 40},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "设计极限定义的ε-δ动画。", "hints": ["动态调整ε和δ"], "solution": {"steps": ["显示ε邻域", "找到对应δ", "验证定义"], "keyPoints": ["极限定义"]}, "relatedNodes": ["node-limit-def"], "estimatedTime": 30}
+  ],
+  "概念可视化Skill": [
+    {"id": "exercise-adv-004", "difficulty": 3, "question": "可视化函数y=x³的导数。", "hints": ["切线斜率"], "solution": {"steps": ["绘制函数曲线", "显示切线", "标注斜率"], "keyPoints": ["导数几何意义"]}, "relatedNodes": ["node-derivative-def"], "estimatedTime": 20},
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "创建定积分的黎曼和可视化。", "hints": ["矩形逼近"], "solution": {"steps": ["绘制矩形", "增加分割数", "展示收敛"], "keyPoints": ["积分定义"]}, "relatedNodes": ["node-definite-integral"], "estimatedTime": 25},
+    {"id": "exercise-adv-006", "difficulty": 4, "question": "可视化梯度向量场。", "hints": ["箭头表示"], "solution": {"steps": ["计算梯度", "绘制向量场", "叠加等高线"], "keyPoints": ["梯度"]}, "relatedNodes": ["node-gradient"], "estimatedTime": 30},
+    {"id": "exercise-adv-007", "difficulty": 5, "question": "创建三维曲面的法向量可视化。", "hints": ["法向量计算"], "solution": {"steps": ["绘制曲面", "计算法向量", "显示箭头"], "keyPoints": ["法向量"]}, "relatedNodes": ["node-surface"], "estimatedTime": 35},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "可视化旋转体的生成过程。", "hints": ["旋转动画"], "solution": {"steps": ["绘制平面曲线", "旋转生成", "显示体积"], "keyPoints": ["旋转体"]}, "relatedNodes": ["node-solid-revolution"], "estimatedTime": 30},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "创建向量场的流线可视化。", "hints": ["积分曲线"], "solution": {"steps": ["计算流线", "绘制轨迹", "动画演示"], "keyPoints": ["流线"]}, "relatedNodes": ["node-vector-field"], "estimatedTime": 35},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "可视化极坐标系下的曲线。", "hints": ["参数方程"], "solution": {"steps": ["转换坐标", "绘制曲线", "标注特征点"], "keyPoints": ["极坐标"]}, "relatedNodes": ["node-polar-coordinates"], "estimatedTime": 25}
+  ],
+  "导数与微分Skill": [
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "证明：若f可微，则f连续。", "hints": ["利用微分定义"], "solution": {"steps": ["Δf=f'(x)Δx+o(Δx)", "当Δx→0时Δf→0"], "keyPoints": ["可微与连续"]}, "relatedNodes": ["node-derivative-def"], "estimatedTime": 20},
+    {"id": "exercise-adv-006", "difficulty": 5, "question": "求f(x,y)=x²y在点(1,2)处沿方向(3,4)的方向导数。", "hints": ["方向导数公式"], "solution": {"steps": ["∇f=(2xy,x²)", "单位方向向量", "∂f/∂l=14/5"], "keyPoints": ["方向导数"]}, "relatedNodes": ["node-directional-derivative"], "estimatedTime": 25},
+    {"id": "exercise-adv-007", "difficulty": 4, "question": "证明罗尔定理。", "hints": ["极值定理"], "solution": {"steps": ["f在[a,b]连续，(a,b)可导", "f(a)=f(b)", "存在ξ使f'(ξ)=0"], "keyPoints": ["罗尔定理"]}, "relatedNodes": ["node-rolle-theorem"], "estimatedTime": 30},
+    {"id": "exercise-adv-008", "difficulty": 5, "question": "用拉格朗日中值定理证明不等式e^x>1+x（x>0）。", "hints": ["构造辅助函数"], "solution": {"steps": ["f(x)=e^x-x-1", "f'(ξ)=e^ξ-1>0"], "keyPoints": ["中值定理应用"]}, "relatedNodes": ["node-mean-value-theorem"], "estimatedTime": 25},
+    {"id": "exercise-adv-009", "difficulty": 4, "question": "求曲线x=t²，y=t³在t=1处的曲率。", "hints": ["参数方程曲率公式"], "solution": {"steps": ["κ=|x'y''-y'x''|/(x'²+y'²)^(3/2)", "κ=3/(4√5)"], "keyPoints": ["曲率计算"]}, "relatedNodes": ["node-curvature"], "estimatedTime": 25},
+    {"id": "exercise-adv-010", "difficulty": 5, "question": "证明柯西中值定理。", "hints": ["构造辅助函数"], "solution": {"steps": ["F(x)=f(x)-λg(x)", "应用罗尔定理"], "keyPoints": ["柯西中值定理"]}, "relatedNodes": ["node-cauchy-theorem"], "estimatedTime": 35}
+  ],
+  "H5P交互Skill": [
+    {"id": "exercise-adv-004", "difficulty": 3, "question": "设计一个交互式函数图像绘制工具。", "hints": ["参数调节"], "solution": {"steps": ["输入函数表达式", "调节参数", "实时更新图像"], "keyPoints": ["交互式绘图"]}, "relatedNodes": ["node-function-plot"], "estimatedTime": 30},
+    {"id": "exercise-adv-005", "difficulty": 4, "question": "创建导数概念的交互式测验。", "hints": ["选择题和填空"], "solution": {"steps": ["设计题目", "即时反馈", "解析展示"], "keyPoints": ["交互测验"]}, "relatedNodes": ["node-derivative-def"], "estimatedTime": 35},
+    {"id": "exercise-adv-006", "difficulty": 4, "question": "开发积分计算的拖拽练习。", "hints": ["拖拽匹配"], "solution": {"steps": ["题目和答案配对", "拖拽交互", "正确性检查"], "keyPoints": ["拖拽练习"]}, "relatedNodes": ["node-integration"], "estimatedTime": 30},
+    {"id": "exercise-adv-007", "difficulty": 5, "question": "设计级数收敛性判断的交互式工具。", "hints": ["多种判别法"], "solution": {"steps": ["输入级数", "选择判别法", "自动判断"], "keyPoints": ["级数判别"]}, "relatedNodes": ["node-series-convergence"], "estimatedTime": 40},
+    {"id": "exercise-adv-008", "difficulty": 4, "question": "创建微分方程求解的步骤演示。", "hints": ["分步展示"], "solution": {"steps": ["输入方程", "选择方法", "逐步求解"], "keyPoints": ["方程求解"]}, "relatedNodes": ["node-ode-solving"], "estimatedTime": 35},
+    {"id": "exercise-adv-009", "difficulty": 5, "question": "开发多元函数极值的3D可视化工具。", "hints": ["3D交互"], "solution": {"steps": ["绘制曲面", "标注极值点", "旋转查看"], "keyPoints": ["3D可视化"]}, "relatedNodes": ["node-extremum"], "estimatedTime": 40},
+    {"id": "exercise-adv-010", "difficulty": 4, "question": "设计泰勒级数逼近的交互式演示。", "hints": ["阶数调节"], "solution": {"steps": ["选择函数", "调节阶数", "显示误差"], "keyPoints": ["级数逼近"]}, "relatedNodes": ["node-taylor-series"], "estimatedTime": 35}
+  ]
+}

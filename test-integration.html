@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 1 整合测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #10b981;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .details {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .details h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            color: #111827;
+            font-weight: 600;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .error {
+            background: #ef4444;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .success {
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .node-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        
+        .node-item {
+            padding: 10px;
+            background: #f9fafb;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .node-id {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Phase 1 数据整合测试</h1>
+            <span class="status" id="status">加载中...</span>
+        </div>
+        
+        <div id="loading" class="loading">
+            正在加载数据...
+        </div>
+        
+        <div id="content" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="nodeCount">0</div>
+                    <div class="stat-label">总节点数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="edgeCount">0</div>
+                    <div class="stat-label">总边关系</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="phase1Nodes">0</div>
+                    <div class="stat-label">Phase 1 节点</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="phase1Edges">0</div>
+                    <div class="stat-label">Phase 1 边关系</div>
+                </div>
+            </div>
+            
+            <div class="details">
+                <h2>📊 边关系类型分布</h2>
+                <div id="edgeTypes"></div>
+            </div>
+            
+            <div class="details">
+                <h2>🔍 数据验证结果</h2>
+                <div id="validation"></div>
+            </div>
+            
+            <div class="details">
+                <h2>🚀 快速操作</h2>
+                <div class="actions">
+                    <a href="index.html" class="btn btn-primary">打开知识图谱</a>
+                    <a href="test-complete-system.html" class="btn btn-secondary">完整系统测试</a>
+                    <button class="btn btn-secondary" onclick="showNodeList()">查看节点列表</button>
+                </div>
+            </div>
+            
+            <div class="details" id="nodeListContainer" style="display: none;">
+                <h2>📝 Phase 1 节点列表</h2>
+                <div class="node-list" id="nodeList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let nodesData = null;
+        let edgesData = null;
+        
+        async function loadData() {
+            try {
+                // 加载节点数据
+                const nodesResponse = await fetch('data/nodes.json');
+                nodesData = await nodesResponse.json();
+                
+                // 加载边数据
+                const edgesResponse = await fetch('data/edges.json');
+                edgesData = await edgesResponse.json();
+                
+                // 显示数据
+                displayData();
+                
+                // 验证数据
+                validateData();
+                
+                // 更新状态
+                document.getElementById('status').textContent = '✅ 数据加载成功';
+                document.getElementById('status').style.background = '#10b981';
+                
+                // 显示内容
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div class="error">
+                        ❌ 数据加载失败: ${error.message}
+                    </div>
+                `;
+                document.getElementById('status').textContent = '❌ 加载失败';
+                document.getElementById('status').style.background = '#ef4444';
+            }
+        }
+        
+        function displayData() {
+            const nodes = nodesData.nodes || [];
+            const edges = edgesData.edges || [];
+            
+            // 统计Phase 1节点（假设ID包含特定模式）
+            const phase1NodeIds = new Set([
+                'node-sequence-limit', 'node-limit-properties', 'node-infinitesimal',
+                'node-limit-existence', 'node-continuity-properties', 'node-discontinuity-types',
+                'node-uniform-continuity', 'node-limit-special', 'node-derivative-geometric',
+                'node-derivative-physical', 'node-higher-derivatives', 'node-implicit-derivative',
+                'node-parametric-derivative', 'node-logarithmic-derivative', 'node-rolle-theorem',
+                'node-lagrange-theorem', 'node-cauchy-theorem', 'node-lhopital-rule',
+                'node-taylor-theorem', 'node-curvature', 'node-indefinite-integral-properties',
+                'node-substitution-method-1', 'node-substitution-method-2', 'node-integration-by-parts-detail',
+                'node-rational-function-integration', 'node-trigonometric-integration',
+                'node-definite-integral-properties', 'node-improper-integral', 'node-area-calculation',
+                'node-volume-calculation', 'node-arc-length', 'node-multivariable-limit',
+                'node-multivariable-continuity', 'node-total-differential', 'node-composite-function-derivative',
+                'node-homogeneous-equation', 'node-bernoulli-equation', 'node-higher-order-linear-equation',
+                'node-euler-equation', 'node-implicit-function-theorem', 'node-conditional-extrema',
+                'node-lagrange-multiplier-detail', 'node-triple-integral', 'node-positive-series-test',
+                'node-alternating-series', 'node-absolute-convergence', 'node-function-series',
+                'node-uniform-convergence', 'node-mathematical-modeling', 'node-computational-implementation'
+            ]);
+            
+            const phase1Nodes = nodes.filter(n => phase1NodeIds.has(n.id));
+            const phase1Edges = edges.filter(e => e.id.startsWith('edge-ext-'));
+            
+            // 显示统计
+            document.getElementById('nodeCount').textContent = nodes.length;
+            document.getElementById('edgeCount').textContent = edges.length;
+            document.getElementById('phase1Nodes').textContent = phase1Nodes.length;
+            document.getElementById('phase1Edges').textContent = phase1Edges.length;
+            
+            // 边类型统计
+            const edgeTypes = {};
+            edges.forEach(edge => {
+                edgeTypes[edge.type] = (edgeTypes[edge.type] || 0) + 1;
+            });
+            
+            const edgeTypesHTML = Object.entries(edgeTypes)
+                .map(([type, count]) => `
+                    <div class="detail-item">
+                        <span class="detail-label">${type}</span>
+                        <span class="detail-value">${count} (${(count/edges.length*100).toFixed(1)}%)</span>
+                    </div>
+                `).join('');
+            
+            document.getElementById('edgeTypes').innerHTML = edgeTypesHTML;
+        }
+        
+        function validateData() {
+            const nodes = nodesData.nodes || [];
+            const edges = edgesData.edges || [];
+            
+            const validations = [];
+            
+            // 检查节点ID唯一性
+            const nodeIds = nodes.map(n => n.id);
+            const uniqueNodeIds = new Set(nodeIds);
+            validations.push({
+                label: '节点ID唯一性',
+                value: nodeIds.length === uniqueNodeIds.size ? '✅ 通过' : '❌ 失败',
+                success: nodeIds.length === uniqueNodeIds.size
+            });
+            
+            // 检查边ID唯一性
+            const edgeIds = edges.map(e => e.id);
+            const uniqueEdgeIds = new Set(edgeIds);
+            validations.push({
+                label: '边ID唯一性',
+                value: edgeIds.length === uniqueEdgeIds.size ? '✅ 通过' : '❌ 失败',
+                success: edgeIds.length === uniqueEdgeIds.size
+            });
+            
+            // 检查边引用有效性
+            const nodeIdSet = new Set(nodeIds);
+            const invalidEdges = edges.filter(e => 
+                !nodeIdSet.has(e.source) || !nodeIdSet.has(e.target)
+            );
+            validations.push({
+                label: '边引用有效性',
+                value: invalidEdges.length === 0 ? '✅ 通过' : `❌ ${invalidEdges.length}条无效`,
+                success: invalidEdges.length === 0
+            });
+            
+            // 检查孤立节点
+            const connectedNodes = new Set();
+            edges.forEach(e => {
+                connectedNodes.add(e.source);
+                connectedNodes.add(e.target);
+            });
+            const isolatedNodes = nodes.filter(n => !connectedNodes.has(n.id));
+            validations.push({
+                label: '孤立节点检查',
+                value: isolatedNodes.length === 0 ? '✅ 无孤立节点' : `⚠️ ${isolatedNodes.length}个孤立节点`,
+                success: isolatedNodes.length === 0
+            });
+            
+            // 显示验证结果
+            const validationHTML = validations.map(v => `
+                <div class="detail-item">
+                    <span class="detail-label">${v.label}</span>
+                    <span class="detail-value" style="color: ${v.success ? '#10b981' : '#ef4444'}">${v.value}</span>
+                </div>
+            `).join('');
+            
+            document.getElementById('validation').innerHTML = validationHTML;
+        }
+        
+        function showNodeList() {
+            const container = document.getElementById('nodeListContainer');
+            const nodeList = document.getElementById('nodeList');
+            
+            if (container.style.display === 'none') {
+                const nodes = nodesData.nodes || [];
+                const phase1NodeIds = new Set([
+                    'node-sequence-limit', 'node-limit-properties', 'node-infinitesimal',
+                    'node-limit-existence', 'node-continuity-properties', 'node-discontinuity-types',
+                    'node-uniform-continuity', 'node-limit-special', 'node-derivative-geometric',
+                    'node-derivative-physical', 'node-higher-derivatives', 'node-implicit-derivative',
+                    'node-parametric-derivative', 'node-logarithmic-derivative', 'node-rolle-theorem',
+                    'node-lagrange-theorem', 'node-cauchy-theorem', 'node-lhopital-rule',
+                    'node-taylor-theorem', 'node-curvature', 'node-indefinite-integral-properties',
+                    'node-substitution-method-1', 'node-substitution-method-2', 'node-integration-by-parts-detail',
+                    'node-rational-function-integration', 'node-trigonometric-integration',
+                    'node-definite-integral-properties', 'node-improper-integral', 'node-area-calculation',
+                    'node-volume-calculation', 'node-arc-length', 'node-multivariable-limit',
+                    'node-multivariable-continuity', 'node-total-differential', 'node-composite-function-derivative',
+                    'node-homogeneous-equation', 'node-bernoulli-equation', 'node-higher-order-linear-equation',
+                    'node-euler-equation', 'node-implicit-function-theorem', 'node-conditional-extrema',
+                    'node-lagrange-multiplier-detail', 'node-triple-integral', 'node-positive-series-test',
+                    'node-alternating-series', 'node-absolute-convergence', 'node-function-series',
+                    'node-uniform-convergence', 'node-mathematical-modeling', 'node-computational-implementation'
+                ]);
+                
+                const phase1Nodes = nodes.filter(n => phase1NodeIds.has(n.id));
+                
+                const nodesHTML = phase1Nodes.map(node => `
+                    <div class="node-item">
+                        <span class="node-id">${node.id}</span>: ${node.name || node.label || '未命名'}
+                    </div>
+                `).join('');
+                
+                nodeList.innerHTML = nodesHTML;
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+        
+        // 页面加载时执行
+        loadData();
+    </script>
+</body>
+</html>

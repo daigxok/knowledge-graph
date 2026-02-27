@@ -1,0 +1,419 @@
+/**
+ * Mobile Responsive Styles
+ * Task 20.1: 实现响应式布局
+ * 需求 17: 移动端适配
+ */
+
+/* ==================== 基础响应式设置 ==================== */
+
+/* 确保视口设置正确 */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* 基础字体和布局 */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ==================== 平板设备 (768px - 1024px) ==================== */
+
+@media (max-width: 1024px) {
+    /* 侧边栏调整 */
+    .sidebar {
+        width: 280px;
+    }
+    
+    /* 主内容区域调整 */
+    .main-content {
+        margin-left: 280px;
+    }
+    
+    /* 节点详情面板 */
+    .node-detail-panel {
+        max-width: 100%;
+        padding: 20px;
+    }
+    
+    /* 图谱画布 */
+    .graph-canvas {
+        width: 100%;
+    }
+}
+
+/* ==================== 移动设备 (< 768px) ==================== */
+
+@media (max-width: 768px) {
+    /* 需求 17.1: 移动端布局 */
+    
+    /* 隐藏侧边栏，改为抽屉式 */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+        background: white;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    /* 遮罩层 */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    /* 主内容区域占满屏幕 */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    /* 移动端顶部导航栏 */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .mobile-header h1 {
+        font-size: 18px;
+        margin: 0;
+    }
+    
+    .menu-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* 需求 17.3: 优化节点和文字显示 */
+    
+    /* 图谱节点 */
+    .graph-node {
+        r: 8 !important; /* 增大节点半径 */
+    }
+    
+    .graph-node text {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+    
+    /* 边线 */
+    .graph-edge {
+        stroke-width: 2px !important;
+    }
+    
+    /* 节点详情面板 */
+    .node-detail-panel {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 70vh;
+        overflow-y: auto;
+        background: white;
+        border-radius: 16px 16px 0 0;
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+        padding: 20px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: 200;
+    }
+    
+    .node-detail-panel.open {
+        transform: translateY(0);
+    }
+    
+    /* 拖动手柄 */
+    .panel-handle {
+        width: 40px;
+        height: 4px;
+        background: #ccc;
+        border-radius: 2px;
+        margin: 0 auto 16px;
+        cursor: grab;
+    }
+    
+    /* 需求 17.4: 简化侧边栏和过滤器 */
+    
+    /* 过滤器面板 */
+    .filter-panel {
+        padding: 16px;
+    }
+    
+    .filter-section {
+        margin-bottom: 20px;
+    }
+    
+    .filter-section h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    /* 过滤器控件 */
+    .filter-control {
+        margin-bottom: 12px;
+    }
+    
+    .filter-control label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .filter-control input,
+    .filter-control select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px; /* 防止iOS自动缩放 */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    /* 按钮 */
+    button {
+        min-height: 44px; /* iOS推荐的最小触摸目标 */
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    /* 需求 17.5: 优化数学公式渲染 */
+    
+    /* MathJax公式 */
+    .MathJax {
+        font-size: 1.1em !important;
+    }
+    
+    .math-formula {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 8px 0;
+    }
+    
+    /* 代码块 */
+    pre {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 13px;
+        padding: 12px;
+        border-radius: 4px;
+    }
+    
+    /* 表格 */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 14px;
+    }
+    
+    /* 图片 */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* 可视化容器 */
+    .viz-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .viz-container svg {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* ==================== 小屏手机 (< 480px) ==================== */
+
+@media (max-width: 480px) {
+    /* 进一步优化小屏幕 */
+    
+    .mobile-header h1 {
+        font-size: 16px;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .node-detail-panel {
+        max-height: 80vh;
+        padding: 16px;
+    }
+    
+    .filter-panel {
+        padding: 12px;
+    }
+    
+    button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    /* 图谱节点更大 */
+    .graph-node {
+        r: 10 !important;
+    }
+    
+    .graph-node text {
+        font-size: 14px !important;
+    }
+}
+
+/* ==================== 横屏模式 ==================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .node-detail-panel {
+        max-height: 60vh;
+    }
+    
+    .mobile-header {
+        padding: 8px 16px;
+    }
+    
+    .mobile-header h1 {
+        font-size: 16px;
+    }
+}
+
+/* ==================== 触摸优化 ==================== */
+
+/* 增大可触摸区域 */
+.touchable {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 12px;
+}
+
+/* 触摸反馈 */
+.touchable:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+}
+
+/* 禁用文本选择（在某些交互元素上） */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 平滑滚动 */
+.smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* ==================== 性能优化 ==================== */
+
+/* 硬件加速 */
+.hardware-accelerated {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 减少重绘 */
+.reduce-repaint {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* ==================== 辅助功能 ==================== */
+
+/* 焦点可见性 */
+@media (max-width: 768px) {
+    *:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+    }
+    
+    button:focus,
+    a:focus {
+        outline: 2px solid #667eea;
+    }
+}
+
+/* ==================== 打印样式 ==================== */
+
+@media print {
+    .sidebar,
+    .mobile-header,
+    .menu-button,
+    .sidebar-overlay {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/* ==================== 暗色模式支持 ==================== */
+
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+    .sidebar {
+        background: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .node-detail-panel {
+        background: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .filter-control input,
+    .filter-control select {
+        background: #2a2a2a;
+        color: #ffffff;
+        border-color: #444;
+    }
+}
