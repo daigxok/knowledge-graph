@@ -70,6 +70,18 @@ body {
     z-index: 100;
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-md);
+}
+
+.header-title-section {
+    flex: 1;
+}
+
 .header-content h1 {
     font-size: var(--font-size-xxl);
     font-weight: 600;
@@ -79,6 +91,33 @@ body {
 .header-content .subtitle {
     font-size: var(--font-size-base);
     opacity: 0.9;
+}
+
+.header-user-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-welcome {
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+}
+
+.btn-logout {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* 学域标识：头部五大学域徽章 */
@@ -2003,6 +2042,16 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .header-user-menu {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
     .sidebar {
         position: absolute;
         left: 0;

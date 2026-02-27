@@ -26,13 +26,28 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Authentication Check -->
+    <script type="module">
+        import { auth } from './js/modules/Auth.js';
+        // Redirect to auth page if not logged in
+        auth.requireAuth('auth.html');
+    </script>
 </head>
 <body>
     <!-- Header -->
     <header class="app-header">
         <div class="header-content">
-            <h1>📊 高等数学学域知识图谱</h1>
-            <p class="subtitle">从章节记忆到学域理解 · 5大学域整合范式</p>
+            <div class="header-top">
+                <div class="header-title-section">
+                    <h1>📊 高等数学学域知识图谱</h1>
+                    <p class="subtitle">从章节记忆到学域理解 · 5大学域整合范式</p>
+                </div>
+                <div class="header-user-menu">
+                    <span class="user-welcome" id="userWelcome">欢迎，用户</span>
+                    <button class="btn-logout" id="btnLogout" title="退出登录">退出</button>
+                </div>
+            </div>
             <div class="header-domain-badges" id="headerDomainBadges" aria-label="五大学域">
                 <span class="domain-badge" data-domain="domain-1" title="变化与逼近">📈 变化与逼近</span>
                 <span class="domain-badge" data-domain="domain-2" title="结构与累积">🔄 结构与累积</span>

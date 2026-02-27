@@ -16,6 +16,31 @@ import { inferNodeType } from './modules/SkillContentGenerator.js';
 import { SkillContentManager } from './modules/SkillContentManager.js';
 import { LearningDataManager } from './modules/LearningDataManager.js';
 import { onboardingGuide } from './modules/OnboardingGuide.js';
+import { auth } from './modules/Auth.js';
+
+/**
+ * Initialize user interface
+ */
+function initializeUserInterface() {
+    const user = auth.getCurrentUser();
+    if (user) {
+        const userWelcome = document.getElementById('userWelcome');
+        if (userWelcome) {
+            userWelcome.textContent = `欢迎，${user.username}`;
+        }
+    }
+    
+    // Logout button
+    const btnLogout = document.getElementById('btnLogout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', () => {
+            if (confirm('确定要退出登录吗？')) {
+                auth.logout();
+                window.location.href = 'landing.html';
+            }
+        });
+    }
+}
 
 /**
  * Global error handler
@@ -81,6 +106,9 @@ class KnowledgeGraphApp {
     async init() {
         try {
             this.showLoading(true);
+            
+            // Initialize user interface
+            initializeUserInterface();
             
             // Load data files
             const [domainsData, nodesData, edgesData] = await Promise.all([
