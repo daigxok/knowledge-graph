@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师注册权限测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .test-case {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .test-case h3 {
+            margin-top: 0;
+            color: #34495e;
+        }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .test-input {
+            margin: 10px 0;
+        }
+        .test-input label {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+        }
+        .test-input input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        .summary h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 教师注册权限测试</h1>
+        
+        <div class="info test-result">
+            <strong>测试规则：</strong>教师账号用户名必须以"Ujs"开头
+        </div>
+
+        <!-- Test Case 1 -->
+        <div class="test-case">
+            <h3>测试1：有效的教师用户名（以Ujs开头）</h3>
+            <div class="test-input">
+                <label>用户名：</label>
+                <input type="text" id="test1-username" value="Ujs001" />
+            </div>
+            <div class="test-input">
+                <label>密码：</label>
+                <input type="password" id="test1-password" value="123456" />
+            </div>
+            <div class="test-input">
+                <label>角色：</label>
+                <span>教师</span>
+            </div>
+            <button onclick="runTest1()">运行测试</button>
+            <div id="test1-result"></div>
+        </div>
+
+        <!-- Test Case 2 -->
+        <div class="test-case">
+            <h3>测试2：无效的教师用户名（不以Ujs开头）</h3>
+            <div class="test-input">
+                <label>用户名：</label>
+                <input type="text" id="test2-username" value="teacher001" />
+            </div>
+            <div class="test-input">
+                <label>密码：</label>
+                <input type="password" id="test2-password" value="123456" />
+            </div>
+            <div class="test-input">
+                <label>角色：</label>
+                <span>教师</span>
+            </div>
+            <button onclick="runTest2()">运行测试</button>
+            <div id="test2-result"></div>
+        </div>
+
+        <!-- Test Case 3 -->
+        <div class="test-case">
+            <h3>测试3：学生账号（无Ujs限制）</h3>
+            <div class="test-input">
+                <label>用户名：</label>
+                <input type="text" id="test3-username" value="student001" />
+            </div>
+            <div class="test-input">
+                <label>密码：</label>
+                <input type="password" id="test3-password" value="123456" />
+            </div>
+            <div class="test-input">
+                <label>角色：</label>
+                <span>学生</span>
+            </div>
+            <button onclick="runTest3()">运行测试</button>
+            <div id="test3-result"></div>
+        </div>
+
+        <!-- Test Case 4 -->
+        <div class="test-case">
+            <h3>测试4：多个有效的教师用户名</h3>
+            <div class="test-input">
+                <label>测试用户名：</label>
+                <span>UjsTeacher, Ujs123, UjsAdmin</span>
+            </div>
+            <button onclick="runTest4()">运行测试</button>
+            <div id="test4-result"></div>
+        </div>
+
+        <!-- Test Case 5 -->
+        <div class="test-case">
+            <h3>测试5：边界情况测试</h3>
+            <div class="test-input">
+                <label>测试用户名：</label>
+                <span>Ujs, ujs001, UJS001, ujsTeacher</span>
+            </div>
+            <button onclick="runTest5()">运行测试</button>
+            <div id="test5-result"></div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h2>📊 测试总结</h2>
+            <div id="test-summary">
+                <p>点击上方按钮运行测试...</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button onclick="runAllTests()" style="background: #27ae60;">运行所有测试</button>
+            <button onclick="clearResults()" style="background: #95a5a6;">清除结果</button>
+            <button onclick="clearUsers()" style="background: #e74c3c;">清除所有用户</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from './js/modules/Auth.js';
+        
+        // Make auth available globally for tests
+        window.testAuth = auth;
+        
+        let testResults = [];
+
+        window.runTest1 = function() {
+            const username = document.getElementById('test1-username').value;
+            const password = document.getElementById('test1-password').value;
+            const result = auth.register(username, password, '', 'teacher');
+            
+            const resultDiv = document.getElementById('test1-result');
+            if (result.success) {
+                resultDiv.innerHTML = `<div class="test-result success">✅ 测试通过：${result.message}</div>`;
+                testResults.push({ test: 'Test 1', passed: true });
+            } else {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败：${result.message}</div>`;
+                testResults.push({ test: 'Test 1', passed: false });
+            }
+            updateSummary();
+        };
+
+        window.runTest2 = function() {
+            const username = document.getElementById('test2-username').value;
+            const password = document.getElementById('test2-password').value;
+            const result = auth.register(username, password, '', 'teacher');
+            
+            const resultDiv = document.getElementById('test2-result');
+            if (!result.success && result.message.includes('Ujs')) {
+                resultDiv.innerHTML = `<div class="test-result success">✅ 测试通过：正确拒绝了无效用户名<br>错误信息：${result.message}</div>`;
+                testResults.push({ test: 'Test 2', passed: true });
+            } else {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败：应该拒绝不以Ujs开头的教师用户名</div>`;
+                testResults.push({ test: 'Test 2', passed: false });
+            }
+            updateSummary();
+        };
+
+        window.runTest3 = function() {
+            const username = document.getElementById('test3-username').value;
+            const password = document.getElementById('test3-password').value;
+            const result = auth.register(username, password, '', 'student');
+            
+            const resultDiv = document.getElementById('test3-result');
+            if (result.success) {
+                resultDiv.innerHTML = `<div class="test-result success">✅ 测试通过：学生账号无Ujs限制<br>${result.message}</div>`;
+                testResults.push({ test: 'Test 3', passed: true });
+            } else {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败：${result.message}</div>`;
+                testResults.push({ test: 'Test 3', passed: false });
+            }
+            updateSummary();
+        };
+
+        window.runTest4 = function() {
+            const testUsernames = ['UjsTeacher', 'Ujs123', 'UjsAdmin'];
+            let allPassed = true;
+            let results = [];
+            
+            testUsernames.forEach((username, index) => {
+                const result = auth.register(username, `password${index}`, '', 'teacher');
+                results.push(`${username}: ${result.success ? '✅' : '❌'} ${result.message}`);
+                if (!result.success) allPassed = false;
+            });
+            
+            const resultDiv = document.getElementById('test4-result');
+            if (allPassed) {
+                resultDiv.innerHTML = `<div class="test-result success">✅ 测试通过：所有有效用户名都成功注册<br>${results.join('<br>')}</div>`;
+                testResults.push({ test: 'Test 4', passed: true });
+            } else {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 测试失败<br>${results.join('<br>')}</div>`;
+                testResults.push({ test: 'Test 4', passed: false });
+            }
+            updateSummary();
+        };
+
+        window.runTest5 = function() {
+            const testCases = [
+                { username: 'Ujs', expected: true, desc: 'Ujs（最短有效）' },
+                { username: 'ujs001', expected: false, desc: 'ujs001（小写，应失败）' },
+                { username: 'UJS001', expected: false, desc: 'UJS001（全大写，应失败）' },
+                { username: 'ujsTeacher', expected: false, desc: 'ujsTeacher（小写开头，应失败）' }
+            ];
+            
+            let results = [];
+            let allCorrect = true;
+            
+            testCases.forEach((testCase, index) => {
+                const result = auth.register(testCase.username, `pass${index}`, '', 'teacher');
+                const correct = (result.success === testCase.expected);
+                if (!correct) allCorrect = false;
+                
+                const status = correct ? '✅' : '❌';
+                results.push(`${status} ${testCase.desc}: ${result.message}`);
+            });
+            
+            const resultDiv = document.getElementById('test5-result');
+            if (allCorrect) {
+                resultDiv.innerHTML = `<div class="test-result success">✅ 测试通过：所有边界情况正确处理<br>${results.join('<br>')}</div>`;
+                testResults.push({ test: 'Test 5', passed: true });
+            } else {
+                resultDiv.innerHTML = `<div class="test-result error">❌ 部分测试失败<br>${results.join('<br>')}</div>`;
+                testResults.push({ test: 'Test 5', passed: false });
+            }
+            updateSummary();
+        };
+
+        window.runAllTests = function() {
+            clearResults();
+            clearUsers();
+            setTimeout(() => runTest1(), 100);
+            setTimeout(() => runTest2(), 200);
+            setTimeout(() => runTest3(), 300);
+            setTimeout(() => runTest4(), 400);
+            setTimeout(() => runTest5(), 500);
+        };
+
+        window.clearResults = function() {
+            testResults = [];
+            document.querySelectorAll('[id$="-result"]').forEach(div => div.innerHTML = '');
+            updateSummary();
+        };
+
+        window.clearUsers = function() {
+            localStorage.removeItem('kg_users');
+            alert('所有用户数据已清除');
+        };
+
+        function updateSummary() {
+            const summaryDiv = document.getElementById('test-summary');
+            if (testResults.length === 0) {
+                summaryDiv.innerHTML = '<p>点击上方按钮运行测试...</p>';
+                return;
+            }
+            
+            const passed = testResults.filter(r => r.passed).length;
+            const total = testResults.length;
+            const percentage = ((passed / total) * 100).toFixed(0);
+            
+            let html = `
+                <p><strong>测试完成：${passed}/${total} 通过 (${percentage}%)</strong></p>
+                <ul>
+            `;
+            
+            testResults.forEach(result => {
+                const icon = result.passed ? '✅' : '❌';
+                html += `<li>${icon} ${result.test}</li>`;
+            });
+            
+            html += '</ul>';
+            
+            if (passed === total) {
+                html += '<p style="color: #27ae60; font-weight: bold;">🎉 所有测试通过！教师注册权限规则工作正常。</p>';
+            } else {
+                html += '<p style="color: #e74c3c; font-weight: bold;">⚠️ 部分测试失败，请检查实现。</p>';
+            }
+            
+            summaryDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -33,6 +33,8 @@
 
 ## 二、快速上手：教师的一天怎么用？
 
+**入口建议**：在主图左侧栏点击 **「📋 教师备课中心」→ 进入教师备课中心**（`teacher-prep.html`），可一站式打开主图、认知冲突课例、七大 Agents、章节设计文档、Skills 测试平台与教师文档。
+
 ### 1. 课前 30–60 分钟：备课规划
 
 1. **打开主图 `index.html`**
@@ -165,3 +167,18 @@
 ---
 
 如需针对某一章（如“导数章”或“级数章”）的**专用教学方案**，可以在此手册的基础上为该章单独写一份「教学场景 + 节次安排 + 对应 Skills/Agents」的细化设计。老师只需按图索骥，即可在不同班级快速复用与调整。
+
+---
+
+## 六、教师备课系统入口一览
+
+| 用途 | 入口 |
+|------|------|
+| **一站式备课** | 主图左侧栏 → **📋 教师备课中心** → `teacher-prep.html` |
+| **主图与学域** | `index.html` |
+| **认知冲突课例** | `limit-conflict-teaching.html` |
+| **七大 AI Agents** | `teacher-agents.html` |
+| **章节教学设计** | `SERIES-CHAPTER-DESIGN.md`、`ODE-CHAPTER-DESIGN.md` |
+| **Skills 深度内容 / 组题** | 主图节点详情「去运用」或 `test-skills-system.html` |
+| **学生 Skills 看板** | `student-skills.html` |
+| **备课模式（节点编辑/教案生成）** | 教师账号登录后，主图右上角「备课模式」开关，详见 `docs/TEACHER-USER-GUIDE.md` |

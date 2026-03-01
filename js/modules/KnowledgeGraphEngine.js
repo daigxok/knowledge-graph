@@ -112,6 +112,19 @@ export class KnowledgeGraphEngine {
     }
 
     /**
+     * Update an existing node (e.g. after teacher edit). Keeps id; replaces other fields.
+     * @param {Object} node - Updated node object (must have node.id)
+     */
+    updateNode(node) {
+        if (!node || !node.id) return false;
+        const index = this.nodes.findIndex(n => n.id === node.id);
+        if (index === -1) return false;
+        this.nodes[index] = { ...this.nodes[index], ...node, id: node.id };
+        this.nodeMap.set(node.id, this.nodes[index]);
+        return true;
+    }
+
+    /**
      * Remove a node from the graph
      * @param {string} nodeId - Node identifier
      */

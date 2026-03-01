@@ -74,6 +74,7 @@ registerForm.addEventListener('submit', (e) => {
     const password = document.getElementById('registerPassword').value;
     const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
     const email = document.getElementById('registerEmail').value.trim();
+    const role = document.querySelector('input[name="role"]:checked').value;
     
     // Validate password confirmation
     if (password !== passwordConfirm) {
@@ -81,7 +82,7 @@ registerForm.addEventListener('submit', (e) => {
         return;
     }
     
-    const result = auth.register(username, password, email);
+    const result = auth.register(username, password, email, role);
     
     if (result.success) {
         showNotification(result.message, 'success');
@@ -118,5 +119,24 @@ inputs.forEach(input => {
     
     input.addEventListener('input', () => {
         input.classList.remove('error');
+    });
+});
+
+// Role selection change handler - update username hint
+const roleInputs = document.querySelectorAll('input[name="role"]');
+const usernameHint = document.getElementById('usernameHint');
+const usernameInput = document.getElementById('registerUsername');
+
+roleInputs.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        if (e.target.value === 'teacher') {
+            usernameHint.textContent = '教师账号需要审核，如注册失败请联系：15805295231';
+            usernameHint.style.color = '#3498db';
+            usernameInput.placeholder = '请输入用户名（3-20个字符）';
+        } else {
+            usernameHint.textContent = '用户名长度为3-20个字符';
+            usernameHint.style.color = '';
+            usernameInput.placeholder = '请输入用户名（3-20个字符）';
+        }
     });
 });

@@ -74,7 +74,7 @@
                         maxlength="20"
                         autocomplete="username"
                     />
-                    <span class="form-hint">用户名长度为3-20个字符</span>
+                    <span class="form-hint" id="usernameHint">用户名长度为3-20个字符</span>
                 </div>
 
                 <div class="form-group">
@@ -113,6 +113,21 @@
                         placeholder="请输入邮箱地址"
                         autocomplete="email"
                     />
+                </div>
+
+                <div class="form-group">
+                    <label>用户角色</label>
+                    <div class="role-selection">
+                        <label class="radio-label">
+                            <input type="radio" name="role" value="student" checked />
+                            <span>学生</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="role" value="teacher" />
+                            <span>教师</span>
+                        </label>
+                    </div>
+                    <span class="form-hint">教师可以创建和编辑知识节点，生成教案</span>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">注册</button>

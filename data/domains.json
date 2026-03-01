@@ -71,10 +71,10 @@
       "name": "优化与决策",
       "nameEn": "Optimization and Decision Making",
       "coreIdea": "多元系统的最优决策",
-      "description": "通过多元微积分和优化方法，解决多变量系统中的最优化问题和决策问题",
-      "integratedContent": ["多元微积分", "梯度方法", "约束优化"],
+      "description": "通过多元微积分、空间几何和优化方法，解决多变量系统中的最优化问题和决策问题",
+      "integratedContent": ["多元微积分", "空间解析几何", "梯度方法", "约束优化"],
       "traditionalChapters": ["chapter-7", "chapter-8", "chapter-9", "chapter-12"],
-      "typicalProblems": ["资源配置", "参数调优", "系统控制", "多目标优化"],
+      "typicalProblems": ["资源配置", "参数调优", "系统控制", "多目标优化", "空间路径规划"],
       "realWorldScenarios": [
         {
           "title": "深度学习训练",
@@ -93,21 +93,33 @@
           "description": "优化推荐算法的多个目标函数，平衡准确率和多样性",
           "concepts": ["多元函数", "梯度", "优化算法"],
           "industry": "互联网"
+        },
+        {
+          "title": "无人机三维路径规划",
+          "description": "在三维空间中规划无人机最优飞行路径，避开障碍物并最小化能耗",
+          "concepts": ["空间向量", "空间直线与平面", "距离计算", "方向导数"],
+          "industry": "无人机"
+        },
+        {
+          "title": "卫星轨道优化",
+          "description": "计算卫星在三维空间中的最优运行轨道，优化覆盖范围和能量消耗",
+          "concepts": ["空间曲线", "曲率", "向量运算", "极值问题"],
+          "industry": "航天航空"
         }
       ],
       "color": "#4facfe",
       "icon": "🎯",
-      "keySkills": ["多元函数Skill", "概念可视化Skill"]
+      "keySkills": ["多元函数Skill", "空间几何可视化Skill", "概念可视化Skill"]
     },
     {
       "id": "domain-4",
       "name": "不确定性处理",
       "nameEn": "Uncertainty Handling",
       "coreIdea": "无穷与随机的数学工具",
-      "description": "使用级数、泰勒展开和数值方法处理无穷过程和不确定性问题",
-      "integratedContent": ["级数收敛", "泰勒展开", "数值逼近"],
+      "description": "使用级数、泰勒展开、空间几何和数值方法处理无穷过程和不确定性问题",
+      "integratedContent": ["级数收敛", "泰勒展开", "空间几何近似", "数值逼近"],
       "traditionalChapters": ["chapter-11", "chapter-12"],
-      "typicalProblems": ["误差估计", "近似计算", "稳定性分析", "收敛性判断"],
+      "typicalProblems": ["误差估计", "近似计算", "稳定性分析", "收敛性判断", "空间位置不确定性"],
       "realWorldScenarios": [
         {
           "title": "金融风险评估",
@@ -126,11 +138,23 @@
           "description": "使用傅里叶级数分析桥梁的振动模式和稳定性",
           "concepts": ["傅里叶级数", "收敛性", "稳定性"],
           "industry": "土木工程"
+        },
+        {
+          "title": "GPS定位误差分析",
+          "description": "在三维空间中分析卫星定位的误差传播，使用空间几何方法估计位置不确定性",
+          "concepts": ["空间向量", "距离误差", "泰勒展开", "误差传播"],
+          "industry": "导航定位"
+        },
+        {
+          "title": "机器人视觉定位",
+          "description": "使用空间几何和数值方法处理三维视觉定位中的不确定性和噪声",
+          "concepts": ["空间坐标变换", "误差估计", "数值逼近"],
+          "industry": "机器人"
         }
       ],
       "color": "#fa709a",
       "icon": "🎲",
-      "keySkills": ["级数收敛Skill", "推导动画Skill"]
+      "keySkills": ["级数收敛Skill", "空间几何Skill", "推导动画Skill"]
     },
     {
       "id": "domain-5",

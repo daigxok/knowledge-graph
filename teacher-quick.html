@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师快速备课</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .header h1 { color: #667eea; font-size: 24px; }
+        .main { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+        .sidebar, .content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .chapter-list { list-style: none; }
+        .chapter-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .chapter-item:hover { background: #e0e0e0; }
+        .chapter-item.active { background: #e7eaff; border-left: 3px solid #667eea; }
+        .node-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .node-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .node-card:hover { border-color: #667eea; transform: translateY(-2px); }
+        .node-name { font-weight: 600; font-size: 15px; margin-bottom: 8px; color: #333; }
+        .node-desc { font-size: 13px; color: #666; margin-bottom: 10px; line-height: 1.4; }
+        .node-btns { display: flex; gap: 6px; }
+        .btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; }
+        .btn-secondary { background: #e9ecef; color: #333; }
+        .btn-secondary:hover { background: #dee2e6; }
+        .back-btn {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .back-btn:hover { background: #e0e0e0; }
+        .detail-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .detail-section h3 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .detail-section p { font-size: 14px; line-height: 1.6; color: #333; }
+        .action-btns { margin-top: 20px; }
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .loading { text-align: center; padding: 40px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👨‍🏫 教师快速备课工具</h1>
+        </div>
+        
+        <div class="main">
+            <div class="sidebar">
+                <h3 style="margin-bottom: 15px; font-size: 16px;">章节列表</h3>
+                <ul class="chapter-list" id="chapterList">
+                    <li class="loading">加载中...</li>
+                </ul>
+            </div>
+            
+            <div class="content" id="content">
+                <div style="text-align: center; padding: 60px 20px; color: #666;">
+                    <h2 style="color: #667eea; margin-bottom: 15px;">欢迎使用</h2>
+                    <p>请从左侧选择章节开始</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let nodes = [];
+        let currentChapter = null;
+        
+        // 加载数据
+        async function loadData() {
+            try {
+                const response = await fetch('data/nodes.json');
+                const data = await response.json();
+                nodes = data;
+                console.log('加载了', nodes.length, '个节点');
+                renderChapters();
+            } catch (error) {
+                console.error('加载失败:', error);
+                document.getElementById('chapterList').innerHTML = '<li style="color: red;">加载失败</li>';
+            }
+        }
+        
+        // 渲染章节列表
+        function renderChapters() {
+            const chapters = {};
+            nodes.forEach(node => {
+                const ch = node.chapter || '其他';
+                if (!chapters[ch]) chapters[ch] = [];
+                chapters[ch].push(node);
+            });
+            
+            const sorted = Object.keys(chapters).sort();
+            const html = sorted.map(ch => 
+                `<li class="chapter-item" onclick="showChapter('${ch}')">${ch} (${chapters[ch].length})</li>`
+            ).join('');
+            
+            document.getElementById('chapterList').innerHTML = html;
+        }
+        
+        // 显示章节
+        function showChapter(chapter) {
+            currentChapter = chapter;
+            const chNodes = nodes.filter(n => (n.chapter || '其他') === chapter);
+            
+            const html = `
+                <h2 style="margin-bottom: 20px; color: #667eea;">${chapter}</h2>
+                <div class="node-grid">
+                    ${chNodes.map(node => `
+                        <div class="node-card">
+                            <div class="node-name">${node.name}</div>
+                            <div class="node-desc">${(node.description || '暂无描述').substring(0, 80)}...</div>
+                            <div class="node-btns">
+                                <button class="btn btn-primary" onclick="showDetail('${node.id}')">📖 详情</button>
+                                <button class="btn btn-secondary" onclick="quickPlan('${node.id}')">📝 教案</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.getElementById('content').innerHTML = html;
+            
+            // 更新激活状态
+            document.querySelectorAll('.chapter-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.startsWith(chapter)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // 显示详情
+        function showDetail(id) {
+            const node = nodes.find(n => n.id === id);
+            if (!node) return;
+            
+            const html = `
+                <button class="back-btn" onclick="showChapter('${currentChapter}')">← 返回</button>
+                <h2 style="margin-bottom: 10px; color: #667eea;">${node.name}</h2>
+                <p style="color: #999; margin-bottom: 20px; font-size: 14px;">${node.nameEn || ''}</p>
+                
+                <div class="detail-section">
+                    <h3>📝 描述</h3>
+                    <p>${node.description || '暂无描述'}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>⚙️ 参数</h3>
+                    <p>难度: ${node.difficulty || 3}/5 | 重要性: ${node.importance || 3}/5</p>
+                </div>
+                
+                <div class="action-btns">
+                    <button class="action-btn btn-primary" onclick="generatePlan('${node.id}')">📝 生成完整教案</button>
+                    <button class="action-btn btn-secondary" onclick="showChapter('${currentChapter}')">← 返回</button>
+                </div>
+            `;
+            
+            document.getElementById('content').innerHTML = html;
+        }
+        
+        // 快速教案
+        function quickPlan(id) {
+            const node = nodes.find(n => n.id === id);
+            if (!node) return;
+            
+            const plan = `# 教案：${node.name}
+
+## 教学目标
+- 理解并掌握"${node.name}"的基本概念
+- 能够运用相关知识解决实际问题
+
+## 知识点概述
+${node.description || '暂无描述'}
+
+## 教学重点
+- 核心概念的准确理解
+- 公式的推导和应用
+- 实际问题的建模和求解
+
+## 预计课时
+${node.estimatedStudyTime || '2小时'}
+
+---
+生成时间：${new Date().toLocaleString()}
+`;
+            
+            downloadText(plan, `教案-${node.name}.md`);
+            alert('✅ 教案已下载');
+        }
+        
+        // 生成完整教案
+        function generatePlan(id) {
+            const node = nodes.find(n => n.id === id);
+            if (!node) return;
+            
+            const html = `
+                <button class="back-btn" onclick="showDetail('${node.id}')">← 返回详情</button>
+                <h2 style="margin-bottom: 20px; color: #667eea;">📝 教案：${node.name}</h2>
+                
+                <div class="detail-section">
+                    <h3>一、教学目标</h3>
+                    <p>通过本节课的学习，学生应能够：</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li>理解并掌握"${node.name}"的基本概念和定义</li>
+                        <li>能够运用相关知识解决实际问题</li>
+                        <li>建立与其他知识点的联系</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>二、知识点概述</h3>
+                    <p>${node.description || '暂无描述'}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>三、教学重点</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>核心概念的准确理解</li>
+                        <li>公式的推导和应用</li>
+                        <li>实际问题的建模和求解</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>四、预计课时</h3>
+                    <p>${node.estimatedStudyTime || '2小时'}</p>
+                </div>
+                
+                <div class="action-btns">
+                    <button class="action-btn btn-primary" onclick="exportFullPlan('${node.id}')">💾 导出教案</button>
+                    <button class="action-btn btn-secondary" onclick="showDetail('${node.id}')">← 返回</button>
+                </div>
+            `;
+            
+            document.getElementById('content').innerHTML = html;
+        }
+        
+        // 导出完整教案
+        function exportFullPlan(id) {
+            const node = nodes.find(n => n.id === id);
+            if (!node) return;
+            
+            const plan = `# 教案：${node.name}
+
+## 一、教学目标
+
+通过本节课的学习，学生应能够：
+
+1. 理解并掌握"${node.name}"的基本概念和定义
+2. 能够运用相关知识解决实际问题
+3. 建立与其他知识点的联系
+4. 培养数学思维和问题解决能力
+
+**难度等级**: ${node.difficulty || 3}/5  
+**重要性**: ${node.importance || 3}/5
+
+## 二、知识点概述
+
+${node.description || '暂无描述'}
+
+## 三、教学重点
+
+1. 核心概念的准确理解
+2. 公式的推导和应用
+3. 与其他知识点的联系
+4. 实际问题的建模和求解
+
+## 四、教学方法
+
+1. **讲授法**: 系统讲解核心概念和原理
+2. **演示法**: 利用知识图谱展示知识关联
+3. **案例法**: 通过实际案例加深理解
+4. **讨论法**: 组织学生讨论，培养思维能力
+5. **练习法**: 通过练习巩固知识
+
+## 五、教学过程
+
+**预计学习时间**: ${node.estimatedStudyTime || '2小时'}
+
+**时间分配建议**:
+- 导入与复习（10分钟）：复习前置知识，引入新课
+- 概念讲解（30分钟）：讲解核心概念和公式
+- 例题演示（30分钟）：通过例题加深理解
+- 练习巩固（30分钟）：学生练习，教师指导
+- 总结提升（10分钟）：总结要点，布置作业
+
+## 六、实际应用
+
+本知识点在以下领域有重要应用：
+
+1. **工程技术**: 在实际工程问题中的应用
+2. **科学研究**: 在科学研究中的作用
+3. **日常生活**: 与日常生活的联系
+
+## 七、课后作业
+
+1. 复习本节课的核心概念和公式
+2. 完成课后练习题（基础题5道，提高题3道）
+3. 预习下一节课内容
+4. 思考：本知识点在实际生活中的应用
+
+## 八、教学反思
+
+（课后填写）
+
+1. 学生对核心概念的掌握情况
+2. 教学方法的有效性
+3. 学生的参与度和积极性
+4. 需要改进的地方
+5. 下次课的调整建议
+
+---
+
+**生成时间**: ${new Date().toLocaleString()}  
+**生成工具**: 高等数学学域知识图谱系统  
+**联系方式**: 15805295231
+`;
+            
+            downloadText(plan, `教案-${node.name}-${new Date().toISOString().split('T')[0]}.md`);
+            alert('✅ 教案已导出为 Markdown 文件');
+        }
+        
+        // 下载文本文件
+        function downloadText(text, filename) {
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // 页面加载时初始化
+        loadData();
+    </script>
+</body>
+</html>

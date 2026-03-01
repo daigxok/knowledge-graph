@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂授课页面诊断</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .node-card-demo {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .node-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .node-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .node-btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        .node-btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 教师课堂授课页面诊断工具</h1>
+    
+    <div class="section">
+        <h2>1. 数据加载测试</h2>
+        <button onclick="testDataLoading()">测试数据加载</button>
+        <div id="dataLoadingResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>2. 函数定义测试</h2>
+        <button onclick="testFunctions()">测试函数定义</button>
+        <div id="functionsResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>3. 按钮渲染测试</h2>
+        <button onclick="testButtonRendering()">测试按钮渲染</button>
+        <div id="buttonRenderingResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>4. 按钮点击测试</h2>
+        <div class="node-card-demo">
+            <h3>测试知识点</h3>
+            <p>这是一个测试知识点的描述</p>
+            <div class="node-actions">
+                <button class="node-btn node-btn-primary" onclick="testButtonClick('detail')">
+                    📖 查看详情
+                </button>
+                <button class="node-btn node-btn-secondary" onclick="testButtonClick('present')">
+                    🖥️ 展示
+                </button>
+            </div>
+        </div>
+        <div id="buttonClickResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>5. 完整流程测试</h2>
+        <button onclick="testFullFlow()">运行完整流程测试</button>
+        <div id="fullFlowResult"></div>
+    </div>
+    
+    <div class="section">
+        <h2>6. 打开实际页面</h2>
+        <button onclick="window.open('teacher-classroom.html', '_blank')">打开 teacher-classroom.html</button>
+        <p style="color: #666; font-size: 14px;">
+            提示：打开后按F12查看Console，然后按照以下步骤操作：<br>
+            1. 等待数据加载完成<br>
+            2. 点击左侧任意章节<br>
+            3. 检查右侧是否显示知识点卡片<br>
+            4. 检查卡片上是否有"📖 查看详情"和"🖥️ 展示"按钮
+        </p>
+    </div>
+    
+    <script type="module">
+        // Import NodeDataManager
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        
+        let allNodes = [];
+        let domainMap = {};
+        
+        // Test data loading
+        window.testDataLoading = async function() {
+            const resultDiv = document.getElementById('dataLoadingResult');
+            resultDiv.innerHTML = '<p>正在加载数据...</p>';
+            
+            try {
+                // Load nodes
+                await nodeDataManager.loadNodes();
+                allNodes = nodeDataManager.getAllNodes();
+                
+                // Load domains
+                const response = await fetch('data/domains.json');
+                const domains = await response.json();
+                domains.forEach(d => {
+                    domainMap[d.id] = d;
+                });
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result success">
+                        ✅ 数据加载成功<br>
+                        节点数量: ${allNodes.length}<br>
+                        学域数量: ${Object.keys(domainMap).length}
+                    </div>
+                    <pre>${JSON.stringify(allNodes[0], null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="test-result error">
+                        ❌ 数据加载失败<br>
+                        错误: ${error.message}
+                    </div>
+                `;
+            }
+        };
+        
+        // Test functions
+        window.testFunctions = function() {
+            const resultDiv = document.getElementById('functionsResult');
+            const functions = [
+                'showNodeDetail',
+                'generateLessonPlan',
+                'exportLessonPlan',
+                'backToChapter',
+                'presentNode'
+            ];
+            
+            let html = '';
+            functions.forEach(func => {
+                const exists = typeof window[func] === 'function';
+                html += `
+                    <div class="test-result ${exists ? 'success' : 'error'}">
+                        ${exists ? '✅' : '❌'} window.${func}: ${typeof window[func]}
+                    </div>
+                `;
+            });
+            
+            resultDiv.innerHTML = html;
+        };
+        
+        // Test button rendering
+        window.testButtonRendering = function() {
+            const resultDiv = document.getElementById('buttonRenderingResult');
+            
+            if (allNodes.length === 0) {
+                resultDiv.innerHTML = `
+                    <div class="test-result warning">
+                        ⚠️ 请先运行"测试数据加载"
+                    </div>
+                `;
+                return;
+            }
+            
+            const testNode = allNodes[0];
+            const domains = (testNode.domains || []).map(d => {
+                const domain = domainMap[d];
+                return domain ? `<span style="padding: 4px 8px; background: #e7eaff; color: #667eea; border-radius: 12px; font-size: 11px;">${domain.name}</span>` : '';
+            }).join(' ');
+            
+            const cardHTML = `
+                <div class="node-card-demo">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <div style="font-weight: 600;">${testNode.name}</div>
+                        <div style="background: #667eea; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px;">
+                            难度 ${testNode.difficulty || 3}
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; color: #666; margin-bottom: 12px;">
+                        ${testNode.description || '暂无描述'}
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        ${domains}
+                    </div>
+                    <div class="node-actions">
+                        <button class="node-btn node-btn-primary" onclick="alert('查看详情按钮被点击！节点ID: ${testNode.id}')">
+                            📖 查看详情
+                        </button>
+                        <button class="node-btn node-btn-secondary" onclick="alert('展示按钮被点击！节点ID: ${testNode.id}')">
+                            🖥️ 展示
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.innerHTML = `
+                <div class="test-result success">
+                    ✅ 按钮渲染测试（点击下面的按钮测试）
+                </div>
+                ${cardHTML}
+                <pre>${cardHTML}</pre>
+            `;
+        };
+        
+        // Test button click
+        window.testButtonClick = function(type) {
+            const resultDiv = document.getElementById('buttonClickResult');
+            resultDiv.innerHTML = `
+                <div class="test-result success">
+                    ✅ 按钮点击成功！<br>
+                    类型: ${type}<br>
+                    时间: ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+        };
+        
+        // Test full flow
+        window.testFullFlow = async function() {
+            const resultDiv = document.getElementById('fullFlowResult');
+            resultDiv.innerHTML = '<p>正在运行完整流程测试...</p>';
+            
+            const results = [];
+            
+            // Step 1: Load data
+            try {
+                await nodeDataManager.loadNodes();
+                allNodes = nodeDataManager.getAllNodes();
+                results.push('✅ 步骤1: 数据加载成功');
+            } catch (error) {
+                results.push(`❌ 步骤1: 数据加载失败 - ${error.message}`);
+                resultDiv.innerHTML = results.map(r => `<div class="test-result ${r.startsWith('✅') ? 'success' : 'error'}">${r}</div>`).join('');
+                return;
+            }
+            
+            // Step 2: Check functions
+            const functionsExist = typeof window.showNodeDetail === 'function' && 
+                                  typeof window.generateLessonPlan === 'function';
+            if (functionsExist) {
+                results.push('✅ 步骤2: 函数定义正确');
+            } else {
+                results.push('❌ 步骤2: 函数未定义');
+            }
+            
+            // Step 3: Render card
+            if (allNodes.length > 0) {
+                results.push(`✅ 步骤3: 可以渲染 ${allNodes.length} 个节点`);
+            } else {
+                results.push('❌ 步骤3: 没有可渲染的节点');
+            }
+            
+            // Step 4: Test button HTML
+            const testNode = allNodes[0];
+            const buttonHTML = `<button onclick="window.showNodeDetail('${testNode.id}')">📖 查看详情</button>`;
+            results.push(`✅ 步骤4: 按钮HTML生成正确`);
+            
+            // Display results
+            resultDiv.innerHTML = results.map(r => {
+                const isSuccess = r.startsWith('✅');
+                return `<div class="test-result ${isSuccess ? 'success' : 'error'}">${r}</div>`;
+            }).join('');
+            
+            // Add summary
+            const successCount = results.filter(r => r.startsWith('✅')).length;
+            const totalCount = results.length;
+            resultDiv.innerHTML += `
+                <div class="test-result ${successCount === totalCount ? 'success' : 'warning'}">
+                    📊 测试完成: ${successCount}/${totalCount} 通过
+                </div>
+            `;
+        };
+    </script>
+</body>
+</html>

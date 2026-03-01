@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeEditor Preservation Tests</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        
+        .header p {
+            margin: 5px 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .test-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .test-info h2 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 20px;
+        }
+        
+        .test-info ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .test-info li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .expected-outcome {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .expected-outcome strong {
+            color: #2e7d32;
+        }
+        
+        #test-results {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-height: 200px;
+        }
+        
+        .test-suite {
+            margin: 20px 0;
+            border-left: 3px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        .test-suite h3 {
+            color: #667eea;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        
+        .test-case {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        
+        .test-case.pass {
+            border-left: 4px solid #4caf50;
+            background: #f1f8f4;
+        }
+        
+        .test-case.fail {
+            border-left: 4px solid #f44336;
+            background: #fef1f0;
+        }
+        
+        .test-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .test-error {
+            color: #d32f2f;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 5px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        
+        .summary {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .summary.pass {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        
+        .summary.fail {
+            background: #ffcdd2;
+            color: #c62828;
+            border: 2px solid #f44336;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .btn-run {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-run:hover {
+            background: #5568d3;
+        }
+        
+        .btn-run:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🛡️ NodeEditor Preservation Tests</h1>
+        <p><strong>Property 2: Preservation</strong> - Valid Array Behavior</p>
+        <p>Validates: Requirements 3.1, 3.2, 3.3, 3.4</p>
+        <p>Task 2: Write preservation property tests (BEFORE implementing fix)</p>
+    </div>
+    
+    <div class="test-info">
+        <h2>📋 Test Purpose</h2>
+        <p>These tests verify that when <code>this.allNodes</code> is a valid array, all existing functionality works correctly and is preserved after the fix.</p>
+        
+        <h3>What We're Testing:</h3>
+        <ul>
+            <li><strong>Node List Display:</strong> Valid arrays display node lists correctly</li>
+            <li><strong>Filter Logic:</strong> Current node and selected prerequisites are excluded</li>
+            <li><strong>Search Filtering:</strong> Search by name (Chinese/English) and ID works</li>
+            <li><strong>Node Selection:</strong> Adding and removing prerequisites works correctly</li>
+            <li><strong>UI Rendering:</strong> Selected prerequisites render properly</li>
+            <li><strong>Edge Cases:</strong> Empty arrays, no search results handled gracefully</li>
+        </ul>
+        
+        <div class="expected-outcome">
+            <strong>✅ EXPECTED OUTCOME:</strong> All tests PASS on unfixed code<br>
+            This confirms the baseline behavior that must be preserved after the fix.
+        </div>
+        
+        <button id="run-tests" class="btn-run">▶️ Run Preservation Tests</button>
+    </div>
+    
+    <div id="test-results">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Click "Run Preservation Tests" to start...</p>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { NodeEditor } from './js/modules/NodeEditor.js';
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        
+        // Make available globally
+        window.NodeEditor = NodeEditor;
+        window.nodeDataManager = nodeDataManager;
+        
+        const runButton = document.getElementById('run-tests');
+        const resultsDiv = document.getElementById('test-results');
+        let testResults = [];
+        
+        /**
+         * Test Case Class
+         */
+        class TestCase {
+            constructor(name, description, testFn) {
+                this.name = name;
+                this.description = description;
+                this.testFn = testFn;
+                this.status = 'pending';
+                this.error = null;
+                this.duration = 0;
+                this.details = '';
+            }
+            
+            async run() {
+                const startTime = performance.now();
+                try {
+                    await this.testFn();
+                    this.status = 'passed';
+                    this.details = '✓ Test passed: Behavior preserved correctly';
+                } catch (error) {
+                    this.status = 'failed';
+                    this.error = error;
+                    this.details = `✗ Test failed: ${error.message}\n\nStack trace:\n${error.stack}`;
+                }
+                this.duration = Math.round(performance.now() - startTime);
+            }
+        }
+        
+        // Sample node data for testing
+        const sampleNodes = [
+            { id: 'node-1', name: '微积分基础', nameEn: 'Calculus Basics', prerequisites: [] },
+            { id: 'node-2', name: '线性代数', nameEn: 'Linear Algebra', prerequisites: [] },
+            { id: 'node-3', name: '概率论', nameEn: 'Probability Theory', prerequisites: ['node-1'] },
+            { id: 'node-4', name: '统计学', nameEn: 'Statistics', prerequisites: ['node-3'] },
+            { id: 'node-5', name: '机器学习', nameEn: 'Machine Learning', prerequisites: ['node-2', 'node-3'] }
+        ];
+        
+        /**
+         * Define all test cases
+         */
+        const testCases = [
+            new TestCase(
+                'Test 1: Valid array displays node list correctly',
+                'Requirement 3.1: Node list display with valid array',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        editor.renderPrerequisitesList();
+                        
+                        if (listDiv.innerHTML.includes('暂无可用节点')) {
+                            throw new Error('Should not show "暂无可用节点" with valid nodes');
+                        }
+                        
+                        const items = listDiv.querySelectorAll('.prerequisite-item');
+                        if (items.length !== sampleNodes.length) {
+                            throw new Error(`Expected ${sampleNodes.length} items, got ${items.length}`);
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 2: Filter excludes current node',
+                'Requirement 3.3: Filter logic (excluding current node)',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        editor.currentNode = sampleNodes[0];
+                        editor.renderPrerequisitesList();
+                        
+                        const items = listDiv.querySelectorAll('.prerequisite-item');
+                        if (items.length !== sampleNodes.length - 1) {
+                            throw new Error(`Expected ${sampleNodes.length - 1} items, got ${items.length}`);
+                        }
+                        
+                        const nodeIds = Array.from(items).map(item => item.getAttribute('data-node-id'));
+                        if (nodeIds.includes('node-1')) {
+                            throw new Error('Current node should be excluded from list');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 3: Filter excludes selected prerequisites',
+                'Requirement 3.3: Filter logic (excluding selected nodes)',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        editor.selectedPrerequisites = ['node-2', 'node-3'];
+                        editor.renderPrerequisitesList();
+                        
+                        const items = listDiv.querySelectorAll('.prerequisite-item');
+                        const nodeIds = Array.from(items).map(item => item.getAttribute('data-node-id'));
+                        
+                        if (nodeIds.includes('node-2') || nodeIds.includes('node-3')) {
+                            throw new Error('Selected prerequisites should be excluded');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 4: Search filtering works correctly',
+                'Requirement 3.3: Search filtering',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        
+                        // Test Chinese name search
+                        editor.renderPrerequisitesList('微积分');
+                        let items = listDiv.querySelectorAll('.prerequisite-item');
+                        if (items.length !== 1) {
+                            throw new Error('Search for "微积分" should return 1 result');
+                        }
+                        
+                        // Test English name search
+                        editor.renderPrerequisitesList('linear');
+                        items = listDiv.querySelectorAll('.prerequisite-item');
+                        if (items.length !== 1) {
+                            throw new Error('Search for "linear" should return 1 result');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 5: Node selection works correctly',
+                'Requirement 3.3: Node selection functionality',
+                async () => {
+                    const editor = new NodeEditor();
+                    editor.allNodes = [...sampleNodes];
+                    editor.selectedPrerequisites = [];
+                    
+                    editor.addPrerequisite('node-1');
+                    if (!editor.selectedPrerequisites.includes('node-1')) {
+                        throw new Error('Node-1 should be added to selectedPrerequisites');
+                    }
+                    
+                    editor.addPrerequisite('node-2');
+                    if (editor.selectedPrerequisites.length !== 2) {
+                        throw new Error('Should have 2 selected prerequisites');
+                    }
+                    
+                    // Try to add duplicate
+                    editor.addPrerequisite('node-1');
+                    if (editor.selectedPrerequisites.length !== 2) {
+                        throw new Error('Duplicate should not be added');
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 6: Selected prerequisites render correctly',
+                'Requirement 3.1: Display selected prerequisites',
+                async () => {
+                    const editor = new NodeEditor();
+                    const container = document.createElement('div');
+                    container.id = 'selectedPrerequisites';
+                    document.body.appendChild(container);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        editor.selectedPrerequisites = ['node-1', 'node-3'];
+                        editor.renderSelectedPrerequisites();
+                        
+                        const tags = container.querySelectorAll('.selected-prerequisite-tag');
+                        if (tags.length !== 2) {
+                            throw new Error('Should display 2 selected prerequisites');
+                        }
+                    } finally {
+                        container.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 7: Remove prerequisite works correctly',
+                'Requirement 3.3: Node deselection functionality',
+                async () => {
+                    const editor = new NodeEditor();
+                    editor.allNodes = [...sampleNodes];
+                    editor.selectedPrerequisites = ['node-1', 'node-2', 'node-3'];
+                    
+                    editor.removePrerequisite('node-2');
+                    
+                    if (editor.selectedPrerequisites.includes('node-2')) {
+                        throw new Error('Node-2 should be removed');
+                    }
+                    
+                    if (editor.selectedPrerequisites.length !== 2) {
+                        throw new Error('Should have 2 prerequisites after removal');
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 8: Empty array shows appropriate message',
+                'Requirement 3.1: Handle empty array gracefully',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [];
+                        editor.renderPrerequisitesList();
+                        
+                        if (!listDiv.innerHTML.includes('暂无可用节点')) {
+                            throw new Error('Should show "暂无可用节点" for empty array');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 9: No search results shows appropriate message',
+                'Requirement 3.3: Handle no search results',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = [...sampleNodes];
+                        editor.renderPrerequisitesList('不存在的节点');
+                        
+                        if (!listDiv.innerHTML.includes('没有找到节点')) {
+                            throw new Error('Should show "没有找到节点" for no results');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 10: Load prerequisites list with valid data',
+                'Requirement 3.2: Node data loading works correctly',
+                async () => {
+                    const editor = new NodeEditor();
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        const originalGetAllNodes = nodeDataManager.getAllNodes;
+                        nodeDataManager.getAllNodes = () => [...sampleNodes];
+                        
+                        await editor.loadPrerequisitesList();
+                        
+                        nodeDataManager.getAllNodes = originalGetAllNodes;
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('allNodes should be an array');
+                        }
+                        
+                        if (editor.allNodes.length !== sampleNodes.length) {
+                            throw new Error(`Expected ${sampleNodes.length} nodes, got ${editor.allNodes.length}`);
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            )
+        ];
+        
+        /**
+         * Run all tests
+         */
+        runButton.addEventListener('click', async () => {
+            runButton.disabled = true;
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Running preservation tests...</p></div>';
+            
+            testResults = [];
+            const startTime = performance.now();
+            
+            for (const testCase of testCases) {
+                await testCase.run();
+                testResults.push(testCase);
+            }
+            
+            const totalDuration = Math.round(performance.now() - startTime);
+            displayResults(totalDuration);
+            
+            runButton.disabled = false;
+        });
+        
+        /**
+         * Display test results
+         */
+        function displayResults(totalDuration) {
+            const passed = testResults.filter(t => t.status === 'passed').length;
+            const failed = testResults.filter(t => t.status === 'failed').length;
+            const total = testResults.length;
+            
+            let html = '<div style="margin-bottom: 20px;">';
+            html += `<h2 style="color: #667eea; margin-bottom: 15px;">Test Results</h2>`;
+            html += `<div style="display: flex; gap: 20px; margin-bottom: 20px;">`;
+            html += `<div style="background: #e8f5e9; padding: 15px; border-radius: 8px; flex: 1;">`;
+            html += `<div style="font-size: 32px; font-weight: bold; color: #4caf50;">${passed}</div>`;
+            html += `<div style="color: #2e7d32;">Passed</div>`;
+            html += `</div>`;
+            html += `<div style="background: #ffebee; padding: 15px; border-radius: 8px; flex: 1;">`;
+            html += `<div style="font-size: 32px; font-weight: bold; color: #f44336;">${failed}</div>`;
+            html += `<div style="color: #c62828;">Failed</div>`;
+            html += `</div>`;
+            html += `<div style="background: #f5f5f5; padding: 15px; border-radius: 8px; flex: 1;">`;
+            html += `<div style="font-size: 32px; font-weight: bold; color: #666;">${total}</div>`;
+            html += `<div style="color: #666;">Total</div>`;
+            html += `</div>`;
+            html += `<div style="background: #f5f5f5; padding: 15px; border-radius: 8px; flex: 1;">`;
+            html += `<div style="font-size: 32px; font-weight: bold; color: #666;">${totalDuration}ms</div>`;
+            html += `<div style="color: #666;">Duration</div>`;
+            html += `</div>`;
+            html += `</div></div>`;
+            
+            testResults.forEach((test, index) => {
+                const statusIcon = test.status === 'passed' ? '✅' : '❌';
+                html += `<div class="test-case ${test.status === 'passed' ? 'pass' : 'fail'}">`;
+                html += `<div class="test-name">${statusIcon} ${test.name} (${test.duration}ms)</div>`;
+                if (test.status === 'failed') {
+                    html += `<div class="test-error">${test.details}</div>`;
+                }
+                html += `</div>`;
+            });
+            
+            const allPassed = passed === total;
+            html += `<div class="summary ${allPassed ? 'pass' : 'fail'}">`;
+            html += `${allPassed ? '✅' : '❌'} ${passed}/${total} tests passed`;
+            
+            if (allPassed) {
+                html += `<br><br>🎉 All preservation tests passed! Baseline behavior confirmed.`;
+                html += `<br>The fix should maintain this exact behavior for valid array inputs.`;
+            } else {
+                html += `<br><br>⚠️ Some tests failed. This may indicate issues with the current implementation.`;
+            }
+            
+            html += `</div>`;
+            
+            resultsDiv.innerHTML = html;
+            
+            // Log to console
+            console.log('='.repeat(60));
+            console.log('Preservation Property Tests Results');
+            console.log('='.repeat(60));
+            console.log(`Total: ${total} | Passed: ${passed} | Failed: ${failed}`);
+            console.log(`Duration: ${totalDuration}ms`);
+            console.log('='.repeat(60));
+            
+            if (allPassed) {
+                console.log('✓ ALL TESTS PASSED');
+                console.log('Baseline behavior confirmed - existing functionality preserved.');
+            } else {
+                console.log('✗ SOME TESTS FAILED');
+                console.log('Some preservation tests failed - review failures above.');
+            }
+        }
+    </script>
+</body>
+</html>

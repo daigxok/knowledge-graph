@@ -181,23 +181,42 @@ export class FilterEngine {
     }
 
     /**
-     * Get filtered edges based on visible nodes
+     * Get filtered edges based on visible nodes.
+     * Includes "bridge" edges (at least one endpoint visible) so no visible node is left without edges.
+     * Caller should add bridge endpoints to the node list for rendering (see getBridgeNodeIds).
      * @param {Array} visibleNodes - Array of visible node objects
      * @returns {Array} Filtered edges
      */
     getFilteredEdges(visibleNodes) {
         const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
-        
-        // Filter edges where both source and target are visible
-        const filteredEdges = this.graphEngine.getAllEdges().filter(edge => 
-            visibleNodeIds.has(edge.source) && visibleNodeIds.has(edge.target)
+        const allEdges = this.graphEngine.getAllEdges();
+
+        // Include edges where at least one endpoint is visible (avoids isolated nodes in view)
+        let filteredEdges = allEdges.filter(edge =>
+            visibleNodeIds.has(edge.source) || visibleNodeIds.has(edge.target)
         );
-        
-        // If showing cross-domain only, filter to cross-domain edges
+
         if (this.activeFilters.showCrossDomainOnly) {
-            return filteredEdges.filter(edge => edge.type === 'cross-domain');
+            filteredEdges = filteredEdges.filter(edge => edge.type === 'cross-domain');
         }
-        
+
         return filteredEdges;
+    }
+
+    /**
+     * Get node IDs that appear in edges but not in visibleNodes (bridge endpoints).
+     * Use with getFilteredEdges: add these nodes to the render set so edges render correctly.
+     * @param {Array} visibleNodes - Array of visible node objects
+     * @param {Array} filteredEdges - Edges from getFilteredEdges(visibleNodes)
+     * @returns {Set<string>} IDs of nodes to add as bridge nodes
+     */
+    getBridgeNodeIds(visibleNodes, filteredEdges) {
+        const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+        const bridgeIds = new Set();
+        filteredEdges.forEach(edge => {
+            if (!visibleNodeIds.has(edge.source)) bridgeIds.add(edge.source);
+            if (!visibleNodeIds.has(edge.target)) bridgeIds.add(edge.target);
+        });
+        return bridgeIds;
     }
 }

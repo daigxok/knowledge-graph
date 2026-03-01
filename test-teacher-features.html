@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师功能测试 - 知识图谱系统</title>
+    <link rel="stylesheet" href="styles/auth.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .test-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .test-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+        .success { color: #27ae60; }
+        .error { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 教师功能测试</h1>
+        <p>测试教师备课功能的各个模块</p>
+        
+        <!-- Auth Test -->
+        <div class="test-section">
+            <h3>1. 认证系统测试</h3>
+            <button class="test-btn" onclick="testAuth()">测试角色管理</button>
+            <button class="test-btn" onclick="testTeacherCheck()">测试教师权限</button>
+            <div id="authResult" class="test-result" style="display:none;"></div>
+        </div>
+        
+        <!-- Node Data Manager Test -->
+        <div class="test-section">
+            <h3>2. 节点数据管理测试</h3>
+            <button class="test-btn" onclick="testNodeCreate()">测试创建节点</button>
+            <button class="test-btn" onclick="testNodeUpdate()">测试更新节点</button>
+            <button class="test-btn" onclick="testCircularDependency()">测试循环依赖检测</button>
+            <div id="nodeResult" class="test-result" style="display:none;"></div>
+        </div>
+        
+        <!-- Lesson Plan Generator Test -->
+        <div class="test-section">
+            <h3>3. 教案生成测试</h3>
+            <button class="test-btn" onclick="testLessonPlanGenerate()">测试生成教案</button>
+            <button class="test-btn" onclick="testBatchGenerate()">测试批量生成</button>
+            <div id="lessonResult" class="test-result" style="display:none;"></div>
+        </div>
+        
+        <!-- UI Test -->
+        <div class="test-section">
+            <h3>4. UI组件测试</h3>
+            <button class="test-btn" onclick="testNodeEditor()">打开节点编辑器</button>
+            <button class="test-btn" onclick="testLessonViewer()">打开教案查看器</button>
+            <div id="uiResult" class="test-result" style="display:none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>返回</h3>
+            <a href="index.html" class="test-btn" style="display:inline-block; text-decoration:none;">返回主应用</a>
+            <a href="auth.html" class="test-btn" style="display:inline-block; text-decoration:none;">返回登录</a>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { auth } from './js/modules/Auth.js';
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        import { lessonPlanGenerator } from './js/modules/LessonPlanGenerator.js';
+        import { nodeEditor } from './js/modules/NodeEditor.js';
+        import { lessonPlanViewer } from './js/modules/LessonPlanViewer.js';
+        
+        // Make modules globally available for testing
+        window.auth = auth;
+        window.nodeDataManager = nodeDataManager;
+        window.lessonPlanGenerator = lessonPlanGenerator;
+        window.nodeEditor = nodeEditor;
+        window.lessonPlanViewer = lessonPlanViewer;
+        
+        // Initialize
+        async function init() {
+            await nodeDataManager.loadNodes();
+            nodeEditor.initialize();
+            lessonPlanViewer.initialize();
+            console.log('Test environment initialized');
+        }
+        
+        init();
+        
+        // Test functions
+        window.testAuth = function() {
+            const result = document.getElementById('authResult');
+            result.style.display = 'block';
+            
+            const user = auth.getCurrentUser();
+            const isTeacher = auth.isTeacher();
+            const role = auth.getUserRole();
+            
+            result.innerHTML = `
+当前用户: ${user ? user.username : '未登录'}
+用户角色: ${role || '无'}
+是否教师: ${isTeacher ? '是' : '否'}
+认证状态: ${auth.isAuthenticated() ? '已认证' : '未认证'}
+            `;
+        };
+        
+        window.testTeacherCheck = function() {
+            const result = document.getElementById('authResult');
+            result.style.display = 'block';
+            
+            if (auth.isTeacher()) {
+                result.innerHTML = '<span class="success">✅ 教师权限验证通过</span>';
+            } else {
+                result.innerHTML = '<span class="error">❌ 当前用户不是教师</span>';
+            }
+        };
+        
+        window.testNodeCreate = function() {
+            const result = document.getElementById('nodeResult');
+            result.style.display = 'block';
+            
+            const testNode = {
+                name: '测试节点',
+                nameEn: 'Test Node',
+                description: '这是一个测试节点',
+                domains: ['domain-1'],
+                difficulty: 3,
+                importance: 3
+            };
+            
+            const createResult = nodeDataManager.createNode(testNode);
+            
+            if (createResult.success) {
+                result.innerHTML = `<span class="success">✅ 节点创建成功</span>\n${JSON.stringify(createResult.node, null, 2)}`;
+            } else {
+                result.innerHTML = `<span class="error">❌ 节点创建失败: ${createResult.message}</span>`;
+            }
+        };
+        
+        window.testNodeUpdate = function() {
+            const result = document.getElementById('nodeResult');
+            result.style.display = 'block';
+            
+            const nodes = nodeDataManager.getAllNodes();
+            if (nodes.length === 0) {
+                result.innerHTML = '<span class="error">❌ 没有可更新的节点</span>';
+                return;
+            }
+            
+            const node = nodes[0];
+            const updateResult = nodeDataManager.updateNode(node.id, {
+                description: '更新后的描述 - ' + new Date().toLocaleTimeString()
+            });
+            
+            if (updateResult.success) {
+                result.innerHTML = `<span class="success">✅ 节点更新成功</span>\n${JSON.stringify(updateResult.node, null, 2)}`;
+            } else {
+                result.innerHTML = `<span class="error">❌ 节点更新失败: ${updateResult.message}</span>`;
+            }
+        };
+        
+        window.testCircularDependency = function() {
+            const result = document.getElementById('nodeResult');
+            result.style.display = 'block';
+            
+            // Create test nodes with circular dependency
+            const node1 = nodeDataManager.createNode({
+                name: '节点A',
+                nameEn: 'Node A',
+                description: '测试节点A',
+                domains: ['domain-1']
+            });
+            
+            if (!node1.success) {
+                result.innerHTML = `<span class="error">❌ 创建节点A失败</span>`;
+                return;
+            }
+            
+            const node2 = nodeDataManager.createNode({
+                name: '节点B',
+                nameEn: 'Node B',
+                description: '测试节点B',
+                domains: ['domain-1'],
+                prerequisites: [node1.node.id]
+            });
+            
+            if (!node2.success) {
+                result.innerHTML = `<span class="error">❌ 创建节点B失败</span>`;
+                return;
+            }
+            
+            // Try to create circular dependency
+            const updateResult = nodeDataManager.updateNode(node1.node.id, {
+                prerequisites: [node2.node.id]
+            });
+            
+            if (!updateResult.success && updateResult.message.includes('循环依赖')) {
+                result.innerHTML = `<span class="success">✅ 循环依赖检测成功</span>\n错误信息: ${updateResult.message}`;
+            } else {
+                result.innerHTML = `<span class="error">❌ 循环依赖检测失败</span>`;
+            }
+        };
+        
+        window.testLessonPlanGenerate = function() {
+            const result = document.getElementById('lessonResult');
+            result.style.display = 'block';
+            
+            const nodes = nodeDataManager.getAllNodes();
+            if (nodes.length === 0) {
+                result.innerHTML = '<span class="error">❌ 没有可用的节点</span>';
+                return;
+            }
+            
+            const node = nodes[0];
+            const generateResult = lessonPlanGenerator.generate(node.id);
+            
+            if (generateResult.success) {
+                result.innerHTML = `<span class="success">✅ 教案生成成功</span>\n节点: ${generateResult.lessonPlan.nodeName}\n章节数: ${generateResult.lessonPlan.sections.length}`;
+            } else {
+                result.innerHTML = `<span class="error">❌ 教案生成失败: ${generateResult.message}</span>`;
+            }
+        };
+        
+        window.testBatchGenerate = function() {
+            const result = document.getElementById('lessonResult');
+            result.style.display = 'block';
+            
+            const nodes = nodeDataManager.getAllNodes();
+            if (nodes.length < 3) {
+                result.innerHTML = '<span class="error">❌ 节点数量不足</span>';
+                return;
+            }
+            
+            const nodeIds = nodes.slice(0, 3).map(n => n.id);
+            const batchResult = lessonPlanGenerator.generateBatch(nodeIds);
+            
+            if (batchResult.success) {
+                result.innerHTML = `<span class="success">✅ 批量生成成功</span>\n生成数量: ${batchResult.count}`;
+            } else {
+                result.innerHTML = `<span class="error">❌ 批量生成失败</span>`;
+            }
+        };
+        
+        window.testNodeEditor = function() {
+            const result = document.getElementById('uiResult');
+            result.style.display = 'block';
+            result.innerHTML = '打开节点编辑器...';
+            
+            nodeEditor.openForCreate();
+        };
+        
+        window.testLessonViewer = function() {
+            const result = document.getElementById('uiResult');
+            result.style.display = 'block';
+            
+            const nodes = nodeDataManager.getAllNodes();
+            if (nodes.length === 0) {
+                result.innerHTML = '<span class="error">❌ 没有可用的节点</span>';
+                return;
+            }
+            
+            const node = nodes[0];
+            const generateResult = lessonPlanGenerator.generate(node.id);
+            
+            if (generateResult.success) {
+                result.innerHTML = '打开教案查看器...';
+                lessonPlanViewer.show(generateResult.lessonPlan);
+            } else {
+                result.innerHTML = `<span class="error">❌ 无法生成教案</span>`;
+            }
+        };
+    </script>
+</body>
+</html>

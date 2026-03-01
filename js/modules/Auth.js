@@ -55,7 +55,7 @@ export class Auth {
     /**
      * Register a new user
      */
-    register(username, password, email = '') {
+    register(username, password, email = '', role = 'student') {
         // Validation
         if (!username || username.length < 3 || username.length > 20) {
             return {
@@ -71,6 +71,22 @@ export class Auth {
             };
         }
         
+        // Validate role
+        if (!['teacher', 'student'].includes(role)) {
+            return {
+                success: false,
+                message: '无效的用户角色'
+            };
+        }
+        
+        // Teacher registration restriction: username must start with "Ujs"
+        if (role === 'teacher' && !username.startsWith('Ujs')) {
+            return {
+                success: false,
+                message: '教师账号注册需要审核，请联系：15805295231'
+            };
+        }
+        
         // Check if username already exists
         const users = this.getUsers();
         const existingUser = users.find(u => u.username === username);
@@ -81,7 +97,6 @@ export class Auth {
                 message: '用户名已存在'
             };
         }
-
         
         // Create new user
         const newUser = {
@@ -89,6 +104,7 @@ export class Auth {
             username: username,
             password: this.hashPassword(password),
             email: email,
+            role: role,
             createdAt: new Date().toISOString(),
             lastLogin: null
         };
@@ -102,7 +118,8 @@ export class Auth {
             user: {
                 id: newUser.id,
                 username: newUser.username,
-                email: newUser.email
+                email: newUser.email,
+                role: newUser.role
             }
         };
     }
@@ -147,7 +164,8 @@ export class Auth {
         this.currentUser = {
             id: user.id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            role: user.role || 'student'
         };
         
         this.saveSession(rememberMe);
@@ -242,6 +260,35 @@ export class Auth {
      */
     requireAuth(redirectUrl = 'auth.html') {
         if (!this.isAuthenticated()) {
+            window.location.href = redirectUrl;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Check if current user is a teacher
+     */
+    isTeacher() {
+        return this.currentUser && this.currentUser.role === 'teacher';
+    }
+
+    /**
+     * Get current user role
+     */
+    getUserRole() {
+        return this.currentUser ? this.currentUser.role : null;
+    }
+
+    /**
+     * Require teacher role (redirect if not teacher)
+     */
+    requireTeacher(redirectUrl = 'index.html') {
+        if (!this.isAuthenticated()) {
+            window.location.href = 'auth.html';
+            return false;
+        }
+        if (!this.isTeacher()) {
             window.location.href = redirectUrl;
             return false;
         }

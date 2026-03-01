@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试按钮点击</title>
+</head>
+<body>
+    <h1>测试教师课堂授课页面按钮</h1>
+    
+    <div id="testArea"></div>
+    
+    <script>
+        // 模拟数据
+        const testNode = {
+            id: 'test-node-1',
+            name: '测试知识点',
+            description: '这是一个测试知识点',
+            domains: ['domain-1'],
+            difficulty: 3
+        };
+        
+        // 定义函数
+        window.generateLessonPlan = function(nodeId) {
+            console.log('generateLessonPlan called with:', nodeId);
+            alert('生成教案功能被调用！节点ID: ' + nodeId);
+        };
+        
+        window.showNodeDetail = function(nodeId) {
+            console.log('showNodeDetail called with:', nodeId);
+            alert('查看详情功能被调用！节点ID: ' + nodeId);
+        };
+        
+        // 渲染测试按钮
+        const testArea = document.getElementById('testArea');
+        testArea.innerHTML = `
+            <h2>测试按钮</h2>
+            <div style="margin: 20px 0;">
+                <button onclick="window.showNodeDetail('${testNode.id}')" style="padding: 10px 20px; margin-right: 10px;">
+                    📖 查看详情
+                </button>
+                <button onclick="window.generateLessonPlan('${testNode.id}')" style="padding: 10px 20px;">
+                    📝 生成教案
+                </button>
+            </div>
+            
+            <h2>直接调用测试</h2>
+            <div style="margin: 20px 0;">
+                <button onclick="testDirectCall()" style="padding: 10px 20px;">
+                    直接调用测试
+                </button>
+            </div>
+        `;
+        
+        function testDirectCall() {
+            console.log('Testing direct call...');
+            window.generateLessonPlan(testNode.id);
+        }
+        
+        // 页面加载完成后测试
+        window.addEventListener('load', () => {
+            console.log('Page loaded');
+            console.log('window.generateLessonPlan exists:', typeof window.generateLessonPlan);
+            console.log('window.showNodeDetail exists:', typeof window.showNodeDetail);
+        });
+    </script>
+</body>
+</html>

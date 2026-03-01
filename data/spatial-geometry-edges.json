@@ -1,0 +1,155 @@
+[
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-spatial-vector",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-vector-dot-product",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-vector-cross-product",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-vector-dot-product",
+    "target": "node-vector-mixed-product",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-vector-cross-product",
+    "target": "node-vector-mixed-product",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-plane-equation",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-vector-dot-product",
+    "target": "node-plane-equation",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-line-equation",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-plane-equation",
+    "target": "node-point-to-plane-distance",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-line-equation",
+    "target": "node-point-to-line-distance",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-vector-cross-product",
+    "target": "node-point-to-line-distance",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-line-equation",
+    "target": "node-skew-lines-distance",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-vector-mixed-product",
+    "target": "node-skew-lines-distance",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-sphere",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-cylindrical-surface",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-quadric-surfaces",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-space-curve",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-space-curve",
+    "target": "node-helix",
+    "type": "prerequisite"
+  },
+  {
+    "source": "node-line-equation",
+    "target": "node-3d-path-planning",
+    "type": "application"
+  },
+  {
+    "source": "node-plane-equation",
+    "target": "node-3d-path-planning",
+    "type": "application"
+  },
+  {
+    "source": "node-point-to-plane-distance",
+    "target": "node-3d-path-planning",
+    "type": "application"
+  },
+  {
+    "source": "node-space-curve",
+    "target": "node-satellite-orbit",
+    "type": "application"
+  },
+  {
+    "source": "node-quadric-surfaces",
+    "target": "node-satellite-orbit",
+    "type": "application"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-gps-error-analysis",
+    "type": "application"
+  },
+  {
+    "source": "node-point-to-plane-distance",
+    "target": "node-gps-error-analysis",
+    "type": "application"
+  },
+  {
+    "source": "node-spatial-coordinate-system",
+    "target": "node-robot-vision-localization",
+    "type": "application"
+  },
+  {
+    "source": "node-spatial-vector",
+    "target": "node-robot-vision-localization",
+    "type": "application"
+  },
+  {
+    "source": "node-space-curve",
+    "target": "node-derivative",
+    "type": "related",
+    "description": "空间曲线的切线需要导数"
+  },
+  {
+    "source": "node-vector-dot-product",
+    "target": "node-gradient",
+    "type": "related",
+    "description": "梯度是向量数量积的推广"
+  },
+  {
+    "source": "node-plane-equation",
+    "target": "node-lagrange-multiplier",
+    "type": "related",
+    "description": "平面可作为约束条件"
+  }
+]

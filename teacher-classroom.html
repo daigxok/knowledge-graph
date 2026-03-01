@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师课堂授课 | 高等数学学域知识图谱</title>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+        
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .quick-search {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .quick-search:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .chapter-list {
+            list-style: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .chapter-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .chapter-item:hover {
+            background: #e9ecef;
+            border-left-color: #667eea;
+            transform: translateX(4px);
+        }
+        
+        .chapter-item.active {
+            background: #e7eaff;
+            border-left-color: #667eea;
+        }
+        
+        .chapter-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .chapter-count {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .content-area {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+        
+        .welcome-screen {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .welcome-screen h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: #667eea;
+        }
+        
+        .welcome-screen p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .node-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .node-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .node-card:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+        }
+        
+        .node-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .node-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            flex: 1;
+        }
+        
+        .node-difficulty {
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .node-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .node-domains {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .domain-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .domain-1 { background: #e7eaff; color: #667eea; }
+        .domain-2 { background: #ffe7f7; color: #f093fb; }
+        .domain-3 { background: #e7f7ff; color: #4facfe; }
+        .domain-4 { background: #ffe7f0; color: #fa709a; }
+        .domain-5 { background: #e7ffff; color: #00f2fe; }
+        
+        .node-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .node-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .node-btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .node-btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .node-btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+        
+        .node-btn-secondary:hover {
+            background: #dee2e6;
+        }
+        
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .detail-title-section h2 {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .detail-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .back-to-list {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-to-list:hover {
+            background: #e0e0e0;
+        }
+        
+        .detail-section {
+            margin-bottom: 28px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .detail-section h3 {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .detail-section p, .detail-section ul {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .detail-section ul {
+            padding-left: 24px;
+        }
+        
+        .detail-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .formula-box {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 12px 0;
+            overflow-x: auto;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #333;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 2000;
+            display: none;
+            animation: slideIn 0.3s;
+        }
+        
+        .toast.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .detail-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .action-btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .action-btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .action-btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .action-btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .lesson-plan-content {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+        
+        .lesson-plan-section {
+            margin-bottom: 24px;
+        }
+        
+        .lesson-plan-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .lesson-plan-section h4 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lesson-plan-section p, .lesson-plan-section ul {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .lesson-plan-section ul {
+            padding-left: 24px;
+        }
+        
+        .lesson-plan-section li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>👨‍🏫 教师课堂授课</h1>
+            <div class="header-actions">
+                <a href="teacher-prep.html" class="btn btn-secondary">📋 备课中心</a>
+                <a href="index.html" class="btn btn-secondary">📊 知识图谱</a>
+                <button class="btn btn-primary" id="btnFullscreen">🖥️ 全屏模式</button>
+            </div>
+        </div>
+        
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>📚 快速导航</h2>
+                <input 
+                    type="text" 
+                    class="quick-search" 
+                    id="quickSearch" 
+                    placeholder="搜索知识点..."
+                />
+                <ul class="chapter-list" id="chapterList">
+                    <li class="loading">
+                        <div class="spinner"></div>
+                        <p>加载中...</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Content Area -->
+            <div class="content-area" id="contentArea">
+                <div class="welcome-screen">
+                    <h2>👋 欢迎使用课堂授课模式</h2>
+                    <p style="font-size: 16px; margin-bottom: 20px;">
+                        <strong>三步快速开始：</strong>
+                    </p>
+                    <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                        <p style="margin-bottom: 12px;">
+                            <strong>1️⃣ 选择章节</strong> - 从左侧章节列表点击要讲授的章节
+                        </p>
+                        <p style="margin-bottom: 12px;">
+                            <strong>2️⃣ 查看知识点</strong> - 点击知识点卡片的"📖 查看详情"按钮，查看完整信息
+                        </p>
+                        <p style="margin-bottom: 12px;">
+                            <strong>3️⃣ 生成教案</strong> - 在详情弹窗中点击"📝 生成教案"按钮，自动生成结构化教案
+                        </p>
+                    </div>
+                    <p style="margin-top: 24px; font-size: 14px; color: #999;">
+                        💡 提示：点击"🖥️ 展示"按钮可进入全屏演示模式，适合课堂投影
+                    </p>
+                    <p style="margin-top: 12px; font-size: 14px; color: #999;">
+                        🔍 快速查找：使用左侧搜索框可快速定位任意知识点
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+    
+    <script type="module">
+        // Import modules
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        
+        // State
+        let allNodes = [];
+        let currentChapter = null;
+        let domainMap = {};
+        
+        // Initialize
+        async function init() {
+            try {
+                // Load nodes
+                await nodeDataManager.loadNodes();
+                allNodes = nodeDataManager.getAllNodes();
+                
+                // Load domains
+                await loadDomains();
+                
+                // Render chapter list
+                renderChapterList();
+                
+                // Bind events
+                bindEvents();
+                
+                showToast('✅ 数据加载完成');
+            } catch (error) {
+                console.error('初始化失败:', error);
+                showToast('❌ 数据加载失败');
+            }
+        }
+        
+        // Load domains
+        async function loadDomains() {
+            try {
+                const response = await fetch('data/domains.json');
+                const domains = await response.json();
+                domains.forEach(d => {
+                    domainMap[d.id] = d;
+                });
+            } catch (error) {
+                console.error('加载学域失败:', error);
+            }
+        }
+        
+        // Render chapter list
+        function renderChapterList() {
+            const chapterList = document.getElementById('chapterList');
+            
+            // Group nodes by chapter
+            const chapterGroups = {};
+            allNodes.forEach(node => {
+                const chapter = node.chapter || '其他';
+                if (!chapterGroups[chapter]) {
+                    chapterGroups[chapter] = [];
+                }
+                chapterGroups[chapter].push(node);
+            });
+            
+            // Sort chapters
+            const sortedChapters = Object.keys(chapterGroups).sort((a, b) => {
+                if (a === '其他') return 1;
+                if (b === '其他') return -1;
+                return a.localeCompare(b, 'zh-CN');
+            });
+            
+            // Render
+            chapterList.innerHTML = sortedChapters.map(chapter => `
+                <li class="chapter-item" data-chapter="${chapter}">
+                    <div class="chapter-name">${chapter}</div>
+                    <div class="chapter-count">${chapterGroups[chapter].length} 个知识点</div>
+                </li>
+            `).join('');
+        }
+        
+        // Render nodes for chapter
+        function renderNodesForChapter(chapter) {
+            currentChapter = chapter;
+            const contentArea = document.getElementById('contentArea');
+            
+            // Get nodes for this chapter
+            const nodes = allNodes.filter(n => (n.chapter || '其他') === chapter);
+            
+            // Render
+            contentArea.innerHTML = `
+                <h2 style="margin-bottom: 24px; color: #667eea;">${chapter}</h2>
+                <div class="node-grid">
+                    ${nodes.map(node => renderNodeCard(node)).join('')}
+                </div>
+            `;
+            
+            // Update active chapter
+            document.querySelectorAll('.chapter-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.chapter === chapter);
+            });
+        }
+        
+        // Render node card
+        function renderNodeCard(node) {
+            const domains = (node.domains || []).map(d => {
+                const domain = domainMap[d];
+                return domain ? `<span class="domain-badge ${d}">${domain.name}</span>` : '';
+            }).join('');
+            
+            return `
+                <div class="node-card" data-node-id="${node.id}">
+                    <div class="node-card-header">
+                        <div class="node-name">${node.name}</div>
+                        <div class="node-difficulty">难度 ${node.difficulty || 3}</div>
+                    </div>
+                    <div class="node-description">${node.description || '暂无描述'}</div>
+                    <div class="node-domains">${domains}</div>
+                    <div class="node-actions">
+                        <button class="node-btn node-btn-primary" onclick="window.showNodeDetail('${node.id}')">
+                            📖 查看详情
+                        </button>
+                        <button class="node-btn node-btn-secondary" onclick="window.presentNode('${node.id}')">
+                            🖥️ 展示
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Show node detail
+        window.showNodeDetail = function(nodeId) {
+            console.log('=== showNodeDetail called ===');
+            console.log('nodeId:', nodeId);
+            
+            const node = allNodes.find(n => n.id === nodeId);
+            console.log('found node:', node);
+            
+            if (!node) {
+                console.error('Node not found!');
+                showToast('❌ 节点未找到');
+                return;
+            }
+            
+            const contentArea = document.getElementById('contentArea');
+            
+            // Get prerequisites
+            const prerequisites = (node.prerequisites || [])
+                .map(id => {
+                    const prereq = allNodes.find(n => n.id === id);
+                    return prereq ? prereq.name : id;
+                })
+                .join('、') || '无';
+            
+            // Get domains
+            const domains = (node.domains || [])
+                .map(d => domainMap[d]?.name || d)
+                .join('、') || '无';
+            
+            contentArea.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-title-section">
+                        <h2>${node.name}</h2>
+                        <p class="detail-subtitle">${node.nameEn || ''}</p>
+                    </div>
+                    <button class="back-to-list" onclick="window.backToChapter()">
+                        ← 返回列表
+                    </button>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>📝 知识点描述</h3>
+                    <p>${node.description || '暂无描述'}</p>
+                </div>
+                
+                ${node.formula ? `
+                <div class="detail-section">
+                    <h3>📐 核心公式</h3>
+                    <div class="formula-box">
+                        $${node.formula}$
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="detail-section">
+                    <h3>🎯 所属学域</h3>
+                    <p>${domains}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>📚 前置知识</h3>
+                    <p>${prerequisites}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>⚙️ 学习参数</h3>
+                    <p>
+                        难度：${node.difficulty || 3}/5 | 
+                        重要性：${node.importance || 3}/5 | 
+                        预计学习时间：${node.estimatedStudyTime || '2小时'}
+                    </p>
+                </div>
+                
+                ${node.keywords && node.keywords.length > 0 ? `
+                <div class="detail-section">
+                    <h3>🏷️ 关键词</h3>
+                    <p>${node.keywords.join('、')}</p>
+                </div>
+                ` : ''}
+                
+                <div class="detail-actions">
+                    <button class="action-btn action-btn-primary" onclick="window.generateLessonPlan('${node.id}')">
+                        📝 生成教案
+                    </button>
+                    <button class="action-btn action-btn-secondary" onclick="window.presentNode('${node.id}')">
+                        🖥️ 全屏展示
+                    </button>
+                </div>
+            `;
+            
+            // Scroll to top
+            contentArea.scrollTop = 0;
+            
+            // Render MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise([contentArea]).catch(err => console.error('MathJax渲染失败:', err));
+            }
+        };
+        
+        // Back to chapter list
+        window.backToChapter = function() {
+            if (currentChapter) {
+                renderNodesForChapter(currentChapter);
+            } else {
+                const contentArea = document.getElementById('contentArea');
+                contentArea.innerHTML = `
+                    <div class="welcome-screen">
+                        <h2>👋 欢迎使用课堂授课模式</h2>
+                        <p style="font-size: 16px; margin-bottom: 20px;">
+                            <strong>三步快速开始：</strong>
+                        </p>
+                        <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                            <p style="margin-bottom: 12px;">
+                                <strong>1️⃣ 选择章节</strong> - 从左侧章节列表点击要讲授的章节
+                            </p>
+                            <p style="margin-bottom: 12px;">
+                                <strong>2️⃣ 查看知识点</strong> - 点击知识点卡片的"📖 查看详情"按钮，查看完整信息
+                            </p>
+                            <p style="margin-bottom: 12px;">
+                                <strong>3️⃣ 生成教案</strong> - 在详情页面中点击"📝 生成教案"按钮，自动生成结构化教案
+                            </p>
+                        </div>
+                        <p style="margin-top: 24px; font-size: 14px; color: #999;">
+                            💡 提示：点击"🖥️ 展示"按钮可进入全屏演示模式，适合课堂投影
+                        </p>
+                        <p style="margin-top: 12px; font-size: 14px; color: #999;">
+                            🔍 快速查找：使用左侧搜索框可快速定位任意知识点
+                        </p>
+                    </div>
+                `;
+            }
+        };
+        
+        // Generate lesson plan
+        window.generateLessonPlan = function(nodeId) {
+            console.log('=== generateLessonPlan called ===');
+            console.log('nodeId:', nodeId);
+            console.log('allNodes:', allNodes);
+            
+            const node = allNodes.find(n => n.id === nodeId);
+            console.log('found node:', node);
+            
+            if (!node) {
+                console.error('Node not found!');
+                showToast('❌ 节点未找到');
+                return;
+            }
+            
+            const contentArea = document.getElementById('contentArea');
+            
+            // Get prerequisites
+            const prerequisites = (node.prerequisites || [])
+                .map(id => {
+                    const prereq = allNodes.find(n => n.id === id);
+                    return prereq ? prereq.name : id;
+                });
+            
+            // Get domains
+            const domains = (node.domains || [])
+                .map(d => domainMap[d]?.name || d);
+            
+            // Generate lesson plan
+            const lessonPlan = generateLessonPlanContent(node, prerequisites, domains);
+            
+            contentArea.innerHTML = `
+                <div class="detail-header">
+                    <div class="detail-title-section">
+                        <h2>📝 教案：${node.name}</h2>
+                        <p class="detail-subtitle">自动生成的结构化教案</p>
+                    </div>
+                    <button class="back-to-list" onclick="window.showNodeDetail('${node.id}')">
+                        ← 返回详情
+                    </button>
+                </div>
+                
+                <div class="lesson-plan-content">
+                    ${lessonPlan}
+                </div>
+                
+                <div class="detail-actions">
+                    <button class="action-btn action-btn-primary" onclick="window.exportLessonPlan('${node.id}')">
+                        💾 导出教案
+                    </button>
+                    <button class="action-btn action-btn-secondary" onclick="window.showNodeDetail('${node.id}')">
+                        ← 返回详情
+                    </button>
+                </div>
+            `;
+            
+            // Scroll to top
+            contentArea.scrollTop = 0;
+            
+            // Render MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise([contentArea]).catch(err => console.error('MathJax渲染失败:', err));
+            }
+            
+            showToast('✅ 教案生成成功');
+        };
+        
+        // Generate lesson plan content
+        function generateLessonPlanContent(node, prerequisites, domains) {
+            const sections = [];
+            
+            // 1. 教学目标
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>一、教学目标</h4>
+                    <p>通过本节课的学习，学生应能够：</p>
+                    <ul>
+                        <li>理解并掌握"${node.name}"的基本概念和定义</li>
+                        <li>能够运用相关知识解决实际问题</li>
+                        <li>建立与其他知识点的联系，形成系统化理解</li>
+                        <li>培养数学思维和问题解决能力</li>
+                    </ul>
+                    <p><strong>难度等级：</strong>${node.difficulty || 3}/5 | <strong>重要性：</strong>${node.importance || 3}/5</p>
+                </div>
+            `);
+            
+            // 2. 知识点概述
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>二、知识点概述</h4>
+                    <p>${node.description || '暂无描述'}</p>
+                    <p><strong>所属学域：</strong>${domains.join('、') || '无'}</p>
+                    ${node.keywords && node.keywords.length > 0 ? `<p><strong>关键词：</strong>${node.keywords.join('、')}</p>` : ''}
+                </div>
+            `);
+            
+            // 3. 前置知识
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>三、前置知识</h4>
+                    ${prerequisites.length > 0 ? `
+                        <p>学习本知识点前，学生应该已经掌握以下内容：</p>
+                        <ul>
+                            ${prerequisites.map(name => `<li>${name}</li>`).join('')}
+                        </ul>
+                        <p>建议在学习本节内容前，先复习上述前置知识。</p>
+                    ` : '<p>本知识点无特定前置要求，适合初学者学习。</p>'}
+                </div>
+            `);
+            
+            // 4. 核心内容
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>四、核心内容</h4>
+                    <p>${node.description || '暂无描述'}</p>
+                    ${node.formula ? `
+                        <p><strong>核心公式：</strong></p>
+                        <div class="formula-box" style="margin: 12px 0;">
+                            $${node.formula}$
+                        </div>
+                    ` : ''}
+                    <p><strong>教学建议：</strong></p>
+                    <ul>
+                        <li>从实际问题引入，激发学生兴趣</li>
+                        <li>通过例题讲解，帮助学生理解核心概念</li>
+                        <li>组织课堂讨论，促进深度思考</li>
+                        <li>布置练习题，巩固所学知识</li>
+                    </ul>
+                </div>
+            `);
+            
+            // 5. 教学重点与难点
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>五、教学重点与难点</h4>
+                    <p><strong>教学重点：</strong></p>
+                    <ul>
+                        <li>核心概念的准确理解</li>
+                        <li>公式的推导和应用</li>
+                        <li>与其他知识点的联系</li>
+                        <li>实际问题的建模和求解</li>
+                    </ul>
+                    <p><strong>教学难点：</strong></p>
+                    <ul>
+                        <li>抽象概念的具体化</li>
+                        <li>理论与实践的结合</li>
+                        <li>思维方法的培养</li>
+                    </ul>
+                </div>
+            `);
+            
+            // 6. 教学方法与手段
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>六、教学方法与手段</h4>
+                    <ul>
+                        <li><strong>讲授法：</strong>系统讲解核心概念和原理</li>
+                        <li><strong>演示法：</strong>利用知识图谱展示知识关联</li>
+                        <li><strong>案例法：</strong>通过实际案例加深理解</li>
+                        <li><strong>讨论法：</strong>组织学生讨论，培养思维能力</li>
+                        <li><strong>练习法：</strong>通过练习巩固知识</li>
+                    </ul>
+                </div>
+            `);
+            
+            // 7. 教学过程
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>七、教学过程</h4>
+                    <p><strong>预计学习时间：</strong>${node.estimatedStudyTime || '2小时'}</p>
+                    <p><strong>时间分配建议：</strong></p>
+                    <ul>
+                        <li>导入与复习（10分钟）：复习前置知识，引入新课</li>
+                        <li>概念讲解（30分钟）：讲解核心概念和公式</li>
+                        <li>例题演示（30分钟）：通过例题加深理解</li>
+                        <li>练习巩固（30分钟）：学生练习，教师指导</li>
+                        <li>总结提升（10分钟）：总结要点，布置作业</li>
+                    </ul>
+                </div>
+            `);
+            
+            // 8. 实际应用
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>八、实际应用</h4>
+                    <p>本知识点在以下领域有重要应用：</p>
+                    <ul>
+                        <li><strong>工程技术：</strong>在实际工程问题中的应用</li>
+                        <li><strong>科学研究：</strong>在科学研究中的作用</li>
+                        <li><strong>日常生活：</strong>与日常生活的联系</li>
+                    </ul>
+                    <p><strong>教学建议：</strong>通过具体案例展示知识点的实际价值，提高学生学习动机。</p>
+                </div>
+            `);
+            
+            // 9. 课后作业
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>九、课后作业</h4>
+                    <ul>
+                        <li>复习本节课的核心概念和公式</li>
+                        <li>完成课后练习题（基础题5道，提高题3道）</li>
+                        <li>预习下一节课内容</li>
+                        <li>思考：本知识点在实际生活中的应用</li>
+                    </ul>
+                </div>
+            `);
+            
+            // 10. 教学反思
+            sections.push(`
+                <div class="lesson-plan-section">
+                    <h4>十、教学反思</h4>
+                    <p>（课后填写）</p>
+                    <ul>
+                        <li>学生对核心概念的掌握情况</li>
+                        <li>教学方法的有效性</li>
+                        <li>学生的参与度和积极性</li>
+                        <li>需要改进的地方</li>
+                        <li>下次课的调整建议</li>
+                    </ul>
+                </div>
+            `);
+            
+            return sections.join('');
+        }
+        
+        // Export lesson plan
+        window.exportLessonPlan = function(nodeId) {
+            const node = allNodes.find(n => n.id === nodeId);
+            if (!node) return;
+            
+            // Get prerequisites
+            const prerequisites = (node.prerequisites || [])
+                .map(id => {
+                    const prereq = allNodes.find(n => n.id === id);
+                    return prereq ? prereq.name : id;
+                });
+            
+            // Get domains
+            const domains = (node.domains || [])
+                .map(d => domainMap[d]?.name || d);
+            
+            // Generate markdown content
+            let markdown = `# 教案：${node.name}\n\n`;
+            markdown += `**英文名称：** ${node.nameEn || '无'}\n\n`;
+            markdown += `**生成时间：** ${new Date().toLocaleString('zh-CN')}\n\n`;
+            markdown += `---\n\n`;
+            
+            // 1. 教学目标
+            markdown += `## 一、教学目标\n\n`;
+            markdown += `通过本节课的学习，学生应能够：\n\n`;
+            markdown += `1. 理解并掌握"${node.name}"的基本概念和定义\n`;
+            markdown += `2. 能够运用相关知识解决实际问题\n`;
+            markdown += `3. 建立与其他知识点的联系，形成系统化理解\n`;
+            markdown += `4. 培养数学思维和问题解决能力\n\n`;
+            markdown += `**难度等级：** ${node.difficulty || 3}/5 | **重要性：** ${node.importance || 3}/5\n\n`;
+            
+            // 2. 知识点概述
+            markdown += `## 二、知识点概述\n\n`;
+            markdown += `${node.description || '暂无描述'}\n\n`;
+            markdown += `**所属学域：** ${domains.join('、') || '无'}\n\n`;
+            if (node.keywords && node.keywords.length > 0) {
+                markdown += `**关键词：** ${node.keywords.join('、')}\n\n`;
+            }
+            
+            // 3. 前置知识
+            markdown += `## 三、前置知识\n\n`;
+            if (prerequisites.length > 0) {
+                markdown += `学习本知识点前，学生应该已经掌握以下内容：\n\n`;
+                prerequisites.forEach((name, index) => {
+                    markdown += `${index + 1}. ${name}\n`;
+                });
+                markdown += `\n建议在学习本节内容前，先复习上述前置知识。\n\n`;
+            } else {
+                markdown += `本知识点无特定前置要求，适合初学者学习。\n\n`;
+            }
+            
+            // 4. 核心内容
+            markdown += `## 四、核心内容\n\n`;
+            markdown += `${node.description || '暂无描述'}\n\n`;
+            if (node.formula) {
+                markdown += `**核心公式：**\n\n`;
+                markdown += `$$${node.formula}$$\n\n`;
+            }
+            markdown += `**教学建议：**\n\n`;
+            markdown += `1. 从实际问题引入，激发学生兴趣\n`;
+            markdown += `2. 通过例题讲解，帮助学生理解核心概念\n`;
+            markdown += `3. 组织课堂讨论，促进深度思考\n`;
+            markdown += `4. 布置练习题，巩固所学知识\n\n`;
+            
+            // 5. 教学重点与难点
+            markdown += `## 五、教学重点与难点\n\n`;
+            markdown += `**教学重点：**\n\n`;
+            markdown += `1. 核心概念的准确理解\n`;
+            markdown += `2. 公式的推导和应用\n`;
+            markdown += `3. 与其他知识点的联系\n`;
+            markdown += `4. 实际问题的建模和求解\n\n`;
+            markdown += `**教学难点：**\n\n`;
+            markdown += `1. 抽象概念的具体化\n`;
+            markdown += `2. 理论与实践的结合\n`;
+            markdown += `3. 思维方法的培养\n\n`;
+            
+            // 6. 教学方法与手段
+            markdown += `## 六、教学方法与手段\n\n`;
+            markdown += `1. **讲授法：** 系统讲解核心概念和原理\n`;
+            markdown += `2. **演示法：** 利用知识图谱展示知识关联\n`;
+            markdown += `3. **案例法：** 通过实际案例加深理解\n`;
+            markdown += `4. **讨论法：** 组织学生讨论，培养思维能力\n`;
+            markdown += `5. **练习法：** 通过练习巩固知识\n\n`;
+            
+            // 7. 教学过程
+            markdown += `## 七、教学过程\n\n`;
+            markdown += `**预计学习时间：** ${node.estimatedStudyTime || '2小时'}\n\n`;
+            markdown += `**时间分配建议：**\n\n`;
+            markdown += `1. 导入与复习（10分钟）：复习前置知识，引入新课\n`;
+            markdown += `2. 概念讲解（30分钟）：讲解核心概念和公式\n`;
+            markdown += `3. 例题演示（30分钟）：通过例题加深理解\n`;
+            markdown += `4. 练习巩固（30分钟）：学生练习，教师指导\n`;
+            markdown += `5. 总结提升（10分钟）：总结要点，布置作业\n\n`;
+            
+            // 8. 实际应用
+            markdown += `## 八、实际应用\n\n`;
+            markdown += `本知识点在以下领域有重要应用：\n\n`;
+            markdown += `1. **工程技术：** 在实际工程问题中的应用\n`;
+            markdown += `2. **科学研究：** 在科学研究中的作用\n`;
+            markdown += `3. **日常生活：** 与日常生活的联系\n\n`;
+            markdown += `**教学建议：** 通过具体案例展示知识点的实际价值，提高学生学习动机。\n\n`;
+            
+            // 9. 课后作业
+            markdown += `## 九、课后作业\n\n`;
+            markdown += `1. 复习本节课的核心概念和公式\n`;
+            markdown += `2. 完成课后练习题（基础题5道，提高题3道）\n`;
+            markdown += `3. 预习下一节课内容\n`;
+            markdown += `4. 思考：本知识点在实际生活中的应用\n\n`;
+            
+            // 10. 教学反思
+            markdown += `## 十、教学反思\n\n`;
+            markdown += `（课后填写）\n\n`;
+            markdown += `1. 学生对核心概念的掌握情况\n`;
+            markdown += `2. 教学方法的有效性\n`;
+            markdown += `3. 学生的参与度和积极性\n`;
+            markdown += `4. 需要改进的地方\n`;
+            markdown += `5. 下次课的调整建议\n\n`;
+            
+            markdown += `---\n\n`;
+            markdown += `**教案生成工具：** 高等数学学域知识图谱系统\n`;
+            markdown += `**联系方式：** 15805295231\n`;
+            
+            // Create download
+            const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `教案-${node.name}-${new Date().toISOString().split('T')[0]}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('✅ 教案已导出为 Markdown 文件');
+        };
+        
+        // Present node (fullscreen)
+        window.presentNode = function(nodeId) {
+            // Already showing detail, just go fullscreen
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        };
+        
+        // Bind events
+        function bindEvents() {
+            // Chapter click
+            document.getElementById('chapterList').addEventListener('click', (e) => {
+                const item = e.target.closest('.chapter-item');
+                if (item) {
+                    const chapter = item.dataset.chapter;
+                    renderNodesForChapter(chapter);
+                }
+            });
+            
+            // Search
+            document.getElementById('quickSearch').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                if (!query) {
+                    renderChapterList();
+                    return;
+                }
+                
+                // Filter nodes
+                const filtered = allNodes.filter(node => 
+                    node.name.toLowerCase().includes(query) ||
+                    (node.description && node.description.toLowerCase().includes(query)) ||
+                    (node.keywords && node.keywords.some(k => k.toLowerCase().includes(query)))
+                );
+                
+                // Render filtered results
+                const contentArea = document.getElementById('contentArea');
+                contentArea.innerHTML = `
+                    <h2 style="margin-bottom: 24px; color: #667eea;">搜索结果：${filtered.length} 个</h2>
+                    <div class="node-grid">
+                        ${filtered.map(node => renderNodeCard(node)).join('')}
+                    </div>
+                `;
+            });
+            
+            // Fullscreen
+            document.getElementById('btnFullscreen').addEventListener('click', () => {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                }
+            });
+        }
+        
+        // Show toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

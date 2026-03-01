@@ -1423,10 +1423,410 @@
       "type": "prerequisite",
       "strength": 0.85,
       "description": "级数应用依赖傅里叶级数"
+    },
+    {
+      "id": "edge-32",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-spatial-vector",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial coordinate system是spatial vector的前置知识"
+    },
+    {
+      "id": "edge-33",
+      "source": "node-spatial-vector",
+      "target": "node-vector-dot-product",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial vector是vector dot product的前置知识"
+    },
+    {
+      "id": "edge-34",
+      "source": "node-spatial-vector",
+      "target": "node-vector-cross-product",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial vector是vector cross product的前置知识"
+    },
+    {
+      "id": "edge-35",
+      "source": "node-vector-dot-product",
+      "target": "node-vector-mixed-product",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "vector dot product是vector mixed product的前置知识"
+    },
+    {
+      "id": "edge-36",
+      "source": "node-vector-cross-product",
+      "target": "node-vector-mixed-product",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "vector cross product是vector mixed product的前置知识"
+    },
+    {
+      "id": "edge-37",
+      "source": "node-spatial-vector",
+      "target": "node-plane-equation",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial vector是plane equation的前置知识"
+    },
+    {
+      "id": "edge-38",
+      "source": "node-vector-dot-product",
+      "target": "node-plane-equation",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "vector dot product是plane equation的前置知识"
+    },
+    {
+      "id": "edge-39",
+      "source": "node-spatial-vector",
+      "target": "node-line-equation",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial vector是line equation的前置知识"
+    },
+    {
+      "id": "edge-40",
+      "source": "node-plane-equation",
+      "target": "node-point-to-plane-distance",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "plane equation是point to plane distance的前置知识"
+    },
+    {
+      "id": "edge-41",
+      "source": "node-line-equation",
+      "target": "node-point-to-line-distance",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "line equation是point to line distance的前置知识"
+    },
+    {
+      "id": "edge-42",
+      "source": "node-vector-cross-product",
+      "target": "node-point-to-line-distance",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "vector cross product是point to line distance的前置知识"
+    },
+    {
+      "id": "edge-43",
+      "source": "node-line-equation",
+      "target": "node-skew-lines-distance",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "line equation是skew lines distance的前置知识"
+    },
+    {
+      "id": "edge-44",
+      "source": "node-vector-mixed-product",
+      "target": "node-skew-lines-distance",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "vector mixed product是skew lines distance的前置知识"
+    },
+    {
+      "id": "edge-45",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-sphere",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial coordinate system是sphere的前置知识"
+    },
+    {
+      "id": "edge-46",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-cylindrical-surface",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial coordinate system是cylindrical surface的前置知识"
+    },
+    {
+      "id": "edge-47",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-quadric-surfaces",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial coordinate system是quadric surfaces的前置知识"
+    },
+    {
+      "id": "edge-48",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-space-curve",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "spatial coordinate system是space curve的前置知识"
+    },
+    {
+      "id": "edge-49",
+      "source": "node-space-curve",
+      "target": "node-helix",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "space curve是helix的前置知识"
+    },
+    {
+      "id": "edge-50",
+      "source": "node-line-equation",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.8,
+      "description": "line equation应用于3d path planning"
+    },
+    {
+      "id": "edge-51",
+      "source": "node-plane-equation",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.8,
+      "description": "plane equation应用于3d path planning"
+    },
+    {
+      "id": "edge-52",
+      "source": "node-point-to-plane-distance",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.8,
+      "description": "point to plane distance应用于3d path planning"
+    },
+    {
+      "id": "edge-53",
+      "source": "node-space-curve",
+      "target": "node-satellite-orbit",
+      "type": "application",
+      "strength": 0.8,
+      "description": "space curve应用于satellite orbit"
+    },
+    {
+      "id": "edge-54",
+      "source": "node-quadric-surfaces",
+      "target": "node-satellite-orbit",
+      "type": "application",
+      "strength": 0.8,
+      "description": "quadric surfaces应用于satellite orbit"
+    },
+    {
+      "id": "edge-55",
+      "source": "node-spatial-vector",
+      "target": "node-gps-error-analysis",
+      "type": "application",
+      "strength": 0.8,
+      "description": "spatial vector应用于gps error analysis"
+    },
+    {
+      "id": "edge-56",
+      "source": "node-point-to-plane-distance",
+      "target": "node-gps-error-analysis",
+      "type": "application",
+      "strength": 0.8,
+      "description": "point to plane distance应用于gps error analysis"
+    },
+    {
+      "id": "edge-57",
+      "source": "node-spatial-coordinate-system",
+      "target": "node-robot-vision-localization",
+      "type": "application",
+      "strength": 0.8,
+      "description": "spatial coordinate system应用于robot vision localization"
+    },
+    {
+      "id": "edge-58",
+      "source": "node-spatial-vector",
+      "target": "node-robot-vision-localization",
+      "type": "application",
+      "strength": 0.8,
+      "description": "spatial vector应用于robot vision localization"
+    },
+    {
+      "id": "edge-59",
+      "source": "node-space-curve",
+      "target": "node-derivative-def",
+      "type": "related",
+      "strength": 0.6,
+      "description": "空间曲线的切线需要导数"
+    },
+    {
+      "id": "edge-60",
+      "source": "node-vector-dot-product",
+      "target": "node-gradient",
+      "type": "related",
+      "strength": 0.6,
+      "description": "梯度是向量数量积的推广"
+    },
+    {
+      "id": "edge-61",
+      "source": "node-plane-equation",
+      "target": "node-lagrange-multiplier-detail",
+      "type": "related",
+      "strength": 0.6,
+      "description": "平面可作为约束条件"
+    },
+    {
+      "id": "edge-62",
+      "source": "node-function-basic",
+      "target": "node-spatial-coordinate-system",
+      "type": "prerequisite",
+      "strength": 0.7,
+      "description": "函数概念是理解空间坐标系的基础"
+    },
+    {
+      "id": "edge-63",
+      "source": "node-limit-def",
+      "target": "node-space-curve",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "极限概念用于空间曲线的切线"
+    },
+    {
+      "id": "edge-64",
+      "source": "node-sphere",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.7,
+      "description": "球面用于三维路径规划中的障碍物建模"
+    },
+    {
+      "id": "edge-65",
+      "source": "node-cylindrical-surface",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.6,
+      "description": "柱面用于管道和柱状障碍物建模"
+    },
+    {
+      "id": "edge-66",
+      "source": "node-sphere",
+      "target": "node-gps-error-analysis",
+      "type": "application",
+      "strength": 0.8,
+      "description": "球面用于GPS误差范围的几何表示"
+    },
+    {
+      "id": "edge-67",
+      "source": "node-point-to-line-distance",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.8,
+      "description": "点到直线距离用于路径偏离计算"
+    },
+    {
+      "id": "edge-68",
+      "source": "node-point-to-line-distance",
+      "target": "node-robot-vision-localization",
+      "type": "application",
+      "strength": 0.7,
+      "description": "点到直线距离用于机器人视觉定位"
+    },
+    {
+      "id": "edge-69",
+      "source": "node-skew-lines-distance",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.7,
+      "description": "异面直线距离用于航线规划"
+    },
+    {
+      "id": "edge-70",
+      "source": "node-helix",
+      "target": "node-3d-path-planning",
+      "type": "application",
+      "strength": 0.6,
+      "description": "螺旋线用于螺旋上升路径规划"
+    },
+    {
+      "id": "edge-71",
+      "source": "node-helix",
+      "target": "node-satellite-orbit",
+      "type": "related",
+      "strength": 0.5,
+      "description": "螺旋线与卫星螺旋轨道相关"
+    },
+    {
+      "id": "edge-72",
+      "source": "node-satellite-orbit",
+      "target": "node-ode-second-order",
+      "type": "related",
+      "strength": 0.7,
+      "description": "卫星轨道运动由二阶微分方程描述"
+    },
+    {
+      "id": "edge-73",
+      "source": "node-gps-error-analysis",
+      "target": "node-probability-basic",
+      "type": "related",
+      "strength": 0.8,
+      "description": "GPS误差分析需要概率统计方法"
+    },
+    {
+      "id": "edge-74",
+      "source": "node-robot-vision-localization",
+      "target": "node-optimization-algorithms",
+      "type": "related",
+      "strength": 0.8,
+      "description": "机器人视觉定位使用优化算法"
+    },
+    {
+      "id": "edge-75",
+      "source": "node-sphere",
+      "target": "node-quadric-surfaces",
+      "type": "prerequisite",
+      "strength": 0.9,
+      "description": "球面是最简单的二次曲面"
+    },
+    {
+      "id": "edge-76",
+      "source": "node-cylindrical-surface",
+      "target": "node-quadric-surfaces",
+      "type": "related",
+      "strength": 0.7,
+      "description": "柱面与二次曲面相关"
+    },
+    {
+      "id": "edge-77",
+      "source": "node-point-to-line-distance",
+      "target": "node-skew-lines-distance",
+      "type": "prerequisite",
+      "strength": 0.8,
+      "description": "点到直线距离是计算异面直线距离的基础"
+    },
+    {
+      "id": "edge-78",
+      "source": "node-partial-derivative",
+      "target": "node-plane-equation",
+      "type": "related",
+      "strength": 0.7,
+      "description": "偏导数用于求平面的法向量"
+    },
+    {
+      "id": "edge-79",
+      "source": "node-partial-derivative",
+      "target": "node-quadric-surfaces",
+      "type": "related",
+      "strength": 0.8,
+      "description": "偏导数用于分析二次曲面的性质"
+    },
+    {
+      "id": "edge-80",
+      "source": "node-double-integral",
+      "target": "node-sphere",
+      "type": "related",
+      "strength": 0.7,
+      "description": "二重积分用于计算球面的面积"
+    },
+    {
+      "id": "edge-81",
+      "source": "node-double-integral",
+      "target": "node-cylindrical-surface",
+      "type": "related",
+      "strength": 0.7,
+      "description": "二重积分用于计算柱面的面积"
     }
   ],
   "metadata": {
-    "totalEdges": 177,
+    "totalEdges": 208,
     "lastUpdated": "2026-02-22T06:48:18.432Z",
     "phase1EdgesAdded": 99,
     "phase1CompletionDate": "2026-02-22",

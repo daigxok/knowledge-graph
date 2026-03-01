@@ -1,0 +1,226 @@
+/* Lesson Plan Viewer Styles */
+
+.lesson-plan-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.lesson-plan-modal.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+}
+
+.lesson-plan-content {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease;
+}
+
+.lesson-plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 30px;
+    border-bottom: 2px solid #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.lesson-plan-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.lesson-plan-toolbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.toolbar-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.toolbar-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.lesson-plan-body {
+    padding: 30px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.lesson-plan-meta {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.lesson-plan-meta p {
+    margin: 8px 0;
+    color: #2d3436;
+}
+
+.lesson-plan-section {
+    margin-bottom: 40px;
+}
+
+.lesson-plan-section h3 {
+    font-size: 20px;
+    color: #667eea;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.section-content {
+    color: #2d3436;
+    line-height: 1.8;
+}
+
+.section-content p {
+    margin: 12px 0;
+}
+
+.edit-textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.edit-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Export Dialog */
+.export-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11000;
+}
+
+.export-dialog-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.export-dialog-content h3 {
+    margin: 0 0 15px 0;
+    color: #2d3436;
+}
+
+.export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.export-btn {
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s;
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+}
+
+.export-cancel {
+    padding: 12px;
+    background: #f8f9fa;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.export-cancel:hover {
+    background: #e9ecef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lesson-plan-content {
+        margin: 20px auto;
+    }
+    
+    .lesson-plan-header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .lesson-plan-toolbar {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .lesson-plan-body {
+        padding: 20px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .lesson-plan-header {
+        background: white !important;
+        color: #2d3436 !important;
+        border-bottom: 2px solid #667eea;
+    }
+    
+    .lesson-plan-toolbar,
+    .close-btn {
+        display: none !important;
+    }
+    
+    .lesson-plan-section {
+        page-break-inside: avoid;
+    }
+}

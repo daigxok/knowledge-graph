@@ -583,33 +583,36 @@ describe('FilterEngine', () => {
     });
 
     describe('getFilteredEdges', () => {
-        test('should return edges between visible nodes', () => {
+        test('should return edges touching visible nodes (includes bridge edges to avoid isolated view)', () => {
             const visibleNodes = [
                 testNodes[0], // node-1
                 testNodes[1]  // node-2
             ];
             const edges = filterEngine.getFilteredEdges(visibleNodes);
-            expect(edges).toHaveLength(1);
-            expect(edges[0].id).toBe('edge-1');
+            // edge-1 (1-2), edge-2 (1-3), edge-3 (2-4) all touch node-1 or node-2
+            expect(edges).toHaveLength(3);
+            expect(edges.map(e => e.id).sort()).toEqual(['edge-1', 'edge-2', 'edge-3']);
         });
 
-        test('should exclude edges with hidden nodes', () => {
+        test('should return edges when at least one endpoint is visible', () => {
             const visibleNodes = [
                 testNodes[0], // node-1
                 testNodes[2]  // node-3
             ];
             const edges = filterEngine.getFilteredEdges(visibleNodes);
-            expect(edges).toHaveLength(1);
-            expect(edges[0].id).toBe('edge-2');
+            // edge-1 (node-1), edge-2 (node-1, node-3)
+            expect(edges).toHaveLength(2);
+            expect(edges.map(e => e.id).sort()).toEqual(['edge-1', 'edge-2']);
         });
 
-        test('should return empty array when no edges between visible nodes', () => {
+        test('should return edges touching visible nodes even if no edge is between two visible', () => {
             const visibleNodes = [
                 testNodes[0], // node-1
-                testNodes[3]  // node-4 (not directly connected to node-1)
+                testNodes[3]  // node-4
             ];
             const edges = filterEngine.getFilteredEdges(visibleNodes);
-            expect(edges).toEqual([]);
+            // edge-1 (node-1), edge-2 (node-1), edge-3 (node-4)
+            expect(edges).toHaveLength(3);
         });
 
         test('should handle empty visible nodes', () => {
@@ -620,6 +623,24 @@ describe('FilterEngine', () => {
         test('should return all edges when all nodes are visible', () => {
             const edges = filterEngine.getFilteredEdges(testNodes);
             expect(edges).toHaveLength(4);
+        });
+    });
+
+    describe('getBridgeNodeIds', () => {
+        test('should return ids of edge endpoints not in visible set', () => {
+            const visibleNodes = [testNodes[0], testNodes[1]]; // node-1, node-2
+            const filteredEdges = filterEngine.getFilteredEdges(visibleNodes);
+            const bridgeIds = filterEngine.getBridgeNodeIds(visibleNodes, filteredEdges);
+            expect(bridgeIds.has('node-3')).toBe(true);
+            expect(bridgeIds.has('node-4')).toBe(true);
+            expect(bridgeIds.has('node-1')).toBe(false);
+            expect(bridgeIds.has('node-2')).toBe(false);
+        });
+
+        test('should return empty set when all edge endpoints are visible', () => {
+            const filteredEdges = filterEngine.getFilteredEdges(testNodes);
+            const bridgeIds = filterEngine.getBridgeNodeIds(testNodes, filteredEdges);
+            expect(bridgeIds.size).toBe(0);
         });
     });
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节点编辑器测试</title>
+    <link rel="stylesheet" href="styles/node-editor.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .test-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .test-btn:hover {
+            background: #5568d3;
+        }
+        .debug-info {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>节点编辑器测试</h1>
+    
+    <div class="test-controls">
+        <h2>测试步骤</h2>
+        <button class="test-btn" onclick="testStep1()">1. 初始化 NodeDataManager</button>
+        <button class="test-btn" onclick="testStep2()">2. 加载节点数据</button>
+        <button class="test-btn" onclick="testStep3()">3. 初始化 NodeEditor</button>
+        <button class="test-btn" onclick="testStep4()">4. 打开编辑器</button>
+        <button class="test-btn" onclick="clearDebug()">清空日志</button>
+    </div>
+    
+    <div class="debug-info" id="debugInfo">
+        等待测试...
+    </div>
+    
+    <script type="module">
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        import { nodeEditor } from './js/modules/NodeEditor.js';
+        
+        // Make available globally for testing
+        window.nodeDataManager = nodeDataManager;
+        window.nodeEditor = nodeEditor;
+        
+        let debugLog = [];
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'success' ? '✅' : 'ℹ️';
+            debugLog.push(`[${timestamp}] ${prefix} ${message}`);
+            updateDebugDisplay();
+        }
+        
+        function updateDebugDisplay() {
+            const debugDiv = document.getElementById('debugInfo');
+            debugDiv.innerHTML = debugLog.join('\n');
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+        
+        window.log = log;
+        
+        window.testStep1 = function() {
+            log('步骤1: 初始化 NodeDataManager');
+            try {
+                log('NodeDataManager 实例: ' + (nodeDataManager ? '存在' : '不存在'));
+                log('初始节点数: ' + nodeDataManager.getAllNodes().length);
+                log('步骤1 完成', 'success');
+            } catch (error) {
+                log('步骤1 失败: ' + error.message, 'error');
+                console.error(error);
+            }
+        };
+        
+        window.testStep2 = async function() {
+            log('步骤2: 加载节点数据');
+            try {
+                const nodes = await nodeDataManager.loadNodes();
+                log('加载的节点数: ' + nodes.length);
+                log('节点是否为数组: ' + Array.isArray(nodes));
+                
+                if (nodes.length > 0) {
+                    log('第一个节点: ' + JSON.stringify(nodes[0]).substring(0, 100) + '...');
+                }
+                
+                log('步骤2 完成', 'success');
+            } catch (error) {
+                log('步骤2 失败: ' + error.message, 'error');
+                console.error(error);
+            }
+        };
+        
+        window.testStep3 = function() {
+            log('步骤3: 初始化 NodeEditor');
+            try {
+                nodeEditor.initialize();
+                log('NodeEditor 已初始化');
+                log('allNodes: ' + (nodeEditor.allNodes ? nodeEditor.allNodes.length : 'undefined'));
+                log('selectedPrerequisites: ' + (nodeEditor.selectedPrerequisites ? nodeEditor.selectedPrerequisites.length : 'undefined'));
+                log('步骤3 完成', 'success');
+            } catch (error) {
+                log('步骤3 失败: ' + error.message, 'error');
+                console.error(error);
+            }
+        };
+        
+        window.testStep4 = async function() {
+            log('步骤4: 打开节点编辑器');
+            try {
+                log('调用 openForCreate()...');
+                await nodeEditor.openForCreate();
+                log('编辑器已打开');
+                log('allNodes 数量: ' + nodeEditor.allNodes.length);
+                log('步骤4 完成', 'success');
+            } catch (error) {
+                log('步骤4 失败: ' + error.message, 'error');
+                console.error(error);
+            }
+        };
+        
+        window.clearDebug = function() {
+            debugLog = [];
+            updateDebugDisplay();
+        };
+        
+        // Auto-run initial test
+        log('测试页面已加载');
+        log('点击按钮开始测试');
+    </script>
+</body>
+</html>

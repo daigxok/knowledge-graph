@@ -4,6 +4,7 @@
  */
 
 import { generateSkillContent, inferNodeType } from './SkillContentGenerator.js';
+import { renderAppletHtml } from './GGBModule.js';
 
 export class UIController {
     constructor(components) {
@@ -434,14 +435,24 @@ export class UIController {
         const projects = Array.isArray(skill.projects) ? skill.projects : [];
         const md = skill.metadata || (this.skillContentManager && this.skillContentManager.getPhase2Metadata()) || {};
 
+        const ggbApplets = Array.isArray(skill.ggbApplets) ? skill.ggbApplets : [];
+
         let html = `
             <div class="detail-section phase2-intro">
                 <h3>🎯 Skill 深度运用：${esc(skill.skillId || skillName || '')}</h3>
                 <p class="phase2-kv">服务节点：<strong>${esc(node.name || '')}</strong></p>
                 <p class="phase2-kv phase2-intro-line">本 Skill 提供 <strong>${topics.length}</strong> 个进阶主题、<strong>${exercises.length}</strong> 道进阶练习、<strong>${projects.length}</strong> 个项目任务，点击题目或项目可展开查看详情。</p>
-                <p class="phase2-kv"><span class="phase2-pill">📚 ${topics.length} 主题</span> <span class="phase2-pill">📝 ${exercises.length} 练习</span> <span class="phase2-pill">🧩 ${projects.length} 项目</span></p>
+                <p class="phase2-kv"><span class="phase2-pill">📚 ${topics.length} 主题</span> <span class="phase2-pill">📝 ${exercises.length} 练习</span> <span class="phase2-pill">🧩 ${projects.length} 项目</span>${ggbApplets.length ? ` <span class="phase2-pill">📐 ${ggbApplets.length} GGB</span>` : ''}</p>
             </div>
         `;
+
+        if (ggbApplets.length > 0) {
+            html += `<div class="detail-section phase2-ggb-section"><h3>📐 GeoGebra 交互学件</h3><div class="phase2-ggb-list">`;
+            ggbApplets.forEach(applet => {
+                html += renderAppletHtml(applet, esc, 720, 400);
+            });
+            html += `</div></div>`;
+        }
 
         // Topics
         html += `<div class="detail-section"><h3>📚 进阶主题</h3>`;
@@ -675,14 +686,19 @@ export class UIController {
     }
 
     /**
-     * Apply filters and re-render graph
+     * Apply filters and re-render graph.
+     * Includes bridge nodes (endpoints of edges from visible nodes to outside) so no node appears isolated.
      */
     applyFiltersAndRender() {
         const filters = this.filterEngine.getActiveFilters();
         const filteredNodes = this.filterEngine.applyFilters(filters);
         const filteredEdges = this.filterEngine.getFilteredEdges(filteredNodes);
-        
-        this.visualizationEngine.render(filteredNodes, filteredEdges);
+        const bridgeNodeIds = this.filterEngine.getBridgeNodeIds(filteredNodes, filteredEdges);
+        const allNodes = bridgeNodeIds.size > 0
+            ? filteredNodes.concat(this.graphEngine.getAllNodes().filter(n => bridgeNodeIds.has(n.id)))
+            : filteredNodes;
+
+        this.visualizationEngine.render(allNodes, filteredEdges);
         this.updateStats({ totalNodes: filteredNodes.length });
         this.updateDomainOverview(filteredNodes);
         this.updateDomainActiveStates();
@@ -795,6 +811,15 @@ export class UIController {
         this.currentSelectedNodeId = nodeId;
         this.updateDetailPanel(node);
         this.showDetailPanel();
+
+        // 通知教师相关模块：有节点被选中（用于在详情面板中插入“生成教案”等教师控件）
+        try {
+            window.dispatchEvent(new CustomEvent('nodeSelected', {
+                detail: { node }
+            }));
+        } catch (err) {
+            console.error('Failed to dispatch nodeSelected event:', err);
+        }
 
         if (this.learningDataManager) {
             this.learningDataManager.enterNode(nodeId, {

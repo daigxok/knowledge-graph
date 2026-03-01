@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师功能单元测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin-bottom: 10px;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #2d3436;
+            border: 1px solid #dfe6e9;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .summary {
+            padding: 30px;
+            background: #f8f9fa;
+            display: none;
+        }
+        
+        .summary.show {
+            display: block;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card.passed h3 {
+            color: #27ae60;
+        }
+        
+        .summary-card.failed h3 {
+            color: #e74c3c;
+        }
+        
+        .summary-card.total h3 {
+            color: #667eea;
+        }
+        
+        .console-output {
+            padding: 30px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .console-output pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .test-list {
+            padding: 30px;
+        }
+        
+        .test-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .test-item.pass {
+            background: #d4edda;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .test-item.fail {
+            background: #f8d7da;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .test-status {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .test-status.pass {
+            color: #27ae60;
+        }
+        
+        .test-status.fail {
+            color: #e74c3c;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 教师功能单元测试</h1>
+            <p>自动化测试教师备课功能的各个模块</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" id="runTestsBtn">▶️ 运行所有测试</button>
+            <button class="btn btn-secondary" id="clearConsoleBtn">🗑️ 清空控制台</button>
+            <button class="btn btn-secondary" id="exportResultsBtn" style="display:none;">📥 导出结果</button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>正在运行测试...</p>
+        </div>
+        
+        <div class="summary" id="summary">
+            <h2>测试摘要</h2>
+            <div class="summary-grid">
+                <div class="summary-card total">
+                    <h3 id="totalTests">0</h3>
+                    <p>总测试数</p>
+                </div>
+                <div class="summary-card passed">
+                    <h3 id="passedTests">0</h3>
+                    <p>通过</p>
+                </div>
+                <div class="summary-card failed">
+                    <h3 id="failedTests">0</h3>
+                    <p>失败</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="successRate">0%</h3>
+                    <p>成功率</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-list" id="testList" style="display:none;">
+            <h2>测试详情</h2>
+            <div id="testItems"></div>
+        </div>
+        
+        <div class="console-output" id="consoleOutput">
+            <pre id="consoleText">控制台输出将显示在这里...</pre>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { runAllTests } from './tests/teacher-features-tests.js';
+        
+        // Capture console output
+        const originalLog = console.log;
+        const originalError = console.error;
+        let consoleBuffer = [];
+        
+        function captureConsole() {
+            console.log = function(...args) {
+                consoleBuffer.push(args.join(' '));
+                originalLog.apply(console, args);
+                updateConsoleOutput();
+            };
+            
+            console.error = function(...args) {
+                consoleBuffer.push('ERROR: ' + args.join(' '));
+                originalError.apply(console, args);
+                updateConsoleOutput();
+            };
+        }
+        
+        function restoreConsole() {
+            console.log = originalLog;
+            console.error = originalError;
+        }
+        
+        function updateConsoleOutput() {
+            document.getElementById('consoleText').textContent = consoleBuffer.join('\n');
+            const output = document.getElementById('consoleOutput');
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        function clearConsole() {
+            consoleBuffer = [];
+            document.getElementById('consoleText').textContent = '控制台已清空...';
+        }
+        
+        async function runTests() {
+            // Clear previous results
+            clearConsole();
+            document.getElementById('summary').classList.remove('show');
+            document.getElementById('testList').style.display = 'none';
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('exportResultsBtn').style.display = 'none';
+            
+            // Capture console
+            captureConsole();
+            
+            try {
+                // Run tests
+                const results = await runAllTests();
+                
+                // Restore console
+                restoreConsole();
+                
+                // Hide loading
+                document.getElementById('loading').classList.remove('show');
+                
+                // Show summary
+                document.getElementById('summary').classList.add('show');
+                document.getElementById('totalTests').textContent = results.passed + results.failed;
+                document.getElementById('passedTests').textContent = results.passed;
+                document.getElementById('failedTests').textContent = results.failed;
+                
+                const successRate = Math.round((results.passed / (results.passed + results.failed)) * 100);
+                document.getElementById('successRate').textContent = successRate + '%';
+                
+                // Show test list
+                const testList = document.getElementById('testList');
+                const testItems = document.getElementById('testItems');
+                testList.style.display = 'block';
+                
+                testItems.innerHTML = results.tests.map(test => `
+                    <div class="test-item ${test.status === 'PASS' ? 'pass' : 'fail'}">
+                        <span class="test-status ${test.status === 'PASS' ? 'pass' : 'fail'}">
+                            ${test.status === 'PASS' ? '✅' : '❌'}
+                        </span>
+                        <span>${test.name}</span>
+                    </div>
+                `).join('');
+                
+                // Show export button
+                document.getElementById('exportResultsBtn').style.display = 'inline-block';
+                
+                // Store results for export
+                window.testResults = results;
+                
+            } catch (error) {
+                restoreConsole();
+                document.getElementById('loading').classList.remove('show');
+                alert('测试执行失败：' + error.message);
+            }
+        }
+        
+        function exportResults() {
+            if (!window.testResults) {
+                alert('没有可导出的测试结果');
+                return;
+            }
+            
+            const results = window.testResults;
+            const report = `# 教师功能单元测试报告
+
+## 测试摘要
+
+- 总测试数: ${results.passed + results.failed}
+- 通过: ${results.passed}
+- 失败: ${results.failed}
+- 成功率: ${Math.round((results.passed / (results.passed + results.failed)) * 100)}%
+
+## 测试详情
+
+${results.tests.map((test, index) => `${index + 1}. [${test.status}] ${test.name}`).join('\n')}
+
+## 控制台输出
+
+\`\`\`
+${consoleBuffer.join('\n')}
+\`\`\`
+
+---
+生成时间: ${new Date().toLocaleString()}
+`;
+            
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `teacher-features-test-report-${Date.now()}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Bind events
+        document.getElementById('runTestsBtn').addEventListener('click', runTests);
+        document.getElementById('clearConsoleBtn').addEventListener('click', clearConsole);
+        document.getElementById('exportResultsBtn').addEventListener('click', exportResults);
+    </script>
+</body>
+</html>

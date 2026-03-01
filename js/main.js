@@ -17,6 +17,7 @@ import { SkillContentManager } from './modules/SkillContentManager.js';
 import { LearningDataManager } from './modules/LearningDataManager.js';
 import { onboardingGuide } from './modules/OnboardingGuide.js';
 import { auth } from './modules/Auth.js';
+import { teacherFeatures } from './modules/TeacherFeatures.js';
 
 /**
  * Initialize user interface
@@ -130,6 +131,10 @@ class KnowledgeGraphApp {
             this.graphEngine = new KnowledgeGraphEngine(nodesData.nodes, edgesData.edges);
             this.stateManager = new StateManager();
             
+            // 教师备课/教案：与主图共用同一批节点数据，便于编辑保存与生成教案
+            const { nodeDataManager } = await import('./modules/NodeDataManager.js');
+            nodeDataManager.setNodes(nodesData.nodes);
+
             // Initialize visualization（传入 domainManager 以与学域颜色一致）
             const container = document.getElementById('graphCanvas');
             const width = container.clientWidth;
@@ -194,6 +199,22 @@ class KnowledgeGraphApp {
             
             console.log('✅ Knowledge Graph System initialized successfully');
             this.uiController.showNotification('知识图谱加载成功！', 'success');
+            
+            // Initialize teacher features（内部会自行根据身份决定启用哪些功能）
+            console.log('Initializing teacher features...');
+            await teacherFeatures.initialize();
+            teacherFeatures.enhanceNodeDetailPanel();
+            
+            // 教师保存节点后：同步到图谱并重新渲染
+            window.addEventListener('nodeDataChanged', (e) => {
+                const node = e.detail && e.detail.node;
+                if (node && this.graphEngine) {
+                    this.graphEngine.updateNode(node);
+                    if (this.filterEngine && this.uiController) {
+                        this.uiController.applyFiltersAndRender();
+                    }
+                }
+            });
             
             // Show onboarding guide for first-time visitors
             if (onboardingGuide.shouldShow()) {

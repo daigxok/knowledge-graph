@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批量操作功能测试</title>
+    <link rel="stylesheet" href="styles/batch-operations.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .node-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .test-node {
+            padding: 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .test-node:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .test-node.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .test-node h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .test-node p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .status {
+            padding: 15px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .status.success {
+            background: #e8f5e9;
+            border-color: #4caf50;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            border-color: #f44336;
+        }
+        
+        .console-output {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        
+        .console-output .log {
+            margin: 5px 0;
+        }
+        
+        .console-output .success {
+            color: #00b894;
+        }
+        
+        .console-output .error {
+            color: #ff7675;
+        }
+        
+        .console-output .info {
+            color: #74b9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 批量操作功能测试</h1>
+        
+        <div class="test-section">
+            <h2>📋 测试说明</h2>
+            <p>本页面用于测试批量操作功能。按住 Ctrl（Windows）或 Cmd（Mac）点击节点进行多选。</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎯 测试节点</h2>
+            <p>点击下面的节点进行选择（按住 Ctrl/Cmd 多选）：</p>
+            <div class="node-list" id="nodeList"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔧 控制面板</h2>
+            <button class="btn btn-primary" onclick="initializeBatchManager()">初始化批量操作管理器</button>
+            <button class="btn btn-primary" onclick="enableMultiSelect()">启用多选模式</button>
+            <button class="btn btn-secondary" onclick="clearAllSelections()">清除所有选择</button>
+            <button class="btn btn-secondary" onclick="runDiagnostics()">运行诊断</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📊 状态信息</h2>
+            <div id="statusInfo" class="status">
+                等待初始化...
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>💻 控制台输出</h2>
+            <div class="console-output" id="consoleOutput">
+                <div class="log info">等待操作...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { batchOperationManager } from './js/modules/BatchOperationManager.js';
+        
+        // 使其全局可访问
+        window.batchOperationManager = batchOperationManager;
+        
+        // 测试节点数据
+        const testNodes = [
+            { id: 'node-1', name: '极限的概念', nameEn: 'Concept of Limit' },
+            { id: 'node-2', name: '导数的定义', nameEn: 'Definition of Derivative' },
+            { id: 'node-3', name: '基本求导法则', nameEn: 'Basic Differentiation Rules' },
+            { id: 'node-4', name: '积分的概念', nameEn: 'Concept of Integration' },
+            { id: 'node-5', name: '定积分', nameEn: 'Definite Integral' },
+            { id: 'node-6', name: '不定积分', nameEn: 'Indefinite Integral' }
+        ];
+        
+        // 日志函数
+        function log(message, type = 'info') {
+            const output = document.getElementById('consoleOutput');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log ${type}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            output.appendChild(logEntry);
+            output.scrollTop = output.scrollHeight;
+            console.log(message);
+        }
+        
+        // 更新状态
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('statusInfo');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+        
+        // 渲染测试节点
+        function renderTestNodes() {
+            const nodeList = document.getElementById('nodeList');
+            nodeList.innerHTML = '';
+            
+            testNodes.forEach(node => {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'test-node';
+                nodeEl.id = `test-${node.id}`;
+                nodeEl.innerHTML = `
+                    <h3>${node.name}</h3>
+                    <p>${node.nameEn}</p>
+                `;
+                
+                nodeEl.addEventListener('click', (e) => {
+                    if (e.ctrlKey || e.metaKey) {
+                        toggleNodeSelection(node.id, nodeEl);
+                    } else {
+                        log('提示：按住 Ctrl/Cmd 进行多选', 'info');
+                    }
+                });
+                
+                nodeList.appendChild(nodeEl);
+            });
+            
+            log('✅ 测试节点已渲染', 'success');
+        }
+        
+        // 切换节点选择
+        function toggleNodeSelection(nodeId, nodeEl) {
+            if (!window.batchOperationManager) {
+                log('❌ 批量操作管理器未初始化', 'error');
+                updateStatus('错误：批量操作管理器未初始化', 'error');
+                return;
+            }
+            
+            batchOperationManager.toggleNodeSelection(nodeId, nodeEl);
+            nodeEl.classList.toggle('selected');
+            
+            const count = batchOperationManager.getSelectedCount();
+            log(`节点 ${nodeId} 选择状态已切换，当前选择: ${count} 个`, 'info');
+            updateStatus(`已选择 ${count} 个节点`, 'success');
+        }
+        
+        // 初始化批量操作管理器
+        window.initializeBatchManager = function() {
+            try {
+                batchOperationManager.initialize();
+                log('✅ 批量操作管理器已初始化', 'success');
+                updateStatus('批量操作管理器已初始化', 'success');
+                
+                // 检查面板是否创建
+                const panel = document.getElementById('batchOperationPanel');
+                if (panel) {
+                    log('✅ 批量操作面板已创建', 'success');
+                } else {
+                    log('❌ 批量操作面板未创建', 'error');
+                }
+            } catch (error) {
+                log(`❌ 初始化失败: ${error.message}`, 'error');
+                updateStatus('初始化失败', 'error');
+            }
+        };
+        
+        // 启用多选模式
+        window.enableMultiSelect = function() {
+            if (!window.batchOperationManager) {
+                log('❌ 请先初始化批量操作管理器', 'error');
+                return;
+            }
+            
+            batchOperationManager.enableMultiSelectMode();
+            log('✅ 多选模式已启用', 'success');
+            updateStatus('多选模式已启用，按住 Ctrl/Cmd 点击节点', 'success');
+        };
+        
+        // 清除所有选择
+        window.clearAllSelections = function() {
+            if (!window.batchOperationManager) {
+                log('❌ 批量操作管理器未初始化', 'error');
+                return;
+            }
+            
+            batchOperationManager.clearSelection();
+            document.querySelectorAll('.test-node.selected').forEach(node => {
+                node.classList.remove('selected');
+            });
+            log('✅ 已清除所有选择', 'success');
+            updateStatus('已清除所有选择', 'info');
+        };
+        
+        // 运行诊断
+        window.runDiagnostics = function() {
+            log('=== 开始诊断 ===', 'info');
+            
+            // 1. 检查模块
+            log(`1. BatchOperationManager: ${typeof window.batchOperationManager}`, 'info');
+            
+            // 2. 检查面板
+            const panel = document.getElementById('batchOperationPanel');
+            log(`2. 面板存在: ${!!panel}`, panel ? 'success' : 'error');
+            
+            if (panel) {
+                log(`   面板隐藏: ${panel.classList.contains('hidden')}`, 'info');
+                log(`   面板display: ${getComputedStyle(panel).display}`, 'info');
+            }
+            
+            // 3. 检查状态
+            if (window.batchOperationManager) {
+                const count = batchOperationManager.getSelectedCount();
+                log(`3. 已选择节点: ${count}`, count > 0 ? 'success' : 'info');
+                log(`   选择的ID: ${Array.from(batchOperationManager.selectedNodes).join(', ')}`, 'info');
+            }
+            
+            // 4. 检查CSS
+            const cssLoaded = Array.from(document.styleSheets).some(sheet => 
+                sheet.href && sheet.href.includes('batch-operations.css')
+            );
+            log(`4. CSS已加载: ${cssLoaded}`, cssLoaded ? 'success' : 'error');
+            
+            log('=== 诊断完成 ===', 'info');
+            
+            updateStatus('诊断完成，查看控制台输出', 'success');
+        };
+        
+        // 页面加载时初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            log('🚀 页面加载完成', 'success');
+            renderTestNodes();
+            updateStatus('请点击"初始化批量操作管理器"按钮开始', 'info');
+        });
+    </script>
+</body>
+</html>

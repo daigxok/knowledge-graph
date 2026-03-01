@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师备课中心 | 高等数学学域知识图谱</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .tp-page {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #1a2a3a 0%, #2d4a5e 40%, #1a2634 100%);
+            color: #ecf0f1;
+            padding: var(--spacing-lg, 24px);
+        }
+        .tp-header {
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .tp-header__title h1 { font-size: 1.75rem; margin: 0 0 6px 0; display: flex; align-items: center; gap: 10px; }
+        .tp-header__title p { margin: 0; font-size: 0.9rem; color: rgba(236,240,241,0.88); }
+        .tp-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 16px; border-radius: 999px;
+            background: rgba(255,255,255,0.08); color: #fff; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2); font-size: 0.9rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .tp-back:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.35); }
+        .tp-section {
+            max-width: 1100px;
+            margin: 0 auto 28px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 22px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .tp-section h2 {
+            font-size: 1.2rem;
+            margin: 0 0 14px 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tp-section p {
+            margin: 0 0 12px 0;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: rgba(236,240,241,0.92);
+        }
+        .tp-section p:last-child { margin-bottom: 0; }
+        .tp-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+        .tp-flow__step {
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .tp-flow__step strong { color: #ffd93d; font-size: 0.9rem; }
+        .tp-flow__step ul { margin: 8px 0 0 0; padding-left: 18px; font-size: 0.88rem; color: rgba(236,240,241,0.9); line-height: 1.5; }
+        .tp-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .tp-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.35);
+            border-radius: 10px;
+            color: #c5d3ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s, border-color 0.2s, transform 0.1s;
+        }
+        .tp-link:hover {
+            background: rgba(102, 126, 234, 0.28);
+            border-color: rgba(102, 126, 234, 0.6);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+        .tp-link__icon { font-size: 1.2rem; }
+        .tp-link__text { flex: 1; }
+        .tp-link__arrow { opacity: 0.8; font-size: 0.85rem; }
+        .tp-docs {
+            list-style: none;
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+        .tp-docs li { margin-bottom: 8px; }
+        .tp-docs a {
+            color: #7dd3fc;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .tp-docs a:hover { text-decoration: underline; }
+        .tp-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            background: rgba(255,217,61,0.2);
+            color: #ffd93d;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body class="tp-page">
+    <header class="tp-header">
+        <div class="tp-header__title">
+            <h1>📋 教师备课中心</h1>
+            <p>学域知识图谱 · 课例 · Agents · 章节设计 · Skills 与 GGB 资源一站式入口</p>
+        </div>
+        <a href="index.html" class="tp-back">← 返回知识图谱</a>
+    </header>
+
+    <section class="tp-section" aria-labelledby="workflow-title">
+        <h2 id="workflow-title">📌 备课工作流（建议）</h2>
+        <p>课前 30–60 分钟：在主图选定目标节点与前置节点 → 查看节点下 Skills（含深度内容）→ 参照课例与 Agents 设计冲突与精讲环节 → 选 1–2 道 Phase2 练习作课堂题或作业。课中：用主图做情境导入，用认知冲突课例页做冲突演示，在节点详情中打开 Skill 深度内容做讲解与练习。课后：用 Phase2 题目组卷或布置项目，必要时导出学习数据做学情分析。</p>
+        <div class="tp-flow">
+            <div class="tp-flow__step">
+                <strong>1. 课前</strong>
+                <ul>
+                    <li>主图选节点、看前置</li>
+                    <li>查 Skills 与 Phase2 题目</li>
+                    <li>看课例与 Agents 设计结构</li>
+                </ul>
+            </div>
+            <div class="tp-flow__step">
+                <strong>2. 课中</strong>
+                <ul>
+                    <li>主图情境导入</li>
+                    <li>认知冲突页 + GGB 演示</li>
+                    <li>Skill 深度内容讲解/练习</li>
+                </ul>
+            </div>
+            <div class="tp-flow__step">
+                <strong>3. 课后</strong>
+                <ul>
+                    <li>Phase2 组题/项目布置</li>
+                    <li>学习数据导出与反思</li>
+                    <li>Agents 生成作业/评价</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="tp-section" aria-labelledby="quick-title">
+        <h2 id="quick-title">🚀 快速入口</h2>
+        <p>以下链接直达各备课资源，建议收藏或从本页统一进入。</p>
+        <div class="tp-links">
+            <a href="teacher-classroom.html" class="tp-link" style="background: rgba(255, 193, 7, 0.15); border-color: rgba(255, 193, 7, 0.5);">
+                <span class="tp-link__icon">👨‍🏫</span>
+                <span class="tp-link__text">课堂授课模式（推荐）</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="index.html" class="tp-link">
+                <span class="tp-link__icon">📊</span>
+                <span class="tp-link__text">主图 · 学域与节点</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="limit-conflict-teaching.html" class="tp-link">
+                <span class="tp-link__icon">⚠️</span>
+                <span class="tp-link__text">极限认知冲突教学</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="teacher-agents.html" class="tp-link">
+                <span class="tp-link__icon">🤖</span>
+                <span class="tp-link__text">教师侧七大 AI Agents</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="student-skills.html" class="tp-link">
+                <span class="tp-link__icon">🎯</span>
+                <span class="tp-link__text">学生侧 Skills 看板</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="test-skills-system.html" class="tp-link">
+                <span class="tp-link__icon">📝</span>
+                <span class="tp-link__text">Skills 测试平台（Phase2 题目）</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+            <a href="real-world-modeling.html" class="tp-link">
+                <span class="tp-link__icon">🌐</span>
+                <span class="tp-link__text">真实问题建模学习内容</span>
+                <span class="tp-link__arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="tp-section" aria-labelledby="chapter-title">
+        <h2 id="chapter-title">📘 章节教学设计（细化文档）</h2>
+        <p>按章给出的教学场景、节次安排、关键节点、重点 Skills 与推荐 Agents，并含 Phase2 练习/项目 ID 建议，便于直接对接到课堂与作业。</p>
+        <ul class="tp-docs">
+            <li><a href="SERIES-CHAPTER-DESIGN.md" target="_blank" rel="noopener">级数章教学设计</a> <span class="tp-badge">级数收敛 · 傅里叶</span></li>
+            <li><a href="ODE-CHAPTER-DESIGN.md" target="_blank" rel="noopener">常微分方程章教学设计</a> <span class="tp-badge">ODE 建模与求解</span></li>
+        </ul>
+    </section>
+
+    <section class="tp-section" aria-labelledby="docs-title">
+        <h2 id="docs-title">📚 教师文档与指南</h2>
+        <p>完整使用说明、快速上手与实例教程，建议新教师先阅「教师使用手册」或「快速指南」。</p>
+        <ul class="tp-docs">
+            <li><a href="TEACHER-GUIDE.md" target="_blank" rel="noopener">教师使用手册（学域视角）</a></li>
+            <li><a href="示例备课.md" target="_blank" rel="noopener">示例备课（一节「极限的定义」）</a> <span class="tp-badge">推荐</span></li>
+            <li><a href="教师备课快速指南.md" target="_blank" rel="noopener">教师备课快速指南</a></li>
+            <li><a href="教师备课实例教程.md" target="_blank" rel="noopener">教师备课实例教程</a></li>
+            <li><a href="docs/TEACHER-USER-GUIDE.md" target="_blank" rel="noopener">教师功能使用指南（备课模式/节点编辑/教案导出）</a></li>
+        </ul>
+    </section>
+
+    <section class="tp-section" aria-labelledby="tips-title">
+        <h2 id="tips-title">💡 备课提示</h2>
+        <p>在主图中点击节点后，若该节点关联的 Skill 带<strong>「含深度内容」</strong>徽章，点击「去运用」即可看到 Phase2 进阶主题、进阶练习（含提示与解答关键步骤）与项目任务；部分 Skill 还提供<strong> GeoGebra 学件</strong>嵌入，可直接用于课堂演示。导出学习数据可在主图侧栏「Learning Data」中操作，便于课后学情分析。</p>
+    </section>
+</body>
+</html>

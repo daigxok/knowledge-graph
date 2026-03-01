@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeEditor AllNodes Bug Exploration Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 30px;
+        }
+        
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .warning-box p {
+            color: #856404;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #2d3436;
+            border: 1px solid #dfe6e9;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        .summary {
+            padding: 30px;
+            background: #f8f9fa;
+            display: none;
+        }
+        
+        .summary.show {
+            display: block;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .summary-card h3 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .summary-card.passed h3 {
+            color: #27ae60;
+        }
+        
+        .summary-card.failed h3 {
+            color: #e74c3c;
+        }
+        
+        .summary-card p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .test-results {
+            padding: 30px;
+        }
+        
+        .test-case {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .test-case-header {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .test-case-header:hover {
+            background: #f8f9fa;
+        }
+        
+        .test-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .test-status.passed {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .test-status.failed {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .test-status.pending {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .test-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .test-time {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .test-details {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            display: none;
+        }
+        
+        .test-details.show {
+            display: block;
+        }
+        
+        .test-details pre {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .test-details .success {
+            color: #27ae60;
+        }
+        
+        .test-details .error {
+            color: #e74c3c;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐛 NodeEditor AllNodes Bug Exploration Test</h1>
+            <p>Bug Condition Exploration: Testing AllNodes Type Safety</p>
+        </div>
+        
+        <div class="warning-box">
+            <h3>⚠️ CRITICAL: Bug Exploration Test</h3>
+            <p><strong>Purpose:</strong> This test MUST FAIL on unfixed code to confirm the bug exists.</p>
+            <p><strong>Expected Outcome:</strong> If tests PASS, it means the code already has defensive checks in place.</p>
+            <p><strong>Note:</strong> This test encodes the expected behavior - it validates the fix when it passes.</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-primary" onclick="runAllTests()">▶️ Run All Tests</button>
+            <button class="btn btn-secondary" onclick="clearResults()">🗑️ Clear Results</button>
+            <button class="btn btn-secondary" onclick="location.href='index.html'">🏠 Back to Main</button>
+        </div>
+        
+        <div class="summary" id="summary">
+            <h2>Test Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card passed">
+                    <h3 id="passedCount">0</h3>
+                    <p>Passed</p>
+                </div>
+                <div class="summary-card failed">
+                    <h3 id="failedCount">0</h3>
+                    <p>Failed</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="totalCount">0</h3>
+                    <p>Total</p>
+                </div>
+                <div class="summary-card">
+                    <h3 id="duration">0ms</h3>
+                    <p>Duration</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-results" id="testResults">
+            <div class="loading">
+                <p>Click "Run All Tests" to start bug exploration testing</p>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { NodeEditor } from './js/modules/NodeEditor.js';
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        
+        // Make available globally for button onclick
+        window.NodeEditor = NodeEditor;
+        window.nodeDataManager = nodeDataManager;
+        
+        // Test results storage
+        let testResults = [];
+        
+        /**
+         * Test Case Class
+         */
+        class TestCase {
+            constructor(name, description, testFn) {
+                this.name = name;
+                this.description = description;
+                this.testFn = testFn;
+                this.status = 'pending';
+                this.error = null;
+                this.duration = 0;
+                this.details = '';
+            }
+            
+            async run() {
+                const startTime = performance.now();
+                try {
+                    await this.testFn();
+                    this.status = 'passed';
+                    this.details = '✓ Test passed: Expected behavior confirmed';
+                } catch (error) {
+                    this.status = 'failed';
+                    this.error = error;
+                    this.details = `✗ Test failed: ${error.message}\n\nStack trace:\n${error.stack}`;
+                }
+                this.duration = Math.round(performance.now() - startTime);
+            }
+        }
+        
+        /**
+         * Define all test cases
+         */
+        const testCases = [
+            new TestCase(
+                'Test 1: this.allNodes = undefined',
+                'FAULT CONDITION: this.allNodes = undefined should not throw TypeError',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    // Create minimal DOM structure
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        // Force this.allNodes to be undefined (simulating the bug condition)
+                        editor.allNodes = undefined;
+                        
+                        // Expected Behavior: System should handle this gracefully
+                        editor.renderPrerequisitesList();
+                        
+                        // Verify the system converted undefined to empty array
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be converted to array, but it is not');
+                        }
+                        
+                        if (editor.allNodes.length !== 0) {
+                            throw new Error('Expected allNodes to be empty array');
+                        }
+                        
+                        // Verify UI shows appropriate message
+                        if (!listDiv.innerHTML.includes('暂无可用节点')) {
+                            throw new Error('Expected UI to show "暂无可用节点" message');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 2: this.allNodes = null',
+                'FAULT CONDITION: this.allNodes = null should not throw TypeError',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = null;
+                        editor.renderPrerequisitesList();
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be converted to array');
+                        }
+                        
+                        if (!listDiv.innerHTML.includes('暂无可用节点')) {
+                            throw new Error('Expected UI to show "暂无可用节点" message');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 3: this.allNodes = {} (object)',
+                'FAULT CONDITION: this.allNodes = {} should not throw TypeError',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        editor.allNodes = { someKey: 'someValue' };
+                        editor.renderPrerequisitesList();
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be converted to array');
+                        }
+                        
+                        if (!listDiv.innerHTML.includes('暂无可用节点')) {
+                            throw new Error('Expected UI to show "暂无可用节点" message');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 4: renderSelectedPrerequisites with non-array allNodes',
+                'FAULT CONDITION: renderSelectedPrerequisites should handle non-array allNodes',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const container = document.createElement('div');
+                    container.id = 'selectedPrerequisites';
+                    document.body.appendChild(container);
+                    
+                    try {
+                        editor.allNodes = undefined;
+                        editor.selectedPrerequisites = ['node-1', 'node-2'];
+                        
+                        editor.renderSelectedPrerequisites();
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be converted to array');
+                        }
+                    } finally {
+                        container.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 5: loadPrerequisitesList when getAllNodes returns undefined',
+                'FAULT CONDITION: loadPrerequisitesList should handle undefined from getAllNodes',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        // Mock getAllNodes to return undefined
+                        const originalGetAllNodes = nodeDataManager.getAllNodes;
+                        const originalLoadNodes = nodeDataManager.loadNodes;
+                        
+                        nodeDataManager.getAllNodes = () => undefined;
+                        nodeDataManager.loadNodes = async () => undefined;
+                        
+                        await editor.loadPrerequisitesList();
+                        
+                        // Restore original methods
+                        nodeDataManager.getAllNodes = originalGetAllNodes;
+                        nodeDataManager.loadNodes = originalLoadNodes;
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be array after loadPrerequisitesList');
+                        }
+                        
+                        if (editor.allNodes.length !== 0) {
+                            throw new Error('Expected allNodes to be empty array');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 6: loadPrerequisitesList when getAllNodes returns object',
+                'FAULT CONDITION: loadPrerequisitesList should handle object from getAllNodes',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        const originalGetAllNodes = nodeDataManager.getAllNodes;
+                        const originalLoadNodes = nodeDataManager.loadNodes;
+                        
+                        nodeDataManager.getAllNodes = () => ({ nodes: [] });
+                        nodeDataManager.loadNodes = async () => ({ nodes: [] });
+                        
+                        await editor.loadPrerequisitesList();
+                        
+                        nodeDataManager.getAllNodes = originalGetAllNodes;
+                        nodeDataManager.loadNodes = originalLoadNodes;
+                        
+                        if (!Array.isArray(editor.allNodes)) {
+                            throw new Error('Expected allNodes to be array');
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 7: Direct .filter() call on non-array (demonstrates original bug)',
+                'DEMONSTRATION: Direct .filter() on non-array throws TypeError',
+                async () => {
+                    const notAnArray = undefined;
+                    
+                    let errorThrown = false;
+                    let errorMessage = '';
+                    
+                    try {
+                        notAnArray.filter(x => x);
+                    } catch (error) {
+                        errorThrown = true;
+                        errorMessage = error.message;
+                    }
+                    
+                    if (!errorThrown) {
+                        throw new Error('Expected TypeError to be thrown');
+                    }
+                    
+                    if (!errorMessage.includes('filter')) {
+                        throw new Error('Expected error message to mention "filter"');
+                    }
+                }
+            ),
+            
+            new TestCase(
+                'Test 8: Property Test - Multiple non-array values',
+                'PROPERTY: System handles ANY non-array value safely',
+                async () => {
+                    const editor = new NodeEditor();
+                    
+                    const listDiv = document.createElement('div');
+                    listDiv.id = 'prerequisitesList';
+                    document.body.appendChild(listDiv);
+                    
+                    try {
+                        const nonArrayValues = [
+                            undefined,
+                            null,
+                            {},
+                            { nodes: [] },
+                            'string',
+                            123,
+                            true,
+                            false
+                        ];
+                        
+                        for (const value of nonArrayValues) {
+                            editor.allNodes = value;
+                            editor.renderPrerequisitesList();
+                            
+                            if (!Array.isArray(editor.allNodes)) {
+                                throw new Error(`Failed for value: ${JSON.stringify(value)} - allNodes not converted to array`);
+                            }
+                            
+                            if (!listDiv.innerHTML.includes('暂无可用节点')) {
+                                throw new Error(`Failed for value: ${JSON.stringify(value)} - UI message not displayed`);
+                            }
+                        }
+                    } finally {
+                        listDiv.remove();
+                    }
+                }
+            )
+        ];
+        
+        /**
+         * Run all tests
+         */
+        window.runAllTests = async function() {
+            const resultsDiv = document.getElementById('testResults');
+            const summaryDiv = document.getElementById('summary');
+            
+            resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div><p>Running tests...</p></div>';
+            summaryDiv.classList.remove('show');
+            
+            testResults = [];
+            const startTime = performance.now();
+            
+            for (const testCase of testCases) {
+                await testCase.run();
+                testResults.push(testCase);
+            }
+            
+            const totalDuration = Math.round(performance.now() - startTime);
+            
+            // Display results
+            displayResults(totalDuration);
+        };
+        
+        /**
+         * Display test results
+         */
+        function displayResults(totalDuration) {
+            const resultsDiv = document.getElementById('testResults');
+            const summaryDiv = document.getElementById('summary');
+            
+            const passed = testResults.filter(t => t.status === 'passed').length;
+            const failed = testResults.filter(t => t.status === 'failed').length;
+            const total = testResults.length;
+            
+            // Update summary
+            document.getElementById('passedCount').textContent = passed;
+            document.getElementById('failedCount').textContent = failed;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('duration').textContent = totalDuration + 'ms';
+            summaryDiv.classList.add('show');
+            
+            // Display test cases
+            let html = '';
+            testResults.forEach((test, index) => {
+                const statusIcon = test.status === 'passed' ? '✓' : '✗';
+                html += `
+                    <div class="test-case">
+                        <div class="test-case-header" onclick="toggleDetails(${index})">
+                            <div class="test-status ${test.status}">${statusIcon}</div>
+                            <div class="test-name">${test.name}</div>
+                            <div class="test-time">${test.duration}ms</div>
+                        </div>
+                        <div class="test-details" id="details-${index}">
+                            <p><strong>Description:</strong> ${test.description}</p>
+                            <pre>${test.details}</pre>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsDiv.innerHTML = html;
+            
+            // Log to console
+            console.log('='.repeat(60));
+            console.log('Bug Condition Exploration Test Results');
+            console.log('='.repeat(60));
+            console.log(`Total: ${total} | Passed: ${passed} | Failed: ${failed}`);
+            console.log(`Duration: ${totalDuration}ms`);
+            console.log('='.repeat(60));
+            
+            if (passed === total) {
+                console.log('✓ ALL TESTS PASSED');
+                console.log('This means the code already has defensive checks in place.');
+                console.log('The bug condition is properly handled.');
+            } else {
+                console.log('✗ SOME TESTS FAILED');
+                console.log('This confirms the bug exists in the current code.');
+            }
+            
+            testResults.forEach(test => {
+                console.log(`\n${test.status === 'passed' ? '✓' : '✗'} ${test.name} (${test.duration}ms)`);
+                if (test.status === 'failed') {
+                    console.error(test.error);
+                }
+            });
+        }
+        
+        /**
+         * Toggle test details
+         */
+        window.toggleDetails = function(index) {
+            const details = document.getElementById(`details-${index}`);
+            details.classList.toggle('show');
+        };
+        
+        /**
+         * Clear results
+         */
+        window.clearResults = function() {
+            const resultsDiv = document.getElementById('testResults');
+            const summaryDiv = document.getElementById('summary');
+            
+            resultsDiv.innerHTML = '<div class="loading"><p>Click "Run All Tests" to start bug exploration testing</p></div>';
+            summaryDiv.classList.remove('show');
+            testResults = [];
+        };
+    </script>
+</body>
+</html>

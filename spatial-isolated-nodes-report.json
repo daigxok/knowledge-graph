@@ -1,0 +1,69 @@
+{
+  "isolatedNodes": [],
+  "weaklyConnectedNodes": [
+    {
+      "id": "node-point-to-line-distance",
+      "name": "点到直线距离",
+      "totalEdges": 2,
+      "incomingCount": 2,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-skew-lines-distance",
+      "name": "异面直线距离",
+      "totalEdges": 2,
+      "incomingCount": 2,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-sphere",
+      "name": "球面",
+      "totalEdges": 1,
+      "incomingCount": 1,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-cylindrical-surface",
+      "name": "柱面",
+      "totalEdges": 1,
+      "incomingCount": 1,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-quadric-surfaces",
+      "name": "二次曲面",
+      "totalEdges": 2,
+      "incomingCount": 1,
+      "outgoingCount": 1
+    },
+    {
+      "id": "node-helix",
+      "name": "螺旋线",
+      "totalEdges": 1,
+      "incomingCount": 1,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-satellite-orbit",
+      "name": "卫星轨道",
+      "totalEdges": 2,
+      "incomingCount": 2,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-gps-error-analysis",
+      "name": "GPS定位误差分析",
+      "totalEdges": 2,
+      "incomingCount": 2,
+      "outgoingCount": 0
+    },
+    {
+      "id": "node-robot-vision-localization",
+      "name": "机器人视觉定位",
+      "totalEdges": 2,
+      "incomingCount": 2,
+      "outgoingCount": 0
+    }
+  ],
+  "suggestions": []
+}

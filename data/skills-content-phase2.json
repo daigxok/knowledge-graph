@@ -341,6 +341,119 @@
             "node-function-basic"
           ],
           "estimatedTime": 35
+        },
+        {
+          "id": "exercise-adv-011",
+          "difficulty": 3,
+          "question": "用 ε-δ 语言证明：lim_{x→1}(2x+1)=3。",
+          "hints": [
+            "对任意 ε>0，找 δ 使得 |x-1|<δ 时 |(2x+1)-3|<ε",
+            "|2x-2|=2|x-1|"
+          ],
+          "solution": {
+            "steps": [
+              "对任意 ε>0，取 δ=ε/2",
+              "当 0<|x-1|<δ 时，|(2x+1)-3|=|2x-2|=2|x-1|<2δ=ε",
+              "由极限定义，lim_{x→1}(2x+1)=3"
+            ],
+            "keyPoints": [
+              "ε-δ 定义",
+              "δ 的选取"
+            ]
+          },
+          "relatedNodes": ["node-limit-def"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-adv-012",
+          "difficulty": 4,
+          "question": "讨论 f(x)=x·sin(1/x) 在 x=0 处的极限与连续性，并说明如何补充定义使 f 在 x=0 处连续。",
+          "hints": [
+            "考虑 |x·sin(1/x)|≤|x|",
+            "夹逼准则"
+          ],
+          "solution": {
+            "steps": [
+              "当 x≠0 时，|f(x)|=|x||sin(1/x)|≤|x|，故 x→0 时 f(x)→0",
+              "定义 f(0)=0，则 f 在 x=0 处连续",
+              "若不补充定义，f 在 x=0 处无定义，谈不上连续"
+            ],
+            "keyPoints": [
+              "夹逼准则",
+              "可去间断点",
+              "连续延拓"
+            ]
+          },
+          "relatedNodes": ["node-limit-def", "node-continuity"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-zhenti-limit-01",
+          "difficulty": 5,
+          "question": "（真题风格）求 \\lim_{n\\to\\infty} \\frac{(1+1/n)^{n^2}}{e^n}。",
+          "hints": [
+            "取对数，n^2\\ln(1+1/n)-n",
+            "\\ln(1+t)=t-t^2/2+o(t^2)，t=1/n"
+          ],
+          "solution": {
+            "steps": [
+              "记 L=\\lim \\frac{(1+1/n)^{n^2}}{e^n}，\\ln L=\\lim[n^2\\ln(1+1/n)-n]",
+              "\\ln(1+1/n)=1/n-1/(2n^2)+o(1/n^2)，故 n^2\\ln(1+1/n)=n-1/2+o(1)",
+              "\\ln L=\\lim(n-1/2+o(1)-n)=-1/2，L=e^{-1/2}"
+            ],
+            "keyPoints": [
+              "数列极限",
+              "等价无穷小",
+              "取对数"
+            ]
+          },
+          "relatedNodes": ["node-limit-def"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-zhenti-limit-02",
+          "difficulty": 5,
+          "question": "（真题风格）求 \\lim_{x\\to 0} \\frac{(e^x-1-x)^2}{x^2\\sin^2 x}。",
+          "hints": [
+            "分子 e^x-1-x \\sim x^2/2",
+            "分母 x^2\\sin^2 x \\sim x^4"
+          ],
+          "solution": {
+            "steps": [
+              "e^x-1-x \\sim x^2/2（x\\to 0），故 (e^x-1-x)^2 \\sim x^4/4",
+              "x^2\\sin^2 x \\sim x^4",
+              "原式 = \\lim \\frac{x^4/4}{x^4} = 1/4"
+            ],
+            "keyPoints": [
+              "等价无穷小",
+              "泰勒或洛必达"
+            ]
+          },
+          "relatedNodes": ["node-limit-def"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-zhenti-limit-03",
+          "difficulty": 5,
+          "question": "（真题风格）设 f 在 [0,1] 上连续，且 \\int_0^1 f(x)x^n dx=0 对所有非负整数 n 成立。证明：f 在 [0,1] 上恒为零。",
+          "hints": [
+            "由 Weierstrass 逼近，多项式在 [0,1] 上一致逼近连续函数",
+            "故 \\int f^2 =0"
+          ],
+          "solution": {
+            "steps": [
+              "由条件 \\int_0^1 f(x)P(x)dx=0 对任意多项式 P 成立",
+              "由 Weierstrass 定理，存在多项式 P_n 一致收敛于 f",
+              "0=\\int f P_n \\to \\int f^2，故 \\int_0^1 f^2=0，由 f 连续得 f\\equiv 0"
+            ],
+            "keyPoints": [
+              "多项式逼近",
+              "积分性质",
+              "连续函数"
+            ]
+          },
+          "relatedNodes": ["node-continuity", "node-definite-integral"],
+          "estimatedTime": 35
         }
       ],
       "projects": [
@@ -408,11 +521,20 @@
           "estimatedTime": 150
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-limit-func",
+          "title": "函数极限",
+          "description": "拖动或调整参数观察函数在一点处的极限、左右极限与函数值的关系。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 15,
         "totalProjects": 2
       }
     },
@@ -749,6 +871,53 @@
             "node-continuity"
           ],
           "estimatedTime": 30
+        },
+        {
+          "id": "exercise-int-concept-011",
+          "difficulty": 3,
+          "question": "用黎曼和定义说明：∫₀¹ x² dx = 1/3。",
+          "hints": [
+            "取等分分割，选右端点",
+            "利用公式 1²+2²+...+n² = n(n+1)(2n+1)/6"
+          ],
+          "solution": {
+            "steps": [
+              "将[0,1] n 等分，Δx=1/n，取 ξᵢ=i/n",
+              "黎曼和 Sₙ = Σᵢ₌₁ⁿ (i/n)² · (1/n) = (1/n³)Σᵢ₌₁ⁿ i²",
+              "= (1/n³)·n(n+1)(2n+1)/6",
+              "n→∞ 时 Sₙ→1/3"
+            ],
+            "keyPoints": [
+              "黎曼和",
+              "求和公式",
+              "极限"
+            ]
+          },
+          "relatedNodes": ["node-riemann-sum", "node-definite-integral"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-int-concept-012",
+          "difficulty": 4,
+          "question": "判断广义积分 ∫₁^∞ (sin x)/x² dx 的收敛性，并说明理由。",
+          "hints": [
+            "|sin x|≤1",
+            "比较判别法"
+          ],
+          "solution": {
+            "steps": [
+              "|(sin x)/x²| ≤ 1/x²",
+              "∫₁^∞ (1/x²)dx = 1 收敛",
+              "由比较判别法，∫₁^∞ (sin x)/x² dx 绝对收敛"
+            ],
+            "keyPoints": [
+              "广义积分",
+              "比较判别法",
+              "绝对收敛"
+            ]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 15
         }
       ],
       "projects": [
@@ -816,11 +985,34 @@
           "estimatedTime": 180
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-definite-integral",
+          "title": "定积分与黎曼和",
+          "description": "第五章定积分：分割、求和、取极限，观察黎曼和逼近面积。",
+          "materialId": "chr9vw6g",
+          "openUrl": "https://www.geogebra.org/m/chr9vw6g"
+        },
+        {
+          "id": "ggb-indefinite-integral",
+          "title": "不定积分",
+          "description": "不定积分与换元、分部等基本积分方法的可视化。",
+          "materialId": "vvc2eekk",
+          "openUrl": "https://www.geogebra.org/m/vvc2eekk"
+        },
+        {
+          "id": "ggb-integral-region",
+          "title": "积分区域 D（矩形）",
+          "description": "矩形积分区域的可视化，理解积分限与区域形状的关系。",
+          "materialId": "hzq7tqps",
+          "openUrl": "https://www.geogebra.org/m/hzq7tqps"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 12,
         "totalProjects": 2
       }
     },
@@ -1166,6 +1358,52 @@
             "node-gradient"
           ],
           "estimatedTime": 20
+        },
+        {
+          "id": "exercise-multi-011",
+          "difficulty": 3,
+          "question": "求 f(x,y)=x²+xy+y² 在约束 x+y=1 下的极值。",
+          "hints": [
+            "拉格朗日乘数法",
+            "设 L=x²+xy+y²-λ(x+y-1)"
+          ],
+          "solution": {
+            "steps": [
+              "设 L=x²+xy+y²-λ(x+y-1)",
+              "∂L/∂x=2x+y-λ=0，∂L/∂y=x+2y-λ=0",
+              "得 2x+y=x+2y，即 x=y",
+              "代入 x+y=1 得 x=y=1/2",
+              "f(1/2,1/2)=1/4+1/4+1/4=3/4 为极小值"
+            ],
+            "keyPoints": [
+              "拉格朗日乘数法",
+              "约束极值"
+            ]
+          },
+          "relatedNodes": ["node-gradient"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-multi-012",
+          "difficulty": 4,
+          "question": "设 z 由方程 xyz=e^z 隐式确定，求 ∂z/∂x 和 ∂z/∂y。",
+          "hints": [
+            "隐函数求导",
+            "设 F(x,y,z)=xyz-e^z"
+          ],
+          "solution": {
+            "steps": [
+              "F(x,y,z)=xyz-e^z，F_x=yz，F_y=xz，F_z=xy-e^z",
+              "∂z/∂x=-F_x/F_z=-yz/(xy-e^z)",
+              "∂z/∂y=-F_y/F_z=-xz/(xy-e^z)"
+            ],
+            "keyPoints": [
+              "隐函数定理",
+              "偏导数"
+            ]
+          },
+          "relatedNodes": ["node-gradient"],
+          "estimatedTime": 15
         }
       ],
       "projects": [
@@ -1233,11 +1471,27 @@
           "estimatedTime": 160
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-surface-tangent",
+          "title": "曲面与切平面",
+          "description": "多元函数曲面、切平面与法向量的几何直观。",
+          "materialId": "bb85bdcx",
+          "openUrl": "https://www.geogebra.org/m/bb85bdcx"
+        },
+        {
+          "id": "ggb-triple-integral",
+          "title": "三重积分可视化",
+          "description": "三重积分与空间区域体积的直观演示。",
+          "materialId": "eqbrwepa",
+          "openUrl": "https://www.geogebra.org/m/eqbrwepa"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 12,
         "totalProjects": 2
       }
     },
@@ -1553,6 +1807,53 @@
             "node-integration-methods"
           ],
           "estimatedTime": 30
+        },
+        {
+          "id": "exercise-int-tech-011",
+          "difficulty": 3,
+          "question": "计算 ∫ e^{2x} cos x dx。",
+          "hints": [
+            "分部积分两次",
+            "出现循环后解方程"
+          ],
+          "solution": {
+            "steps": [
+              "设 I=∫e^{2x}cos x dx，u=cos x，dv=e^{2x}dx",
+              "I=(1/2)e^{2x}cos x + (1/2)∫e^{2x}sin x dx",
+              "对 ∫e^{2x}sin x dx 再分部积分",
+              "得 I=(1/2)e^{2x}cos x + (1/4)e^{2x}sin x - (1/4)I",
+              "解得 I=(e^{2x}/5)(2cos x+sin x)+C"
+            ],
+            "keyPoints": [
+              "分部积分",
+              "循环积分"
+            ]
+          },
+          "relatedNodes": ["node-integration-methods"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-int-tech-012",
+          "difficulty": 4,
+          "question": "利用对称性计算 ∫_{-π}^{π} x·sin⁴x dx。",
+          "hints": [
+            "被积函数奇偶性",
+            "sin⁴x 是偶函数"
+          ],
+          "solution": {
+            "steps": [
+              "f(x)=x·sin⁴x，f(-x)=-x·sin⁴x=-f(x)",
+              "f 为奇函数，在对称区间[-π,π]上积分",
+              "∫_{-π}^{π} x·sin⁴x dx = 0"
+            ],
+            "keyPoints": [
+              "奇偶性",
+              "对称区间",
+              "定积分性质"
+            ]
+          },
+          "relatedNodes": ["node-definite-integral"],
+          "estimatedTime": 10
         }
       ],
       "projects": [
@@ -1609,11 +1910,20 @@
           "estimatedTime": 150
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-definite-integral-tech",
+          "title": "定积分与换元·分部",
+          "description": "定积分章节：换元与分部积分等技巧的几何与数值直观。",
+          "materialId": "chr9vw6g",
+          "openUrl": "https://www.geogebra.org/m/chr9vw6g"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 12,
         "totalProjects": 2
       }
     },
@@ -1908,6 +2218,144 @@
             "node-series-convergence"
           ],
           "estimatedTime": 30
+        },
+        {
+          "id": "exercise-series-011",
+          "difficulty": 3,
+          "question": "判断级数 \\sum_{n=1}^\\infty \\frac{1}{n^2+1} 的收敛性。",
+          "hints": [
+            "与 p=2 的 p 级数比较",
+            "1/(n²+1) < 1/n²"
+          ],
+          "solution": {
+            "steps": [
+              "0 < 1/(n²+1) < 1/n²",
+              "\\sum 1/n² 收敛",
+              "由比较判别法，原级数收敛"
+            ],
+            "keyPoints": [
+              "比较判别法",
+              "p 级数"
+            ]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 10
+        },
+        {
+          "id": "exercise-series-012",
+          "difficulty": 4,
+          "question": "求幂级数 \\sum_{n=1}^\\infty \\frac{x^n}{n} 的收敛半径与收敛区间。",
+          "hints": [
+            "比值判别法求 R",
+            "端点处单独讨论"
+          ],
+          "solution": {
+            "steps": [
+              "a_n=1/n，则 a_{n+1}/a_n = n/(n+1) → 1",
+              "收敛半径 R=1",
+              "x=1 时，\\sum 1/n 发散；x=-1 时，\\sum (-1)^n/n 收敛",
+              "收敛区间为 [-1,1)"
+            ],
+            "keyPoints": [
+              "收敛半径",
+              "端点判别",
+              "收敛区间"
+            ]
+          },
+          "relatedNodes": ["node-power-series"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-zhenti-series-01",
+          "difficulty": 5,
+          "question": "（真题风格）设 a_n>0，\\sum_{n=1}^\\infty a_n 收敛，证明 \\sum_{n=1}^\\infty \\sqrt{a_n a_{n+1}} 收敛。",
+          "hints": [
+            "利用不等式 \\sqrt{a_n a_{n+1}} \\le (a_n+a_{n+1})/2",
+            "比较判别法"
+          ],
+          "solution": {
+            "steps": [
+              "由均值不等式 \\sqrt{a_n a_{n+1}} \\le \\frac{a_n+a_{n+1}}{2}",
+              "故 \\sum \\sqrt{a_n a_{n+1}} \\le \\frac{1}{2}\\sum(a_n+a_{n+1})",
+              "右端 \\le \\frac{1}{2}(S+\\sum a_{n+1}) \\le S<+\\infty，故正项级数 \\sum \\sqrt{a_n a_{n+1}} 收敛"
+            ],
+            "keyPoints": [
+              "均值不等式",
+              "比较判别法",
+              "正项级数"
+            ]
+          },
+          "relatedNodes": ["node-series-convergence"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-zhenti-series-02",
+          "difficulty": 5,
+          "question": "（真题风格）求幂级数 \\sum_{n=1}^\\infty n\\cdot 2^n x^{n-1} 的收敛域及和函数 S(x)。",
+          "hints": [
+            "先求收敛半径 R",
+            "在收敛域内用逐项积分或 \\sum n t^{n-1}=(1/(1-t))'"
+          ],
+          "solution": {
+            "steps": [
+              "通项 a_n=n\\cdot 2^n，收敛半径 R=1/\\limsup \\sqrt[n]{n\\cdot 2^n}=1/2",
+              "收敛域 (-1/2,\\ 1/2)；端点 x=\\pm 1/2 时通项不趋于 0，发散",
+              "记 t=2x，\\sum_{n\\ge1} n t^{n-1}=1/(1-t)^2，故 S(x)=1/(1-2x)^2，x\\in(-1/2,1/2)"
+            ],
+            "keyPoints": [
+              "收敛半径",
+              "幂级数求和",
+              "逐项求导"
+            ]
+          },
+          "relatedNodes": ["node-power-series"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-zhenti-series-03",
+          "difficulty": 5,
+          "question": "（真题风格）判断级数 \\sum_{n=2}^\\infty \\frac{(-1)^n \\ln n}{n} 的收敛性，并说明是绝对收敛还是条件收敛。",
+          "hints": [
+            "先考虑绝对值级数 \\sum (\\ln n)/n",
+            "交错级数用莱布尼茨判别法"
+          ],
+          "solution": {
+            "steps": [
+              "|u_n|=(\\ln n)/n，n\\ge 2 时 (\\ln n)/n \\ge 1/n，\\sum 1/n 发散，故 \\sum |u_n| 发散",
+              "令 a_n=(\\ln n)/n，a_n\\to 0；可证 a_n 在 n\\ge 3 后单调减",
+              "由莱布尼茨判别法，交错级数 \\sum (-1)^n a_n 收敛，故为条件收敛"
+            ],
+            "keyPoints": [
+              "绝对收敛与条件收敛",
+              "莱布尼茨判别法",
+              "比较判别法"
+            ]
+          },
+          "relatedNodes": ["node-alternating-series", "node-series-convergence"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-zhenti-series-04",
+          "difficulty": 5,
+          "question": "（真题风格）设 f(x)=\\sum_{n=0}^\\infty \\frac{x^n}{n+1}（|x|<1），求 \\int_0^1 f(x)\\,dx。",
+          "hints": [
+            "在收敛域内逐项积分",
+            "\\int_0^1 x^n dx = 1/(n+1)"
+          ],
+          "solution": {
+            "steps": [
+              "在 (-1,1) 内级数一致收敛于闭子区间，可逐项积分",
+              "\\int_0^1 f(x)dx = \\sum_{n=0}^\\infty \\frac{1}{n+1}\\int_0^1 x^n dx = \\sum_{n=0}^\\infty \\frac{1}{(n+1)^2}",
+              "令 k=n+1，得 \\sum_{k=1}^\\infty 1/k^2 = \\pi^2/6"
+            ],
+            "keyPoints": [
+              "逐项积分",
+              "幂级数",
+              "巴塞尔和"
+            ]
+          },
+          "relatedNodes": ["node-power-series"],
+          "estimatedTime": 25
         }
       ],
       "projects": [
@@ -1965,11 +2413,34 @@
           "estimatedTime": 160
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-fourier-convergence",
+          "title": "傅里叶级数收敛",
+          "description": "调节项数观察部分和趋近周期函数，直观理解级数收敛。",
+          "materialId": "wqfqpk9m",
+          "openUrl": "https://www.geogebra.org/m/wqfqpk9m"
+        },
+        {
+          "id": "ggb-sequence-limit",
+          "title": "数列极限",
+          "description": "数列极限的收敛直观与 ε-N 语言。",
+          "materialId": "aybvrqsu",
+          "openUrl": "https://www.geogebra.org/m/aybvrqsu"
+        },
+        {
+          "id": "ggb-sequence-def",
+          "title": "数列定义与极限计算",
+          "description": "数列极限定义、重要数列与极限计算的交互演示。",
+          "materialId": "xceakcjv",
+          "openUrl": "https://www.geogebra.org/m/xceakcjv"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 16,
         "totalProjects": 2
       }
     },
@@ -2233,7 +2704,29 @@
           "estimatedTime": 15
         },
         {
-          "id": "exercise-adv-010",
+          "id": "exercise-def-app-011",
+          "difficulty": 3,
+          "question": "求由 y=x² 与 y=2-x² 围成区域的面积。",
+          "hints": [
+            "求两曲线交点",
+            "确定上减下"
+          ],
+          "solution": {
+            "steps": [
+              "交点：x²=2-x² ⇒ x=±1",
+              "在[-1,1]上，y=2-x² 在上，y=x² 在下",
+              "S=∫_{-1}^1 [(2-x²)-x²]dx = ∫_{-1}^1 (2-2x²)dx = 8/3"
+            ],
+            "keyPoints": [
+              "面积计算",
+              "对称区间"
+            ]
+          },
+          "relatedNodes": ["node-area-volume"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-def-app-012",
           "difficulty": 4,
           "question": "求y²=2x与y=x-4围成的面积。",
           "hints": [
@@ -2251,6 +2744,98 @@
             "node-definite-integral-app"
           ],
           "estimatedTime": 25
+        },
+        {
+          "id": "exercise-def-app-013",
+          "difficulty": 4,
+          "question": "求曲线 y=ln x 从 x=1 到 x=e 绕 x 轴旋转所得旋转体的侧面积。",
+          "hints": [
+            "旋转体侧面积公式 S=2π∫y√(1+(y')²)dx",
+            "y'=1/x"
+          ],
+          "solution": {
+            "steps": [
+              "y=ln x，y'=1/x，√(1+(y')²)=√(1+1/x²)",
+              "S=2π∫₁^e ln x·√(1+1/x²)dx",
+              "可换元 u=ln x 或数值计算，重点在于建立公式"
+            ],
+            "keyPoints": [
+              "旋转体侧面积",
+              "弧长元素",
+              "积分建模"
+            ]
+          },
+          "relatedNodes": ["node-area-volume", "node-arc-length"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-zhenti-def-01",
+          "difficulty": 5,
+          "question": "（真题风格）求由 y=x^2 与 y=2x 所围成区域绕 x 轴旋转所得旋转体的体积。",
+          "hints": [
+            "先求交点，确定上下曲线",
+            "V=\\pi\\int_a^b [(2x)^2-(x^2)^2]dx"
+          ],
+          "solution": {
+            "steps": [
+              "交点：x^2=2x \\Rightarrow x=0,2，区间 [0,2] 上 2x\\ge x^2",
+              "旋转体体积 V=\\pi\\int_0^2 [(2x)^2-(x^2)^2]dx = \\pi\\int_0^2 (4x^2-x^4)dx",
+              "= \\pi[4x^3/3-x^5/5]_0^2 = \\pi(32/3-32/5) = \\frac{64\\pi}{15}"
+            ],
+            "keyPoints": [
+              "旋转体体积",
+              "圆环法",
+              "定积分计算"
+            ]
+          },
+          "relatedNodes": ["node-area-volume"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-zhenti-def-02",
+          "difficulty": 5,
+          "question": "（真题风格）求曲线 y=\\ln x 从 (1,0) 到 (e,1) 的弧长。",
+          "hints": [
+            "弧长公式 L=\\int_1^e \\sqrt{1+(y')^2}\\,dx",
+            "y'=1/x，可令 t=\\sqrt{1+x^2} 或直接积分"
+          ],
+          "solution": {
+            "steps": [
+              "y'=1/x，L=\\int_1^e \\sqrt{1+1/x^2}\\,dx = \\int_1^e \\frac{\\sqrt{1+x^2}}{x}dx",
+              "令 x=\\tan t 或凑微分，得 L=\\sqrt{1+x^2}+\\ln\\frac{x}{1+\\sqrt{1+x^2}}\\big|_1^e",
+              "代入化简：L=\\sqrt{1+e^2}-\\sqrt{2}+\\ln\\frac{e(1+\\sqrt{2})}{1+\\sqrt{1+e^2}}"
+            ],
+            "keyPoints": [
+              "弧长公式",
+              "换元积分",
+              "定积分计算"
+            ]
+          },
+          "relatedNodes": ["node-arc-length"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-zhenti-def-03",
+          "difficulty": 5,
+          "question": "（真题风格）设 D 由 y=x^2 与 y=\\sqrt{x} 围成，求 D 的面积及 D 绕 y 轴旋转所得旋转体的体积。",
+          "hints": [
+            "交点 (0,0)，(1,1)，面积 S=\\int_0^1(\\sqrt{x}-x^2)dx",
+            "绕 y 轴体积用柱壳法 V=2\\pi\\int_0^1 x(\\sqrt{x}-x^2)dx"
+          ],
+          "solution": {
+            "steps": [
+              "交点 x^2=\\sqrt{x} \\Rightarrow x=0,1，S=\\int_0^1(\\sqrt{x}-x^2)dx=[2x^{3/2}/3-x^3/3]_0^1=1/3",
+              "柱壳法：V=2\\pi\\int_0^1 x(\\sqrt{x}-x^2)dx=2\\pi\\int_0^1(x^{3/2}-x^3)dx",
+              "=2\\pi[2x^{5/2}/5-x^4/4]_0^1=2\\pi(2/5-1/4)=\\frac{3\\pi}{10}"
+            ],
+            "keyPoints": [
+              "面积",
+              "柱壳法",
+              "旋转体体积"
+            ]
+          },
+          "relatedNodes": ["node-area-volume"],
+          "estimatedTime": 30
         }
       ],
       "projects": [
@@ -2307,11 +2892,55 @@
           "estimatedTime": 180
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-area-volume",
+          "title": "定积分：面积与体积",
+          "description": "定积分表示面积、旋转体体积等几何量的可视化。",
+          "materialId": "chr9vw6g",
+          "openUrl": "https://www.geogebra.org/m/chr9vw6g"
+        },
+        {
+          "id": "ggb-double-integral",
+          "title": "二重积分可视化",
+          "description": "二重积分与区域面积、曲顶柱体体积的直观。",
+          "materialId": "zbtkchfn",
+          "openUrl": "https://www.geogebra.org/m/zbtkchfn"
+        },
+        {
+          "id": "ggb-region-rect",
+          "title": "矩形区域 D",
+          "description": "拖动端点观察 a,b,c,d 变化时矩形区域 D 的形状，联系积分区间设置。",
+          "materialId": "hzq7tqps",
+          "openUrl": "https://www.geogebra.org/m/hzq7tqps"
+        },
+        {
+          "id": "ggb-region-x",
+          "title": "X 型区域",
+          "description": "观察 y=φ₁(x) 与 y=φ₂(x) 之间的带状区域，理解先 y 后 x 的积分次序。",
+          "materialId": "kv9g4t7s",
+          "openUrl": "https://www.geogebra.org/m/kv9g4t7s"
+        },
+        {
+          "id": "ggb-region-y",
+          "title": "Y 型区域",
+          "description": "观察 x=ψ₁(y) 与 x=ψ₂(y) 之间的竖直带状区域，理解先 x 后 y 的积分次序。",
+          "materialId": "pkv8kmpb",
+          "openUrl": "https://www.geogebra.org/m/pkv8kmpb"
+        },
+        {
+          "id": "ggb-triple-volume",
+          "title": "三重积分与体积",
+          "description": "三重积分表示空间区域体积的可视化。",
+          "materialId": "eqbrwepa",
+          "openUrl": "https://www.geogebra.org/m/eqbrwepa"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 15,
         "totalProjects": 2
       }
     },
@@ -2644,6 +3273,29 @@
             "node-taylor-series"
           ],
           "estimatedTime": 20
+        },
+        {
+          "id": "exercise-series-adv-006",
+          "difficulty": 4,
+          "question": "求幂级数 \\sum_{n=1}^\\infty \\frac{x^n}{n^2} 的收敛半径及在 x=1 处的值。",
+          "hints": [
+            "比值法求 R",
+            "x=1 时为 \\sum 1/n²=π²/6"
+          ],
+          "solution": {
+            "steps": [
+              "a_n=1/n²，a_{n+1}/a_n=n²/(n+1)²→1，R=1",
+              "x=1 时级数为 \\sum 1/n²，收敛于 π²/6",
+              "x=-1 时 \\sum (-1)^n/n² 也收敛"
+            ],
+            "keyPoints": [
+              "收敛半径",
+              "巴塞尔问题",
+              "收敛区间"
+            ]
+          },
+          "relatedNodes": ["node-power-series"],
+          "estimatedTime": 15
         }
       ],
       "projects": [
@@ -2705,11 +3357,20 @@
           "estimatedTime": 160
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-fourier-series",
+          "title": "傅里叶级数逼近",
+          "description": "调节项数 N 观察部分和逼近，理解级数分析与误差。",
+          "materialId": "wqfqpk9m",
+          "openUrl": "https://www.geogebra.org/m/wqfqpk9m"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 12,
+        "totalExercises": 13,
         "totalProjects": 2
       }
     },
@@ -3037,6 +3698,30 @@
             "node-ode-numerical"
           ],
           "estimatedTime": 25
+        },
+        {
+          "id": "exercise-na-013",
+          "difficulty": 4,
+          "question": "用复化梯形公式计算 ∫₀^1 √(1-x²) dx（n=8），并与精确值 π/4 比较误差。",
+          "hints": [
+            "h=1/8，x_k=k/8",
+            "被积函数为上半圆，精确值为 π/4"
+          ],
+          "solution": {
+            "steps": [
+              "h=1/8，x_k=k/8，k=0,...,8",
+              "T=(h/2)[f(0)+2Σf(x_k)+f(1)]",
+              "f(0)=1，f(1)=0，中间点代入 √(1-x²)",
+              "近似值约 0.78，与 π/4≈0.785 比较"
+            ],
+            "keyPoints": [
+              "复化梯形公式",
+              "数值积分",
+              "误差估计"
+            ]
+          },
+          "relatedNodes": ["node-numerical-integration"],
+          "estimatedTime": 20
         }
       ],
       "projects": [
@@ -3086,11 +3771,27 @@
           "estimatedTime": 120
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-limit-numerical",
+          "title": "极限与迭代",
+          "description": "函数极限与迭代过程的数值直观，辅助理解收敛性。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
+        },
+        {
+          "id": "ggb-riemann-numerical",
+          "title": "黎曼和与数值积分",
+          "description": "黎曼和逼近定积分，与梯形/辛普森等数值方法直观一致。",
+          "materialId": "chr9vw6g",
+          "openUrl": "https://www.geogebra.org/m/chr9vw6g"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 12,
+        "totalExercises": 13,
         "totalProjects": 2
       }
     },
@@ -3444,6 +4145,22 @@
           "estimatedTime": 120
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-ode-slope",
+          "title": "变化率与切线场",
+          "description": "函数极限与变化率直观，辅助理解微分方程 y'=f(x,y) 的几何意义。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
+        },
+        {
+          "id": "ggb-ode-integral",
+          "title": "积分与解曲线",
+          "description": "积分与几何直观，与一阶 ODE 求解中的积分步骤相对应。",
+          "materialId": "j9pnjbvr",
+          "openUrl": "https://www.geogebra.org/m/j9pnjbvr"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
@@ -3749,6 +4466,95 @@
             "node-ode-numerical"
           ],
           "estimatedTime": 35
+        },
+        {
+          "id": "exercise-zhenti-ode-01",
+          "difficulty": 5,
+          "question": "（真题风格）求 y'-\\frac{y}{x}=x^2 满足 y(1)=1 的特解。",
+          "hints": [
+            "一阶线性，积分因子 \\mu(x)=1/x",
+            "通解再代入初值"
+          ],
+          "solution": {
+            "steps": [
+              "标准形 y'-y/x=x^2，p(x)=-1/x，积分因子 \\mu=e^{-\\ln x}=1/x",
+              "(y/x)'=x，积分得 y/x=x^2/2+C，即 y=x^3/2+Cx",
+              "y(1)=1 得 1=1/2+C，C=1/2，特解 y=x^3/2+x/2"
+            ],
+            "keyPoints": [
+              "积分因子法",
+              "初值问题"
+            ]
+          },
+          "relatedNodes": ["node-ode-first-order"],
+          "estimatedTime": 20
+        },
+        {
+          "id": "exercise-zhenti-ode-02",
+          "difficulty": 5,
+          "question": "（真题风格）求 xy'+y=xe^x 的通解。",
+          "hints": [
+            "化为 y'+y/x=e^x，一阶线性",
+            "或写成 (xy)'=xe^x"
+          ],
+          "solution": {
+            "steps": [
+              "方程即 (xy)'=xe^x，积分 xy=\\int xe^x dx=(x-1)e^x+C",
+              "通解 y=[(x-1)e^x+C]/x，x\\neq 0"
+            ],
+            "keyPoints": [
+              "一阶线性",
+              "凑导数形式"
+            ]
+          },
+          "relatedNodes": ["node-ode-first-order"],
+          "estimatedTime": 15
+        },
+        {
+          "id": "exercise-zhenti-ode-03",
+          "difficulty": 5,
+          "question": "（真题风格）求 y'=\\frac{y}{x}+\\frac{x}{y}，y(1)=2 的特解。",
+          "hints": [
+            "齐次结构，令 u=y/x 化为可分离",
+            "或令 v=y/x 得 v+xv'=v+1/v"
+          ],
+          "solution": {
+            "steps": [
+              "令 v=y/x，则 y=xv，y'=v+xv'，代入得 v+xv'=v+1/v，即 xv'=1/v",
+              "分离变量 v\\,dv=dx/x，积分 v^2/2=\\ln|x|+C",
+              "v^2=2\\ln|x|+C_1，回代 (y/x)^2=2\\ln|x|+C_1，y(1)=2 得 C_1=4",
+              "特解 y^2=x^2(2\\ln|x|+4)，取 y>0 得 y=x\\sqrt{2\\ln|x|+4}"
+            ],
+            "keyPoints": [
+              "齐次方程",
+              "变量代换",
+              "初值确定"
+            ]
+          },
+          "relatedNodes": ["node-ode-first-order"],
+          "estimatedTime": 30
+        },
+        {
+          "id": "exercise-zhenti-ode-04",
+          "difficulty": 5,
+          "question": "（真题风格）求 (1+x^2)y'=2xy，y(0)=1 的特解。",
+          "hints": [
+            "可分离变量，dy/y=2x/(1+x^2)dx",
+            "右端积分得 \\ln(1+x^2)"
+          ],
+          "solution": {
+            "steps": [
+              "分离变量 \\frac{dy}{y}=\\frac{2x}{1+x^2}dx",
+              "积分 \\ln|y|=\\ln(1+x^2)+C，故 y=C(1+x^2)",
+              "y(0)=1 得 C=1，特解 y=1+x^2"
+            ],
+            "keyPoints": [
+              "可分离变量",
+              "初值问题"
+            ]
+          },
+          "relatedNodes": ["node-ode-basic"],
+          "estimatedTime": 15
         }
       ],
       "projects": [
@@ -3797,11 +4603,20 @@
           "estimatedTime": 100
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-ode-solve-curve",
+          "title": "解曲线与积分",
+          "description": "积分与几何直观，与 ODE 求解中的积分步骤与解曲线对应。",
+          "materialId": "j9pnjbvr",
+          "openUrl": "https://www.geogebra.org/m/j9pnjbvr"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T10:00:00.000Z",
         "version": "2.0",
         "totalTopics": 2,
-        "totalExercises": 12,
+        "totalExercises": 16,
         "totalProjects": 2
       }
     },
@@ -4084,6 +4899,53 @@
             "node-limit-def"
           ],
           "estimatedTime": 30
+        },
+        {
+          "id": "exercise-deriv-anim-011",
+          "difficulty": 3,
+          "question": "为“黎曼和→定积分”设计 4 步推导动画脚本，每步写出旁白与图形状态。",
+          "hints": [
+            "分割→取点→求和→取极限",
+            "矩形高度与面积"
+          ],
+          "solution": {
+            "steps": [
+              "第1步：展示区间[a,b]与分割点，标出 Δx",
+              "第2步：在每个小区间取样本点，画出矩形",
+              "第3步：写出黎曼和 Σf(ξᵢ)Δx，数值随 n 增大",
+              "第4步：n→∞ 时矩形趋于“填满”曲线下区域，和→积分"
+            ],
+            "keyPoints": [
+              "黎曼和",
+              "极限过程",
+              "积分定义"
+            ]
+          },
+          "relatedNodes": ["node-riemann-sum", "node-definite-integral"],
+          "estimatedTime": 25
+        },
+        {
+          "id": "exercise-deriv-anim-012",
+          "difficulty": 4,
+          "question": "设计“隐函数求导”的推导动画：从 F(x,y)=0 到 dy/dx=-F_x/F_y 的 3 个关键帧。",
+          "hints": [
+            "对方程两边关于 x 求导",
+            "链式法则"
+          ],
+          "solution": {
+            "steps": [
+              "关键帧1：展示 F(x,y)=0 的曲线与点 (x₀,y₀)",
+              "关键帧2：标出切线方向，写出 F_x+F_y·(dy/dx)=0",
+              "关键帧3：解出 dy/dx=-F_x/F_y，与切线斜率对应"
+            ],
+            "keyPoints": [
+              "隐函数求导",
+              "链式法则",
+              "切线斜率"
+            ]
+          },
+          "relatedNodes": ["node-derivative-rules"],
+          "estimatedTime": 20
         }
       ],
       "projects": [
@@ -4142,11 +5004,27 @@
           "estimatedTime": 120
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-secant-tangent",
+          "title": "割线到切线",
+          "description": "动点沿曲线逼近时割线趋于切线的过程，配合差商变化。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
+        },
+        {
+          "id": "ggb-fourier-derivation",
+          "title": "傅里叶级数逼近",
+          "description": "调节项数 N 观察部分和趋近周期信号，体会推导中的极限过程。",
+          "materialId": "wqfqpk9m",
+          "openUrl": "https://www.geogebra.org/m/wqfqpk9m"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T12:00:00.000Z",
         "version": "2.0",
         "totalTopics": 3,
-        "totalExercises": 10,
+        "totalExercises": 12,
         "totalProjects": 2
       }
     },
@@ -4522,6 +5400,22 @@
           ],
           "deliverables": ["学件链接或截图", "使用说明文档"],
           "estimatedTime": 120
+        }
+      ],
+      "ggbApplets": [
+        {
+          "id": "ggb-limit",
+          "title": "函数极限 · ε-δ 直观",
+          "description": "观察极限、左右极限与函数值的关系，用于认知冲突演示。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
+        },
+        {
+          "id": "ggb-fourier",
+          "title": "傅里叶级数逼近",
+          "description": "调节项数 N 观察部分和趋近周期信号，体会极限意义下的逼近。",
+          "materialId": "wqfqpk9m",
+          "openUrl": "https://www.geogebra.org/m/wqfqpk9m"
         }
       ],
       "metadata": {
@@ -4915,6 +5809,22 @@
           "estimatedTime": 90
         }
       ],
+      "ggbApplets": [
+        {
+          "id": "ggb-derivative-def",
+          "title": "导数定义与几何意义",
+          "description": "割线趋于切线、差商趋于导数的动态直观。",
+          "materialId": "av59nkuj",
+          "openUrl": "https://www.geogebra.org/m/av59nkuj"
+        },
+        {
+          "id": "ggb-mean-value",
+          "title": "微分中值定理",
+          "description": "罗尔定理、拉格朗日中值定理的几何演示。",
+          "materialId": "aryhhdz3",
+          "openUrl": "https://www.geogebra.org/m/aryhhdz3"
+        }
+      ],
       "metadata": {
         "generatedDate": "2026-02-23T12:00:00.000Z",
         "version": "2.0",
@@ -5291,6 +6201,15 @@
           ],
           "deliverables": ["题组文档（含题目与反馈）", "考查点-题目对应表"],
           "estimatedTime": 120
+        }
+      ],
+      "ggbApplets": [
+        {
+          "id": "ggb-limit-continuous",
+          "title": "极限与连续",
+          "description": "配合 H5P 题组中的极限与连续题，可先在此观察 ε-δ 与连续性的直观。",
+          "materialId": "k2vxc3zn",
+          "openUrl": "https://www.geogebra.org/m/k2vxc3zn"
         }
       ],
       "metadata": {

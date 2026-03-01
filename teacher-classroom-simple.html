@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师课堂授课（简化版）</title>
+    
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #667eea;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 24px;
+        }
+        
+        .sidebar, .content-area {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-list {
+            list-style: none;
+        }
+        
+        .chapter-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .chapter-item:hover {
+            background: #e9ecef;
+        }
+        
+        .chapter-item.active {
+            background: #e7eaff;
+            border-left: 4px solid #667eea;
+        }
+        
+        .node-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        .node-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid transparent;
+        }
+        
+        .node-card:hover {
+            border-color: #667eea;
+        }
+        
+        .node-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .node-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .node-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .node-btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .node-btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .node-btn-secondary {
+            background: #e9ecef;
+            color: #333;
+        }
+        
+        .back-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 8px;
+        }
+        
+        .action-btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .detail-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .detail-section h3 {
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👨‍🏫 教师课堂授课（简化版）</h1>
+        </div>
+        
+        <div class="main-grid">
+            <div class="sidebar">
+                <h2>章节列表</h2>
+                <ul class="chapter-list" id="chapterList">
+                    <li>加载中...</li>
+                </ul>
+            </div>
+            
+            <div class="content-area" id="contentArea">
+                <h2>欢迎</h2>
+                <p>请从左侧选择章节</p>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { nodeDataManager } from './js/modules/NodeDataManager.js';
+        
+        let allNodes = [];
+        let domainMap = {};
+        let currentChapter = null;
+        
+        // Initialize
+        async function init() {
+            console.log('=== 初始化开始 ===');
+            
+            try {
+                // Load nodes
+                await nodeDataManager.loadNodes();
+                allNodes = nodeDataManager.getAllNodes();
+                console.log('节点加载完成:', allNodes.length);
+                
+                // Load domains
+                const response = await fetch('data/domains.json');
+                const domains = await response.json();
+                domains.forEach(d => {
+                    domainMap[d.id] = d;
+                });
+                console.log('学域加载完成:', Object.keys(domainMap).length);
+                
+                // Render chapter list
+                renderChapterList();
+                
+                console.log('=== 初始化完成 ===');
+            } catch (error) {
+                console.error('初始化失败:', error);
+                alert('数据加载失败: ' + error.message);
+            }
+        }
+        
+        // Render chapter list
+        function renderChapterList() {
+            const chapterList = document.getElementById('chapterList');
+            
+            // Group nodes by chapter
+            const chapterGroups = {};
+            allNodes.forEach(node => {
+                const chapter = node.chapter || '其他';
+                if (!chapterGroups[chapter]) {
+                    chapterGroups[chapter] = [];
+                }
+                chapterGroups[chapter].push(node);
+            });
+            
+            // Sort chapters
+            const sortedChapters = Object.keys(chapterGroups).sort();
+            
+            // Render
+            chapterList.innerHTML = sortedChapters.map(chapter => `
+                <li class="chapter-item" onclick="showChapter('${chapter}')">
+                    ${chapter} (${chapterGroups[chapter].length})
+                </li>
+            `).join('');
+            
+            console.log('章节列表渲染完成:', sortedChapters.length);
+        }
+        
+        // Show chapter
+        window.showChapter = function(chapter) {
+            console.log('=== 显示章节 ===', chapter);
+            currentChapter = chapter;
+            
+            const contentArea = document.getElementById('contentArea');
+            const nodes = allNodes.filter(n => (n.chapter || '其他') === chapter);
+            
+            console.log('该章节节点数:', nodes.length);
+            
+            contentArea.innerHTML = `
+                <h2>${chapter}</h2>
+                <div class="node-grid">
+                    ${nodes.map(node => `
+                        <div class="node-card">
+                            <div class="node-name">${node.name}</div>
+                            <div style="font-size: 14px; color: #666; margin-bottom: 12px;">
+                                ${(node.description || '暂无描述').substring(0, 100)}...
+                            </div>
+                            <div class="node-actions">
+                                <button class="node-btn node-btn-primary" onclick="showDetail('${node.id}')">
+                                    📖 查看详情
+                                </button>
+                                <button class="node-btn node-btn-secondary" onclick="alert('展示: ${node.name}')">
+                                    🖥️ 展示
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Update active chapter
+            document.querySelectorAll('.chapter-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        };
+        
+        // Show detail
+        window.showDetail = function(nodeId) {
+            console.log('=== 显示详情 ===', nodeId);
+            
+            const node = allNodes.find(n => n.id === nodeId);
+            if (!node) {
+                alert('节点未找到: ' + nodeId);
+                return;
+            }
+            
+            const contentArea = document.getElementById('contentArea');
+            
+            contentArea.innerHTML = `
+                <button class="back-btn" onclick="showChapter('${currentChapter}')">← 返回章节</button>
+                
+                <h2>${node.name}</h2>
+                <p style="color: #666; margin-bottom: 24px;">${node.nameEn || ''}</p>
+                
+                <div class="detail-section">
+                    <h3>📝 描述</h3>
+                    <p>${node.description || '暂无描述'}</p>
+                </div>
+                
+                ${node.formula ? `
+                <div class="detail-section">
+                    <h3>📐 公式</h3>
+                    <p>$${node.formula}$</p>
+                </div>
+                ` : ''}
+                
+                <div class="detail-section">
+                    <h3>⚙️ 参数</h3>
+                    <p>难度: ${node.difficulty || 3}/5 | 重要性: ${node.importance || 3}/5</p>
+                </div>
+                
+                <div style="margin-top: 24px;">
+                    <button class="action-btn action-btn-primary" onclick="generatePlan('${node.id}')">
+                        📝 生成教案
+                    </button>
+                    <button class="action-btn action-btn-secondary" onclick="showChapter('${currentChapter}')">
+                        ← 返回
+                    </button>
+                </div>
+            `;
+            
+            // Render MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise([contentArea]).catch(err => console.error('MathJax错误:', err));
+            }
+        };
+        
+        // Generate plan
+        window.generatePlan = function(nodeId) {
+            console.log('=== 生成教案 ===', nodeId);
+            
+            const node = allNodes.find(n => n.id === nodeId);
+            if (!node) {
+                alert('节点未找到');
+                return;
+            }
+            
+            const contentArea = document.getElementById('contentArea');
+            
+            contentArea.innerHTML = `
+                <button class="back-btn" onclick="showDetail('${node.id}')">← 返回详情</button>
+                
+                <h2>📝 教案：${node.name}</h2>
+                
+                <div class="detail-section">
+                    <h3>一、教学目标</h3>
+                    <p>通过本节课的学习，学生应能够：</p>
+                    <ul>
+                        <li>理解并掌握"${node.name}"的基本概念和定义</li>
+                        <li>能够运用相关知识解决实际问题</li>
+                        <li>建立与其他知识点的联系</li>
+                    </ul>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>二、知识点概述</h3>
+                    <p>${node.description || '暂无描述'}</p>
+                </div>
+                
+                <div class="detail-section">
+                    <h3>三、教学重点</h3>
+                    <ul>
+                        <li>核心概念的准确理解</li>
+                        <li>公式的推导和应用</li>
+                        <li>实际问题的建模和求解</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 24px;">
+                    <button class="action-btn action-btn-primary" onclick="exportPlan('${node.id}')">
+                        💾 导出教案
+                    </button>
+                    <button class="action-btn action-btn-secondary" onclick="showDetail('${node.id}')">
+                        ← 返回详情
+                    </button>
+                </div>
+            `;
+        };
+        
+        // Export plan
+        window.exportPlan = function(nodeId) {
+            const node = allNodes.find(n => n.id === nodeId);
+            if (!node) return;
+            
+            const markdown = `# 教案：${node.name}\n\n## 一、教学目标\n\n通过本节课的学习，学生应能够：\n\n1. 理解并掌握"${node.name}"的基本概念和定义\n2. 能够运用相关知识解决实际问题\n3. 建立与其他知识点的联系\n\n## 二、知识点概述\n\n${node.description || '暂无描述'}\n`;
+            
+            const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `教案-${node.name}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('✅ 教案已导出');
+        };
+        
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
